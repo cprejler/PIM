@@ -1,29 +1,30 @@
 
 package businesslogic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  *
  * @author casper
  */
-public class Product extends ProductEntity {
+public class Product extends ProductType {
     private Integer ID;
-    private String category;
+    private String type;
 
-    public Product(HashMap<String, Object> fields, String name, Integer ID, String category) {
+    public Product(ArrayList<String> fields, String name, Integer ID, String type) {
         super.fields=fields;
         super.name=name;
         this.ID = ID;
-        this.category = category;
+        this.type = type;
     }
 
     public Integer getID() {
         return ID;
     }
 
-    public String getCategory() {
-        return category;
+    public String getType() {
+        return type;
     }
 
     public HashMap<String, Object> getFields() {
