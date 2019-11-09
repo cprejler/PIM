@@ -1,4 +1,3 @@
-
 package businesslogic;
 
 import java.util.ArrayList;
@@ -8,26 +7,31 @@ import java.util.HashMap;
  *
  * @author casper
  */
-public class Product extends ProductType {
+public class Product extends ProductEntity {
     private Integer ID;
+    private String category;
     private String type;
+    private String name;
 
-    public Product(ArrayList<String> fields, String name, Integer ID, String type) {
+    public String getType() {
+        return type;
+    }
+
+    public Product(ArrayList fields, String name, Integer ID, String category) {
         super.fields=fields;
-        super.name=name;
         this.ID = ID;
-        this.type = type;
+        this.category = category;
     }
 
     public Integer getID() {
         return ID;
     }
 
-    public String getType() {
-        return type;
+    public String getCategory() {
+        return category;
     }
 
-    public HashMap<String, Object> getFields() {
+    public ArrayList<String[]> getFields() {
         return fields;
     }
 
@@ -39,3 +43,4 @@ public class Product extends ProductType {
     
     
 }
+>>>>>>> 35999d31edf180fd2ded1f63ac8ac986760fbe5b
