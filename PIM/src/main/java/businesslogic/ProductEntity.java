@@ -5,6 +5,7 @@
  */
 package businesslogic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -12,9 +13,6 @@ import java.util.HashMap;
  * @author casper
  */
 public abstract class ProductEntity {
-    HashMap<String, Object> fields;
-    String name;
-    
-    
-    
+    String[] values;
+    ArrayList<String[]> fields = new ArrayList();
 }

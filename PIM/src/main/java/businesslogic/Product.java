@@ -1,6 +1,7 @@
 
 package businesslogic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -10,10 +11,15 @@ import java.util.HashMap;
 public class Product extends ProductEntity {
     private Integer ID;
     private String category;
+    private String type;
+    private String name;
 
-    public Product(HashMap<String, Object> fields, String name, Integer ID, String category) {
+    public String getType() {
+        return type;
+    }
+
+    public Product(ArrayList fields, String name, Integer ID, String category) {
         super.fields=fields;
-        super.name=name;
         this.ID = ID;
         this.category = category;
     }
@@ -26,7 +32,7 @@ public class Product extends ProductEntity {
         return category;
     }
 
-    public HashMap<String, Object> getFields() {
+    public ArrayList<String[]> getFields() {
         return fields;
     }
 
