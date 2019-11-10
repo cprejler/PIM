@@ -11,16 +11,17 @@ public class Product extends ProductEntity {
     private Integer ID;
     private String category;
     private String type;
-    private String name;
+    private String manufacturer;
 
-    public String getType() {
-        return type;
-    }
+    
 
-    public Product(ArrayList fields, String name, Integer ID, String category) {
+    public Product(ArrayList fields, String name, Integer ID, String category, String type, String manufacturer) {
         super.fields=fields;
+        super.name=name;
         this.ID = ID;
         this.category = category;
+        this.type = type;
+        this.manufacturer=manufacturer;
     }
 
     public Integer getID() {
@@ -31,7 +32,7 @@ public class Product extends ProductEntity {
         return category;
     }
 
-    public ArrayList<String[]> getFields() {
+    public ArrayList<Object> getFields() {
         return fields;
     }
 
@@ -39,8 +40,13 @@ public class Product extends ProductEntity {
         return name;
     }
     
+    public String getType() {
+        return type;
+    }
     
-    
+    public String getManufacturer(){
+        return manufacturer;
+    }
     
 }
->>>>>>> 35999d31edf180fd2ded1f63ac8ac986760fbe5b
+

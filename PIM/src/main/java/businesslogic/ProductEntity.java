@@ -14,6 +14,6 @@ import java.util.HashMap;
  * @author casper
  */
 public abstract class ProductEntity {
-    String[] values;
-    ArrayList<String[]> fields = new ArrayList();
+    String name;
+    ArrayList<Object> fields = new ArrayList();
 }
