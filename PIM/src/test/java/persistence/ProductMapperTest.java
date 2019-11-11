@@ -38,14 +38,13 @@ public class ProductMapperTest {
     }
     
     @Test
-    public void publishHideProductTest() throws ClassNotFoundException, SQLException{
-        ArrayList<Object>fields = new ArrayList<>();
-        Product test = new Product(fields, "test", "test", "test", "test");
-        
-        test.setID(00005);
-        boolean publish = false;
+    public void deleteProductTest() throws ClassNotFoundException, SQLException{
         ProductMapper pMapper = new ProductMapper();
-        pMapper.publishHideProduct(test, publish);
+        ArrayList<Object> fields = new ArrayList();
+        Product testWine = new Product(fields, "test", "white", "wine", "test");
+        testWine.setID(00006);
+        pMapper.deleteProduct(testWine);
+        
     }
     
 }
