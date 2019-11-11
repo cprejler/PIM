@@ -121,6 +121,12 @@ public class ProductMapper {
         statementInsertProductType.executeUpdate();
         connection.close();
     }
+    
+    public void publishHideProduct(Product product, Boolean publish){
+        
+        
+    }
+    
 
 }
 

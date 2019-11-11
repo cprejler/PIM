@@ -15,10 +15,9 @@ public class Product extends ProductEntity {
 
     
 
-    public Product(ArrayList fields, String name, Integer ID, String category, String type, String manufacturer) {
+    public Product(ArrayList fields, String name, String category, String type, String manufacturer) {
         super.fields=fields;
         super.name=name;
-        this.ID = ID;
         this.category = category;
         this.type = type;
         this.manufacturer=manufacturer;
@@ -47,6 +46,11 @@ public class Product extends ProductEntity {
     public String getManufacturer(){
         return manufacturer;
     }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+    
     
 }
 
