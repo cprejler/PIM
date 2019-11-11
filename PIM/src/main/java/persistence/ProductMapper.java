@@ -45,6 +45,7 @@ public class ProductMapper {
 //    
 //
 //    String updateType = "UPDATE " + product.getType() + " SET "
+
         for (String[] fields : product.getFields()) {
             String updateProduct = (("UPDATE " +  product.getType() + " SET = ? WHERE productID = " + product.getID() ));
             PreparedStatement updateProductStatement = connection.prepareStatement(updateProduct);
