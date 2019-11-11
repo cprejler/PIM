@@ -79,6 +79,7 @@ public class ProductMapper {
             rsGetProductID.last();
             productID = rsGetProductID.getInt("productID");
         }
+        product.setID(productID);
        // We now have the productID to insert productType
         
         
@@ -116,13 +117,24 @@ public class ProductMapper {
             statementInsertProductType.setObject(columnIndex, field);
             columnIndex++;
         }
-        statementInsertProductType.setObject(product.getFields().size()+1, productID);
+        statementInsertProductType.setObject(product.getFields().size()+1, product.getID());
                       
         statementInsertProductType.executeUpdate();
         connection.close();
     }
     
-    public void publishHideProduct(Product product, Boolean publish){
+    public void deleteProduct(Product product) throws ClassNotFoundException, SQLException{
+        Connection connection = db.connection();
+        
+            
+            String updateTrue = "UPDATE product SET product.published = ? where product.productID = ?";
+            PreparedStatement ps = connection.prepareStatement(updateTrue);
+            ps.setBoolean(1, false);
+            ps.setInt(2, product.getID());
+            ps.executeUpdate();
+        }
+        
+        
         
         
     }

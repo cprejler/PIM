@@ -31,10 +31,21 @@ public class ProductMapperTest {
         fields.add(wineAlchoholpercentage);
         fields.add(wineCountry);
         
-        Product testWine = new Product(fields, "test", 0, "white", "wine", "test");
+        Product testWine = new Product(fields, "test", "white", "wine", "test");
         
         pMapper.insertProduct(testWine);
         
+    }
+    
+    @Test
+    public void publishHideProductTest() throws ClassNotFoundException, SQLException{
+        ArrayList<Object>fields = new ArrayList<>();
+        Product test = new Product(fields, "test", "test", "test", "test");
+        
+        test.setID(00005);
+        boolean publish = false;
+        ProductMapper pMapper = new ProductMapper();
+        pMapper.publishHideProduct(test, publish);
     }
     
 }
