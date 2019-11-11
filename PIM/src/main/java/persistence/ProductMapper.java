@@ -60,6 +60,7 @@ public class ProductMapper {
     }
 
     
+    
     public void insertProduct(Product product) throws SQLException, ClassNotFoundException {
         Connection connection = db.connection();
         
@@ -81,11 +82,10 @@ public class ProductMapper {
        // We now have the productID to insert productType
         
         
-        
         ArrayList<String> columnNames = new ArrayList<String>();
                 
         Statement getColumnNames = connection.createStatement();
-        ResultSet rs = getColumnNames.executeQuery("SELECT * from test." + product.getType());
+        ResultSet rs = getColumnNames.executeQuery("SELECT * from PIM." + product.getType());
         //Get names of the columns to be inserted into
         ResultSetMetaData rsmd = rs.getMetaData();
         int intColumnCount = rsmd.getColumnCount();
@@ -117,13 +117,9 @@ public class ProductMapper {
             columnIndex++;
         }
         statementInsertProductType.setObject(product.getFields().size()+1, productID);
-      
-        
-        
+                      
         statementInsertProductType.executeUpdate();
         connection.close();
-        
-
     }
 
 }
