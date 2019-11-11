@@ -31,31 +31,51 @@ public class ProductMapper {
     }
 
     public void updateProduct(Product product) throws SQLException {
-//        DataBase db = new DataBase();
-//        db.connection();
-//        Connection connection = db.connection();
-//        String insertToBalance = (("UPDATE users SET balance = ? WHERE email LIKE \"%" + email + "%\""));
-//        PreparedStatement statementOpdaterToBalance = connection.prepareStatement(insertToBalance);
-//        statementOpdaterToBalance.setDouble(1, sum)statementOpdaterToBalance.executeUpdate();
-//                } else {
-//                    throw new IllegalArgumentException("Insignificant amount");
-//                }
-//            }
-//        } catch (SQLException exc) {
-//            this.exc = exc;
-//        }
-//        connection.close();
-//    
-//
-//    String updateType = "UPDATE " + product.getType() + " SET "
-//        for (String[] fields : product.getFields()) {
-//            String updateProduct = (("UPDATE " + product.getType() + " SET = ? WHERE productID = " + product.getID()));
-//            PreparedStatement updateProductStatement = connection.prepareStatement(updateProduct);
-//            updateProductStatement.setString(1, fields[0]);
-//            updateProductStatement.executeUpdate();
-//            connection.close();
-//
-//        }
+        DataBase db = new DataBase();
+        
+        String updateProduct = "UPDATE product SET productName = ?, productType = ?, manufacturer = ? WHERE productID = " + product.getID();
+        PreparedStatement statementUpdateProduct = connection.prepareStatement(updateProduct);
+        statementUpdateProduct.setString(1, product.getName());
+        statementUpdateProduct.setString(2, product.getType());
+        statementUpdateProduct.setString(3, product.getManufacturer());
+        statementUpdateProduct.execute();
+
+         ArrayList<String> columnNames = new ArrayList<String>();
+                
+        Statement getColumnNames = connection.createStatement();
+        ResultSet rs = getColumnNames.executeQuery("SELECT * from PIM." + product.getType());
+        //Get names of the columns to be inserted into
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int intColumnCount = rsmd.getColumnCount();
+        for (int i = 0; i < intColumnCount; i++) {
+            columnNames.add(rsmd.getColumnName(i+1));
+        }
+        //Create fields and insert values to insert
+        StringBuilder statementFields = new StringBuilder();   
+        StringBuilder statementValues = new StringBuilder();
+        
+        
+        
+        for (String column : columnNames){
+            statementFields.append(column);
+            statementFields.append(" = ?, ");
+        }
+        // Delete last "," at the end to avoid SQL syntax error
+        statementFields.deleteCharAt(statementFields.length()-1);
+        statementFields.deleteCharAt(statementFields.length()-1);
+        
+        String updateProductType = (("UPDATE " + product.getType() + " SET " + statementFields + " WHERE productID = " + product.getID()));
+            
+        PreparedStatement updateProductStatement = connection.prepareStatement(updateProductType);
+        int columnIndex = 1;
+        for (Object product2 : product.getFields() ){
+            updateProductStatement.setObject(columnIndex, product2);    
+            columnIndex++;
+        }
+        
+        updateProductStatement.executeUpdate();
+                
+        connection.close();
 
     }
 
