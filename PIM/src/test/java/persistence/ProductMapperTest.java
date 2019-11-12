@@ -1,9 +1,11 @@
 package persistence;
 
 import businesslogic.Product;
-import static com.sun.tools.javac.tree.TreeInfo.name;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 
 /**
@@ -47,4 +49,19 @@ public class ProductMapperTest {
         
     }
     
+    @Test
+    public void showProductTest() throws ClassNotFoundException, SQLException {
+        ProductMapper pMapper = new ProductMapper();
+        String productType = "wine"; 
+        HashMap<String, ArrayList<Object>> product = pMapper.showProduct(productType);
+        //String columnName = (String); 
+        //int columnField = (Integer) ;
+        assertFalse(product.get("columnNames").isEmpty());
+        
+        assertEquals(product.get("columnNames").get(0), "manufacturer"); 
+        assertEquals(product.get("columnFields").get(0), "test");
+        assertEquals(product.get("columnNames").get(4), "wineType"); 
+        //assertEquals(product.get("columnFields").get())
+        
+    }
 }
