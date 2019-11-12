@@ -14,6 +14,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -80,6 +81,8 @@ public class ProductMapper {
 
     public void insertProduct(Product product) throws SQLException, ClassNotFoundException {
         Connection connection = db.connection();
+        
+        
 
         //Insert a product and get the ID to create a product type after
         Integer productID = 0;
