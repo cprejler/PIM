@@ -150,7 +150,43 @@ public class ProductMapper {
         ps.setInt(1, product.getID());
         ps.executeUpdate();
     }
+    
+    
+    public HashMap<String, ArrayList<Object>> showProduct (String ProductType) throws SQLException, ClassNotFoundException {
+        Connection connection = db.connection();
+        HashMap<String, ArrayList<Object>> items = new HashMap(); 
+        ArrayList<Object> columnNames = new ArrayList(); 
+        ArrayList<Object> columnFields = new ArrayList(); 
+        //ProductType = "wine";
+        String showProductQuery = "SELECT PIM.product.manufacturer, PIM.product.productName, PIM.product.productType, PIM.wine.* from PIM.product  left join PIM.wine  on PIM.product.productID like PIM.wine.productID where PIM.product.productType like 'wine'"; 
 
+        Statement getColumnNames = connection.createStatement();
+        Statement statement = connection.createStatement();
+        ResultSet rs = getColumnNames.executeQuery(showProductQuery);
+        ResultSet result = statement.executeQuery(showProductQuery); 
+        //Get names of the columns to be inserted into
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int intColumnCount = rsmd.getColumnCount() ;
 
+        for (int i = 0; i < intColumnCount; i++) {
+            columnNames.add(rsmd.getColumnName(i + 1));
+            
+        }
+       // while (result.next()) {
+       
+            for (int i = 0; i < intColumnCount; i++ ) {
+                    while( result.next()) {
+                        for (int j = 0; j < intColumnCount; j++ ) {
+                        columnFields.add(result.getObject(j+1)); 
+                    }}
 
+            }
+        //Get Products 
+        items.put("columnNames", columnNames); 
+        items.put("columnFields", columnFields); 
+        return items;
+    }   
 }
+
+
+
