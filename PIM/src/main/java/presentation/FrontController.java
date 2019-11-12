@@ -48,7 +48,9 @@ public class FrontController extends HttpServlet {
     
     
     protected void showItems(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException{
+        //@TODO  For each product type in the database call showProduct and then send  it over
         ProductMapper  pMapper  =  new  ProductMapper();
+        
         HashMap<String, ArrayList<Object>>  items = pMapper.showProduct("wine");
         ArrayList<Object> columnNames = items.get("columnNames");
         ArrayList<Object> columnFields = items.get("columnFields");
