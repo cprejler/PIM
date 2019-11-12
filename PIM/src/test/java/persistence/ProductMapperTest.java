@@ -51,7 +51,8 @@ public class ProductMapperTest {
         String wineGrape = "Trepat";
         String wineVolume = "75";
         String wineAlchoholpercentage = "10-12";
-        String wineCountry = "France";
+        String wineCountry = "portugal";
+        String productID = "8";
         
         fields.add(year);
         fields.add(wineType);
@@ -59,6 +60,7 @@ public class ProductMapperTest {
         fields.add(wineVolume);
         fields.add(wineAlchoholpercentage);
         fields.add(wineCountry);
+        fields.add(productID);
         
         Product testWine = new Product(fields, "test", "white", "wine", "test");
         testWine.setID(8);

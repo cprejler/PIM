@@ -57,13 +57,14 @@ public class ProductMapper {
 
         for (String column : columnNames) {
             statementFields.append(column);
+            
             statementFields.append(" = ?, ");
         }
         // Delete last "," at the end to avoid SQL syntax error
         statementFields.deleteCharAt(statementFields.length() - 1);
         statementFields.deleteCharAt(statementFields.length() - 1);
 
-        String updateProductType = (("UPDATE " + product.getType() + " SET " + statementFields + " WHERE productID = " + product.getID()));
+        String updateProductType = (("UPDATE " + product.getType() + " SET " + statementFields + " WHERE productID =  ?"));
 
         PreparedStatement updateProductStatement = connection.prepareStatement(updateProductType);
         int columnIndex = 1;
@@ -71,7 +72,7 @@ public class ProductMapper {
             updateProductStatement.setObject(columnIndex, product2);
             columnIndex++;
         }
-
+        updateProductStatement.setInt(columnIndex, product.getID());
         updateProductStatement.executeUpdate();
         connection.close();
 
