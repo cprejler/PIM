@@ -34,11 +34,12 @@ public class ProductMapper {
     public void updateProduct(Product product) throws SQLException {
         DataBase db = new DataBase();
 
-        String updateProduct = "UPDATE product SET productName = ?, productType = ?, manufacturer = ? WHERE productID = " + product.getID();
+        String updateProduct = "UPDATE product SET productName = ?, productType = ?, manufacturer = ?, published = ? WHERE productID = " + product.getID();
         PreparedStatement statementUpdateProduct = connection.prepareStatement(updateProduct);
         statementUpdateProduct.setString(1, product.getName());
         statementUpdateProduct.setString(2, product.getType());
         statementUpdateProduct.setString(3, product.getManufacturer());
+        statementUpdateProduct.setBoolean(4, product.getPublished());
         statementUpdateProduct.execute();
 
         ArrayList<String> columnNames = new ArrayList<String>();
@@ -57,13 +58,14 @@ public class ProductMapper {
 
         for (String column : columnNames) {
             statementFields.append(column);
+            
             statementFields.append(" = ?, ");
         }
         // Delete last "," at the end to avoid SQL syntax error
         statementFields.deleteCharAt(statementFields.length() - 1);
         statementFields.deleteCharAt(statementFields.length() - 1);
 
-        String updateProductType = (("UPDATE " + product.getType() + " SET " + statementFields + " WHERE productID = " + product.getID()));
+        String updateProductType = (("UPDATE " + product.getType() + " SET " + statementFields + " WHERE productID =  ?"));
 
         PreparedStatement updateProductStatement = connection.prepareStatement(updateProductType);
         int columnIndex = 1;
@@ -71,9 +73,8 @@ public class ProductMapper {
             updateProductStatement.setObject(columnIndex, product2);
             columnIndex++;
         }
-
+        updateProductStatement.setInt(columnIndex, product.getID());
         updateProductStatement.executeUpdate();
-
         connection.close();
 
     }
@@ -140,6 +141,7 @@ public class ProductMapper {
 
     public void deleteProduct(Product product) throws ClassNotFoundException, SQLException {
         Connection connection = db.connection();
+
 
         String updateTrue = "DELETE FROM product WHERE product.productID=?";
         PreparedStatement ps = connection.prepareStatement(updateTrue);
