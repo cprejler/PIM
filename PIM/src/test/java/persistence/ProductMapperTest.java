@@ -45,7 +45,30 @@ public class ProductMapperTest {
         test.setID(00005);
         boolean publish = false;
         ProductMapper pMapper = new ProductMapper();
-        pMapper.publishHideProduct(test, publish);
+    }
+    @Test
+    public void updateProductTest() throws ClassNotFoundException, SQLException{
+        
+        ProductMapper pMapper = new ProductMapper();
+        ArrayList<Object> fields = new ArrayList();
+        int year = 1980;
+        String wineType = "Red";
+        String wineGrape = "Trepat";
+        String wineVolume = "75";
+        String wineAlchoholpercentage = "10-12";
+        String wineCountry = "France";
+        
+        fields.add(year);
+        fields.add(wineType);
+        fields.add(wineGrape);
+        fields.add(wineVolume);
+        fields.add(wineAlchoholpercentage);
+        fields.add(wineCountry);
+        
+        Product testWine = new Product(fields, "test", "white", "wine", "test");
+        testWine.setID(8);
+        testWine.setPublished(Boolean.FALSE);
+        pMapper.updateProduct(testWine);
     }
     
 }

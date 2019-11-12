@@ -32,12 +32,13 @@ public class ProductMapper {
 
     public void updateProduct(Product product) throws SQLException {
         DataBase db = new DataBase();
-        
-        String updateProduct = "UPDATE product SET productName = ?, productType = ?, manufacturer = ? WHERE productID = " + product.getID();
+
+        String updateProduct = "UPDATE product SET productName = ?, productType = ?, manufacturer = ?, published = ? WHERE productID = " + product.getID();
         PreparedStatement statementUpdateProduct = connection.prepareStatement(updateProduct);
         statementUpdateProduct.setString(1, product.getName());
         statementUpdateProduct.setString(2, product.getType());
         statementUpdateProduct.setString(3, product.getManufacturer());
+        statementUpdateProduct.setBoolean(4, product.getPublished());
         statementUpdateProduct.execute();
 
          ArrayList<String> columnNames = new ArrayList<String>();
@@ -74,7 +75,7 @@ public class ProductMapper {
         }
         
         updateProductStatement.executeUpdate();
-                
+        
         connection.close();
 
     }
@@ -160,7 +161,7 @@ public class ProductMapper {
     }
     
 
-}
+
 
 
 
