@@ -12,13 +12,21 @@ public class Product extends ProductEntity {
     private String category;
     private String type;
     private String manufacturer;
+    private Boolean published;
+
+    public Boolean getPublished() {
+        return published;
+    }
+
+    public void setPublished(Boolean published) {
+        this.published = published;
+    }
 
     
 
-    public Product(ArrayList fields, String name, Integer ID, String category, String type, String manufacturer) {
+    public Product(ArrayList fields, String name, String category, String type, String manufacturer) {
         super.fields=fields;
         super.name=name;
-        this.ID = ID;
         this.category = category;
         this.type = type;
         this.manufacturer=manufacturer;
@@ -47,6 +55,11 @@ public class Product extends ProductEntity {
     public String getManufacturer(){
         return manufacturer;
     }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
+    }
+    
     
 }
 

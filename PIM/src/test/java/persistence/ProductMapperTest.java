@@ -1,9 +1,11 @@
 package persistence;
 
 import businesslogic.Product;
-import static com.sun.tools.javac.tree.TreeInfo.name;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import org.junit.Test;
 
 /**
@@ -31,10 +33,60 @@ public class ProductMapperTest {
         fields.add(wineAlchoholpercentage);
         fields.add(wineCountry);
         
-        Product testWine = new Product(fields, "test", 0, "white", "wine", "test");
+        Product testWine = new Product(fields, "test", "white", "wine", "test");
         
         pMapper.insertProduct(testWine);
         
     }
     
+    @Test
+    public void deleteProductTest() throws ClassNotFoundException, SQLException{
+        ProductMapper pMapper = new ProductMapper();
+    }
+    @Test
+    public void updateProductTest() throws ClassNotFoundException, SQLException{
+        
+        ProductMapper pMapper = new ProductMapper();
+        ArrayList<Object> fields = new ArrayList();
+        int year = 1980;
+        String wineType = "Red";
+        String wineGrape = "Trepat";
+        String wineVolume = "75";
+        String wineAlchoholpercentage = "10-12";
+        String wineCountry = "portugal";
+        String productID = "8";
+        
+        fields.add(year);
+        fields.add(wineType);
+        fields.add(wineGrape);
+        fields.add(wineVolume);
+        fields.add(wineAlchoholpercentage);
+        fields.add(wineCountry);
+        fields.add(productID);
+        
+        Product testWine = new Product(fields, "test", "white", "wine", "test");
+        testWine.setID(8);
+        testWine.setPublished(Boolean.FALSE);
+        ArrayList<Product> productList = new ArrayList();
+        productList.add(testWine);
+        pMapper.updateProduct(productList);
+
+        
+    }
+    
+    @Test
+    public void showProductTest() throws ClassNotFoundException, SQLException {
+        ProductMapper pMapper = new ProductMapper();
+        String productType = "wine"; 
+        HashMap<String, ArrayList<Object>> product = pMapper.showProduct(productType);
+        //String columnName = (String); 
+        //int columnField = (Integer) ;
+        assertFalse(product.get("columnNames").isEmpty());
+        
+        assertEquals(product.get("columnNames").get(0), "manufacturer"); 
+        assertEquals(product.get("columnFields").get(0), "test");
+        assertEquals(product.get("columnNames").get(4), "wineType"); 
+        //assertEquals(product.get("columnFields").get())
+        
+    }
 }
