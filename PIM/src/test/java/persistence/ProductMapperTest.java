@@ -33,9 +33,9 @@ public class ProductMapperTest {
         fields.add(wineAlchoholpercentage);
         fields.add(wineCountry);
         
-        Product testWine = new Product(fields, "test", "white", "wine", "test");
+        //Product testWine = new Product(fields, "test", "white", "wine", "test");
         
-        pMapper.insertProduct(testWine);
+        //pMapper.insertProduct(testWine);
         
     }
     
@@ -47,25 +47,28 @@ public class ProductMapperTest {
     public void updateProductTest() throws ClassNotFoundException, SQLException{
         
         ProductMapper pMapper = new ProductMapper();
-        ArrayList<Object> fields = new ArrayList();
+        ArrayList<Object> fieldsValue = new ArrayList();
+        ArrayList<String> fields = new ArrayList();
         int year = 1980;
         String wineType = "Red";
         String wineGrape = "Trepat";
         String wineVolume = "75";
         String wineAlchoholpercentage = "10-12";
         String wineCountry = "portugal";
-        String productID = "8";
+        String productID = "9";
         
-        fields.add(year);
-        fields.add(wineType);
-        fields.add(wineGrape);
-        fields.add(wineVolume);
-        fields.add(wineAlchoholpercentage);
-        fields.add(wineCountry);
-        fields.add(productID);
         
-        Product testWine = new Product(fields, "test", "white", "wine", "test");
-        testWine.setID(8);
+        fieldsValue.add(year);
+        fieldsValue.add(wineType);
+        fieldsValue.add(wineGrape);
+        fieldsValue.add(wineVolume);
+        fieldsValue.add(wineAlchoholpercentage);
+        fieldsValue.add(wineCountry);
+        fieldsValue.add(productID);
+        fields.add("empty");
+        
+        Product testWine = new Product("test", "white", "wine", "test", fields, fieldsValue);
+        testWine.setID(9);
         testWine.setPublished(Boolean.FALSE);
         ArrayList<Product> productList = new ArrayList();
         productList.add(testWine);

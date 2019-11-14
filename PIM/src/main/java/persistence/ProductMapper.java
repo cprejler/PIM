@@ -60,7 +60,7 @@ public class ProductMapper {
         StringBuilder statementFields = new StringBuilder();
         StringBuilder statementValues = new StringBuilder();
 
-        for (String column : columnNames) {
+        for (String column : columnNames) { 
             statementFields.append(column);
             
             statementFields.append(" = ?, ");
@@ -73,7 +73,8 @@ public class ProductMapper {
 
         PreparedStatement updateProductStatement = connection.prepareStatement(updateProductType);
         int columnIndex = 1;
-        for (Object product2 : product.getFields()) {
+        String as = (String)product.getFieldsValues().get(1);
+        for (Object product2 : product.getFieldsValues()) {
             updateProductStatement.setObject(columnIndex, product2);
             columnIndex++;
         }
