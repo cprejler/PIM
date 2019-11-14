@@ -7,29 +7,28 @@ import java.util.HashMap;
  *
  * @author casper
  */
-public class Product extends ProductEntity {
+public class Product {
+
+    private String name;
     private Integer ID;
     private String category;
     private String type;
     private String manufacturer;
     private Boolean published;
+    private ArrayList<String> fields;
+    private ArrayList<Object> fieldsValues;
 
-    public Boolean getPublished() {
-        return published;
-    }
-
-    public void setPublished(Boolean published) {
-        this.published = published;
-    }
-
-    
-
-    public Product(ArrayList fields, String name, String category, String type, String manufacturer) {
-        super.fields=fields;
-        super.name=name;
+    public Product(String name, String category, String type, String manufacturer, ArrayList<String> fields, ArrayList<Object> fieldsValues) {
+        this.name = name;
         this.category = category;
         this.type = type;
-        this.manufacturer=manufacturer;
+        this.manufacturer = manufacturer;
+        this.fields = new ArrayList<>();
+        this.fieldsValues = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Integer getID() {
@@ -40,26 +39,41 @@ public class Product extends ProductEntity {
         return category;
     }
 
-    public ArrayList<Object> getFields() {
-        return fields;
-    }
-
-    public String getName() {
-        return name;
-    }
-    
     public String getType() {
         return type;
     }
-    
-    public String getManufacturer(){
+
+    public String getManufacturer() {
         return manufacturer;
+    }
+
+    public Boolean getPublished() {
+        return published;
+    }
+
+    public ArrayList<String> getFields() {
+        return fields;
     }
 
     public void setID(Integer ID) {
         this.ID = ID;
     }
-    
-    
-}
 
+    public void setPublished(Boolean published) {
+        this.published = published;
+    }
+
+    public void setFields(ArrayList<String> fields) {
+        this.fields = fields;
+    }
+
+    public void setFieldsValues(ArrayList<Object> fieldsValues) {
+        this.fieldsValues = fieldsValues;
+    }
+
+    public ArrayList<Object> getFieldsValues() {
+        return fieldsValues;
+    }
+    
+
+}
