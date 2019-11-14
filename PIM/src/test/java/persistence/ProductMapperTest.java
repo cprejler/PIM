@@ -18,7 +18,7 @@ public class ProductMapperTest {
     public void insertProductTest() throws ClassNotFoundException, SQLException{
         
         ProductMapper pMapper = new ProductMapper();
-        ArrayList<Object> fields = new ArrayList();
+        ArrayList<Object> fieldValues = new ArrayList();
         int year = 1970;
         String wineType = "Red";
         String wineGrape = "Trepat";
@@ -26,14 +26,15 @@ public class ProductMapperTest {
         String wineAlchoholpercentage = "10-12";
         String wineCountry = "France";
         
-        fields.add(year);
-        fields.add(wineType);
-        fields.add(wineGrape);
-        fields.add(wineVolume);
-        fields.add(wineAlchoholpercentage);
-        fields.add(wineCountry);
+        fieldValues.add(year);
+        fieldValues.add(wineType);
+        fieldValues.add(wineGrape);
+        fieldValues.add(wineVolume);
+        fieldValues.add(wineAlchoholpercentage);
+        fieldValues.add(wineCountry);
+        ArrayList<String> fields = new ArrayList<>();
         
-        Product testWine = new Product(fields, "test", "white", "wine", "test");
+        Product testWine = new Product("test", "test", "wine", "test", fields, fieldValues);
         
         pMapper.insertProduct(testWine);
         
