@@ -73,12 +73,12 @@
                             --%>
                             <div class="position-fixed">
                                 <h3>Filter by category</h3>
-                                <c:forEach var="column" items="${requestScope.columnNames}">
+                                <c:forEach var="column" items="${requestScope.wine}">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="${column}" id="defaultCheck1" name="${column}">
+                                        <input class="form-check-input" type="checkbox" value="${wine.getFields()}" id="defaultCheck1" name="${wine.getFields()}">
                                         <input type="hidden" name="cmd" value="filterType">
                                         <label class="form-check-label" for="defaultCheck1">
-                                            ${column}
+                                            ${wine.getFields}
                                         </label>
                                     </div>
                                 </c:forEach>
@@ -97,19 +97,19 @@
                         <div class="row" id="items">
                             <div class="col-lg-1"><div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button></div></div>
                             <div class="col-lg-11 col-xs-1">
-                                <h3>All items: <c:out value="${requestScope.columnFields.size()}"/></h3>
+                                
 
                                 <table class="table">
                                     <thead>
-                                        <c:forEach var="column" items="${requestScope.columnNames}">
+                                        <c:forEach var="column" items="${requestScope.wine.get(0).getFields()}">
                                         <th scope="col">${column}</th>
                                         </c:forEach> 
                                     <th>Edit</th>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="row" items="${requestScope.columnFields}">
+                                        <c:forEach var="row" items="${requestScope.wine.get(0).getFields()}">
                                             <tr>
-                                                <c:forEach var="field" end="${requestScope.columnNames.size()-1}" items="${requestScope.columnFields}">
+                                                <c:forEach var="field" end="${requestScope.wine.size()-1}" items="${requestScope.wine.getFieldsValues()}">
                                                     <td>${field}</td>
                                                 </c:forEach>
                                                 <td>

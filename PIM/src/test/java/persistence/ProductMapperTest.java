@@ -94,4 +94,19 @@ public class ProductMapperTest {
         //assertEquals(product.get("columnFields").get())
         
     }
+    @Test
+    public void showProductsTest() throws ClassNotFoundException, SQLException{
+        ProductMapper pMapper= new ProductMapper();
+        String productType  = "wine";
+        ArrayList<Product>  products = pMapper.showProducts(productType);
+        
+        assertEquals("manufacturer",  products.get(0).getFields().get(0));
+        assertEquals("productID",  products.get(0).getFields().get(9));
+        assertEquals(1980, products.get(0).getFieldsValues().get(3));
+        //assertEquals(9, products.get(0).getFieldsValues().get(9));
+        //assertEquals(10, products.get(1).getFieldsValues().get(9));
+        
+        
+        
+    }
 }

@@ -5,6 +5,7 @@
  */
 package presentation;
 
+import businesslogic.Product;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -53,12 +54,13 @@ public class FrontController extends HttpServlet {
         //@TODO  For each product type in the database call showProduct and then send  it over
         ProductMapper  pMapper  =  new  ProductMapper();
         
-        HashMap<String, ArrayList<Object>>  items = pMapper.showProduct("wine");
-        ArrayList<Object> columnNames = items.get("columnNames");
-        ArrayList<Object> columnFields = items.get("columnFields");
+        ArrayList<Product>  wine = pMapper.showProducts("wine");
+        ArrayList<Product> phones = pMapper.showProducts("phone");
+        wine.get(0).getFields();
         
-        request.setAttribute("columnNames", columnNames);
-        request.setAttribute("columnFields", columnFields);
+        request.setAttribute("wine", wine);
+        request.setAttribute("phones", phones);
+        
         
         RequestDispatcher rd =  request.getRequestDispatcher("test.jsp");
         rd.forward(request, response);
