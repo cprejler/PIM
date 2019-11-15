@@ -191,5 +191,17 @@ public class ProductMapper {
         items.put("columnNames", columnNames); 
         items.put("columnFields", columnFields); 
         return items;
-    }   
+    }  
+    
+    //public ArrayList<Product> searchForProduct (String type, String string){
+        
+      //  DataBase db = new DataBase();
+        //Connection connection = db.connection();
+        
+        //String searchForProductid = "select productID where type = string";
+        
+            
+        
+        
+    //}
 }

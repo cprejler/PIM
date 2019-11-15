@@ -69,7 +69,7 @@ public class ProductMapperTest {
         fieldsValue.add(productID);
         fields.add("empty");
         
-        Product testWine = new Product("test", "white", "wine", "test", fields, fieldsValue);
+        Product testWine = new Product("test1", "white", "wine", "test", fields, fieldsValue);
         testWine.setID(9);
         testWine.setPublished(Boolean.FALSE);
         ArrayList<Product> productList = new ArrayList();
