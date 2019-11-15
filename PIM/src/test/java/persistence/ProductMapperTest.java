@@ -18,23 +18,31 @@ public class ProductMapperTest {
     public void insertProductTest() throws ClassNotFoundException, SQLException{
         
         ProductMapper pMapper = new ProductMapper();
+        
+        ArrayList<String>  fields = new ArrayList();
+        
         ArrayList<Object> fieldValues = new ArrayList();
         int year = 1970;
+        String manufacturer = "test";
+        String productName = "Chardonnay";
+        String productType = "Wine";
+        String productYear = "1960";
         String wineType = "Red";
         String wineGrape = "Trepat";
         String wineVolume = "75";
         String wineAlchoholpercentage = "10-12";
         String wineCountry = "France";
         
-        fieldValues.add(year);
+        
+        fieldValues.add(productYear);
         fieldValues.add(wineType);
         fieldValues.add(wineGrape);
         fieldValues.add(wineVolume);
         fieldValues.add(wineAlchoholpercentage);
         fieldValues.add(wineCountry);
-        ArrayList<String> fields = new ArrayList<>();
         
-        //Product testWine = new Product(fields, "test", "white", "wine", "test");
+        
+        
         Product testWine = new Product("test", "test", "wine", "test", fields, fieldValues);
         
         pMapper.insertProduct(testWine);
@@ -83,16 +91,24 @@ public class ProductMapperTest {
     @Test
     public void showProductsTest() throws ClassNotFoundException, SQLException{
         ProductMapper pMapper= new ProductMapper();
-        String productType  = "wine";
-        ArrayList<Product>  products = pMapper.showProducts(productType);
         
-        assertEquals("manufacturer",  products.get(0).getFields().get(0));
-        assertEquals("productID",  products.get(0).getFields().get(9));
-        assertEquals(1980, products.get(0).getFieldsValues().get(3));
-        assertEquals("France", products.get(2).getFieldsValues().get(8));
+        ArrayList<Product>  wine = pMapper.showProducts("wine");
+        ArrayList<Product> phone = pMapper.showProducts("phone");
+        
+        
+        assertEquals("manufacturer",  wine.get(0).getFields().get(0));
+        assertEquals("productID",  wine.get(0).getFields().get(9));
+        assertEquals(1980, wine.get(0).getFieldsValues().get(3));
+        assertEquals("France", wine.get(2).getFieldsValues().get(8));
+        assertEquals("grape", wine.get(5).getFields().get(5));
+        
+        assertEquals("manufacturer", phone.get(0).getFields().get(0));
+        assertEquals("Apple", phone.get(0).getFieldsValues().get(0));
         
         
         
         
     }
+    
+    
 }

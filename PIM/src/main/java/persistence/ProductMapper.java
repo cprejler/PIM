@@ -103,9 +103,9 @@ public class ProductMapper {
         }
         product.setID(productID);
         // We now have the productID to insert productType
-
+        
         ArrayList<String> columnNames = new ArrayList<String>();
-
+        //Get the names of columns to be  inserted into
         Statement getColumnNames = connection.createStatement();
         ResultSet rs = getColumnNames.executeQuery("SELECT * from PIM." + product.getType());
         //Get names of the columns to be inserted into
@@ -185,5 +185,15 @@ public class ProductMapper {
         }
 
         return products;
+    }
+    
+    
+    public ArrayList<String> getMetaData() throws SQLException{
+        
+        Statement getMetaData = connection.createStatement();
+        ResultSet rs = getMetaData.executeQuery("SELECT * from product");
+        ResultSetMetaData rsmd = rs.getMetaData();
+        
+        return null;
     }
 }
