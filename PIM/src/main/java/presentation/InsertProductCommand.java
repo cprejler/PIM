@@ -28,16 +28,14 @@ public class InsertProductCommand extends Command {
         String type = request.getParameter("type");
         String manufacturer = request.getParameter("manufacturer");
         String[] getfields = request.getParameterValues("");
-        ArrayList<Object> fields = new ArrayList();
+
         
-        
-        Product product = new Product(fields, name, category, type, manufacturer);
         
         //Fra gamle prjekt, Vi burde måske lave en lignende metode
         //Boolean usernameDB = db.checkUsername(username);
         ProductMapper pM = new ProductMapper();
         String webpage = "";
-        pM.insertProduct(product);
+        //pM.insertProduct(product);
         webpage="Confirmation";
         return webpage;
 //        
