@@ -37,7 +37,7 @@ public class ProductMapperTest {
         //Product testWine = new Product(fields, "test", "white", "wine", "test");
         Product testWine = new Product("test", "test", "wine", "test", fields, fieldValues);
         
-        //pMapper.insertProduct(testWine);
+        pMapper.insertProduct(testWine);
         
     }
     
@@ -79,21 +79,7 @@ public class ProductMapperTest {
         
     }
     
-    @Test
-    public void showProductTest() throws ClassNotFoundException, SQLException {
-        ProductMapper pMapper = new ProductMapper();
-        String productType = "wine"; 
-        HashMap<String, ArrayList<Object>> product = pMapper.showProduct(productType);
-        //String columnName = (String); 
-        //int columnField = (Integer) ;
-        assertFalse(product.get("columnNames").isEmpty());
-        
-        assertEquals(product.get("columnNames").get(0), "manufacturer"); 
-        assertEquals(product.get("columnFields").get(0), "test");
-        assertEquals(product.get("columnNames").get(4), "wineType"); 
-        //assertEquals(product.get("columnFields").get())
-        
-    }
+    
     @Test
     public void showProductsTest() throws ClassNotFoundException, SQLException{
         ProductMapper pMapper= new ProductMapper();
@@ -103,8 +89,8 @@ public class ProductMapperTest {
         assertEquals("manufacturer",  products.get(0).getFields().get(0));
         assertEquals("productID",  products.get(0).getFields().get(9));
         assertEquals(1980, products.get(0).getFieldsValues().get(3));
-        //assertEquals(9, products.get(0).getFieldsValues().get(9));
-        //assertEquals(10, products.get(1).getFieldsValues().get(9));
+        assertEquals("France", products.get(2).getFieldsValues().get(8));
+        
         
         
         

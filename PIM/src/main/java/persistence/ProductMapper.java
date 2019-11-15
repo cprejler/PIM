@@ -117,7 +117,7 @@ public class ProductMapper {
         //Create fields and insert values to insert
         StringBuilder statementFields = new StringBuilder();
         StringBuilder statementValues = new StringBuilder();
-        for (Object field : product.getFields()) {
+        for (Object field : product.getFieldsValues()) {
             statementValues.append("?,");
 
         }
@@ -133,11 +133,11 @@ public class ProductMapper {
         Integer columnIndex = 1;
         String insertProductType = "INSERT  INTO " + product.getType() + "(" + statementFields + ")" + " VALUES(" + statementValues + ")";
         PreparedStatement statementInsertProductType = connection.prepareStatement(insertProductType);
-        for (Object field : product.getFields()) {
+        for (Object field : product.getFieldsValues()) {
             statementInsertProductType.setObject(columnIndex, field);
             columnIndex++;
         }
-        statementInsertProductType.setObject(product.getFields().size() + 1, product.getID());
+        statementInsertProductType.setObject(product.getFieldsValues().size() + 1, product.getID());
 
         statementInsertProductType.executeUpdate();
         connection.close();
@@ -146,46 +146,10 @@ public class ProductMapper {
     public void deleteProduct(Product product) throws ClassNotFoundException, SQLException {
         Connection connection = db.connection();
 
-        String updateTrue = "DELETE FROM product WHERE product.productID=?";
-        PreparedStatement ps = connection.prepareStatement(updateTrue);
+        String delete = "DELETE FROM product WHERE product.productID=?";
+        PreparedStatement ps = connection.prepareStatement(delete);
         ps.setInt(1, product.getID());
         ps.executeUpdate();
-    }
-
-    public HashMap<String, ArrayList<Object>> showProduct(String ProductType) throws SQLException, ClassNotFoundException {
-        Connection connection = db.connection();
-        HashMap<String, ArrayList<Object>> items = new HashMap();
-        ArrayList<Object> columnNames = new ArrayList();
-        ArrayList<Object> columnFields = new ArrayList();
-        //ProductType = "wine";
-        String showProductQuery = "SELECT PIM.product.manufacturer, PIM.product.productName, PIM.product.productType, PIM.wine.* from PIM.product  left join PIM.wine  on PIM.product.productID like PIM.wine.productID where PIM.product.productType like '" + ProductType + "'";
-
-        Statement getColumnNames = connection.createStatement();
-        Statement statement = connection.createStatement();
-        ResultSet rs = getColumnNames.executeQuery(showProductQuery);
-        ResultSet result = statement.executeQuery(showProductQuery);
-        //Get names of the columns to be inserted into
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int intColumnCount = rsmd.getColumnCount();
-
-        for (int i = 0; i < intColumnCount; i++) {
-            columnNames.add(rsmd.getColumnName(i + 1));
-
-        }
-        // while (result.next()) {
-
-        for (int i = 0; i < intColumnCount; i++) {
-            while (result.next()) {
-                for (int j = 0; j < intColumnCount; j++) {
-                    columnFields.add(result.getObject(j + 1));
-                }
-            }
-
-        }
-        //Get Products 
-        items.put("columnNames", columnNames);
-        items.put("columnFields", columnFields);
-        return items;
     }
 
     public ArrayList<Product> showProducts(String productType) throws ClassNotFoundException, SQLException {
@@ -195,9 +159,8 @@ public class ProductMapper {
         String manufacturer = "";
         String category = "";
 
-        
-
-        String showProductQuery = "SELECT PIM.product.manufacturer, PIM.product.productName, PIM.product.productType, PIM.wine.* from PIM.product  left join PIM.wine  on PIM.product.productID like PIM.wine.productID where PIM.product.productType like '" + productType + "'";
+        String showProductQuery = "SELECT product.manufacturer,  product.productName, product.productType, " + productType + ".* FROM product"
+                + ", " + productType + " where product.productID=" + productType + ".productID order by productID";
 
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(showProductQuery);
@@ -205,24 +168,19 @@ public class ProductMapper {
 
         int intColumnCount = rsmd.getColumnCount();
 
-        
         while (rs.next()) {
-            for (int i = 0; i < intColumnCount; i++) {
-                while (rs.next()) {
-                    ArrayList<Object> fieldValues = new ArrayList<>();
-                    ArrayList<String> fields = new ArrayList<>();
-                    for (int j = 0; j < intColumnCount; j++) {
-                        fields.add(rsmd.getColumnName(j+1));
-                        fieldValues.add(rs.getObject(j + 1));
-                        name = rs.getString("productName");
-                        manufacturer = rs.getString("manufacturer");
 
-                    }
-                    Product product = new Product(name, manufacturer, category, productType, fields, fieldValues);
-                    products.add(product);
-                }
+            ArrayList<Object> fieldValues = new ArrayList<>();
+            ArrayList<String> fields = new ArrayList<>();
+            for (int j = 0; j < intColumnCount; j++) {
+                fields.add(rsmd.getColumnName(j + 1));
+                fieldValues.add(rs.getObject(j + 1));
+                name = rs.getString("productName");
+                manufacturer = rs.getString("manufacturer");
 
             }
+            Product product = new Product(name, manufacturer, category, productType, fields, fieldValues);
+            products.add(product);
 
         }
 
