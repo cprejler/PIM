@@ -30,6 +30,7 @@ public class InsertProductCommand extends Command {
         String[] getfields = request.getParameterValues("");
 
         
+
         
         //Fra gamle prjekt, Vi burde måske lave en lignende metode
         //Boolean usernameDB = db.checkUsername(username);

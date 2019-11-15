@@ -23,8 +23,8 @@ public class Product {
         this.category = category;
         this.type = type;
         this.manufacturer = manufacturer;
-        this.fields = new ArrayList<>();
-        this.fieldsValues = new ArrayList<>();
+        this.fields = fields;
+        this.fieldsValues = fieldsValues;
     }
 
     public String getName() {

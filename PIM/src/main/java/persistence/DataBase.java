@@ -21,7 +21,7 @@ public class DataBase {
             String password = "Password123!";
             String IP = "206.189.57.7";
             String PORT = "3306";
-            String DATABASE = "PIM";
+            String DATABASE = "test";
             String url = "jdbc:mysql://" + IP + ":" + PORT + "/" + DATABASE;
                     
             Class.forName(DRIVER);
