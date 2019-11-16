@@ -109,6 +109,15 @@ public class ProductMapperTest {
         
         
     }
+    @Test
+    public void alterEnumTest() throws ClassNotFoundException, SQLException {
+        
+        
+        ProductMapper pMapper= new ProductMapper();
+        String product = "toiletpaper"; 
+        
+        String pro2 = pMapper.alterProductTypeEnum(product);
+    }
     
     
 }

@@ -103,7 +103,7 @@ public class ProductMapper {
         }
         product.setID(productID);
         // We now have the productID to insert productType
-        
+
         ArrayList<String> columnNames = new ArrayList<String>();
         //Get the names of columns to be  inserted into
         Statement getColumnNames = connection.createStatement();
@@ -186,14 +186,40 @@ public class ProductMapper {
 
         return products;
     }
-    
-    
-    public ArrayList<String> getMetaData() throws SQLException{
-        
+
+    public ArrayList<String> getMetaData() throws SQLException {
+
         Statement getMetaData = connection.createStatement();
         ResultSet rs = getMetaData.executeQuery("SELECT * from product");
         ResultSetMetaData rsmd = rs.getMetaData();
-        
+
         return null;
     }
+
+    public String alterProductTypeEnum(String product) throws SQLException {
+        product = ",'"+product+"'"; 
+        String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_NAME = 'product' AND COLUMN_NAME = 'productType'";
+        Statement productTypeEnum = connection.createStatement();  
+        ResultSet rs = productTypeEnum.executeQuery(getEnumsQuery);
+        String enums = ""; 
+        
+        while (rs.next()) {
+            enums = rs.getString("COLUMN_TYPE"); 
+                 
+        }
+
+        StringBuilder sb = new StringBuilder(enums);
+        sb.insert(sb.length()-1, product);
+        enums = sb.toString(); 
+        String newEnumVar = enums; 
+        
+        
+        String alterTableQuery = "alter table product modify column productType " + newEnumVar ;
+        productTypeEnum.executeUpdate(alterTableQuery);
+        
+        
+        return newEnumVar;
+    }
+    
+   
 }
