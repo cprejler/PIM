@@ -37,7 +37,7 @@ public class ProductMapperTest {
         //Product testWine = new Product(fields, "test", "white", "wine", "test");
         Product testWine = new Product("test", "test", "wine", "test", fields, fieldValues);
         
-        //pMapper.insertProduct(testWine);
+        pMapper.insertProduct(testWine);
         
     }
     
@@ -56,8 +56,8 @@ public class ProductMapperTest {
         String wineGrape = "Trepat";
         String wineVolume = "75";
         String wineAlchoholpercentage = "10-12";
-        String wineCountry = "portugal";
-        String productID = "9";
+        String wineCountry = "poland";
+        String productID = "7";
         
         
         fieldsValue.add(year);
@@ -70,7 +70,7 @@ public class ProductMapperTest {
         fields.add("empty");
         
         Product testWine = new Product("test1", "white", "wine", "test", fields, fieldsValue);
-        testWine.setID(9);
+        testWine.setID(7);
         testWine.setPublished(Boolean.FALSE);
         ArrayList<Product> productList = new ArrayList();
         productList.add(testWine);

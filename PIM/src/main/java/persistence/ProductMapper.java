@@ -112,7 +112,7 @@ public class ProductMapper {
         //Create fields and insert values to insert
         StringBuilder statementFields = new StringBuilder();
         StringBuilder statementValues = new StringBuilder();
-        for (Object field : product.getFields()) {
+        for (Object field : product.getFieldsValues()) {
             statementValues.append("?,");
 
         }
@@ -128,7 +128,7 @@ public class ProductMapper {
         Integer columnIndex = 1;
         String insertProductType = "INSERT  INTO " + product.getType() + "(" + statementFields + ")" + " VALUES(" + statementValues + ")";
         PreparedStatement statementInsertProductType = connection.prepareStatement(insertProductType);
-        for (Object field : product.getFields()) {
+        for (Object field : product.getFieldsValues()) {
             statementInsertProductType.setObject(columnIndex, field);
             columnIndex++;
         }
