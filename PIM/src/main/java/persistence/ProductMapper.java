@@ -194,13 +194,16 @@ public class ProductMapper {
         ResultSetMetaData rsmd = rs.getMetaData();
 
         return null;
+        
+        
     }
+    
 
     public String alterProductTypeEnum(String product) throws SQLException {
         product = ",'"+product+"'"; 
         String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_NAME = 'product' AND COLUMN_NAME = 'productType'";
-        Statement productTypeEnum = connection.createStatement();  
-        ResultSet rs = productTypeEnum.executeQuery(getEnumsQuery);
+        Statement st = connection.createStatement();  
+        ResultSet rs = st.executeQuery(getEnumsQuery);
         String enums = ""; 
         
         while (rs.next()) {
@@ -211,14 +214,59 @@ public class ProductMapper {
         StringBuilder sb = new StringBuilder(enums);
         sb.insert(sb.length()-1, product);
         enums = sb.toString(); 
-        String newEnumVar = enums; 
+        String newEnumVars = enums; 
         
         
-        String alterTableQuery = "alter table product modify column productType " + newEnumVar ;
-        productTypeEnum.executeUpdate(alterTableQuery);
+        
+//        ArrayList<String> derp = new ArrayList();
+//      String split[] = newEnumVars.split("'"+"*"+"'" , 0); 
+//        for (int i = 0; i < split.length; i++) {
+//                derp.add(split[i]);
+//            }
+//        for (int i = 0; i < derp.size(); i++) {
+//                if(derp.get(i).contains(",")) {
+//                    derp.remove(i);
+//                }
+//            
+//        }
+                
+      
         
         
-        return newEnumVar;
+        String alterTableQuery = "alter table product modify column productType " + newEnumVars ;
+        st.executeUpdate(alterTableQuery);
+        
+        
+        
+        
+        return newEnumVars;
+    }
+    
+    public void createProductTable (ArrayList product) throws SQLException { 
+        Statement st = connection.createStatement(); 
+        String CreateTableQuery = "";
+        StringBuilder sb = new StringBuilder();
+        
+        
+        
+        
+        
+        for (int i = 0; i < product.size(); i++) {
+            if (i == 0) {
+                CreateTableQuery = "CREATE TABLE " + product.get(i) +"( "
+                        + "productID int(5) unsigned zerofill NOT NULL, " ; 
+            }
+            String product1 = (String) product.get(i); 
+            sb = new StringBuilder (product1);
+            
+            if( sb.charAt(0) == 's') {
+                
+                
+                
+                
+            }
+            
+        }
     }
     
    

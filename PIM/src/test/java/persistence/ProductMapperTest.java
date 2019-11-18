@@ -114,7 +114,7 @@ public class ProductMapperTest {
         
         
         ProductMapper pMapper= new ProductMapper();
-        String product = "toiletpaper"; 
+        String product = "Toiletpaper"; 
         
         String pro2 = pMapper.alterProductTypeEnum(product);
     }
