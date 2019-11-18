@@ -1,4 +1,9 @@
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package persistence;
 
 import businesslogic.Product;
@@ -98,9 +103,9 @@ public class ProductMapper {
         }
         product.setID(productID);
         // We now have the productID to insert productType
-
+        
         ArrayList<String> columnNames = new ArrayList<String>();
-
+        //Get the names of columns to be  inserted into
         Statement getColumnNames = connection.createStatement();
         ResultSet rs = getColumnNames.executeQuery("SELECT * from PIM." + product.getType());
         //Get names of the columns to be inserted into
@@ -132,7 +137,7 @@ public class ProductMapper {
             statementInsertProductType.setObject(columnIndex, field);
             columnIndex++;
         }
-        statementInsertProductType.setObject(product.getFields().size() + 1, product.getID());
+        statementInsertProductType.setObject(product.getFieldsValues().size() + 1, product.getID());
 
         statementInsertProductType.executeUpdate();
         connection.close();
@@ -141,46 +146,10 @@ public class ProductMapper {
     public void deleteProduct(Product product) throws ClassNotFoundException, SQLException {
         Connection connection = db.connection();
 
-        String updateTrue = "DELETE FROM product WHERE product.productID=?";
-        PreparedStatement ps = connection.prepareStatement(updateTrue);
+        String delete = "DELETE FROM product WHERE product.productID=?";
+        PreparedStatement ps = connection.prepareStatement(delete);
         ps.setInt(1, product.getID());
         ps.executeUpdate();
-    }
-
-    public HashMap<String, ArrayList<Object>> showProduct(String ProductType) throws SQLException, ClassNotFoundException {
-        Connection connection = db.connection();
-        HashMap<String, ArrayList<Object>> items = new HashMap();
-        ArrayList<Object> columnNames = new ArrayList();
-        ArrayList<Object> columnFields = new ArrayList();
-        //ProductType = "wine";
-        String showProductQuery = "SELECT PIM.product.manufacturer, PIM.product.productName, PIM.product.productType, PIM.wine.* from PIM.product  left join PIM.wine  on PIM.product.productID like PIM.wine.productID where PIM.product.productType like '" + ProductType + "'";
-
-        Statement getColumnNames = connection.createStatement();
-        Statement statement = connection.createStatement();
-        ResultSet rs = getColumnNames.executeQuery(showProductQuery);
-        ResultSet result = statement.executeQuery(showProductQuery);
-        //Get names of the columns to be inserted into
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int intColumnCount = rsmd.getColumnCount();
-
-        for (int i = 0; i < intColumnCount; i++) {
-            columnNames.add(rsmd.getColumnName(i + 1));
-
-        }
-        // while (result.next()) {
-
-        for (int i = 0; i < intColumnCount; i++) {
-            while (result.next()) {
-                for (int j = 0; j < intColumnCount; j++) {
-                    columnFields.add(result.getObject(j + 1));
-                }
-            }
-
-        }
-        //Get Products 
-        items.put("columnNames", columnNames);
-        items.put("columnFields", columnFields);
-        return items;
     }
 
     public ArrayList<Product> showProducts(String productType) throws ClassNotFoundException, SQLException {
@@ -190,9 +159,8 @@ public class ProductMapper {
         String manufacturer = "";
         String category = "";
 
-        
-
-        String showProductQuery = "SELECT PIM.product.manufacturer, PIM.product.productName, PIM.product.productType, PIM.wine.* from PIM.product  left join PIM.wine  on PIM.product.productID like PIM.wine.productID where PIM.product.productType like '" + productType + "'";
+        String showProductQuery = "SELECT product.manufacturer,  product.productName, product.productType, " + productType + ".* FROM product"
+                + ", " + productType + " where product.productID=" + productType + ".productID order by productID";
 
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(showProductQuery);
@@ -200,27 +168,33 @@ public class ProductMapper {
 
         int intColumnCount = rsmd.getColumnCount();
 
-        
         while (rs.next()) {
-            for (int i = 0; i < intColumnCount; i++) {
-                while (rs.next()) {
-                    ArrayList<Object> fieldValues = new ArrayList<>();
-                    ArrayList<String> fields = new ArrayList<>();
-                    for (int j = 0; j < intColumnCount; j++) {
-                        fields.add(rsmd.getColumnName(j+1));
-                        fieldValues.add(rs.getObject(j + 1));
-                        name = rs.getString("productName");
-                        manufacturer = rs.getString("manufacturer");
 
-                    }
-                    Product product = new Product(name, manufacturer, category, productType, fields, fieldValues);
-                    products.add(product);
-                }
+            ArrayList<Object> fieldValues = new ArrayList<>();
+            ArrayList<String> fields = new ArrayList<>();
+            for (int j = 0; j < intColumnCount; j++) {
+                fields.add(rsmd.getColumnName(j + 1));
+                fieldValues.add(rs.getObject(j + 1));
+                name = rs.getString("productName");
+                manufacturer = rs.getString("manufacturer");
 
             }
+            Product product = new Product(name, manufacturer, category, productType, fields, fieldValues);
+            products.add(product);
 
         }
 
         return products;
     }
+    
+    
+    public ArrayList<String> getMetaData() throws SQLException{
+        
+        Statement getMetaData = connection.createStatement();
+        ResultSet rs = getMetaData.executeQuery("SELECT * from product");
+        ResultSetMetaData rsmd = rs.getMetaData();
+        
+        return null;
+    }
 }
+

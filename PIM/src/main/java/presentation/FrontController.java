@@ -42,7 +42,7 @@ public class FrontController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         if(request.getParameter("cmd").equals("showItems")){
-            showItems(request, response);
+            showProducts(request, response);
         }
         
         }
@@ -50,13 +50,15 @@ public class FrontController extends HttpServlet {
     
     
     
-    protected void showItems(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException{
+    protected void showProducts(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException{
         //@TODO  For each product type in the database call showProduct and then send  it over
         ProductMapper  pMapper  =  new  ProductMapper();
         
         ArrayList<Product>  wine = pMapper.showProducts("wine");
         ArrayList<Product> phones = pMapper.showProducts("phone");
-        wine.get(0).getFields();
+        wine.get(0).getFieldsValues();
+        
+        
         
         request.setAttribute("wine", wine);
         request.setAttribute("phones", phones);
