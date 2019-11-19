@@ -216,8 +216,6 @@ public class ProductMapper {
         enums = sb.toString(); 
         String newEnumVars = enums; 
         
-        
-        
 //        ArrayList<String> derp = new ArrayList();
 //      String split[] = newEnumVars.split("'"+"*"+"'" , 0); 
 //        for (int i = 0; i < split.length; i++) {
@@ -230,43 +228,57 @@ public class ProductMapper {
 //            
 //        }
                 
-      
-        
         
         String alterTableQuery = "alter table product modify column productType " + newEnumVars ;
         st.executeUpdate(alterTableQuery);
-        
-        
-        
+        connection.close();
         
         return newEnumVars;
     }
     
-    public void createProductTable (ArrayList product) throws SQLException { 
+    public String createProductTable (ArrayList product, ArrayList enums) throws SQLException { 
         Statement st = connection.createStatement(); 
         String CreateTableQuery = "";
         StringBuilder sb = new StringBuilder();
-        
-        
-        
-        
+        String foreignKeyProductID = " foreign key (productID) references product(productID))"; 
         
         for (int i = 0; i < product.size(); i++) {
+            int l = 0; 
             if (i == 0) {
                 CreateTableQuery = "CREATE TABLE " + product.get(i) +"( "
                         + "productID int(5) unsigned zerofill NOT NULL, " ; 
             }
-            String product1 = (String) product.get(i); 
-            sb = new StringBuilder (product1);
+            String products = (String) product.get(i); 
+            sb = new StringBuilder (products);
             
-            if( sb.charAt(0) == 's') {
-                
-                
-                
-                
+            switch (sb.charAt(0)) {
+                case 'S':
+                    String varChar = sb.substring(1) + " varchar(200), \n";
+                    CreateTableQuery = CreateTableQuery +varChar;
+                    break;
+                case 'I':
+                    String varInt = sb.substring(1)+ " int, \n";
+                    CreateTableQuery = CreateTableQuery +varInt;
+                    break;
+                case 'F':
+                    String varfloat = sb.substring(1)+ " float, \n"; 
+                    CreateTableQuery = CreateTableQuery +varfloat;
+                    break;
+                case 'E': 
+                    String varEnum = sb.substring(1) + " enum("+ enums.get(l).toString()+"), \n" ;
+                    CreateTableQuery = CreateTableQuery +varEnum;
+                    l++;
+                default:
+                    break;
             }
-            
         }
+        CreateTableQuery = CreateTableQuery + foreignKeyProductID ;
+        
+        st.executeUpdate(CreateTableQuery); 
+        connection.close();
+        
+        return CreateTableQuery;
+        
     }
     
    
