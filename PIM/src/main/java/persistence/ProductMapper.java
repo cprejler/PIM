@@ -199,8 +199,9 @@ public class ProductMapper {
     }
     
 
-    public String alterProductTypeEnum(String product) throws SQLException {
-        product = ",'"+product+"'"; 
+    public String alterProductTypeEnum(String newproduct) throws SQLException {
+        newproduct = ",'"+newproduct+"'"; 
+        
         String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_NAME = 'product' AND COLUMN_NAME = 'productType'";
         Statement st = connection.createStatement();  
         ResultSet rs = st.executeQuery(getEnumsQuery);
@@ -212,7 +213,7 @@ public class ProductMapper {
         }
 
         StringBuilder sb = new StringBuilder(enums);
-        sb.insert(sb.length()-1, product);
+        sb.insert(sb.length()-1, newproduct);
         enums = sb.toString(); 
         String newEnumVars = enums; 
         
