@@ -1,11 +1,14 @@
 package persistence;
 
 import businesslogic.Product;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -13,7 +16,7 @@ import org.junit.Test;
  * @author casper
  */
 public class ProductMapperTest {
-    
+
     @Test
     public void insertProductTest() throws ClassNotFoundException, SQLException{
         
