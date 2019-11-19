@@ -52,7 +52,7 @@ public class ProductMapperTest {
         
     }
     
-    @Test
+   @Test
     public void deleteProductTest() throws ClassNotFoundException, SQLException{
         ProductMapper pMapper = new ProductMapper();
         ArrayList<String>  fields = new ArrayList();
@@ -149,7 +149,8 @@ public class ProductMapperTest {
         String pro2 = pMapper.alterProductTypeEnum(product);
     }
     
-    @Test public void createProductTableTest() throws ClassNotFoundException, SQLException {
+   @Test 
+    public void createProductTableTest() throws ClassNotFoundException, SQLException {
          ProductMapper pMapper= new ProductMapper();
          ArrayList<String> vars = new ArrayList(); 
          ArrayList<String> enums = new ArrayList(); 

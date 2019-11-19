@@ -13,7 +13,7 @@
     <head>
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>BootStrap test</title>
+        <title>Insert product</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -81,7 +81,40 @@
 
             </div>
 
-            
+            <div class="container">
+                <form action="FrontController">
+
+                    <h5 class="text-primary">Manufacturer</h5>
+                    <input type="text" class="form-control" name="manufacturer">
+                    <h5 class="text-primary">Product Name</h5>
+                    <input type="text" class="form-control" name="productName">
+                    <h5 class="text-primary">Product Type</h5>
+                    <input type="text" name="productType" value="${param.productType}" readonly>
+                    
+
+
+                    <c:forEach var="form"  items="${requestScope.forms}">
+                        <h5 class="text-primary">${form.get("name")}</h5>
+
+                        <c:if  test="${form['inputType'] == 'select'}">
+                            <select name="${form.get("name")}">
+                                <c:forEach var="item" items="${form['options']}">
+                                    <option>${item}</option>
+                                </c:forEach>
+
+                            </select>
+                        </c:if>
+                        <c:if  test="${form['inputType'] != 'select'}">
+                            <input type="${form.get("inputType")}" name="${form.get("name")}">
+                        </c:if>
+
+                    </c:forEach>
+                    <input type="submit" class="btn btn-primary" value="Insert Product">
+                    <input  type="hidden" name="cmd" value="insertProduct">
+                </form>
+
+            </div>
+        </div>
 
 
 

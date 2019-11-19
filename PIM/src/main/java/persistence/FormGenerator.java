@@ -50,13 +50,13 @@ public class FormGenerator {
             } else if (type.contains("int")) {
                 HashMap<String, Object> form = new HashMap<>();
                 form.put("name", field);
-                form.put("inputType", "text");
+                form.put("inputType", "number");
                 forms.add(form);
                 // If it's not VARCHAR or INT, we conclude it's an enum, and we create a statement, based on the Field   
             } else if (type.contains("float")) {
                 HashMap<String, Object> form = new HashMap<>();
                 form.put("name", field);
-                form.put("inputType", "text");
+                form.put("inputType", "number");
                 forms.add(form);
 
             } else {
