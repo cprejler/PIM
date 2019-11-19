@@ -1,5 +1,6 @@
 Drop table if exists phone;
 Drop table if exists wine;
+Drop table if exists toiletPaper;
 Drop table if exists product;
 
 CREATE TABLE product(
@@ -50,12 +51,12 @@ values ("Iphone X", "phone", "Apple"),
 ('Meandro Do Vale Meão 2014', 'wine', 'Quinta do Vale Meão');
 
 insert into phone
-values ("Apple", 1, 'IOS', 3.3, 'plasma', 'HD', 8, 'nano', 0, 12, 32),
-("Samsung", 2, 'Android', 3.3, 'plasma', 'HD', 8, 'nano', 0, 12, 32),
-("Motorola", 3, 'Android', 3.3, 'plasma', 'HD', 8, 'nano', 0, 12, 32),
-("Apple", 4, 'IOS', 3.3, 'plasma', 'HD', 8, 'nano', 0, 12, 32),
-("Oneplus", 5, 'Android', 3.3, 'plasma', 'HD', 8, 'nano', 0, 12, 32),
-("Nokia", 6, 'Android', 3.3, 'plasma', 'HD', 8, 'standard', 0, 12, 32); 
+values ("Apple", 'IOS', 3.3, 'plasma', 'HD', 8, 'nano', 0, 12, 32, 1),
+("Samsung", 'Android', 3.3, 'plasma', 'HD', 8, 'nano', 0, 12, 32, 2),
+("Motorola", 'Android', 3.3, 'plasma', 'HD', 8, 'nano', 0, 12, 32, 3),
+("Apple", 'IOS', 3.3, 'plasma', 'HD', 8, 'nano', 0, 12, 32, 4),
+("Oneplus", 'Android', 3.3, 'plasma', 'HD', 8, 'nano', 0, 12, 32, 5),
+("Nokia", 'Android', 3.3, 'plasma', 'HD', 8, 'standard', 0, 12, 32, 6); 
 
 insert into wine
-values ('2014', 'Red', 'Chardonay', '75', '13-14', 'Portugal');
+values ('2014', 'Red', 'Chardonay', '75', '13-14', 'Portugal', 7);
