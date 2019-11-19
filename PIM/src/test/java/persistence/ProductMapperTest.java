@@ -52,6 +52,33 @@ public class ProductMapperTest {
     @Test
     public void deleteProductTest() throws ClassNotFoundException, SQLException{
         ProductMapper pMapper = new ProductMapper();
+        ArrayList<String>  fields = new ArrayList();
+        
+        ArrayList<Object> fieldValues = new ArrayList();
+        int year = 1970;
+        String manufacturer = "test";
+        String productName = "Chardonnay";
+        String productType = "Wine";
+        String productYear = "1960";
+        String wineType = "Red";
+        String wineGrape = "Trepat";
+        String wineVolume = "75";
+        String wineAlchoholpercentage = "10-12";
+        String wineCountry = "France";
+        
+        
+        fieldValues.add(productYear);
+        fieldValues.add(wineType);
+        fieldValues.add(wineGrape);
+        fieldValues.add(wineVolume);
+        fieldValues.add(wineAlchoholpercentage);
+        fieldValues.add(wineCountry);
+        
+        
+        
+        Product testWine = new Product("test", "test", "wine", "test", fields, fieldValues);
+        
+        pMapper.deleteProduct(testWine);
     }
     @Test
     public void updateProductTest() throws ClassNotFoundException, SQLException{
