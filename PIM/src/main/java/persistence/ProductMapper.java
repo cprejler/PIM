@@ -286,8 +286,8 @@ public class ProductMapper {
          ResultSet rs = st.executeQuery(getTableNames);
          
           while (rs.next()) {
-            String tableNames1 = rs.getString("TABLE_NAME"); 
-            tableNames.add(tableNames1);
+            String tableName = rs.getString("TABLE_NAME"); 
+            tableNames.add(tableName);
 
         }
 
