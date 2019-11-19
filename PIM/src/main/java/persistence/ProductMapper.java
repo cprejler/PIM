@@ -201,8 +201,11 @@ public class ProductMapper {
 
     public String alterProductTypeEnum(String newproduct) throws SQLException {
         newproduct = ",'"+newproduct+"'"; 
+        String product = "product"; 
+        String productType ="productType";
         
-        String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_NAME = 'product' AND COLUMN_NAME = 'productType'";
+        String getEnumsQuery = getProductEnums(product, productType);
+        
         Statement st = connection.createStatement();  
         ResultSet rs = st.executeQuery(getEnumsQuery);
         String enums = ""; 
@@ -216,25 +219,20 @@ public class ProductMapper {
         sb.insert(sb.length()-1, newproduct);
         enums = sb.toString(); 
         String newEnumVars = enums; 
-        
-//        ArrayList<String> derp = new ArrayList();
-//      String split[] = newEnumVars.split("'"+"*"+"'" , 0); 
-//        for (int i = 0; i < split.length; i++) {
-//                derp.add(split[i]);
-//            }
-//        for (int i = 0; i < derp.size(); i++) {
-//                if(derp.get(i).contains(",")) {
-//                    derp.remove(i);
-//                }
-//            
-//        }
-                
-        
+
         String alterTableQuery = "alter table product modify column productType " + newEnumVars ;
         st.executeUpdate(alterTableQuery);
         connection.close();
         
         return newEnumVars;
+    }
+
+    public String getProductEnums(String TableName, String ColumnName) throws SQLException{
+        TableName = "'"+TableName+"'"; 
+        ColumnName = "'"+ColumnName+"'";
+        
+        String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_NAME = "+ TableName+ " AND COLUMN_NAME ="+ ColumnName +"";
+        return getEnumsQuery;
     }
     
     public String createProductTable (ArrayList product, ArrayList enums) throws SQLException { 
