@@ -103,7 +103,7 @@ public class ProductMapper {
         }
         product.setID(productID);
         // We now have the productID to insert productType
-        
+
         ArrayList<String> columnNames = new ArrayList<String>();
         //Get the names of columns to be  inserted into
         Statement getColumnNames = connection.createStatement();
@@ -186,14 +186,100 @@ public class ProductMapper {
 
         return products;
     }
-    
-    
-    public ArrayList<String> getMetaData() throws SQLException{
-        
+
+    public ArrayList<String> getMetaData() throws SQLException {
+
         Statement getMetaData = connection.createStatement();
         ResultSet rs = getMetaData.executeQuery("SELECT * from product");
         ResultSetMetaData rsmd = rs.getMetaData();
-        
+
         return null;
+        
+        
     }
+    
+
+    public String alterProductTypeEnum(String product) throws SQLException {
+        product = ",'"+product+"'"; 
+        String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_NAME = 'product' AND COLUMN_NAME = 'productType'";
+        Statement st = connection.createStatement();  
+        ResultSet rs = st.executeQuery(getEnumsQuery);
+        String enums = ""; 
+        
+        while (rs.next()) {
+            enums = rs.getString("COLUMN_TYPE"); 
+                 
+        }
+
+        StringBuilder sb = new StringBuilder(enums);
+        sb.insert(sb.length()-1, product);
+        enums = sb.toString(); 
+        String newEnumVars = enums; 
+        
+//        ArrayList<String> derp = new ArrayList();
+//      String split[] = newEnumVars.split("'"+"*"+"'" , 0); 
+//        for (int i = 0; i < split.length; i++) {
+//                derp.add(split[i]);
+//            }
+//        for (int i = 0; i < derp.size(); i++) {
+//                if(derp.get(i).contains(",")) {
+//                    derp.remove(i);
+//                }
+//            
+//        }
+                
+        
+        String alterTableQuery = "alter table product modify column productType " + newEnumVars ;
+        st.executeUpdate(alterTableQuery);
+        connection.close();
+        
+        return newEnumVars;
+    }
+    
+    public String createProductTable (ArrayList product, ArrayList enums) throws SQLException { 
+        Statement st = connection.createStatement(); 
+        String CreateTableQuery = "";
+        StringBuilder sb = new StringBuilder();
+        String foreignKeyProductID = " foreign key (productID) references product(productID))"; 
+        
+        for (int i = 0; i < product.size(); i++) {
+            int l = 0; 
+            if (i == 0) {
+                CreateTableQuery = "CREATE TABLE " + product.get(i) +"( "
+                        + "productID int(5) unsigned zerofill NOT NULL, " ; 
+            }
+            String products = (String) product.get(i); 
+            sb = new StringBuilder (products);
+            
+            switch (sb.charAt(0)) {
+                case 'S':
+                    String varChar = sb.substring(1) + " varchar(200), \n";
+                    CreateTableQuery = CreateTableQuery +varChar;
+                    break;
+                case 'I':
+                    String varInt = sb.substring(1)+ " int, \n";
+                    CreateTableQuery = CreateTableQuery +varInt;
+                    break;
+                case 'F':
+                    String varfloat = sb.substring(1)+ " float, \n"; 
+                    CreateTableQuery = CreateTableQuery +varfloat;
+                    break;
+                case 'E': 
+                    String varEnum = sb.substring(1) + " enum("+ enums.get(l).toString()+"), \n" ;
+                    CreateTableQuery = CreateTableQuery +varEnum;
+                    l++;
+                default:
+                    break;
+            }
+        }
+        CreateTableQuery = CreateTableQuery + foreignKeyProductID ;
+        
+        st.executeUpdate(CreateTableQuery); 
+        connection.close();
+        
+        return CreateTableQuery;
+        
+    }
+    
+   
 }

@@ -109,6 +109,49 @@ public class ProductMapperTest {
         
         
     }
+    @Test
+    public void alterEnumTest() throws ClassNotFoundException, SQLException {
+        
+        
+        ProductMapper pMapper= new ProductMapper();
+        String product = "Toiletpaper"; 
+        
+        String pro2 = pMapper.alterProductTypeEnum(product);
+    }
+    
+    @Test public void createProductTableTest() throws ClassNotFoundException, SQLException {
+         ProductMapper pMapper= new ProductMapper();
+         ArrayList<String> vars = new ArrayList(); 
+         ArrayList<String> enums = new ArrayList(); 
+         
+         String product = "ToiletPaper"; 
+         String Sproducent = "Sproducent"; 
+         String Eantallag =  "EAntallag"; 
+         String FMeter = "FMeter"; 
+         String EAntalRuller = "EAntalRuller";
+         
+         vars.add(product);
+         vars.add(Eantallag); 
+         vars.add(FMeter); 
+         vars.add(EAntalRuller); 
+         
+         String EnumsAntalRuller = "'2', '4', '6'";
+         String EnumsAntalLag = "'1', '2', '3', '4'"; 
+         enums.add(EnumsAntalRuller); 
+         enums.add(EnumsAntalLag); 
+         
+         String query = pMapper.createProductTable(vars, enums);
+         StringBuilder sb = new StringBuilder(query); 
+         
+         assertEquals(product, sb.subSequence(13, 24)) ;
+         
+         
+         
+         
+         
+         
+         
+    }
     
     
 }
