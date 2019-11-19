@@ -194,15 +194,13 @@ public class ProductMapper {
         ResultSetMetaData rsmd = rs.getMetaData();
 
         return null;
-        
-        
     }
     
 
     public String alterProductTypeEnum(String newproduct) throws SQLException {
         newproduct = ",'"+newproduct+"'"; 
-        String product = "product"; 
-        String productType ="productType";
+        String product = "product";  //Tabel navn
+        String productType ="productType"; //Kolonne navn i tabel
         
         String getEnumsQuery = getProductEnums(product, productType);
         
