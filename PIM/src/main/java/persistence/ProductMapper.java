@@ -287,8 +287,10 @@ public class ProductMapper {
          
           while (rs.next()) {
             String tableName = rs.getString("TABLE_NAME"); 
-            tableNames.add(tableName);
-
+            if (tableName.toString().equals("product")) {
+            }else{
+                tableNames.add(tableName);
+            }
         }
 
         return tableNames;
