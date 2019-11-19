@@ -277,6 +277,24 @@ public class ProductMapper {
         return CreateTableQuery;
         
     }
+    public ArrayList<String> getTableNames (String databaseName) throws SQLException{
+        ArrayList<String> tableNames = new ArrayList();
+        Statement st = connection.createStatement(); 
+        String getTableNames = "SELECT TABLE_NAME \n" +
+                                "FROM INFORMATION_SCHEMA.TABLES\n" +
+                                "WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA='"+databaseName+"';"; 
+         ResultSet rs = st.executeQuery(getTableNames);
+         
+          while (rs.next()) {
+            String tableNames1 = rs.getString("TABLE_NAME"); 
+            tableNames.add(tableNames1);
+
+        }
+
+        return tableNames;
+        
+    }
+    
     
    
 }

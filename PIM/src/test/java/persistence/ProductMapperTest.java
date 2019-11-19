@@ -184,13 +184,15 @@ public class ProductMapperTest {
          
          assertEquals(product, sb.subSequence(13, 24)) ;
          
-         
-         
-         
-         
-         
-         
     }
+    
+     @Test
+     public void getTableNames() throws SQLException, ClassNotFoundException {
+         ProductMapper pMapper= new ProductMapper();
+         String DatabaseName = "test"; 
+         ArrayList<String> array = pMapper.getTableNames(DatabaseName);
+         
+     }
     
     
 }
