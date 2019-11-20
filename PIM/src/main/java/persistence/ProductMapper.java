@@ -212,11 +212,13 @@ public class ProductMapper {
             enums = rs.getString("COLUMN_TYPE"); 
                  
         }
+        
 
         StringBuilder sb = new StringBuilder(enums);
         sb.insert(sb.length()-1, newproduct);
         enums = sb.toString(); 
         String newEnumVars = enums; 
+        newEnumVars = newEnumVars.toLowerCase();
 
         String alterTableQuery = "alter table product modify column productType " + newEnumVars ;
         st.executeUpdate(alterTableQuery);
