@@ -218,16 +218,16 @@ public class ProductMapper {
             productType.add(rs.getString("productType"));
         }
         
-        for(int i = 0; i<=productID.size(); i++){
+        for(int i = 0; i<productID.size(); i++){
             String showSearchQuery = "SELECT product.manufacturer,  product.productName, product.productType, " + productType.get(i) + ".* FROM product"
-                + ", " + productType.get(i) + " where product.productID=" + productID.get(i);
+                + ", " + productType.get(i) + " where product.productID=" + productID.get(i) + " and " +productType.get(i) +".productID =" + productID.get(i);
             
             ResultSet rs1 = statement.executeQuery(showSearchQuery);
             ResultSetMetaData rsmd = rs1.getMetaData();
 
             int intColumnCount = rsmd.getColumnCount();
             
-
+        while (rs1.next()) {
             ArrayList<Object> fieldValues = new ArrayList<>();
             ArrayList<String> fields = new ArrayList<>();
             for (int j = 0; j < intColumnCount; j++) {
@@ -239,6 +239,7 @@ public class ProductMapper {
             }
             Product product = new Product(name, manufacturer, category, productType.get(i), fields, fieldValues);
             products.add(product);
+        }
         }
         return products;
     }
