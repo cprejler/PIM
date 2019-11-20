@@ -196,5 +196,51 @@ public class ProductMapper {
         
         return null;
     }
+    
+    public ArrayList<Product> searchForProduct(String searchType, String input) throws ClassNotFoundException, SQLException{
+        
+        Connection connection = db.connection();
+        ArrayList<Product> products = new ArrayList<Product>();
+        String name = "";
+        String manufacturer = "";
+        String category = "";
+        ArrayList<String> productID = new ArrayList<String>();
+        ArrayList<String> productType = new ArrayList<String>();
+                
+        
+        String searchQuery = "SELECT product.productID, product.productType FROM product where " + searchType +" like " + "'%" +input +"%'";
+        
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(searchQuery);
+        
+        while (rs.next()){
+            productID.add(rs.getString("productID"));
+            productType.add(rs.getString("productType"));
+        }
+        
+        for(int i = 0; i<=productID.size(); i++){
+            String showSearchQuery = "SELECT product.manufacturer,  product.productName, product.productType, " + productType.get(i) + ".* FROM product"
+                + ", " + productType.get(i) + " where product.productID=" + productID.get(i);
+            
+            ResultSet rs1 = statement.executeQuery(showSearchQuery);
+            ResultSetMetaData rsmd = rs1.getMetaData();
+
+            int intColumnCount = rsmd.getColumnCount();
+            
+
+            ArrayList<Object> fieldValues = new ArrayList<>();
+            ArrayList<String> fields = new ArrayList<>();
+            for (int j = 0; j < intColumnCount; j++) {
+                fields.add(rsmd.getColumnName(j + 1));
+                fieldValues.add(rs1.getObject(j + 1));
+                name = rs1.getString("productName");
+                manufacturer = rs1.getString("manufacturer");
+            
+            }
+            Product product = new Product(name, manufacturer, category, productType.get(i), fields, fieldValues);
+            products.add(product);
+        }
+        return products;
+    }
 }
 
