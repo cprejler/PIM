@@ -9,6 +9,7 @@ import businesslogic.Product;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -28,6 +29,7 @@ import persistence.ProductMapper;
  */
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
+
     //@TODO  DET HER  SKAL RYKKES OVER I CMD  INTERFACE.
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -42,89 +44,108 @@ public class FrontController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        if(request.getParameter("cmd").equals("showItems")){
+
+        if (request.getParameter("cmd").equals("showItems")) {
             showProducts(request, response);
-        }else if(request.getParameter("cmd").equals("gotoInsertProduct")){
+        } else if (request.getParameter("cmd").equals("gotoInsertProduct")) {
             gotoInsertProduct(request, response);
-            
-        }else if(request.getParameter("cmd").equals("generateForm")){
+
+        } else if (request.getParameter("cmd").equals("generateForm")) {
             generateForm(request, response);
-        }else  if(request.getParameter("cmd").equals("insertProduct")){
+        } else if (request.getParameter("cmd").equals("insertProduct")) {
             insertProduct(request, response);
         }
-        
-        
-        }
-    
-    
-    
-    
-    protected void showProducts(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException{
+
+    }
+
+    protected void showProducts(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
         //@TODO  For each product type in the database call showProduct and then send  it over
-        ProductMapper  pMapper  =  new  ProductMapper();
-        
-        ArrayList<Product>  wine = pMapper.showProducts("wine");
+        ProductMapper pMapper = new ProductMapper();
+
+        ArrayList<Product> wine = pMapper.showProducts("wine");
         ArrayList<Product> phones = pMapper.showProducts("phone");
         wine.get(0).getFieldsValues();
-        
-        
-        
+
         request.setAttribute("wine", wine);
         request.setAttribute("phones", phones);
-        
-        
-        RequestDispatcher rd =  request.getRequestDispatcher("test.jsp");
+
+        RequestDispatcher rd = request.getRequestDispatcher("test.jsp");
         rd.forward(request, response);
-        
+
     }
-    
-    protected void gotoInsertProduct(HttpServletRequest  request,  HttpServletResponse response) throws ServletException, IOException{
-        RequestDispatcher rd  = request.getRequestDispatcher("InsertProduct.jsp");
+
+    protected void gotoInsertProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher rd = request.getRequestDispatcher("InsertProduct.jsp");
         rd.forward(request, response);
     }
-    
-    protected void insertProduct (HttpServletRequest  request,  HttpServletResponse response) throws ClassNotFoundException, SQLException{
-        
-        //WORK  IN PROGRESS
-        Map params  =  request.getParameterMap();
-        String  manufacturer = (String)params.get("manufacturer");
-        String  productName = (String)params.get("productName");
-        String  productType = (String)params.get("productType");
-        
+
+    protected void insertProduct(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
         ArrayList<String> fields = new ArrayList<>();
         ArrayList<Object> fieldValues = new ArrayList<>();
+        Enumeration<String> parameterNames = request.getParameterNames();
+        ArrayList<String>params  = new ArrayList<>();
         
-        for (Object key : params.keySet()) {
-            if(!key.equals("manufacturer") && !key.equals("productName") && !key.equals("productType")){
-                String keyStr  = (String)key;
-                fields.add(keyStr);
-                fieldValues.add(params.get("keyStr"));
-            }
-            
+        //Get the names of  the  Parameters in  order to make request.getParameter() on them after to get the  actual  value
+        while(parameterNames.hasMoreElements()){
+            params.add(parameterNames.nextElement());
         }
         
-        Product product = new  Product(productName, "test", productType, manufacturer, fields, fieldValues);
+        ArrayList<String> requestParameters  = new  ArrayList<>();
+        //Get  the actual value   of  the  parameters, as well  as add the names to the fields array
+        //We  don't  want  manufacturer, productName, and  productType  added to that array
+        for (String param : params) {
+            
+            if (!param.equals("manufacturer") && !param.equals("productName") && !param.equals("productType") &&  !param.equals("cmd")){
+                fields.add(param);
+                requestParameters.add(request.getParameter(param));
+            }
+                       
+        }
         
+        //Manufacturer, productName, productType, will  always  be the first 3
+        
+        String manufacturer = request.getParameter("manufacturer");
+        String productName = request.getParameter("productName");
+        String productType = request.getParameter("productType");
+        
+       
+
+        for (String requestParameter : requestParameters) {
+            if (!requestParameter.equals("manufacturer") && !requestParameter.equals("productName") && !requestParameter.equals("productType")&&!requestParameter.equals("cmd")) {
+                                
+                fieldValues.add(requestParameter);
+            }
+
+        }
+        
+        
+        Product product = new Product(productName, "test", productType, manufacturer, fields, fieldValues);
+
         ProductMapper pMapper = new ProductMapper();
-        
-        pMapper.insertProduct(product);
-        
-        
-        
-        
-        
+
+        try {
+            pMapper.insertProduct(product);
+        } catch (SQLException e) {
+            
+            request.setAttribute("error", e.getMessage());
+            request.setAttribute("cause", e.getCause());
+            request.setAttribute("stacktrace", e.getStackTrace());
+            RequestDispatcher  rd   = request.getRequestDispatcher("Error.jsp");
+            rd.forward(request, response);
+            
+        }
+
     }
-    
-    protected void generateForm(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException{
-        String  formToGenerate  = request.getParameter("productType");
-        FormGenerator fg  = new FormGenerator();
-        ArrayList<HashMap<String,Object>> forms = fg.generateForm(formToGenerate);
+
+    protected void generateForm(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException {
+        String formToGenerate = request.getParameter("productType");
+        FormGenerator fg = new FormGenerator();
+        ArrayList<HashMap<String, Object>> forms = fg.generateForm(formToGenerate);
         request.setAttribute("forms", forms);
-        
+
         RequestDispatcher rd = request.getRequestDispatcher("InsertProductType.jsp");
         rd.forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

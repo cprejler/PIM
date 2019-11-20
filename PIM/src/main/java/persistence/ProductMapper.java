@@ -91,7 +91,7 @@ public class ProductMapper {
         String insertProduct = "INSERT INTO  product (productName, productType, manufacturer) VALUES(?,?,?)";
         PreparedStatement statementInsertProduct = connection.prepareStatement(insertProduct);
         statementInsertProduct.setString(1, product.getName());
-        statementInsertProduct.setString(2, product.getType());
+        statementInsertProduct.setString(2, product.getType().toLowerCase());
         statementInsertProduct.setString(3, product.getManufacturer());
         statementInsertProduct.execute();
 
@@ -107,7 +107,7 @@ public class ProductMapper {
         ArrayList<String> columnNames = new ArrayList<String>();
         //Get the names of columns to be  inserted into
         Statement getColumnNames = connection.createStatement();
-        ResultSet rs = getColumnNames.executeQuery("SELECT * from PIM." + product.getType());
+        ResultSet rs = getColumnNames.executeQuery("SELECT * from " + product.getType().toLowerCase());
         //Get names of the columns to be inserted into
         ResultSetMetaData rsmd = rs.getMetaData();
         int intColumnCount = rsmd.getColumnCount();
@@ -131,7 +131,7 @@ public class ProductMapper {
         statementFields.deleteCharAt(statementFields.length() - 1);
 
         Integer columnIndex = 1;
-        String insertProductType = "INSERT  INTO " + product.getType() + "(" + statementFields + ")" + " VALUES(" + statementValues + ")";
+        String insertProductType = "INSERT  INTO " + product.getType().toLowerCase() + "(" + statementFields + ")" + " VALUES(" + statementValues + ")";
         PreparedStatement statementInsertProductType = connection.prepareStatement(insertProductType);
         for (Object field : product.getFieldsValues()) {
             statementInsertProductType.setObject(columnIndex, field);
