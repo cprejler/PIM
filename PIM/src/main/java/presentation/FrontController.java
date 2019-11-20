@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -18,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import persistence.FormGenerator;
 import persistence.ProductMapper;
 
 /**
@@ -26,7 +28,7 @@ import persistence.ProductMapper;
  */
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
-
+    //@TODO  DET HER  SKAL RYKKES OVER I CMD  INTERFACE.
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      *
@@ -43,7 +45,15 @@ public class FrontController extends HttpServlet {
         
         if(request.getParameter("cmd").equals("showItems")){
             showProducts(request, response);
+        }else if(request.getParameter("cmd").equals("gotoInsertProduct")){
+            gotoInsertProduct(request, response);
+            
+        }else if(request.getParameter("cmd").equals("generateForm")){
+            generateForm(request, response);
+        }else  if(request.getParameter("cmd").equals("insertProduct")){
+            insertProduct(request, response);
         }
+        
         
         }
     
@@ -65,6 +75,54 @@ public class FrontController extends HttpServlet {
         
         
         RequestDispatcher rd =  request.getRequestDispatcher("test.jsp");
+        rd.forward(request, response);
+        
+    }
+    
+    protected void gotoInsertProduct(HttpServletRequest  request,  HttpServletResponse response) throws ServletException, IOException{
+        RequestDispatcher rd  = request.getRequestDispatcher("InsertProduct.jsp");
+        rd.forward(request, response);
+    }
+    
+    protected void insertProduct (HttpServletRequest  request,  HttpServletResponse response) throws ClassNotFoundException, SQLException{
+        
+        //WORK  IN PROGRESS
+        Map params  =  request.getParameterMap();
+        String  manufacturer = (String)params.get("manufacturer");
+        String  productName = (String)params.get("productName");
+        String  productType = (String)params.get("productType");
+        
+        ArrayList<String> fields = new ArrayList<>();
+        ArrayList<Object> fieldValues = new ArrayList<>();
+        
+        for (Object key : params.keySet()) {
+            if(!key.equals("manufacturer") && !key.equals("productName") && !key.equals("productType")){
+                String keyStr  = (String)key;
+                fields.add(keyStr);
+                fieldValues.add(params.get("keyStr"));
+            }
+            
+        }
+        
+        Product product = new  Product(productName, "test", productType, manufacturer, fields, fieldValues);
+        
+        ProductMapper pMapper = new ProductMapper();
+        
+        pMapper.insertProduct(product);
+        
+        
+        
+        
+        
+    }
+    
+    protected void generateForm(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException, ServletException, IOException{
+        String  formToGenerate  = request.getParameter("productType");
+        FormGenerator fg  = new FormGenerator();
+        ArrayList<HashMap<String,Object>> forms = fg.generateForm(formToGenerate);
+        request.setAttribute("forms", forms);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("InsertProductType.jsp");
         rd.forward(request, response);
         
     }
