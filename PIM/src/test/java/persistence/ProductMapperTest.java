@@ -197,7 +197,7 @@ public class ProductMapperTest {
     @Test
     public void searchForProductTest() throws ClassNotFoundException, SQLException{
         ProductMapper pMapper= new ProductMapper();
-        pMapper.searchForProduct("ProductName", "Iphone");
+        pMapper.searchForProduct("Iphone");
     }
     
     
