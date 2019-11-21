@@ -64,7 +64,14 @@
                 </div>
             </nav>
         </form>
-
+        <div class="search-bar">
+            <form action="FrontController">
+                <input type="text" name="searchItem">
+                <input type="hidden" name="cmd" value="search">
+                <input type="submit" name="button" value="Search">
+            </form>
+            
+        </div>
         <div class="container-fluid" id="page-wrapper">
 
             <!-- For each product,  create a table --!>

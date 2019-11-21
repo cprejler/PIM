@@ -33,6 +33,7 @@ public abstract class Command{
         commands.put("gotoDeleteProduct", new gotoDeleteProductCommand());
         commands.put("ShowProducts", new ShowProductsCommand());
         commands.put("gotoShowProducts", new gotoShowProducts());
+        commands.put("SearchProduct", new SearchProductCommand());
     }
 
     static Command from(HttpServletRequest request) {
