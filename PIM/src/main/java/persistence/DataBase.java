@@ -47,7 +47,6 @@ public class DataBase {
             String DATABASE = "test";
             String url = "jdbc:mysql://" + IP + ":" + PORT + "/" + DATABASE;
                     
-            Class.forName(DRIVER);
             testConnection = DriverManager.getConnection(url, user, password);
 
         } catch (Exception e) {

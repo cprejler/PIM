@@ -29,28 +29,6 @@ public class ProductMapper {
         db = new DataBase();
         db.connection();
         connection = db.localTestConnection();
-        
-        String dropTables = "drop table if exists product; \n" +
-                            "drop table if exists phone; \n" +
-                            "drop table if exists wine; \n" +
-                            "drop table if exists toiletPaper; " ; 
-        
-        String createTableProduct = "create table product like productTest;\n" +
-                                    "insert into product select * from productTest;";
-        
-        String createTablePhone = "create table phone like phoneTest;\n" +
-                                   "insert into phone select * from phoneTest;";
-        
-        String createTableWine = "create table wine like wineTest;\n" +
-                                    "insert into wine select * from wineTest;" ; 
-        
-        String createTableToiletPaper = "create table toiletPaper like toiletPaperTest;\n" +
-                                        "insert into toiletPaper select * from toiletPaperTest;" ; 
-        
-        
-        
-        
-        
     }
 
     public void updateProduct(ArrayList<Product> productList) throws SQLException {
@@ -69,7 +47,7 @@ public class ProductMapper {
             ArrayList<String> columnNames = new ArrayList<String>();
 
             Statement getColumnNames = connection.createStatement();
-            ResultSet rs = getColumnNames.executeQuery("SELECT * from PIM." + product.getType());
+            ResultSet rs = getColumnNames.executeQuery("SELECT * from " + product.getType());
             //Get names of the columns to be inserted into
             ResultSetMetaData rsmd = rs.getMetaData();
             int intColumnCount = rsmd.getColumnCount();
