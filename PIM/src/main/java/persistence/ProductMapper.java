@@ -310,7 +310,7 @@ public class ProductMapper {
                 
         
         String searchQuery = "SELECT product.productID, product.productType FROM product where productName like " +
-                "'%" +input + "%' or productID like " + "'%" +input + "%'";
+                "'%" +input + "%' or productID like " + "'%" +input + "%' ORDER BY productType";
         
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(searchQuery);
