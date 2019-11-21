@@ -149,7 +149,7 @@ public class ProductMapperTest {
         String pro2 = pMapper.alterProductTypeEnum(product);
     }
     
-   @Test 
+   //@Test 
     public void createProductTableTest() throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
         db.connection();
