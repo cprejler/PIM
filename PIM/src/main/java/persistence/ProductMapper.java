@@ -29,6 +29,8 @@ public class ProductMapper {
         db = new DataBase();
         db.connection();
         connection = db.localTestConnection();
+        //connection = db.connection(); 
+        
     }
 
     public void updateProduct(ArrayList<Product> productList) throws SQLException {

@@ -20,8 +20,13 @@ public class ProductMapperTest {
     @Before
     public void setUp() throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
+        
+        //db.connection();
+        //Connection connection = db.connection();
+        
         db.localTestConnection();
         Connection connection = db.localTestConnection();
+
         Statement st = connection.createStatement();
 
         st.executeUpdate("drop table if exists phone;");
