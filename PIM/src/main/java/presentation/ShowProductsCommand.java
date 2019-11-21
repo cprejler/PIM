@@ -23,23 +23,20 @@ public class ShowProductsCommand extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
         
-        String webpage = "";
+        String webpage = "ShowProducts";
         ProductMapper pMapper = new ProductMapper();
         
         ArrayList<String> tableNames = pMapper.getTableNames("test");
-        ArrayList<ArrayList<Product>> products = new ArrayList();
+        
+        
         for (String tableName : tableNames) {
-            products.add(pMapper.showProducts(tableName));
+            ArrayList<Product> products   = pMapper.showProducts(tableName);
+            request.setAttribute(tableName, products);
             
         }
-        
-        request.setAttribute("tableNames", tableNames);
-        request.setAttribute("products", products);
-        
-        products.get(0).get(0).getFields();
-
-        
-        webpage = "ShowProducts";
+        ArrayList<Product> wine = pMapper.showProducts("wine");
+        request.setAttribute("wine", wine);
+              
         return webpage;
     }
     

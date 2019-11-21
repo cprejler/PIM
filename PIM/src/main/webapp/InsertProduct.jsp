@@ -23,7 +23,7 @@
     <body>
 
         <!-- NAVBAR -->
-        <form action="Frontcontroller">
+        <form action="FrontController">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">PIM</a>
@@ -39,20 +39,19 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Action
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <button type="submit" class="dropdown-item" name="cmd" value="searchItems">Search
-                                    Items</button>
-                                <button type="submit" class="dropdown-item" name="cmd" value="insertProduct">Insert
+                                
+                                <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
                                     Product</button>
-                                <button type="submit" class="dropdown-item" name="cmd" value="updateProduct">Update
-                                    Product</button>
+                                <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
+                                    Products</button>
 
                                 <div class="dropdown-divider"></div>
-                                <button type="submit" class="dropdown-item" name="cmd" value="searchItems">Export
+                                <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
                                     Data</button>
 
                             </div>

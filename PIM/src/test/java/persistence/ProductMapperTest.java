@@ -187,7 +187,7 @@ public class ProductMapperTest {
             products.add(pMapper.showProducts(tableName));
 
         }
-        products.get(0).get(0).getFields();
+        
     }
 
     @Test

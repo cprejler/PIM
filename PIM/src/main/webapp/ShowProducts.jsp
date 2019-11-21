@@ -23,7 +23,7 @@
     <body>
 
         <!-- NAVBAR -->
-        <form action="Frontcontroller">
+        <form action="FrontController">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">PIM</a>
@@ -44,15 +44,14 @@
                                 Action
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <button type="submit" class="dropdown-item" name="cmd" value="searchItems">Search
-                                    Items</button>
-                                <button type="submit" class="dropdown-item" name="cmd" value="insertProduct">Insert
+                                
+                                <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
                                     Product</button>
-                                <button type="submit" class="dropdown-item" name="cmd" value="updateProduct">Update
-                                    Product</button>
+                                <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
+                                    Products</button>
 
                                 <div class="dropdown-divider"></div>
-                                <button type="submit" class="dropdown-item" name="cmd" value="searchItems">Export
+                                <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
                                     Data</button>
 
                             </div>
@@ -64,23 +63,89 @@
                 </div>
             </nav>
         </form>
+        <div class="container-fluid" id="page-wrapper">
         <div class="search-bar">
             <form action="FrontController">
                 <input type="text" name="searchItem">
                 <input type="hidden" name="cmd" value="search">
                 <input type="submit" name="button" value="Search">
             </form>
-            
-        </div>
-        <div class="container-fluid" id="page-wrapper">
 
-            <!-- For each product,  create a table --!>
-            
-            
-            
+        </div>
+        
+
             <!-- Filter box -->
             <div class="container  d-inline" id="filter">
-              
+                <div class="row">
+                    <div class="col-lg-2" id="activeFilter" <form action="FrontController">
+                            <%-- for  each productCategory, create a div with  a checkbox to  select that filter
+                                         the array  always starts at +3 because that's where the columNames for the specific
+                                         type starts in the query
+                            --%>
+                            <div class="position-fixed">
+                                <h3>Filter by category</h3>
+
+
+                                <c:forEach var="product" items="${wine.get(0).getFields()}">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="${product}" id="defaultCheck1"
+                                               name="${product}">
+                                        <input type="hidden" name="cmd" value="filterType">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            ${product}
+                                        </label>
+                                    </div>
+                                </c:forEach>
+
+
+                                <button type="submit" class="btn btn-secondary btn-sm">Filter</button>
+                        </form>
+                    </div>
+                </div>
+
+
+                <!-- Wine to show -->
+                <div class="col-lg-10" id="items">
+                    <form action="Frontcontroller">
+                        <input type="hidden" name="cmd" value="editItem">
+                        <div class="row" id="items">
+                            <div class="col-lg-1">
+                                <div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-11 col-xs-1">
+
+
+                                <table class="table">
+                                    <thead>
+                                        <c:forEach var="field" items="${wine.get(0).getFields()}">
+                                        <th>${field}</th>
+                                        </c:forEach>
+
+                                    <th>Edit</th>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="product" items="${requestScope.wine}">
+                                            <tr>
+                                                <c:forEach var="fieldValues" items="${product.getFieldsValues()}">
+                                                    <td>${fieldValues}</td>
+                                                </c:forEach>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="${wine}"
+                                                               id="defaultCheck1" name="selectedEdit">
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
 
         </div>
