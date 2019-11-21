@@ -70,8 +70,9 @@
                 <form action="FrontController">
                     <select class="form-control  m-2" name="productType">
                         <%-- Inputs are  made for each productType in database --%>
-                        <option value="wine">wine</option>
-                        <option value="phone">phone</option>
+                        <c:forEach var="item" items="${tables}">
+                        <option value="${item}">${item}</option>    
+                        </c:forEach>
                     </select>
                     <input type="submit" value="Select" class="btn btn-primary m-2">
                     <input type="hidden"  name="cmd" value="generateForm">

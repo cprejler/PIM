@@ -7,10 +7,11 @@ package presentation;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import persistence.ProductMapper;
 
 /**
  *
@@ -21,8 +22,14 @@ public class gotoInsertProduct extends Command{
     String execute(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException, SQLException, ClassNotFoundException{
         
+        ProductMapper pMapper = new ProductMapper();
+        ArrayList<String> tables = pMapper.getTableNames("test");
+        ArrayList<String> attributes = new ArrayList<>();
         
-        
+        for (String table : tables) {
+            attributes.add(table);
+        }
+        request.setAttribute("tables", attributes);
         String webpage = "InsertProduct";
         return webpage;
     }

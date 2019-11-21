@@ -9,6 +9,7 @@ import businesslogic.Product;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,14 +29,18 @@ public class ShowProductsCommand extends Command {
         
         ArrayList<String> tableNames = pMapper.getTableNames("test");
         
+        ArrayList<ArrayList<Product>> products = new ArrayList();
         
         for (String tableName : tableNames) {
-            ArrayList<Product> products   = pMapper.showProducts(tableName);
-            request.setAttribute(tableName, products);
+            ArrayList<Product> productType   = pMapper.showProducts(tableName);
+            products.add(productType);
+            
             
         }
-        ArrayList<Product> wine = pMapper.showProducts("wine");
-        request.setAttribute("wine", wine);
+        
+        request.setAttribute("tableNames", tableNames);
+        request.setAttribute("products", products);
+        
               
         return webpage;
     }
