@@ -44,12 +44,16 @@
                                 Action
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <button type="submit" class="dropdown-item" name="cmd" value="searchItems">Search Items</button>
-                                <button type="submit" class="dropdown-item" name="cmd" value="insertProduct">Insert  Product</button>
-                                <button type="submit" class="dropdown-item" name="cmd" value="updateProduct">Update Product</button>
+                                <button type="submit" class="dropdown-item" name="cmd" value="searchItems">Search
+                                    Items</button>
+                                <button type="submit" class="dropdown-item" name="cmd" value="insertProduct">Insert
+                                    Product</button>
+                                <button type="submit" class="dropdown-item" name="cmd" value="updateProduct">Update
+                                    Product</button>
 
                                 <div class="dropdown-divider"></div>
-                                <button type="submit" class="dropdown-item" name="cmd" value="searchItems">Export Data</button>
+                                <button type="submit" class="dropdown-item" name="cmd" value="searchItems">Export
+                                    Data</button>
 
                             </div>
                         </li>
@@ -62,23 +66,30 @@
         </form>
 
         <div class="container-fluid" id="page-wrapper">
+
+            <!-- For each product,  create a table --!>
+            
+            
+            
             <!-- Filter box -->
             <div class="container  d-inline" id="filter">
                 <div class="row">
-                    <div class="col-lg-2" id="activeFilter" 
-                         <form action="Frontcontroller">
+                    <div class="col-lg-2" id="activeFilter" <form action="Frontcontroller">
                             <%-- for  each productCategory, create a div with  a checkbox to  select that filter
-                                 the array  always starts at +3 because that's where the columNames for the specific
-                                 type starts in the query
+                                         the array  always starts at +3 because that's where the columNames for the specific
+                                         type starts in the query
                             --%>
                             <div class="position-fixed">
                                 <h3>Filter by category</h3>
-                                <c:forEach var="column" items="${requestScope.wine}">
+
+
+                                <c:forEach var="product" items="${wine.get(0).getFields()}">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="${wine.getFields()}" id="defaultCheck1" name="${wine.getFields()}">
+                                        <input class="form-check-input" type="checkbox" value="${product}" id="defaultCheck1"
+                                               name="${product}">
                                         <input type="hidden" name="cmd" value="filterType">
                                         <label class="form-check-label" for="defaultCheck1">
-                                            ${wine.getFields}
+                                            ${product}
                                         </label>
                                     </div>
                                 </c:forEach>
@@ -90,36 +101,41 @@
                 </div>
 
 
-                <!-- Items to show -->
+                <!-- Wine to show -->
                 <div class="col-lg-10" id="items">
                     <form action="Frontcontroller">
                         <input type="hidden" name="cmd" value="editItem">
                         <div class="row" id="items">
-                            <div class="col-lg-1"><div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button></div></div>
+                            <div class="col-lg-1">
+                                <div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button>
+                                </div>
+                            </div>
                             <div class="col-lg-11 col-xs-1">
-                                
+
 
                                 <table class="table">
                                     <thead>
-                                        <c:forEach var="column" items="${requestScope.wine.get(0).getFields()}">
-                                        <th scope="col">${column}</th>
-                                        </c:forEach> 
+                                        <c:forEach var="field" items="${wine.get(0).getFields()}">
+                                        <th>${field}</th>
+                                        </c:forEach>
+
                                     <th>Edit</th>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="row" items="${requestScope.wine.get(0).getFields()}">
+                                        <c:forEach var="product" items="${requestScope.wine}">
                                             <tr>
-                                                <c:forEach var="field" end="${requestScope.wine.size()-1}" items="${requestScope.wine.getFieldsValues()}">
-                                                    <td>${field}</td>
+                                                <c:forEach var="fieldValues" items="${product.getFieldsValues()}">
+                                                    <td>${fieldValues}</td>
                                                 </c:forEach>
                                                 <td>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="${field}" id="defaultCheck1" name="selectedEdit">
+                                                        <input class="form-check-input" type="checkbox" value="${wine}"
+                                                               id="defaultCheck1" name="selectedEdit">
 
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </c:forEach> 
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -129,17 +145,100 @@
             </div>
 
 
-
-
-
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <div class="container  d-inline" id="filter">
+            <div class="row">
+                <div class="col-lg-2" id="activeFilter" <form action="Frontcontroller">
+                        <%-- for  each productCategory, create a div with  a checkbox to  select that filter
+                                     the array  always starts at +3 because that's where the columNames for the specific
+                                     type starts in the query
+                        --%>
+                        <div class="position-fixed">
+                            <h3>Filter by category</h3>
 
 
-    </body>
+                            <c:forEach var="product" items="${phones.get(0).getFields()}">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="${product}" id="defaultCheck1"
+                                           name="${product}">
+                                    <input type="hidden" name="cmd" value="filterType">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        ${product}
+                                    </label>
+                                </div>
+                            </c:forEach>
+
+
+                            <button type="submit" class="btn btn-secondary btn-sm">Filter</button>
+                    </form>
+                </div>
+            </div>
+
+
+            <!-- Phones to show -->
+            <div class="col-lg-10" id="items">
+                <form action="Frontcontroller">
+                    <input type="hidden" name="cmd" value="editItem">
+                    <div class="row" id="items">
+                        <div class="col-lg-1">
+                            <div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-11 col-xs-1">
+
+
+                            <table class="table">
+                                <thead>
+                                    <c:forEach var="field" items="${phones.get(0).getFields()}">
+                                    <th>${field}</th>
+                                    </c:forEach>
+
+                                <th>Edit</th>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="product" items="${requestScope.phones}">
+                                        <tr>
+                                            <c:forEach var="fieldValues" items="${product.getFieldsValues()}">
+                                                <td>${fieldValues}</td>
+                                            </c:forEach>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="${phone}"
+                                                           id="defaultCheck1" name="selectedEdit">
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+crossorigin="anonymous"></script>
+
+
+</body>
 
 </html>

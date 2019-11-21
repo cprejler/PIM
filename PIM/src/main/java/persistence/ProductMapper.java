@@ -91,7 +91,7 @@ public class ProductMapper {
         String insertProduct = "INSERT INTO  product (productName, productType, manufacturer) VALUES(?,?,?)";
         PreparedStatement statementInsertProduct = connection.prepareStatement(insertProduct);
         statementInsertProduct.setString(1, product.getName());
-        statementInsertProduct.setString(2, product.getType());
+        statementInsertProduct.setString(2, product.getType().toLowerCase());
         statementInsertProduct.setString(3, product.getManufacturer());
         statementInsertProduct.execute();
 
@@ -105,9 +105,9 @@ public class ProductMapper {
         // We now have the productID to insert productType
 
         ArrayList<String> columnNames = new ArrayList<String>();
-
+        //Get the names of columns to be  inserted into
         Statement getColumnNames = connection.createStatement();
-        ResultSet rs = getColumnNames.executeQuery("SELECT * from PIM." + product.getType());
+        ResultSet rs = getColumnNames.executeQuery("SELECT * from " + product.getType().toLowerCase());
         //Get names of the columns to be inserted into
         ResultSetMetaData rsmd = rs.getMetaData();
         int intColumnCount = rsmd.getColumnCount();
@@ -117,7 +117,7 @@ public class ProductMapper {
         //Create fields and insert values to insert
         StringBuilder statementFields = new StringBuilder();
         StringBuilder statementValues = new StringBuilder();
-        for (Object field : product.getFields()) {
+        for (Object field : product.getFieldsValues()) {
             statementValues.append("?,");
 
         }
@@ -131,13 +131,13 @@ public class ProductMapper {
         statementFields.deleteCharAt(statementFields.length() - 1);
 
         Integer columnIndex = 1;
-        String insertProductType = "INSERT  INTO " + product.getType() + "(" + statementFields + ")" + " VALUES(" + statementValues + ")";
+        String insertProductType = "INSERT  INTO " + product.getType().toLowerCase() + "(" + statementFields + ")" + " VALUES(" + statementValues + ")";
         PreparedStatement statementInsertProductType = connection.prepareStatement(insertProductType);
-        for (Object field : product.getFields()) {
+        for (Object field : product.getFieldsValues()) {
             statementInsertProductType.setObject(columnIndex, field);
             columnIndex++;
         }
-        statementInsertProductType.setObject(product.getFields().size() + 1, product.getID());
+        statementInsertProductType.setObject(product.getFieldsValues().size() + 1, product.getID());
 
         statementInsertProductType.executeUpdate();
         connection.close();
@@ -146,46 +146,10 @@ public class ProductMapper {
     public void deleteProduct(Product product) throws ClassNotFoundException, SQLException {
         Connection connection = db.connection();
 
-        String updateTrue = "DELETE FROM product WHERE product.productID=?";
-        PreparedStatement ps = connection.prepareStatement(updateTrue);
+        String delete = "DELETE FROM product WHERE product.productID=?";
+        PreparedStatement ps = connection.prepareStatement(delete);
         ps.setInt(1, product.getID());
         ps.executeUpdate();
-    }
-
-    public HashMap<String, ArrayList<Object>> showProduct(String ProductType) throws SQLException, ClassNotFoundException {
-        Connection connection = db.connection();
-        HashMap<String, ArrayList<Object>> items = new HashMap();
-        ArrayList<Object> columnNames = new ArrayList();
-        ArrayList<Object> columnFields = new ArrayList();
-        //ProductType = "wine";
-        String showProductQuery = "SELECT PIM.product.manufacturer, PIM.product.productName, PIM.product.productType, PIM.wine.* from PIM.product  left join PIM.wine  on PIM.product.productID like PIM.wine.productID where PIM.product.productType like '" + ProductType + "'";
-
-        Statement getColumnNames = connection.createStatement();
-        Statement statement = connection.createStatement();
-        ResultSet rs = getColumnNames.executeQuery(showProductQuery);
-        ResultSet result = statement.executeQuery(showProductQuery);
-        //Get names of the columns to be inserted into
-        ResultSetMetaData rsmd = rs.getMetaData();
-        int intColumnCount = rsmd.getColumnCount();
-
-        for (int i = 0; i < intColumnCount; i++) {
-            columnNames.add(rsmd.getColumnName(i + 1));
-
-        }
-        // while (result.next()) {
-
-        for (int i = 0; i < intColumnCount; i++) {
-            while (result.next()) {
-                for (int j = 0; j < intColumnCount; j++) {
-                    columnFields.add(result.getObject(j + 1));
-                }
-            }
-
-        }
-        //Get Products 
-        items.put("columnNames", columnNames);
-        items.put("columnFields", columnFields);
-        return items;
     }
 
     public ArrayList<Product> showProducts(String productType) throws ClassNotFoundException, SQLException {
@@ -195,9 +159,8 @@ public class ProductMapper {
         String manufacturer = "";
         String category = "";
 
-        
-
-        String showProductQuery = "SELECT PIM.product.manufacturer, PIM.product.productName, PIM.product.productType, PIM.wine.* from PIM.product  left join PIM.wine  on PIM.product.productID like PIM.wine.productID where PIM.product.productType like '" + productType + "'";
+        String showProductQuery = "SELECT product.manufacturer,  product.productName, product.productType, " + productType + ".* FROM product"
+                + ", " + productType + " where product.productID=" + productType + ".productID order by productID";
 
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(showProductQuery);
@@ -205,27 +168,183 @@ public class ProductMapper {
 
         int intColumnCount = rsmd.getColumnCount();
 
-        
         while (rs.next()) {
-            for (int i = 0; i < intColumnCount; i++) {
-                while (rs.next()) {
-                    ArrayList<Object> fieldValues = new ArrayList<>();
-                    ArrayList<String> fields = new ArrayList<>();
-                    for (int j = 0; j < intColumnCount; j++) {
-                        fields.add(rsmd.getColumnName(j+1));
-                        fieldValues.add(rs.getObject(j + 1));
-                        name = rs.getString("productName");
-                        manufacturer = rs.getString("manufacturer");
 
-                    }
-                    Product product = new Product(name, manufacturer, category, productType, fields, fieldValues);
-                    products.add(product);
-                }
+            ArrayList<Object> fieldValues = new ArrayList<>();
+            ArrayList<String> fields = new ArrayList<>();
+            for (int j = 0; j < intColumnCount; j++) {
+                fields.add(rsmd.getColumnName(j + 1));
+                fieldValues.add(rs.getObject(j + 1));
+                name = rs.getString("productName");
+                manufacturer = rs.getString("manufacturer");
 
             }
+            Product product = new Product(name, manufacturer, category, productType, fields, fieldValues);
+            products.add(product);
 
         }
 
         return products;
     }
+
+    public ArrayList<String> getMetaData() throws SQLException {
+
+        Statement getMetaData = connection.createStatement();
+        ResultSet rs = getMetaData.executeQuery("SELECT * from product");
+        ResultSetMetaData rsmd = rs.getMetaData();
+
+        return null;
+    }
+    
+
+    public String alterProductTypeEnum(String newproduct) throws SQLException {
+        newproduct = ",'"+newproduct+"'"; 
+        String product = "product";  //Tabel navn
+        String productType ="productType"; //Kolonne navn i tabel
+        
+        String getEnumsQuery = getProductEnums(product, productType);
+        
+        Statement st = connection.createStatement();  
+        ResultSet rs = st.executeQuery(getEnumsQuery);
+        String enums = ""; 
+        
+        while (rs.next()) {
+            enums = rs.getString("COLUMN_TYPE"); 
+                 
+        }
+        
+
+        StringBuilder sb = new StringBuilder(enums);
+        sb.insert(sb.length()-1, newproduct);
+        enums = sb.toString(); 
+        String newEnumVars = enums; 
+        newEnumVars = newEnumVars.toLowerCase();
+
+        String alterTableQuery = "alter table product modify column productType " + newEnumVars ;
+        st.executeUpdate(alterTableQuery);
+        connection.close();
+        
+        return newEnumVars;
+    }
+
+    public String getProductEnums(String TableName, String ColumnName) throws SQLException{
+        TableName = "'"+TableName+"'"; 
+        ColumnName = "'"+ColumnName+"'";
+        
+        String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_NAME = "+ TableName+ " AND COLUMN_NAME ="+ ColumnName +"";
+        return getEnumsQuery;
+    }
+    
+    public String createProductTable (ArrayList product, ArrayList enums) throws SQLException { 
+        Statement st = connection.createStatement(); 
+        String CreateTableQuery = "";
+        StringBuilder sb = new StringBuilder();
+        String foreignKeyProductID =  "ProductID int(5) unsigned zerofill NOT NULL, \n"
+                + " foreign key (productID) references product(productID))"; 
+        
+        for (int i = 0; i < product.size(); i++) {
+            int l = 0; 
+            if (i == 0) {
+                CreateTableQuery = "CREATE TABLE " + product.get(i) +"(" ; 
+            }
+            String products = (String) product.get(i); 
+            sb = new StringBuilder (products);
+            
+            switch (sb.charAt(0)) {
+                case 'S':
+                    String varChar = sb.substring(1) + " varchar(200), \n";
+                    CreateTableQuery = CreateTableQuery +varChar;
+                    break;
+                case 'I':
+                    String varInt = sb.substring(1)+ " int, \n";
+                    CreateTableQuery = CreateTableQuery +varInt;
+                    break;
+                case 'F':
+                    String varfloat = sb.substring(1)+ " float, \n"; 
+                    CreateTableQuery = CreateTableQuery +varfloat;
+                    break;
+                case 'E': 
+                    String varEnum = sb.substring(1) + " enum("+ enums.get(l).toString()+"), \n" ;
+                    CreateTableQuery = CreateTableQuery +varEnum;
+                    l++;
+                default:
+                    break;
+            }
+        }
+        CreateTableQuery = CreateTableQuery + foreignKeyProductID ;
+        
+        st.executeUpdate(CreateTableQuery); 
+        connection.close();
+        
+        return CreateTableQuery;
+        
+    }
+    public ArrayList<String> getTableNames (String databaseName) throws SQLException{
+        ArrayList<String> tableNames = new ArrayList();
+        Statement st = connection.createStatement(); 
+        String getTableNames = "SELECT TABLE_NAME \n" +
+                                "FROM INFORMATION_SCHEMA.TABLES\n" +
+                                "WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA='"+databaseName+"';"; 
+         ResultSet rs = st.executeQuery(getTableNames);
+         
+          while (rs.next()) {
+            String tableName = rs.getString("TABLE_NAME"); 
+            if (tableName.toString().equals("product")) {
+            }else{
+                tableNames.add(tableName);
+            }
+        }
+
+        return tableNames;
+        
+    }
+     public ArrayList<Product> searchForProduct(String searchType, String input) throws ClassNotFoundException, SQLException{
+        
+        Connection connection = db.connection();
+        ArrayList<Product> products = new ArrayList<Product>();
+        String name = "";
+        String manufacturer = "";
+        String category = "";
+        ArrayList<String> productID = new ArrayList<String>();
+        ArrayList<String> productType = new ArrayList<String>();
+                
+        
+        String searchQuery = "SELECT product.productID, product.productType FROM product where " + searchType +" like " + "'%" +input +"%'";
+        
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(searchQuery);
+        
+        while (rs.next()){
+            productID.add(rs.getString("productID"));
+            productType.add(rs.getString("productType"));
+        }
+        
+        for(int i = 0; i<productID.size(); i++){
+            String showSearchQuery = "SELECT product.manufacturer,  product.productName, product.productType, " + productType.get(i) + ".* FROM product"
+                + ", " + productType.get(i) + " where product.productID=" + productID.get(i) + " and " +productType.get(i) +".productID =" + productID.get(i);
+            
+            ResultSet rs1 = statement.executeQuery(showSearchQuery);
+            ResultSetMetaData rsmd = rs1.getMetaData();
+
+            int intColumnCount = rsmd.getColumnCount();
+            
+        while (rs1.next()) {
+            ArrayList<Object> fieldValues = new ArrayList<>();
+            ArrayList<String> fields = new ArrayList<>();
+            for (int j = 0; j < intColumnCount; j++) {
+                fields.add(rsmd.getColumnName(j + 1));
+                fieldValues.add(rs1.getObject(j + 1));
+                name = rs1.getString("productName");
+                manufacturer = rs1.getString("manufacturer");
+            
+            }
+            Product product = new Product(name, manufacturer, category, productType.get(i), fields, fieldValues);
+            products.add(product);
+        }
+        }
+        return products;
+    }
+    
+    
+   
 }
