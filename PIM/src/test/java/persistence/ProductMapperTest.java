@@ -23,6 +23,25 @@ public class ProductMapperTest {
         db.connection();
         Connection connection = db.localTestConnection();
         
+                String dropTables = "drop table if exists product; \n" +
+                            "drop table if exists phone; \n" +
+                            "drop table if exists wine; \n" +
+                            "drop table if exists toiletPaper; " ; 
+        
+        String createTableProduct = "create table product like productTest;\n" +
+                                    "insert into product select * from productTest;";
+        
+        String createTablePhone = "create table phone like phoneTest;\n" +
+                                   "insert into phone select * from phoneTest;";
+        
+        String createTableWine = "create table wine like wineTest;\n" +
+                                    "insert into wine select * from wineTest;" ; 
+        
+        String createTableToiletPaper = "create table toiletPaper like toiletPaperTest;\n" +
+                                        "insert into toiletPaper select * from toiletPaperTest;" ; 
+        
+        
+        
         
     }
 
