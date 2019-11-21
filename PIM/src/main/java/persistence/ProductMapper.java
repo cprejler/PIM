@@ -298,7 +298,7 @@ public class ProductMapper {
         return tableNames;
         
     }
-     public ArrayList<Product> searchForProduct(String searchType, String input) throws ClassNotFoundException, SQLException{
+     public ArrayList<Product> searchForProduct(String input) throws ClassNotFoundException, SQLException{
         
         Connection connection = db.connection();
         ArrayList<Product> products = new ArrayList<Product>();
@@ -309,7 +309,8 @@ public class ProductMapper {
         ArrayList<String> productType = new ArrayList<String>();
                 
         
-        String searchQuery = "SELECT product.productID, product.productType FROM product where " + searchType +" like " + "'%" +input +"%'";
+        String searchQuery = "SELECT product.productID, product.productType FROM product where productName like " +
+                "'%" +input + "%' or productID like " + "'%" +input + "%'";
         
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(searchQuery);
