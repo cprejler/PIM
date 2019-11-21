@@ -53,30 +53,35 @@
                 </div>
             </nav>
         </form>
-        
+    <% int iterator = 0;%>
         <table class="table">
-                                    <thead>
-                                        <c:forEach var="field" items="${productList.get(0).getFields()}">
-                                        <th>${field}</th>
-                                        </c:forEach>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="product" items="${requestScope.productList}">
-                                            <tr>
-                                                <c:forEach var="fieldValues" items="${product.getFieldsValues()}">
-                                                    <td>${fieldValues}</td>
-                                                </c:forEach>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="${product}"
-                                                               id="defaultCheck1" name="selectedEdit">
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-        
+            <thead>
+                <%//<c:forEach var="field" items="${productList.get(0).getFields()}">%>
+                <% for (Product product : request.getAttribute("productList")) {%>
+                    <% if(request.getAttribute("productList").get(iterator).getType() != request.getAttribute("productList").get(iterator-1).getType()) {%>
+                    </thead>
+                    </table>
+                    <table>
+                    <thead>
+                    <% }%>
+                <th><%product.getFields %></th>
+                
+            </thead>
+            <tbody>
+                <c:forEach var="product" items="${requestScope.productList}">
+                    <tr>
+                        <c:forEach var="fieldValues" items="${product.getFieldsValues()}">
+                            <td>${fieldValues}</td>
+                        </c:forEach>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="${product}"
+                                id="defaultCheck1" name="selectedEdit">
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
     </body>
 </html>
