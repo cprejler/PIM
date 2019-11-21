@@ -25,13 +25,20 @@ public class ShowProductsCommand extends Command {
         
         String webpage = "";
         ProductMapper pMapper = new ProductMapper();
+        
+        ArrayList<String> tableNames = pMapper.getTableNames("test");
+        ArrayList<ArrayList<Product>> products = new ArrayList();
+        for (String tableName : tableNames) {
+            products.add(pMapper.showProducts(tableName));
+            
+        }
+        
+        request.setAttribute("tableNames", tableNames);
+        request.setAttribute("products", products);
+        
+        products.get(0).get(0).getFields();
 
-        ArrayList<Product> wine = pMapper.showProducts("wine");
-        ArrayList<Product> phones = pMapper.showProducts("phone");
-        wine.get(0).getFieldsValues();
-
-        request.setAttribute("wine", wine);
-        request.setAttribute("phones", phones);
+        
         webpage = "ShowProducts";
         return webpage;
     }
