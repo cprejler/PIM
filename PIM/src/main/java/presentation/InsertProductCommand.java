@@ -9,6 +9,8 @@ import businesslogic.Product;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,21 +25,70 @@ public class InsertProductCommand extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException, SQLException, ClassNotFoundException{
-        String name = request.getParameter("name");
-        String category = request.getParameter("category");
-        String type = request.getParameter("type");
+        String webpage = "";
+        
+        ArrayList<String> fields = new ArrayList<>();
+        ArrayList<Object> fieldValues = new ArrayList<>();
+        Enumeration<String> parameterNames = request.getParameterNames();
+        ArrayList<String>params  = new ArrayList<>();
+        
+        //Get the names of  the  Parameters in  order to make request.getParameter() on them after to get the  actual  value
+        while(parameterNames.hasMoreElements()){
+            params.add(parameterNames.nextElement());
+        }
+        
+        ArrayList<String> requestParameters  = new  ArrayList<>();
+        //Get  the actual value   of  the  parameters, as well  as add the names to the fields array
+        //We  don't  want  manufacturer, productName, and  productType  added to that array
+        for (String param : params) {
+            
+            if (!param.equals("manufacturer") && !param.equals("productName") && !param.equals("productType") &&  !param.equals("cmd")){
+                fields.add(param);
+                requestParameters.add(request.getParameter(param));
+            }
+                       
+        }
+        
+        //Manufacturer, productName, productType, will  always  be the first 3
+        
         String manufacturer = request.getParameter("manufacturer");
+<<<<<<< HEAD
         String[] getfields = request.getParameterValues("");
 
         
 
+=======
+        String productName = request.getParameter("productName");
+        String productType = request.getParameter("productType");
         
-        //Fra gamle prjekt, Vi burde måske lave en lignende metode
-        //Boolean usernameDB = db.checkUsername(username);
-        ProductMapper pM = new ProductMapper();
-        String webpage = "";
-        //pM.insertProduct(product);
-        webpage="Confirmation";
+       
+
+        for (String requestParameter : requestParameters) {
+            if (!requestParameter.equals("manufacturer") && !requestParameter.equals("productName") && !requestParameter.equals("productType")&&!requestParameter.equals("cmd")) {
+                                
+                fieldValues.add(requestParameter);
+            }
+
+        }
+        
+>>>>>>> 57086887eec9ae9501c78a41ef874fc7219cefa7
+        
+        Product product = new Product(productName, "test", productType, manufacturer, fields, fieldValues);
+
+        ProductMapper pMapper = new ProductMapper();
+
+        try {
+            pMapper.insertProduct(product);
+        } catch (SQLException e) {
+            
+            request.setAttribute("error", e.getMessage());
+            request.setAttribute("cause", e.getCause());
+            request.setAttribute("stacktrace", e.getStackTrace());
+           
+            
+        }
+
+        webpage="ShowProducts";
         return webpage;
 //        
     } 

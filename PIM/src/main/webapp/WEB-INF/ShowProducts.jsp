@@ -74,7 +74,7 @@
             <!-- Filter box -->
             <div class="container  d-inline" id="filter">
                 <div class="row">
-                    <div class="col-lg-2" id="activeFilter" <form action="Frontcontroller">
+                    <div class="col-lg-2" id="activeFilter" <form action="FrontController">
                             <%-- for  each productCategory, create a div with  a checkbox to  select that filter
                                          the array  always starts at +3 because that's where the columNames for the specific
                                          type starts in the query
