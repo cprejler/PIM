@@ -16,6 +16,15 @@ import org.junit.Test;
  * @author casper
  */
 public class ProductMapperTest {
+    
+    @Before
+    public void setUp () throws ClassNotFoundException, SQLException {
+        DataBase db = new DataBase();
+        db.connection();
+        Connection connection = db.localTestConnection();
+        
+        
+    }
 
     @Test
     public void insertProductTest() throws ClassNotFoundException, SQLException{
