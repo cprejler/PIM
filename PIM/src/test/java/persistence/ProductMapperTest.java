@@ -24,8 +24,8 @@ public class ProductMapperTest {
         //db.connection();
         //Connection connection = db.connection();
         
-        db.localTestConnection();
-        Connection connection = db.localTestConnection();
+        db.connectionValg(); 
+        Connection connection = db.connectionValg();
 
         Statement st = connection.createStatement();
 

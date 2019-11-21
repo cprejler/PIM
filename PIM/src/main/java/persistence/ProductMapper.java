@@ -27,9 +27,7 @@ public class ProductMapper {
 
     public ProductMapper() throws ClassNotFoundException, SQLException {
         db = new DataBase();
-        db.connection();
-        connection = db.localTestConnection();
-        //connection = db.connection(); 
+        connection = db.connectionValg();
         
     }
 
