@@ -289,7 +289,7 @@ public class ProductMapper {
          
           while (rs.next()) {
             String tableName = rs.getString("TABLE_NAME"); 
-            if (tableName.toString().equals("product")) {
+            if (tableName.toString().equals("product") || (tableName.toString().contains("test"))) {
             }else{
                 tableNames.add(tableName);
             }
