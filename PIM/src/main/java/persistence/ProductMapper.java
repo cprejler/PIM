@@ -239,7 +239,7 @@ public class ProductMapper {
         Statement st = connection.createStatement(); 
         String CreateTableQuery = "";
         StringBuilder sb = new StringBuilder();
-        String foreignKeyProductID =  "ProductID int(5) unsigned zerofill NOT NULL, \n"
+        String foreignKeyProductID =  "productID int(5) unsigned zerofill NOT NULL, \n"
                 + " foreign key (productID) references product(productID))"; 
         
         for (int i = 0; i < product.size(); i++) {
