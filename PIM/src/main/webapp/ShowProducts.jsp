@@ -109,7 +109,7 @@
                                 
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="product" items="${requestScope.products.get(2)}">
+                                    <c:forEach var="product" items="${requestScope.products.get()}">
                                         <tr>
                                             <c:forEach var="fieldValues" items="${product.getFieldsValues()}">
                                                 <td>${fieldValues}</td>
