@@ -79,13 +79,8 @@
 
 
 
-
-            <!-- Wine to show -->
-            <c:set var="count" value="0" scope="page" />
-            <c:set var="tableName" value="${request.tableNames}"></c:set>
-            <c:forEach  var="tableName" items="${products.get(0).get(0).getFields()}">
-                <c:out value="${tableName}">Hej</c:out>
-            </c:forEach>
+            
+           
             <div class="col-lg-12" id="items">
                 <form action="Frontcontroller">
                     <input type="hidden" name="cmd" value="editItem">
@@ -96,11 +91,11 @@
                         </div>
                         <div class="col-lg-11 col-xs-1">
 
-                        <c:forEach  var="tableName" items="${requestScope.tableNames}">
+                            <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
                             <table class="table">
                                 <thead>
                                     
-                                    <c:forEach var="field" items="${products.get(0).get(0).getFields()}">
+                                    <c:forEach var="field" items="${products.get(tableCount.index).get(0).getFields()}">
                                     <th>${field}</th>
                                     </c:forEach>
                                     
@@ -109,14 +104,14 @@
                                 
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="product" items="${requestScope.products.get()}">
+                                    <c:forEach var="product" items="${requestScope.products.get(tableCount.index)}">
                                         <tr>
                                             <c:forEach var="fieldValues" items="${product.getFieldsValues()}">
                                                 <td>${fieldValues}</td>
                                             </c:forEach>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="${wine}"
+                                                    <input class="form-check-input" type="checkbox" value="${fieldValues}"
                                                            id="defaultCheck1" name="selectedEdit">
 
                                                 </div>
@@ -125,6 +120,7 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            
                             </c:forEach>
                         </div>
                     </div>
