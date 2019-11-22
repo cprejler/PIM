@@ -20,7 +20,11 @@ public class gotoUpdateProduct extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) 
        throws ServletException, IOException, SQLException, ClassNotFoundException {
+        
+        String[] parameters = request.getParameterValues("selectedEdit");
        
+        
+        
         String webpage = "UpdateProduct";
         return webpage;
     }

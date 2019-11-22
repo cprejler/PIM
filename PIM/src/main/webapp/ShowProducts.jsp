@@ -68,7 +68,7 @@
                 <form action="FrontController">
 
                     <input type="text" name="searchItem">
-                    <input type="hidden" name="cmd" value="SearchProduct">
+                    <input type="hidden" name="cmd" value="search">
 
                     <input type="submit" name="button" value="Search">
                 </form>
@@ -85,7 +85,7 @@
            
             <div class="col-lg-12" id="items">
                 <form action="Frontcontroller">
-                    <input type="hidden" name="cmd" value="editItem">
+                    <input type="hidden" name="cmd" value="gotoUpdateProduct">
                     <div class="row" id="items">
                         <div class="col-lg-1">
                             <div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button>
