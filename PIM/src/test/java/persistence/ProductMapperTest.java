@@ -17,7 +17,7 @@ import org.junit.Test;
  */
 public class ProductMapperTest {
 
-    //@Before
+    @Before
     public void setUp() throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
         

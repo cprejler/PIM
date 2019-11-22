@@ -13,8 +13,8 @@ public class DataBase {
     
     public Connection connectionValg() throws ClassNotFoundException, SQLException {
         Connection connection = null ;
-        connection = connection(); 
-        //connection = localTestConnection(); 
+        //connection = connection(); 
+        connection = localTestConnection(); 
         
         return connection; 
     }
@@ -48,7 +48,7 @@ public class DataBase {
            try {
             
             String DRIVER = "com.mysql.cj.jdbc.Driver";
-            String user = "superman";
+            String user = "robin";
             String password = "Password123!";
             String IP = "localhost";
             String PORT = "3306";
