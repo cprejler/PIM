@@ -66,8 +66,8 @@
         <div class="container-fluid" id="page-wrapper">
             <div class="search-bar">
                 <form action="FrontController">
-                    <input type="text" name="searchItem">
-                    <input type="hidden" name="cmd" value="search">
+                    <input type="hidden" name ="cmd" value="search">
+                    <input type="text" name="searchItem" value="">
                     <input type="submit" name="button" value="Search">
                 </form>
 
