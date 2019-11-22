@@ -52,7 +52,7 @@ public class DataBase {
             String password = "Password123!";
             String IP = "localhost";
             String PORT = "3306";
-            String DATABASE = "test";
+            String DATABASE = "testpim";
             String url = "jdbc:mysql://" + IP + ":" + PORT + "/" + DATABASE;
                     
             testConnection = DriverManager.getConnection(url, user, password);
