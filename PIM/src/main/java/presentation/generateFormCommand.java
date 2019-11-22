@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.FormGenerator;
+import persistence.ProductMapper;
 
 /**
  *
@@ -27,6 +28,17 @@ public class generateFormCommand extends Command {
         FormGenerator fg = new FormGenerator();
         ArrayList<HashMap<String, Object>> forms = fg.generateForm(formToGenerate);
         request.setAttribute("forms", forms);
+        
+        //Send table names in order to dynamically generate dropdown boxes, if user wants to change product type
+        ProductMapper pMapper = new ProductMapper();
+        ArrayList<String> tables = pMapper.getTableNames("test");
+        ArrayList<String> attributes = new ArrayList<>();
+        
+        for (String table : tables) {
+            attributes.add(table);
+        }
+        request.setAttribute("tables", attributes);
+        
         
         webpage = "InsertProductType";
         return webpage;

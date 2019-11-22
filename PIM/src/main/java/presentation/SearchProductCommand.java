@@ -9,7 +9,6 @@ import businesslogic.Product;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,32 +16,23 @@ import persistence.ProductMapper;
 
 /**
  *
- * @author jonat
+ * @author jenso
  */
-public class ShowProductsCommand extends Command {
+public class SearchProductCommand extends Command{
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
         
-        String webpage = "ShowProducts";
-        ProductMapper pMapper = new ProductMapper();
+        String searchItem = request.getParameter("searchItem");
         
-        ArrayList<String> tableNames = pMapper.getTableNames("test");
+        ProductMapper pm = new ProductMapper();
         
-        ArrayList<ArrayList<Product>> products = new ArrayList();
+        ArrayList<Product> products = pm.searchForProduct(searchItem);
         
-        for (String tableName : tableNames) {
-            ArrayList<Product> productType   = pMapper.showProducts(tableName);
-            products.add(productType);
-            
-            
-        }
+        request.setAttribute("productList", products);
         
-        request.setAttribute("tableNames", tableNames);
-        request.setAttribute("products", products);
         
-              
-        return webpage;
+        return "searchResults";
     }
     
 }
