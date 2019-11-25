@@ -23,7 +23,7 @@ public class FormGenerator {
 
     public ArrayList<HashMap<String, Object>> generateForm(String table) throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
-        Connection connection = db.connection();
+        Connection connection = db.connectionValg();
         ArrayList<HashMap<String, Object>> forms = new ArrayList<>();
         
         /*
