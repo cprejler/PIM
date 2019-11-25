@@ -52,12 +52,7 @@ public class InsertProductCommand extends Command {
         //Manufacturer, productName, productType, will  always  be the first 3
         
         String manufacturer = request.getParameter("manufacturer");
-<<<<<<< HEAD
-        String[] getfields = request.getParameterValues("");
 
-        
-
-=======
         String productName = request.getParameter("productName");
         String productType = request.getParameter("productType");
         
@@ -71,7 +66,7 @@ public class InsertProductCommand extends Command {
 
         }
         
->>>>>>> 57086887eec9ae9501c78a41ef874fc7219cefa7
+
         
         Product product = new Product(productName, "test", productType, manufacturer, fields, fieldValues);
 
