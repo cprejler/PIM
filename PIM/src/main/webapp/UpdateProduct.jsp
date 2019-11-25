@@ -69,29 +69,81 @@
                 <c:forEach var="product" items="${products}"  varStatus="productCounter">
                     <div class="container">
                         <div class="row">
+                            <div class="col-lg-12">
+                                <div><h1 class="text-primary">ProductID: ${product.getID()}</h1></div>
+                            </div>
+                        </div>
 
-                            <div><h1 class="text-primary">ProductID: ${product.getID()}</h1></div>
-                            <div>
-                                <h3 class="text-primary">Manufacturer</h3>
-                                <input type="text" name="manufacturer" value="${product.getManufacturer()}">
+
+                        <div class="row">
+
+
+                            <div class="col-lg-6 mg-2">
+
+                                <div>
+                                    <h5 class="text-primary">Manufacturer</h5>
+                                    <input type="text" name="manufacturer" value="${product.getManufacturer()}" readonly>
+                                </div>
+                                <div>
+                                    <h5 class="text-primary">Product Name</h5>
+                                    <input type="text" name="productName" value="${product.getName()}"  readonly>
+                                </div>
+                                <div>
+                                    <h5 class="text-primary">Product Type</h5>
+                                    <input type="text" name="productType" value="${product.getType()}"  readonly>
+                                </div>
+                                <c:forEach var="field" items="${product.getFields()}" varStatus="fieldCounter">
+                                    <h5 class="text-primary">${field}</h5>
+                                    <input type="text" name="${field}" value="${product.getFieldsValues().get(fieldCounter.index)}" readonly>
+                                </c:forEach>
+
+
                             </div>
-                            <div>
-                                <h3 class="text-primary">Product Name</h3>
-                                <input type="text" name="productName" value="${product.getName()}">
+
+
+
+
+                            <div  class="col-lg-6 mg-2">
+                                <form action="FrontController">
+
+                                    <h5 class="text-primary">Manufacturer</h5>
+                                    <input type="text" class="form-control" name="manufacturer"  value="${product.getManufacturer()}">
+                                    <h5 class="text-primary">Product Name</h5>
+                                    <input type="text" class="form-control" name="productName" value="${product.getName()}">
+                                    <h5 class="text-primary">Product Type</h5>
+                                    <input type="text" name="productType" value="${product.getType()}" readonly>
+
+
+                                    
+                                    <c:forEach var="form"  items="${forms.get(productCounter.index)}">
+                                        <h5 class="text-primary">${form.getName()}</h5>
+
+                                        <c:if  test="${form.getInputType() eq 'select'}">
+                                            <select name="${form.getName()}">
+                                                <c:forEach var="item" items="${form.getOptions()}">
+                                                    <option>${item}</option>
+                                                </c:forEach>
+
+                                            </select>
+                                        </c:if>
+                                        <c:if  test="${form.getInputType() ne 'select'}">
+                                            <input type="${form.getInputType()}" name="${form.getName()}" value="${field}">
+                                        </c:if>
+
+                                    </c:forEach>
+
+                                    <input type="submit" class="btn btn-primary" value="Apply Changes">
+                                    <input  type="hidden" name="productID" value="${product.getID()}">
+                                    <input  type="hidden" name="cmd" value="UpdateProduct">
+                                </form>
+
+
                             </div>
-                            <div>
-                                <h3 class="text-primary">Product Type</h3>
-                                <input type="text" name="productType" value="${product.getType()}">
-                            </div>
-                            <c:forEach var="field" items="${product.getFields()}" varStatus="fieldCounter">
-                                <h3 class="text-primary">${field}</h3>
-                                <input type="text" name="${field}" value="${product.getFieldsValues().get(fieldCounter.index)}">
-                            </c:forEach>
 
 
                         </div>
 
-                        
+
 
 
 
@@ -103,7 +155,7 @@
 
 
 
-
+                    <br>
                 </c:forEach>
 
 

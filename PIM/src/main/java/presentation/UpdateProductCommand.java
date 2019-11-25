@@ -65,6 +65,8 @@ public class UpdateProductCommand extends Command {
         
         
         Product product = new Product(productName, "test", productType, manufacturer, fields, fieldValues);
+        product.setID(Integer.parseInt(request.getParameter("productID")));
+        product.setPublished(Boolean.FALSE);
 
         ProductMapper pMapper = new ProductMapper();
         ArrayList<Product> productList = new  ArrayList<>();
@@ -72,11 +74,13 @@ public class UpdateProductCommand extends Command {
 
         try {
             pMapper.updateProduct(productList);
+            
         } catch (SQLException e) {
             
             request.setAttribute("error", e.getMessage());
             request.setAttribute("cause", e.getCause());
             request.setAttribute("stacktrace", e.getStackTrace());
+            webpage="Error";
            
             
         }

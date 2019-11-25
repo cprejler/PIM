@@ -28,7 +28,7 @@ public class gotoUpdateProduct extends Command {
         ProductMapper  pMapper =  new ProductMapper();
         String[] parameters = request.getParameterValues("selectedEdit");
         ArrayList<Product> products  =  new ArrayList<>();
-        ArrayList<ArrayList<HashMap<String, Object>>> forms = new ArrayList<>();
+        ArrayList<ArrayList<Form>> forms  = new ArrayList<>();
         FormGenerator fg = new FormGenerator();
         
         for (String parameter : parameters) {
@@ -40,6 +40,7 @@ public class gotoUpdateProduct extends Command {
             products.add(product);
             //Create  the form for  the  current productType
             
+            
             forms.add(fg.generateForm(product.getType()));
             
         }
@@ -48,7 +49,7 @@ public class gotoUpdateProduct extends Command {
         
         
         
-        request.setAttribute("forms", forms);
+        request.getSession().setAttribute("forms", forms);
             
                 
         //Forward the  array as attribute
