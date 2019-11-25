@@ -13,7 +13,7 @@
     <head>
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>BootStrap test</title>
+        <title>ShowProducts</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -84,8 +84,8 @@
             
            
             <div class="col-lg-12" id="items">
-                <form action="Frontcontroller">
-                    <input type="hidden" name="cmd" value="editItem">
+                <form action="FrontController">
+                    <input type="hidden" name="cmd" value="gotoUpdateProduct">
                     <div class="row" id="items">
                         <div class="col-lg-1">
                             <div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button>
@@ -113,7 +113,7 @@
                                             </c:forEach>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="${fieldValues}"
+                                                    <input class="form-check-input" type="checkbox" value="${product.getID()}"
                                                            id="defaultCheck1" name="selectedEdit">
 
                                                 </div>
@@ -126,6 +126,7 @@
                             </c:forEach>
                         </div>
                     </div>
+                    
                 </form>
             </div>
 
