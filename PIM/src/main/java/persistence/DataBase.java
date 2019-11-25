@@ -11,6 +11,14 @@ import java.sql.SQLException;
  */
 public class DataBase {
     
+    public Connection connectionValg() throws ClassNotFoundException, SQLException {
+        Connection connection = null ;
+        //connection = connection(); 
+        connection = localTestConnection(); 
+        
+        return connection; 
+    }
+    
     public Connection connection() throws ClassNotFoundException, SQLException{
         Connection connection = null;
         
@@ -34,4 +42,25 @@ public class DataBase {
         return connection;
     }
     
-}
+    public Connection localTestConnection () throws ClassNotFoundException, SQLException {
+        Connection testConnection = null; 
+        
+           try {
+            
+            String DRIVER = "com.mysql.cj.jdbc.Driver";
+            String user = "robin";
+            String password = "Password123!";
+            String IP = "localhost";
+            String PORT = "3306";
+            String DATABASE = "testpim";
+            String url = "jdbc:mysql://" + IP + ":" + PORT + "/" + DATABASE;
+                    
+            testConnection = DriverManager.getConnection(url, user, password);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return testConnection;
+    }
+    }

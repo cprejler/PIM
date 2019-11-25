@@ -17,6 +17,38 @@ import org.junit.Test;
  */
 public class ProductMapperTest {
 
+    @Before
+    public void setUp() throws ClassNotFoundException, SQLException {
+        DataBase db = new DataBase();
+        
+        //db.connection();
+        //Connection connection = db.connection();
+        
+        db.connectionValg(); 
+        Connection connection = db.connectionValg();
+
+        Statement st = connection.createStatement();
+
+        st.executeUpdate("drop table if exists phone;");
+        st.executeUpdate("drop table if exists wine;");
+        st.executeUpdate("drop table if exists toiletpaper;");
+        st.executeUpdate("drop table if exists product;"); 
+        
+        st.executeUpdate("create table product like producttest;");
+        st.executeUpdate("insert into product select * from producttest;");
+
+        st.executeUpdate("create table phone like phonetest;");
+        st.executeUpdate("insert into phone select * from phonetest;");
+
+        st.executeUpdate("create table wine like winetest;");
+        st.executeUpdate("insert into wine select * from winetest;");
+        
+      //  st.executeUpdate("create table toiletPaper like toiletPapertest;");
+      //  st.executeUpdate("insert into toiletPaper select * from toiletPapertest;");
+
+        connection.close();
+    }
+
     @Test
     public void insertProductTest() throws ClassNotFoundException, SQLException {
 
@@ -138,18 +170,15 @@ public class ProductMapperTest {
         String pro2 = pMapper.alterProductTypeEnum(product);
     }
 
-
     @Test
-
     public void createProductTableTest() throws ClassNotFoundException, SQLException {
-        DataBase db = new DataBase();
-        db.connection();
-        Connection connection = db.connection();
-
-        Statement st = connection.createStatement();
-        String dropToiletPaper = "Drop table if exists toiletPaper";
-        st.executeUpdate(dropToiletPaper);
-
+//        DataBase db = new DataBase();
+//        db.connection();
+//        Connection connection = db.connection();
+//
+//        Statement st = connection.createStatement();
+//        String dropToiletPaper = "Drop table if exists toiletPaper";
+//        st.executeUpdate(dropToiletPaper);
         ProductMapper pMapper = new ProductMapper();
         ArrayList<String> vars = new ArrayList();
         ArrayList<String> enums = new ArrayList();

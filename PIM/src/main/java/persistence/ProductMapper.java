@@ -27,8 +27,8 @@ public class ProductMapper {
 
     public ProductMapper() throws ClassNotFoundException, SQLException {
         db = new DataBase();
-        db.connection();
-        connection = db.connection();
+        connection = db.connectionValg();
+        
     }
 
     public void updateProduct(ArrayList<Product> productList) throws SQLException {
@@ -47,7 +47,7 @@ public class ProductMapper {
             ArrayList<String> columnNames = new ArrayList<String>();
 
             Statement getColumnNames = connection.createStatement();
-            ResultSet rs = getColumnNames.executeQuery("SELECT * from PIM." + product.getType());
+            ResultSet rs = getColumnNames.executeQuery("SELECT * from " + product.getType());
             //Get names of the columns to be inserted into
             ResultSetMetaData rsmd = rs.getMetaData();
             int intColumnCount = rsmd.getColumnCount();
@@ -289,7 +289,7 @@ public class ProductMapper {
          
           while (rs.next()) {
             String tableName = rs.getString("TABLE_NAME"); 
-            if (tableName.toString().equals("product")) {
+            if (tableName.toString().equals("product") || (tableName.toString().contains("test"))) {
             }else{
                 tableNames.add(tableName);
             }
