@@ -84,7 +84,7 @@ public class ProductMapper {
     }
 
     public void insertProduct(Product product) throws SQLException, ClassNotFoundException {
-        Connection connection = db.connection();
+        Connection connection = db.connectionValg();
 
         //Insert a product and get the ID to create a product type after
         Integer productID = 0;
