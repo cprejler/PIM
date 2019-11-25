@@ -5,6 +5,9 @@
  */
 package presentation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author casper
@@ -13,9 +16,9 @@ public class Form {
     
     String name;
     String  inputType;
-    String options;
+    List<String> options;
 
-    public Form(String name, String inputType, String options) {
+    public Form(String name, String inputType, List<String> options) {
         this.name = name;
         this.inputType = inputType;
         this.options = options;
@@ -34,7 +37,7 @@ public class Form {
         return inputType;
     }
 
-    public String getOptions() {
+    public List<String> getOptions() {
         return options;
     }
     

@@ -94,18 +94,18 @@
 
 
                     <c:forEach var="form"  items="${requestScope.forms}">
-                        <h5 class="text-primary">${form.get("name")}</h5>
+                        <h5 class="text-primary">${form.getName()}</h5>
 
-                        <c:if  test="${form['inputType'] == 'select'}">
-                            <select name="${form.get("name")}">
-                                <c:forEach var="item" items="${form['options']}">
+                        <c:if  test="${form.getInputType() eq 'select'}">
+                            <select name="${form.getName()}">
+                                <c:forEach var="item" items="${form.getOptions()}">
                                     <option>${item}</option>
                                 </c:forEach>
 
                             </select>
                         </c:if>
-                        <c:if  test="${form['inputType'] != 'select'}">
-                            <input type="${form.get("inputType")}" name="${form.get("name")}">
+                        <c:if  test="${form.getInputType() ne 'select'}">
+                            <input type="${form.getInputType()}" name="${form.getName()}">
                         </c:if>
 
                     </c:forEach>
