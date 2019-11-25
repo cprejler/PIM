@@ -22,6 +22,19 @@ public class gotoUpdateProduct extends Command {
        throws ServletException, IOException, SQLException, ClassNotFoundException {
         
         String[] parameters = request.getParameterValues("selectedEdit");
+        
+        //Get  value of the productID for each parameter
+        
+        //Call method to create a product from  the productID
+        
+        //Put all  the products in a array
+        
+        //Forward the  array as attribute
+        
+        
+        request.setAttribute("parameters", parameters);
+        
+        request.setAttribute("size", parameters.length);
        
         
         

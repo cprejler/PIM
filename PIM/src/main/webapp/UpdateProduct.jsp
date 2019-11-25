@@ -15,5 +15,13 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        
+        <c:forEach var="item" items="${parameters}" varStatus="paramCounter">
+            <c:out value="${item.toString()}"></c:out>
+        </c:forEach>
+        
+        <c:out value="${size}"></c:out>
+        <c:out value="${parameters.toString()}"></c:out>
+        
     </body>
 </html>

@@ -27,7 +27,7 @@ public class ShowProductsCommand extends Command {
         String webpage = "ShowProducts";
         ProductMapper pMapper = new ProductMapper();
         
-        ArrayList<String> tableNames = pMapper.getTableNames("test");
+        ArrayList<String> tableNames = pMapper.getTableNames("testpim");
         
         ArrayList<ArrayList<Product>> products = new ArrayList();
         
@@ -36,7 +36,10 @@ public class ShowProductsCommand extends Command {
             products.add(productType);
             
             
+            
         }
+        
+        
         products.remove(1);
         request.setAttribute("tableNames", tableNames);
         request.setAttribute("products", products);

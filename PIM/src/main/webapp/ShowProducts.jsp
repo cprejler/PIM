@@ -84,7 +84,7 @@
             
            
             <div class="col-lg-12" id="items">
-                <form action="Frontcontroller">
+                <form action="FrontController">
                     <input type="hidden" name="cmd" value="gotoUpdateProduct">
                     <div class="row" id="items">
                         <div class="col-lg-1">
@@ -113,7 +113,7 @@
                                             </c:forEach>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="${fieldValues}"
+                                                    <input class="form-check-input" type="checkbox" value="${$product.getID()}"
                                                            id="defaultCheck1" name="selectedEdit">
 
                                                 </div>
@@ -126,6 +126,7 @@
                             </c:forEach>
                         </div>
                     </div>
+                    
                 </form>
             </div>
 

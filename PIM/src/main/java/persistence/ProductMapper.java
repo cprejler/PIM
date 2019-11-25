@@ -153,7 +153,7 @@ public class ProductMapper {
     }
 
     public ArrayList<Product> showProducts(String productType) throws ClassNotFoundException, SQLException {
-        Connection connection = db.connection();
+        Connection connection = db.connectionValg();
         ArrayList<Product> products = new ArrayList<Product>();
         String name = "";
         String manufacturer = "";
@@ -180,13 +180,51 @@ public class ProductMapper {
 
             }
             Product product = new Product(name, manufacturer, category, productType, fields, fieldValues);
+            product.setID(rs.getInt("productID"));
             products.add(product);
 
         }
 
         return products;
     }
-
+    
+    //Return a product from a productID. Used to forward  the right items from ShowProducts.jsp to UpdateProduct.jsp
+    public  Product getProduct(Integer  id) throws ClassNotFoundException, SQLException{
+        Connection connection  =  db.connectionValg();
+        String productType = "";
+        String productName =  "";
+        String  manufacturer = "";
+        String getProductType  =  "SELECT  * FROM  product where productID = "+id+"";
+        Statement statement = connection.createStatement();
+        ResultSet rsGetType =  statement.executeQuery(getProductType);
+        while(rsGetType.next()){
+            productType = rsGetType.getString("productType");
+            productName = rsGetType.getString("productName");
+            manufacturer = rsGetType.getString("manufacturer");
+        }
+        
+        ArrayList<String> fields = new ArrayList<>();
+        ArrayList<Object> fieldValues = new ArrayList();
+        
+        String getFieldsAndValues  = "SELECT *  FROM "+productType+" where productID="+id+"";
+        
+        ResultSet rsGetFieldsAndValues  = statement.executeQuery(getFieldsAndValues);
+        ResultSetMetaData rsmd = rsGetFieldsAndValues.getMetaData();
+        int  columnCount = rsmd.getColumnCount();
+        while(rsGetFieldsAndValues.next()){
+            for (int i = 0; i < columnCount; i++) {
+                fields.add(rsmd.getColumnName(i+1));
+                fieldValues.add(rsGetFieldsAndValues.getObject(i+1));
+            }
+            
+        }
+        Product  product = new Product(productName, "test", productType, manufacturer, fields, fieldValues);
+        product.setID(id);
+        
+        
+        
+        return  product;
+    }
     public ArrayList<String> getMetaData() throws SQLException {
 
         Statement getMetaData = connection.createStatement();
@@ -300,7 +338,7 @@ public class ProductMapper {
     }
      public ArrayList<Product> searchForProduct(String input) throws ClassNotFoundException, SQLException{
         
-        Connection connection = db.connection();
+        Connection connection = db.connectionValg();
         ArrayList<Product> products = new ArrayList<Product>();
         String name = "";
         String manufacturer = "";
