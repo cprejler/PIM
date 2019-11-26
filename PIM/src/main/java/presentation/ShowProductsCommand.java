@@ -40,7 +40,7 @@ public class ShowProductsCommand extends Command {
         }
         
         
-        //products.remove(1);
+        products.remove(1);
         request.setAttribute("tableNames", tableNames);
         request.setAttribute("products", products);
         
