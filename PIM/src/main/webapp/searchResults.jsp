@@ -4,6 +4,8 @@
     Author     : jenso
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="businesslogic.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -54,40 +56,85 @@
                         </li>
 
                     </ul>
-
-
                 </div>
             </nav>
         </form>
-    <% int iterator = 0;%>
-        <table class="table">
-            <thead>
-                <%//<c:forEach var="field" items="${productList.get(0).getFields()}">%>
-                <% for (Product product : request.getAttribute("productList")) {%>
-                    <% if(request.getAttribute("productList").get(iterator).getType() != request.getAttribute("productList").get(iterator).getType()) {%>
-                    </thead>
-                    </table>
-                    <table>
-                    <thead>
-                    <% }%>
-                <th><%product.getFields %></th>
-                
-            </thead>
-            <tbody>
-                <c:forEach var="product" items="${requestScope.productList}">
-                    <tr>
-                        <c:forEach var="fieldValues" items="${product.getFieldsValues()}">
-                            <td>${fieldValues}</td>
-                        </c:forEach>
-                        <td>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="${product}"
-                                id="defaultCheck1" name="selectedEdit">
+        <% /* 
+         <div class="col-lg-12" id="items">
+                <form action="Frontcontroller">
+                    <input type="hidden" name="cmd" value="editItem">
+                    <div class="row" id="items">
+                        <div class="col-lg-1">
+                            <div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button>
                             </div>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+                        </div>
+                        <div class="col-lg-11 col-xs-1">
+
+                            <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
+                            <table class="table">
+                                <thead>
+                                    
+                                    <c:forEach var="field" items="${products.get(tableCount.index).get(0).getFields()}">
+                                    <th>${field}</th>
+                                    </c:forEach>
+                                    
+
+                                <th>Edit</th>
+                                
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="product" items="${requestScope.products.get(tableCount.index)}">
+                                        <tr>
+                                            <c:forEach var="fieldValues" items="${product.getFieldsValues()}">
+                                                <td>${fieldValues}</td>
+                                            </c:forEach>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="${fieldValues}"
+                                                           id="defaultCheck1" name="selectedEdit">
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            
+                            </c:forEach>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            */ %>
+            
+            <form action="FrontController">
+                <input type="hidden" name="cmd" value="editItem">
+                <div class="row" id="items">
+                    <div class="col-lg-1">
+                        <div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-11 col-xs-1">
+                        <table class="table">
+                            <thead>
+                                <% ArrayList<Product> productlist = (ArrayList)request.getAttribute("productList");
+                                Product product1 = productlist.get(0);
+                                for (String field : product1.getFields()){
+                                    
+                                    
+                                }
+                                %>
+                                
+                                
+                        
+                
+            </form>
+
+
+
+
+        </div>
+
+        
     </body>
 </html>
