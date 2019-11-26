@@ -122,7 +122,7 @@
                                 for (String field : product1.getFields()){
                                     
                                     
-                                }
+                                } aske
                                 %>
                                 
                                 
