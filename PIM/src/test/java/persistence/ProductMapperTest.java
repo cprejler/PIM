@@ -17,18 +17,14 @@ import org.junit.Test;
  */
 public class ProductMapperTest {
 
-   /* @Before
+    @Before
     public void setUp() throws ClassNotFoundException, SQLException {
-        DataBase db = new DataBase();
+        ChooseConnection cv = new ChooseConnection();
+        Connection connection = cv.chooseConnections();
+        String database = cv.getDatabase(); 
         
-        //db.connection();
-        //Connection connection = db.connection();
-        
-        //db.connectionValg(); 
-        Connection connection = db.connectionValg();
-
+        if (database == "testpim") {
         Statement st = connection.createStatement();
-
         st.executeUpdate("drop table if exists phone;");
         st.executeUpdate("drop table if exists wine;");
         st.executeUpdate("drop table if exists toiletpaper;");
@@ -43,11 +39,14 @@ public class ProductMapperTest {
         st.executeUpdate("create table wine like winetest;");
         st.executeUpdate("insert into wine select * from winetest;");
         
-      //  st.executeUpdate("create table toiletPaper like toiletPapertest;");
-      //  st.executeUpdate("insert into toiletPaper select * from toiletPapertest;");
-
+        st.executeUpdate("create table toiletpaper like toiletpapertest;");
+        st.executeUpdate("insert into toiletpaper select * from toiletpapertest;");
+        
         connection.close();
-    }*/
+        } else {
+             connection.close();
+        }
+    }
 
     @Test
     public void insertProductTest() throws ClassNotFoundException, SQLException {

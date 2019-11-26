@@ -23,16 +23,20 @@ import java.util.HashMap;
 public class ProductMapper {
 
     DataBase db;
-    Connection connection;
+    ChooseConnection cv;
+    Connection connection = null;
+    
+
+
 
     public ProductMapper() throws ClassNotFoundException, SQLException {
-        db = new DataBase();
-        connection = db.connectionValg();
+        cv = new ChooseConnection();
+        connection = cv.chooseConnections();
         
     }
 
-    public void updateProduct(ArrayList<Product> productList) throws SQLException {
-        DataBase db = new DataBase();
+    public void updateProduct(ArrayList<Product> productList) throws SQLException, ClassNotFoundException {
+            connection = cv.chooseConnections();
 
         for (Product product : productList) {
 
@@ -84,7 +88,7 @@ public class ProductMapper {
     }
 
     public void insertProduct(Product product) throws SQLException, ClassNotFoundException {
-        Connection connection = db.connectionValg();
+        connection = cv.chooseConnections();
 
         //Insert a product and get the ID to create a product type after
         Integer productID = 0;
@@ -144,7 +148,7 @@ public class ProductMapper {
     }
 
     public void deleteProduct(Product product) throws ClassNotFoundException, SQLException {
-        Connection connection = db.connectionValg();
+        connection = cv.chooseConnections();
 
         String delete = "DELETE FROM product WHERE product.productID=?";
         PreparedStatement ps = connection.prepareStatement(delete);
@@ -153,7 +157,7 @@ public class ProductMapper {
     }
 
     public ArrayList<Product> showProducts(String productType) throws ClassNotFoundException, SQLException {
-        Connection connection = db.connectionValg();
+        connection = cv.chooseConnections();
         ArrayList<Product> products = new ArrayList<Product>();
         String name = "";
         String manufacturer = "";
@@ -190,7 +194,7 @@ public class ProductMapper {
     
     //Return a product from a productID. Used to forward  the right items from ShowProducts.jsp to UpdateProduct.jsp
     public  Product getProduct(Integer  id) throws ClassNotFoundException, SQLException{
-        Connection connection  =  db.connectionValg();
+        connection = cv.chooseConnections();
         String productType = "";
         String productName =  "";
         String  manufacturer = "";
@@ -318,13 +322,14 @@ public class ProductMapper {
         
     }
     public ArrayList<String> getTableNames() throws SQLException, ClassNotFoundException{
-        String databaseName = "testpim";
-        Connection connection  =  db.connectionValg();
+        connection = cv.chooseConnections();
+        
+        String database = cv.getDatabase();
         ArrayList<String> tableNames = new ArrayList();
         Statement st = connection.createStatement(); 
         String getTableNames = "SELECT TABLE_NAME \n" +
                                 "FROM INFORMATION_SCHEMA.TABLES\n" +
-                                "WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA='"+databaseName+"';"; 
+                                "WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA='"+database+"';"; 
          ResultSet rs = st.executeQuery(getTableNames);
          
           while (rs.next()) {
@@ -339,8 +344,7 @@ public class ProductMapper {
         
     }
      public ArrayList<Product> searchForProduct(String input) throws ClassNotFoundException, SQLException{
-        
-        Connection connection = db.connectionValg();
+        connection = cv.chooseConnections();
         ArrayList<Product> products = new ArrayList<Product>();
         String name = "";
         String manufacturer = "";
