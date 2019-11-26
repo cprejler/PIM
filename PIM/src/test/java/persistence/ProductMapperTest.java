@@ -17,7 +17,7 @@ import org.junit.Test;
  */
 public class ProductMapperTest {
 
-    @Before
+    /*@Before
     public void setUp() throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
         
@@ -47,7 +47,7 @@ public class ProductMapperTest {
       //  st.executeUpdate("insert into toiletPaper select * from toiletPapertest;");
 
         connection.close();
-    }
+    }*/
 
     @Test
     public void insertProductTest() throws ClassNotFoundException, SQLException {
@@ -135,7 +135,7 @@ public class ProductMapperTest {
         fields.add("empty");
 
         Product testWine = new Product("test1", "white", "wine", "test", fields, fieldsValue);
-        testWine.setID(7);
+        testWine.setID(8);
         testWine.setPublished(Boolean.FALSE);
         ArrayList<Product> productList = new ArrayList();
         productList.add(testWine);
