@@ -17,7 +17,7 @@ import org.junit.Test;
  */
 public class ProductMapperTest {
 
-    /*@Before
+   /* @Before
     public void setUp() throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
         
@@ -169,7 +169,7 @@ public class ProductMapperTest {
 
         String pro2 = pMapper.alterProductTypeEnum(product);
     }
-
+/*
     @Test
     public void createProductTableTest() throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
@@ -205,12 +205,11 @@ public class ProductMapperTest {
         assertEquals(product, sb.subSequence(13, 24));
 
     }
-
+*/
     @Test
     public void getTableNames() throws SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
-        String DatabaseName = "testpim";
-        ArrayList<String> tableNames = pMapper.getTableNames(DatabaseName);
+        ArrayList<String> tableNames = pMapper.getTableNames();
         ArrayList<ArrayList<Product>> products = new ArrayList();
         for (String tableName : tableNames) {
             products.add(pMapper.showProducts(tableName));
