@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import presentation.Form;
 
 /**
  *
@@ -21,18 +22,12 @@ import java.util.Map;
  */
 public class FormGenerator {
 
-    public ArrayList<HashMap<String, Object>> generateForm(String table) throws ClassNotFoundException, SQLException {
+    public ArrayList<Form> generateForm(String table) throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
-        Connection connection = db.connection();
-        ArrayList<HashMap<String, Object>> forms = new ArrayList<>();
+        Connection connection = db.connectionValg();
         
-        /*
-        The form HashMap:
-        "name" = the name  attribute of the input box,  to idenfity it later
-        "inputType" = the  type of input box  to generate
-        "options" = if the input box key is "select" the options can  be accessed with this key, comes  as ArrayList<String>
-              
-        */
+        ArrayList<Form>  forms   = new ArrayList();
+       
 
         Statement st = connection.createStatement();
         ResultSet rs = st.executeQuery("SELECT DISTINCT COLUMN_NAME, COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_NAME = '" + table + "'");
@@ -42,23 +37,19 @@ public class FormGenerator {
 
             String type = rs.getString("COLUMN_TYPE");
             if (type.contains("varchar")) {
-                HashMap<String, Object> form = new HashMap<>();
-                form.put("name", field);
-                form.put("inputType", "text");
-                forms.add(form);
+
+                  Form form = new  Form(field, "text");
+                  forms.add(form);
 
             } else if (type.contains("int")) {
-                HashMap<String, Object> form = new HashMap<>();
-                form.put("name", field);
-                form.put("inputType", "number");
-                forms.add(form);
-                // If it's not VARCHAR or INT, we conclude it's an enum, and we create a statement, based on the Field   
-            } else if (type.contains("float")) {
-                HashMap<String, Object> form = new HashMap<>();
-                form.put("name", field);
-                form.put("inputType", "number");
-                forms.add(form);
 
+                  Form  form = new Form(field,"number");
+                  forms.add(form);
+                // If it's not VARCHAR, INT  or float, we conclude it's an enum, and we create a statement, based on the Field   
+            } else if (type.contains("float")) {
+                  Form form =  new Form(field, "number");
+                  forms.add(form);
+                // If it's not VARCHAR, INT  or float, we conclude it's an enum, and we create a statement, based on the Field  
             } else {
                 //If the  columntype  is ENUM,  another  query is  made to get the ENUM values
                 Statement stGetEnumValues = connection.createStatement();
@@ -76,11 +67,8 @@ public class FormGenerator {
 
                     String[] enumValuesArray = trimValuesAgain.split(",");
                     List<String> enumValues = new ArrayList<String>(Arrays.asList(enumValuesArray));
-                    //enumValues = Arrays.asList(enumValuesArray);
-                    HashMap<String, Object> form = new HashMap<>();
-                    form.put("name", field);
-                    form.put("inputType",  "select");
-                    form.put("options",  enumValues);
+                    
+                    Form form  =  new Form(field, "select", enumValues);
                     forms.add(form);
                 }
 
@@ -90,13 +78,14 @@ public class FormGenerator {
         
         //remove productID as we don't need it
         int i = 0;
-        for (HashMap<String, Object> form : forms) {
-            if(form.get("name").equals("productID")){
+        for (Form form : forms) {
+            if(form.getName().equals("productID")){
                 i = forms.indexOf(form);
             }
         }
         forms.remove(i);
-            
+        
+
         
         return forms;
 

@@ -317,7 +317,8 @@ public class ProductMapper {
         return CreateTableQuery;
         
     }
-    public ArrayList<String> getTableNames (String databaseName) throws SQLException{
+    public ArrayList<String> getTableNames (String databaseName) throws SQLException, ClassNotFoundException{
+        Connection connection  =  db.connectionValg();
         ArrayList<String> tableNames = new ArrayList();
         Statement st = connection.createStatement(); 
         String getTableNames = "SELECT TABLE_NAME \n" +
