@@ -20,7 +20,7 @@ public class DataBaseTest {
     @Test
     public void connectionTest() throws ClassNotFoundException, SQLException{
         DataBase db = new DataBase();
-        db.connection();
+        db.connectionValg();
         
         assertFalse(db.connection().isClosed());
         

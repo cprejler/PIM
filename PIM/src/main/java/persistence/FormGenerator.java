@@ -58,7 +58,7 @@ public class FormGenerator {
                         + "FROM\n"
                         + "  information_schema.columns\n"
                         + "WHERE\n"
-                        + "  table_schema = 'test' AND table_name = '" + table + "' AND column_name = '" + field + "';");
+                        + "  table_schema = 'testpim' AND table_name = '" + table + "' AND column_name = '" + field + "';");
                 while (rsGetEnumValues.next()) {
                     String getEnumValues = rsGetEnumValues.getString("column_type");
                     //Regex to trim the values in  order   to create an array.

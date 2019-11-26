@@ -161,7 +161,7 @@ public class ProductMapperTest {
 
     }
 
-    @Test
+  // @Test
     public void alterEnumTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();

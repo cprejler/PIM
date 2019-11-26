@@ -53,10 +53,10 @@ public class DataBase {
             String PORT = "3306";
             String DATABASE = "testpim";
             String url = "jdbc:mysql://" + IP + ":" + PORT + "/" + DATABASE 
-                    + "?useUnicode=true&useJDBCcompliantTimezoneShift=true&"
+         /*           + "?useUnicode=true&useJDBCcompliantTimezoneShift=true&"
                     + "useLegacyDatetimeCode=false&"
-                    + "serverTimezone=UTC";
-                    
+                    + "serverTimezone=UTC"  */;
+            Class.forName(DRIVER);
             testConnection = DriverManager.getConnection(url, user, password);
 
         } catch (Exception e) {
