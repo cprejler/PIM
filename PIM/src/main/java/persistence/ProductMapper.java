@@ -144,7 +144,7 @@ public class ProductMapper {
     }
 
     public void deleteProduct(Product product) throws ClassNotFoundException, SQLException {
-        Connection connection = db.connection();
+        Connection connection = db.connectionValg();
 
         String delete = "DELETE FROM product WHERE product.productID=?";
         PreparedStatement ps = connection.prepareStatement(delete);

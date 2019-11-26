@@ -13,8 +13,8 @@ public class DataBase {
     
     public Connection connectionValg() throws ClassNotFoundException, SQLException {
         Connection connection = null ;
-        connection = connection(); 
-        //connection = localTestConnection(); 
+        //connection = connection(); 
+        connection = localTestConnection(); 
         
         return connection; 
     }
