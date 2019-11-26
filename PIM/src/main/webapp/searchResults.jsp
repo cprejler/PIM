@@ -115,19 +115,18 @@
                         </div>
                     </div>
                     <div class="col-lg-11 col-xs-1">
-                        <table class="table">
-                            <thead>
-                                <% ArrayList<Product> productlist = (ArrayList)request.getAttribute("productList");
-                                Product product1 = productlist.get(0);
-                                for (String field : product1.getFields()){
-                                    
-                                    
-                                }
-                                %>
+                        <% // <table class="table">
+                            //<thead>
+                              //  <% ArrayList<Product> productlist = (ArrayList)request.getAttribute("productList");
+                                //Product product1 = productlist.get(0);
+                                //int it = 0;
+                                //%>
+                                <%// for (String field : product1.getFields()){%>
                                 
-                                
-                        
-                
+                                <% //<th><% product1.getFields().get(it); %><% //</th> %>
+                                <% it++; } %>
+                           <% /* </thead> */%>  
+                         
             </form>
 
 
