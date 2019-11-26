@@ -35,29 +35,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <form  action="FrontController">
-                        
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/FrontController?cmd=ShowProducts">Home <span class="sr-only">(current)</span></a>
-                        </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/FrontController?cmd=ShowProducts">Home <span class="sr-only">(current)</span></a>
+                            </li>
 
-                                <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
-                                    Product</button>
-                                <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
-                                    Products</button>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Action
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                <div class="dropdown-divider"></div>
-                                <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
-                                    Data</button>
+                                    <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
+                                        Product</button>
+                                    <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
+                                        Products</button>
 
-                            </div>
-                        </li>
+                                    <div class="dropdown-divider"></div>
+                                    <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
+                                        Data</button>
+
+                                </div>
+                            </li>
                         </form>
 
                     </ul>
