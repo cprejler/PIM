@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -160,13 +161,16 @@ public class ProductMapperTest {
 
     }
 
-  // @Test
+  @Test
     public void alterEnumTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();
         String product = "toiletpaper";
 
         String pro2 = pMapper.alterProductTypeEnum(product);
+        
+        assertTrue(pro2.contains(product));
+        
     }
 /*
     @Test

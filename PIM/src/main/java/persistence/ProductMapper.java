@@ -244,6 +244,8 @@ public class ProductMapper {
         String product = "product";  //Tabel navn
         String productType ="productType"; //Kolonne navn i tabel
         
+        
+        
         String getEnumsQuery = getProductEnums(product, productType);
         
         Statement st = connection.createStatement();  
@@ -255,16 +257,22 @@ public class ProductMapper {
                  
         }
         
-
+        String newEnumVars = enums;
+        if (!enums.contains(newproduct)) {
         StringBuilder sb = new StringBuilder(enums);
         sb.insert(sb.length()-1, newproduct);
         enums = sb.toString(); 
-        String newEnumVars = enums; 
+         newEnumVars = enums; 
         newEnumVars = newEnumVars.toLowerCase();
 
         String alterTableQuery = "alter table product modify column productType " + newEnumVars ;
+        
         st.executeUpdate(alterTableQuery);
         connection.close();
+            
+        }
+        
+
         
         return newEnumVars;
     }
