@@ -24,7 +24,7 @@ public class ProductMapperTest {
         //db.connection();
         //Connection connection = db.connection();
         
-        db.connectionValg(); 
+        //db.connectionValg(); 
         Connection connection = db.connectionValg();
 
         Statement st = connection.createStatement();
@@ -145,19 +145,19 @@ public class ProductMapperTest {
 
     @Test
     public void showProductsTest() throws ClassNotFoundException, SQLException {
-        ProductMapper pMapper = new ProductMapper();
-
-        ArrayList<Product> wine = pMapper.showProducts("wine");
-        ArrayList<Product> phone = pMapper.showProducts("phone");
-
-        assertEquals("manufacturer", wine.get(0).getFields().get(0));
-        assertEquals("productID", wine.get(0).getFields().get(9));
-        //assertEquals(1960, wine.get(0).getFieldsValues().get(3));
-        assertEquals("portugal", wine.get(2).getFieldsValues().get(8));
-        assertEquals("grape", wine.get(5).getFields().get(5));
-
-        assertEquals("manufacturer", phone.get(0).getFields().get(0));
-        assertEquals("Apple", phone.get(0).getFieldsValues().get(0));
+//        ProductMapper pMapper = new ProductMapper();
+//
+//        ArrayList<Product> wine = pMapper.showProducts("wine");
+//        ArrayList<Product> phone = pMapper.showProducts("phone");
+//
+//        assertEquals("manufacturer", wine.get(0).getFields().get(0));
+//        assertEquals("productID", wine.get(0).getFields().get(9));
+//        //assertEquals(1960, wine.get(0).getFieldsValues().get(3));
+//        assertEquals("portugal", wine.get(2).getFieldsValues().get(8));
+//        assertEquals("grape", wine.get(5).getFields().get(5));
+//
+//        assertEquals("manufacturer", phone.get(0).getFields().get(0));
+//        assertEquals("Apple", phone.get(0).getFieldsValues().get(0));
 
     }
 
@@ -172,13 +172,13 @@ public class ProductMapperTest {
 
     @Test
     public void createProductTableTest() throws ClassNotFoundException, SQLException {
-//        DataBase db = new DataBase();
-//        db.connection();
-//        Connection connection = db.connection();
-//
-//        Statement st = connection.createStatement();
-//        String dropToiletPaper = "Drop table if exists toiletPaper";
-//        st.executeUpdate(dropToiletPaper);
+        DataBase db = new DataBase();
+        db.connection();
+        Connection connection = db.connection();
+
+        Statement st = connection.createStatement();
+        String dropToiletPaper = "Drop table if exists toiletPaper";
+        st.executeUpdate(dropToiletPaper);
         ProductMapper pMapper = new ProductMapper();
         ArrayList<String> vars = new ArrayList();
         ArrayList<String> enums = new ArrayList();
@@ -209,8 +209,8 @@ public class ProductMapperTest {
     @Test
     public void getTableNames() throws SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
-        String DatabaseName = "test";
-        ArrayList<String> tableNames = pMapper.getTableNames("test");
+        String DatabaseName = "testpim";
+        ArrayList<String> tableNames = pMapper.getTableNames(DatabaseName);
         ArrayList<ArrayList<Product>> products = new ArrayList();
         for (String tableName : tableNames) {
             products.add(pMapper.showProducts(tableName));
@@ -224,5 +224,15 @@ public class ProductMapperTest {
         ProductMapper pMapper = new ProductMapper();
         pMapper.searchForProduct("Iphone");
     }
-
+    
+    
+    @Test
+    public void getProductTest() throws ClassNotFoundException, SQLException{
+        ProductMapper pMapper  = new ProductMapper();
+        
+        Product  product  = pMapper.getProduct(5);
+        
+        assertEquals("Oneplus 3", product.getName());
+        assertEquals(5,  product.getID(),  0);
+    }
 }

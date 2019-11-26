@@ -13,7 +13,7 @@
     <head>
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>BootStrap test</title>
+        <title>ShowProducts</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -64,70 +64,84 @@
             </nav>
         </form>
         <div class="container-fluid" id="page-wrapper">
-            <div class="search-bar">
-                <form action="FrontController">
 
-                    <input type="text" name="searchItem">
-                    <input type="hidden" name="cmd" value="search">
+            <div class="container">
+                <div class="row mx-auto px-md-5">
+                    <div class="col">
+                        <div class="search-bar">
+                            <form action="FrontController">
 
-                    <input type="submit" name="button" value="Search">
-                </form>
+                                <input type="text" name="searchItem">
+                                <input type="hidden" name="cmd" value="search">
 
-            </div>
+                                <input type="submit" name="button" value="Search">
+                            </form>
 
-
-
-
-
-
-
-            
-           
-            <div class="col-lg-12" id="items">
-                <form action="Frontcontroller">
-                    <input type="hidden" name="cmd" value="editItem">
-                    <div class="row" id="items">
-                        <div class="col-lg-1">
-                            <div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button>
-                            </div>
-                        </div>
-                        <div class="col-lg-11 col-xs-1">
-
-                            <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
-                            <table class="table">
-                                <thead>
-                                    
-                                    <c:forEach var="field" items="${products.get(tableCount.index).get(0).getFields()}">
-                                    <th>${field}</th>
-                                    </c:forEach>
-                                    
-
-                                <th>Edit</th>
-                                
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="product" items="${requestScope.products.get(tableCount.index)}">
-                                        <tr>
-                                            <c:forEach var="fieldValues" items="${product.getFieldsValues()}">
-                                                <td>${fieldValues}</td>
-                                            </c:forEach>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="${fieldValues}"
-                                                           id="defaultCheck1" name="selectedEdit">
-
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                            
-                            </c:forEach>
                         </div>
                     </div>
-                </form>
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="row mx-auto">
+
+                    <form action="FrontController">
+                        <input type="hidden" name="cmd" value="gotoUpdateProduct">
+                        <div class="row" id="items">
+                            <div class="col-lg-1">
+                                <div class="px-md-5"><button type="submit" class="btn btn-primary">Edit</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-11">
+
+                                <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
+                                    <table class="table">
+                                        <thead>
+
+                                            <c:forEach var="field" items="${products.get(tableCount.index).get(0).getFields()}">
+                                            <th>${field}</th>
+                                            </c:forEach>
+
+
+                                        <th>Edit</th>
+
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="product" items="${requestScope.products.get(tableCount.index)}">
+                                                <tr>
+                                                    <c:forEach var="fieldValues" items="${product.getFieldsValues()}">
+                                                        <td>${fieldValues}</td>
+                                                    </c:forEach>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="${product.getID()}"
+                                                                   id="defaultCheck1" name="selectedEdit">
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+
+                                </c:forEach>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
             </div>
+
+
+
 
 
 

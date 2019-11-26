@@ -26,7 +26,8 @@ public class generateFormCommand extends Command {
         String webpage = "";
         String formToGenerate = request.getParameter("productType");
         FormGenerator fg = new FormGenerator();
-        ArrayList<HashMap<String, Object>> forms = fg.generateForm(formToGenerate);
+        //ArrayList<HashMap<String, Object>> forms = fg.generateForm(formToGenerate);
+        ArrayList<Form> forms =  fg.generateForm(formToGenerate);
         request.setAttribute("forms", forms);
         
         //Send table names in order to dynamically generate dropdown boxes, if user wants to change product type
