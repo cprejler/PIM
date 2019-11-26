@@ -6,6 +6,7 @@
 package persistence;
 
 import java.sql.SQLException;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -20,9 +21,17 @@ public class DataBaseTest {
     @Test
     public void connectionTest() throws ClassNotFoundException, SQLException{
         DataBase db = new DataBase();
-        db.connection();
+        ChooseConnection cv = new ChooseConnection();
         
-        assertFalse(db.connection().isClosed());
+        
+        cv.chooseConnections();
+        
+        
+        //db.connectionValg();
+        
+       // assertFalse(db.connection().isClosed());
+        assertFalse(cv.chooseConnections().isClosed());
+        assertEquals(cv.getDatabase(),"testpim");
         
         
     }
