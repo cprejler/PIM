@@ -34,8 +34,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
+                        <form  action="FrontController">
+                        
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/FrontController?cmd=ShowProducts">Home <span class="sr-only">(current)</span></a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -56,6 +58,7 @@
 
                             </div>
                         </li>
+                        </form>
 
                     </ul>
 
@@ -114,7 +117,7 @@
                                     <input type="text" name="productType" value="${product.getType()}" readonly>
 
 
-                                    
+                                    <c:set var="count" value="0"></c:set>
                                     <c:forEach var="form"  items="${forms.get(productCounter.index)}">
                                         <h5 class="text-primary">${form.getName()}</h5>
 
@@ -126,8 +129,11 @@
 
                                             </select>
                                         </c:if>
+                                        <c:set var="fieldValues" value="${product.getFieldsValues()}"></c:set>
+
+
                                         <c:if  test="${form.getInputType() ne 'select'}">
-                                            <input type="${form.getInputType()}" name="${form.getName()}" value="${field}">
+                                            <input type="${form.getInputType()}" name="${form.getName()}" value="">
                                         </c:if>
 
                                     </c:forEach>
@@ -137,6 +143,11 @@
                                     <input  type="hidden" name="cmd" value="UpdateProduct">
                                 </form>
 
+                                <form action="FrontController">
+                                    <input type="submit" class="btn btn-danger" value="Delete Product">
+                                    <input  type="hidden" name="productID" value="${product.getID()}">
+                                    <input  type="hidden" name="cmd" value="DeleteProduct">
+                                </form>
 
                             </div>
 
