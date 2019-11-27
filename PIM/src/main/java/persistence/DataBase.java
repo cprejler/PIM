@@ -22,7 +22,7 @@ public class DataBase {
             String password = "Password123!";
             String IP = "206.189.57.7";
             String PORT = "3306";
-            String DATABASE = "test";
+            String DATABASE = "testpim";
             String url = "jdbc:mysql://" + IP + ":" + PORT + "/" + DATABASE;
                     
             Class.forName(DRIVER);
@@ -48,9 +48,9 @@ public class DataBase {
             String PORT = "3306";
             String DATABASE = "testpim";
             String url = "jdbc:mysql://" + IP + ":" + PORT + "/" + DATABASE 
-         /*           + "?useUnicode=true&useJDBCcompliantTimezoneShift=true&"
+                    + "?useUnicode=true&useJDBCcompliantTimezoneShift=true&"
                     + "useLegacyDatetimeCode=false&"
-                    + "serverTimezone=UTC"  */;
+                    + "serverTimezone=UTC"  ;
             Class.forName(DRIVER);
             testConnection = DriverManager.getConnection(url, user, password);
 
