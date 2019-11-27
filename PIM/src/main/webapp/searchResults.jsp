@@ -116,34 +116,28 @@
                     </div>
                     <div class="col-lg-11 col-xs-1">
 
-                        <% // <table class="table">
-                            //<thead>
-                              //  <% ArrayList<Product> productlist = (ArrayList)request.getAttribute("productList");
-                                //Product product1 = productlist.get(0);
-                                //int it = 0;
-                                //%>
-                                <%// for (String field : product1.getFields()){%>
-                        <table class="table">
-                            <thead>
-                                <% ArrayList<Product> productlist = (ArrayList)request.getAttribute("productList");
-                                Product product1 = productlist.get(0);
-                                for (String field : product1.getFields()){
-                                    
-                                    
-                                } 
-                                %>
-                                
-                                <% //<th><% product1.getFields().get(it); %><% //</th> %>
-                                <% it++; } %>
-                           <% /* </thead> */%>  
+                            
+                        <% ArrayList<Product> products = (ArrayList) request.getAttribute("productList");%>
+                       <% 
+                          //  <table class="table">
+                            //    <thead>    
+                       // <% for(int i = 0; i<products.get(0).getFields().size(); i++){ 
+                         //       <th> 
+                           //         <% products.get(0).getFields().get(i); %
+                             //   </th>
+                       // } 
+                       // <th>Edit</th>
+                         //   </thead>    */ 
                          
-            </form>
+                         %>
 
 
-
-
+                         <% for(int i = 0; i<products.get(0).getFields().size(); i++){ %>
+                         <%=products.get(0).getFields().get(i) %>
+                         <% } %>
+                                 
         </div>
-
-        
+                </div>                  
+        </form>
     </body>
 </html>

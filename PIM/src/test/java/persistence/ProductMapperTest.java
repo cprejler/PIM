@@ -212,6 +212,7 @@ public class ProductMapperTest {
     @Test
     public void getTableNames() throws SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
+        String DatabaseName = "test";
         ArrayList<String> tableNames = pMapper.getTableNames();
         ArrayList<ArrayList<Product>> products = new ArrayList();
         for (String tableName : tableNames) {
@@ -224,7 +225,8 @@ public class ProductMapperTest {
     @Test
     public void searchForProductTest() throws ClassNotFoundException, SQLException {
         ProductMapper pMapper = new ProductMapper();
-        pMapper.searchForProduct("Iphone");
+        ArrayList<Product> p = pMapper.searchForProduct("iphone");
+        assertEquals(2, p.size());
     }
     
     
