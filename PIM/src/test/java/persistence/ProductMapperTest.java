@@ -209,7 +209,7 @@ public class ProductMapperTest {
     @Test
     public void getTableNames() throws SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
-        String DatabaseName = "testpim";
+        String DatabaseName = "test";
         ArrayList<String> tableNames = pMapper.getTableNames(DatabaseName);
         ArrayList<ArrayList<Product>> products = new ArrayList();
         for (String tableName : tableNames) {
