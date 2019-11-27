@@ -116,18 +116,26 @@
                     </div>
                     <div class="col-lg-11 col-xs-1">
                             
-                               
-                                
-                                
-                        
-                
-            </form>
+                        <% ArrayList<Product> products = (ArrayList) request.getAttribute("productList");%>
+                       <% 
+                          //  <table class="table">
+                            //    <thead>    
+                       // <% for(int i = 0; i<products.get(0).getFields().size(); i++){ 
+                         //       <th> 
+                           //         <% products.get(0).getFields().get(i); %
+                             //   </th>
+                       // } 
+                       // <th>Edit</th>
+                         //   </thead>    */ 
+                         
+                         %>
 
-
-
-
+                         <% for(int i = 0; i<products.get(0).getFields().size(); i++){ %>
+                         <%=products.get(0).getFields().get(i) %>
+                         <% } %>
+                                 
         </div>
-
-        
+                </div>                  
+        </form>
     </body>
 </html>

@@ -32,7 +32,7 @@ public class generateFormCommand extends Command {
         
         //Send table names in order to dynamically generate dropdown boxes, if user wants to change product type
         ProductMapper pMapper = new ProductMapper();
-        ArrayList<String> tables = pMapper.getTableNames("test");
+        ArrayList<String> tables = pMapper.getTableNames();
         ArrayList<String> attributes = new ArrayList<>();
         
         for (String table : tables) {

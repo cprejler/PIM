@@ -24,7 +24,9 @@ public class FormGenerator {
 
     public ArrayList<Form> generateForm(String table) throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
-        Connection connection = db.connectionValg();
+        ChooseConnection cv = new ChooseConnection();
+        Connection connection = cv.chooseConnections();
+        String database = cv.getDatabase();
         
         ArrayList<Form>  forms   = new ArrayList();
        
@@ -58,7 +60,7 @@ public class FormGenerator {
                         + "FROM\n"
                         + "  information_schema.columns\n"
                         + "WHERE\n"
-                        + "  table_schema = 'test' AND table_name = '" + table + "' AND column_name = '" + field + "';");
+                        + "  table_schema = '"+database+"' AND table_name = '" + table + "' AND column_name = '" + field + "';");
                 while (rsGetEnumValues.next()) {
                     String getEnumValues = rsGetEnumValues.getString("column_type");
                     //Regex to trim the values in  order   to create an array.

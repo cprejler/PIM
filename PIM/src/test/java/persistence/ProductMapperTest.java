@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,18 +18,14 @@ import org.junit.Test;
  */
 public class ProductMapperTest {
 
-    /*@Before
+    @Before
     public void setUp() throws ClassNotFoundException, SQLException {
-        DataBase db = new DataBase();
+        ChooseConnection cv = new ChooseConnection();
+        Connection connection = cv.chooseConnections();
+        String database = cv.getDatabase(); 
         
-        //db.connection();
-        //Connection connection = db.connection();
-        
-        //db.connectionValg(); 
-        Connection connection = db.connectionValg();
-
+        if (database == "testpim") {
         Statement st = connection.createStatement();
-
         st.executeUpdate("drop table if exists phone;");
         st.executeUpdate("drop table if exists wine;");
         st.executeUpdate("drop table if exists toiletpaper;");
@@ -43,11 +40,14 @@ public class ProductMapperTest {
         st.executeUpdate("create table wine like winetest;");
         st.executeUpdate("insert into wine select * from winetest;");
         
-      //  st.executeUpdate("create table toiletPaper like toiletPapertest;");
-      //  st.executeUpdate("insert into toiletPaper select * from toiletPapertest;");
-
+        st.executeUpdate("create table toiletpaper like toiletpapertest;");
+        st.executeUpdate("insert into toiletpaper select * from toiletpapertest;");
+        
         connection.close();
-    }*/
+        } else {
+             connection.close();
+        }
+    }
 
     @Test
     public void insertProductTest() throws ClassNotFoundException, SQLException {
@@ -161,15 +161,18 @@ public class ProductMapperTest {
 
     }
 
-    @Test
+  @Test
     public void alterEnumTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();
         String product = "toiletpaper";
 
         String pro2 = pMapper.alterProductTypeEnum(product);
+        
+        assertTrue(pro2.contains(product));
+        
     }
-
+/*
     @Test
     public void createProductTableTest() throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
@@ -205,12 +208,12 @@ public class ProductMapperTest {
         assertEquals(product, sb.subSequence(13, 24));
 
     }
-
+*/
     @Test
     public void getTableNames() throws SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
         String DatabaseName = "test";
-        ArrayList<String> tableNames = pMapper.getTableNames(DatabaseName);
+        ArrayList<String> tableNames = pMapper.getTableNames();
         ArrayList<ArrayList<Product>> products = new ArrayList();
         for (String tableName : tableNames) {
             products.add(pMapper.showProducts(tableName));
@@ -222,7 +225,8 @@ public class ProductMapperTest {
     @Test
     public void searchForProductTest() throws ClassNotFoundException, SQLException {
         ProductMapper pMapper = new ProductMapper();
-        pMapper.searchForProduct("Iphone");
+        ArrayList<Product> p = pMapper.searchForProduct("iphone");
+        assertEquals(2, p.size());
     }
     
     
