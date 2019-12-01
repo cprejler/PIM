@@ -72,9 +72,26 @@
                 <c:forEach var="product" items="${products}"  varStatus="productCounter">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div><h1 class="text-primary">ProductID: ${product.getID()}</h1></div>
+                                <h4 class="text-primary">Upload an image</h4>
+                                <form action="FileUploadServlet" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="image">
+                                    <input type="hidden" name="productID" value="${product.getID()}">
+                                    <input type="submit" class="btn btn-primary" value="Upload">
+
+                                </form>
+                            
+                                
+
                             </div>
+                        </div>
+                        <div class="row">
+                            <c:forEach var="image" items="${product.getImages()}">
+                                <div>
+                                    <img class="img-thumbnail" style="max-height:200px; max-width: 200px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                </div>
+                            </c:forEach>
                         </div>
 
 
@@ -152,7 +169,14 @@
                             </div>
 
 
+
+
+
+
                         </div>
+
+
+
 
 
 

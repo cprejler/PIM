@@ -68,7 +68,7 @@ public class InsertProductCommand extends Command {
         
 
         
-        Product product = new Product(productName, "test", productType, manufacturer, fields, fieldValues);
+        Product product = new Product(productName, productType, manufacturer, fields, fieldValues);
 
         ProductMapper pMapper = new ProductMapper();
 

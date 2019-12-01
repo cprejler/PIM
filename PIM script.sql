@@ -3,6 +3,7 @@ drop table if exists winetest;
 drop table if exists toiletpapertest;
 drop table if exists producttest;
 
+drop table if exists images;
 Drop table if exists phone;
 Drop table if exists wine;
 Drop table if exists toiletpaper;
@@ -50,6 +51,14 @@ CREATE TABLE phone(
     productID int(5) unsigned zerofill NOT NULL,
 	foreign key (productID) references product(productID)
     
+);
+
+CREATE TABLE images(
+	imageID int not null  auto_increment,
+	image mediumblob,
+    productID int(5) unsigned zerofill  NOT NULL,
+    foreign key (productID) references product(productID),
+    primary key (imageID)
 );
 
 

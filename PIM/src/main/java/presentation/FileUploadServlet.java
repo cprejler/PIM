@@ -6,18 +6,28 @@
 package presentation;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import persistence.ChooseConnection;
 
 /**
  *
  * @author casper
  */
 @WebServlet(name = "FileUploadServlet", urlPatterns = {"/FileUploadServlet"})
+@MultipartConfig(maxFileSize=16177215) //Upload filesize is 16 mb
 public class FileUploadServlet extends HttpServlet {
 
     /**
@@ -31,18 +41,9 @@ public class FileUploadServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet FileUploadServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet FileUploadServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,6 +59,8 @@ public class FileUploadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        
     }
 
     /**
@@ -72,7 +75,47 @@ public class FileUploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-    }
+        
+        
+        String getProductID = request.getParameter("productID");
+        Integer productID = Integer.parseInt(getProductID);
+        
+        InputStream inputStream = null; //input stream  of the file
+        
+        Part filePart = request.getPart("image");
+        //Get input stream of uploaded file
+        inputStream = filePart.getInputStream();
+        
+        
+        try {
+            ChooseConnection cv = new ChooseConnection();
+            Connection connection = cv.chooseConnections();
+            String sql = "INSERT INTO images (image, productID) VALUES (?,?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setBlob(1, inputStream);
+            statement.setInt(2, productID);
+            statement.execute();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FileUploadServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+             
+            request.setAttribute("error", e.getMessage());
+            request.setAttribute("cause", e.getCause());
+            request.setAttribute("stacktrace", e.getStackTrace());
+            RequestDispatcher rd = request.getRequestDispatcher("Error.jsp");
+            rd.forward(request, response);
+        }
+        
+        
+        
+	}
+    
+        
+        
+        
+    
+
 
     /**
      * Returns a short description of the servlet.
