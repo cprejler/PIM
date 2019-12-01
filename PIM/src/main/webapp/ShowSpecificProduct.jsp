@@ -73,7 +73,13 @@
                                 <div><h1 class="text-primary">ProductID: ${product.getID()}</h1></div>
                             </div>
                         </div>
-                    
+                    <div class="row">
+                            <c:forEach var="image" items="${product.getImages()}">
+                                <div>
+                                    <img class="img-thumbnail" style="max-height:200px; max-width: 200px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                </div>
+                            </c:forEach>
+                        </div>
 
                         <div class="row">
 

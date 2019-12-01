@@ -25,7 +25,7 @@ public class ChooseConnection {
         2 = Din lokale database på computeren ved navn "testpim"
         3 = Vores live-produktions database ved navn "pim"
         */
-                int databasevalg = 2; 
+                int databasevalg = 1; 
                 
                 
         switch (databasevalg) {
