@@ -35,6 +35,7 @@ public abstract class Command{
         commands.put("gotoShowProducts", new gotoShowProducts());
         commands.put("search", new SearchProductCommand());
         commands.put("generateForm", new generateFormCommand());
+        commands.put("gotoSpecificProduct", new gotoSpecificProduct());
     }
 
     static Command from(HttpServletRequest request) {

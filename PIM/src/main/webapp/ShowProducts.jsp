@@ -81,36 +81,38 @@
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
-                <div class="row mx-auto">
+                <script>
+                    function buttonA_clickHandler(event) {
+                        document.getElementById('hiddenId').value = "gotoUpdateProduct";
+                    }
+                    function buttonB_clickHandler(event) {
+                        document.getElementById('hiddenId').value = "gotoSpecificProduct";
+                    }
+                    </script>
 
                     <form action="FrontController">
-                        <input type="hidden" name="cmd" value="gotoUpdateProduct">
+                        <input type="hidden" name="cmd" value="" id="hiddenId">
                         <div class="row" id="items">
                             <div class="col-lg-1">
-                                <div class="px-md-5"><button type="submit" class="btn btn-primary">Edit</button>
+                                <div class="px-md-5">
+                                    <button type="submit" class="btn btn-primary" onclick="buttonA_clickHandler(event)">Edit</button>
                                 </div>
                             </div>
                             <div class="col-lg-11">
-
-                                <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
+                <div class="row mx-auto">
+                    
+                    <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
                                     <table class="table">
                                         <thead>
 
                                             <c:forEach var="field" items="${products.get(tableCount.index).get(0).getFields()}">
                                             <th>${field}</th>
                                             </c:forEach>
+                                
 
 
                                         <th>Edit</th>
-
+                                       
                                         </thead>
                                         <tbody>
                                             <c:forEach var="product" items="${requestScope.products.get(tableCount.index)}">
@@ -122,11 +124,17 @@
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="${product.getID()}"
                                                                    id="defaultCheck1" name="selectedEdit">
-
-                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <!--<input class="form-check-input" type="checkbox" value="${product.getID()}"
+                                                                   id="defaultCheck1" name="selectedProduct">-->
+                                                            <button type="submit" class="btn btn-primary" name="selectedProduct"
+                                                                    value="${product.getID()}" onclick="buttonB_clickHandler(event)">Go To Product</button>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
+                                                
                                         </tbody>
                                     </table>
 
@@ -135,7 +143,6 @@
                         </div>
 
                     </form>
-
                 </div>
 
             </div>
