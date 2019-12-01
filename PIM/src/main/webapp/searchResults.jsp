@@ -4,6 +4,8 @@
     Author     : jenso
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="businesslogic.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -117,23 +119,46 @@
                     <div class="col-lg-11 col-xs-1">
                             
                         <% ArrayList<Product> products = (ArrayList) request.getAttribute("productList");%>
-                       <% 
-                          //  <table class="table">
-                            //    <thead>    
-                       // <% for(int i = 0; i<products.get(0).getFields().size(); i++){ 
-                         //       <th> 
-                           //         <% products.get(0).getFields().get(i); %
-                             //   </th>
-                       // } 
-                       // <th>Edit</th>
-                         //   </thead>    */ 
-                         
-                         %>
+                        <% int counter; %>
+                        <% HashMap<String, Integer> countMap = new HashMap<>();
 
-                         <% for(int i = 0; i<products.get(0).getFields().size(); i++){ %>
-                         <%=products.get(0).getFields().get(i) %>
-                         <% } %>
-                                 
+                            for (Product product: products) {
+
+                            if (countMap.containsKey(product.getType()))
+                                  countMap.put(product.getType(), countMap.get(product.getType()) + 1);
+                              else
+                                  countMap.put(product.getType(), 1);
+                          }
+                        %>
+                     
+                        <%
+                            int placement = 0;
+                            for(Map.Entry<String, Integer> entry : countMap.entrySet()) {
+                            int value = entry.getValue();
+                            placement = placement + value - 1 ;
+                        
+                        %>
+                        <table class="table"> 
+                            <thead>
+                        <% for(int i = 0; i<products.get(placement).getFields().size(); i++){ %>
+                                
+                        <th>    <%=products.get(placement).getFields().get(i) %> </th>
+                         <% } %>    
+                        </thead>    
+                            
+                        <tr>
+                         <%     for(int j = 0; j<value; j++){ %>
+                         <%     for(int t = 0; t<products.get(j).getFields().size(); t++){ %>
+                        <td>    <%=products.get(j).getFieldsValues().get(t) %>               </td>
+                         <% }  %>
+                        </tr>
+                        <% } %>
+                        </table>
+                       <% } %>     
+                        
+                           
+                            
+                   
         </div>
                 </div>                  
         </form>
