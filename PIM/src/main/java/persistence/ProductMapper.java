@@ -161,7 +161,7 @@ public class ProductMapper {
         ArrayList<Product> products = new ArrayList<Product>();
         String name = "";
         String manufacturer = "";
-        String category = "";
+        
 
         String showProductQuery = "SELECT product.manufacturer,  product.productName, product.productType, " + productType + ".* FROM product"
                 + ", " + productType + " where product.productID=" + productType + ".productID order by productID";
@@ -183,7 +183,7 @@ public class ProductMapper {
                 manufacturer = rs.getString("manufacturer");
 
             }
-            Product product = new Product(name, manufacturer, category, productType, fields, fieldValues);
+            Product product = new Product(name, manufacturer, productType, fields, fieldValues);
             product.setID(rs.getInt("productID"));
             products.add(product);
 
@@ -222,7 +222,7 @@ public class ProductMapper {
             }
             
         }
-        Product  product = new Product(productName, "test", productType, manufacturer, fields, fieldValues);
+        Product  product = new Product(productName, productType, manufacturer, fields, fieldValues);
         product.setID(id);
         
         
@@ -356,7 +356,7 @@ public class ProductMapper {
         ArrayList<Product> products = new ArrayList<Product>();
         String name = "";
         String manufacturer = "";
-        String category = "";
+        
         ArrayList<String> productID = new ArrayList<String>();
         ArrayList<String> productType = new ArrayList<String>();
                 
@@ -391,7 +391,7 @@ public class ProductMapper {
                 manufacturer = rs1.getString("manufacturer");
             
             }
-            Product product = new Product(name, manufacturer, category, productType.get(i), fields, fieldValues);
+            Product product = new Product(name, manufacturer, productType.get(i), fields, fieldValues);
             products.add(product);
         }
         }

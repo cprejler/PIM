@@ -23,7 +23,7 @@
     <body>
 
         <!-- NAVBAR -->
-       <form action="FrontController">
+        <form action="FrontController">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">PIM</a>
@@ -44,7 +44,7 @@
                                 Action
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                
+
                                 <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
                                     Product</button>
                                 <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
@@ -71,7 +71,7 @@
                     <select class="form-control  m-2" name="productType">
                         <%-- Inputs are  made for each productType in database --%>
                         <c:forEach var="item" items="${tables}">
-                        <option value="${item}">${item}</option>    
+                            <option value="${item}">${item}</option>    
                         </c:forEach>
                     </select>
                     <input type="submit" value="Select" class="btn btn-primary m-2">
@@ -90,7 +90,7 @@
                     <input type="text" class="form-control" name="productName">
                     <h5 class="text-primary">Product Type</h5>
                     <input type="text" name="productType" value="${param.productType}" readonly>
-                    
+
 
 
                     <c:forEach var="form"  items="${requestScope.forms}">
@@ -114,6 +114,19 @@
                 </form>
 
             </div>
+
+            <div class="container">
+                <form action="http://206.189.57.7:8080/FileUploaderRestService-1.0/rest/upload" method="POST" enctype="multipart/form-data">
+                    <h5 class="text-primary">Upload Image</h5>
+                    <input type="file" name="fileToUpload">
+                    
+                    <input type="submit" value="Upload">
+                </form>
+
+                    
+                
+            </div>
+
         </div>
 
 

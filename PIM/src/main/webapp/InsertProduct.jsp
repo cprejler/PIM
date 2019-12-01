@@ -44,7 +44,7 @@
                                 Action
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                
+
                                 <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
                                     Product</button>
                                 <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
@@ -71,9 +71,9 @@
                     <select class="form-control  m-2" name="productType">
                         <%-- Inputs are  made for each productType in database --%>
                         <c:forEach var="item" items="${tables}">
-                        <option value="${item}">${item}</option>    
+                            <option value="${item}">${item}</option>    
                         </c:forEach>
-                        
+
                     </select>
                     <input type="submit" value="Select" class="btn btn-primary m-2">
                     <input type="hidden"  name="cmd" value="generateForm">
@@ -81,8 +81,10 @@
                 </form>
 
             </div>
-
             
+        </div>
+
+
 
 
 
