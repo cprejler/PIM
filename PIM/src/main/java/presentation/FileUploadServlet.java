@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -58,6 +59,8 @@ public class FileUploadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        
     }
 
     /**
@@ -87,15 +90,21 @@ public class FileUploadServlet extends HttpServlet {
         try {
             ChooseConnection cv = new ChooseConnection();
             Connection connection = cv.chooseConnections();
-            String sql = "INSERT INTO images (image, productID) VALUES (?,?,?)";
+            String sql = "INSERT INTO images (image, productID) VALUES (?,?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setBlob(1, inputStream);
             statement.setInt(2, productID);
             statement.execute();
+            
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(FileUploadServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(FileUploadServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+             
+            request.setAttribute("error", e.getMessage());
+            request.setAttribute("cause", e.getCause());
+            request.setAttribute("stacktrace", e.getStackTrace());
+            RequestDispatcher rd = request.getRequestDispatcher("Error.jsp");
+            rd.forward(request, response);
         }
         
         

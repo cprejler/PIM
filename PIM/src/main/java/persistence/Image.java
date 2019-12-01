@@ -13,17 +13,17 @@ import java.sql.Blob;
  */
 public class Image {
     
-    private Blob image;
+    private String image; //Base 64 Encoding  of the SQL blob
     private Integer productID;
     private Integer imageID;
 
-    public Image(Blob image, Integer productID, Integer imageID) {
+    public Image(String image, Integer productID, Integer imageID) {
         this.image = image;
         this.productID = productID;
         this.imageID = imageID;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 

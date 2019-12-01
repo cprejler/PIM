@@ -84,6 +84,11 @@ public class Product {
     public ArrayList<Object> getFieldsValues() {
         return fieldsValues;
     }
+
+    public ArrayList<Image> getImages() {
+        return images;
+    }
+    
     
 
 }
