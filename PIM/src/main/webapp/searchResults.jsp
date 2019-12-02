@@ -124,7 +124,7 @@
                                     <td>
                                         <div class="form-check">
                                             <button type="submit" class="btn btn-primary" name="selectedEdit"
-                                                    value=" <%=products.get(j).getID()%>" onclick="buttonA_clickHandler(event)">Edit Product</button>
+                                                    value="<%=products.get(j).getID()%>" onclick="buttonA_clickHandler(event)">Edit Product</button>
                                     </td>
 
                         </tr>
@@ -139,5 +139,7 @@
                 </div>
             </div>                  
         </form>
+                           <script type="text/javascript" src="buttonFunction.js"></script>
+
     </body>
 </html>
