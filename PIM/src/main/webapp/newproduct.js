@@ -13,7 +13,7 @@ function ifEnum () {
 
     enums.setAttribute("name", "enums"+i)
     enums.setAttribute("type", "text"); 
-    enums.setAttribute("placeholder", "skriv dine enums, comma separeret "); 
+    enums.setAttribute("placeholder", "Write your enums, seperatet with a comma "); 
 
     enums.setAttribute("id", "enums"+i); 
 
@@ -49,7 +49,7 @@ function createInputBox ()  {
 
     enums.setAttribute("name", "value"+i)
     enums.setAttribute("type", "text"); 
-    enums.setAttribute("placeholder", "Skriv enumværdierne sepereret af comma"); 
+    enums.setAttribute("placeholder", "Write your enums, seperatet with a comma "); 
     enums.setAttribute("id", "variabel"+i); 
 
 if (mySelect.value == "Enum") {
@@ -113,16 +113,3 @@ function createOk () {
 }
 
 
- // function setid() {
-    // var varnavne = docuement.getElementById("mySelect");  
-         
- 
-   //      var bookList = document.querySelector('#book-list');
-  //       bookList.innerHTML += '<li> <span class="name">Skriv ny produkt variabel </span> </li>';
-  //       bookList.innerHTML += '<select id="mySelect"> <option value="String">String</option> <option value="Integer">Integer</option> <option value="Float">Float</option> <option value="Enum">Enum</option> </select>';
- //        bookList.innerHTML += '<input type="text" />'  ; 
-  //       bookList.innerHTML += '<button onclick = "setid(), e(e)" > click me!  </button>'; 
-     
-         
-
- //}
