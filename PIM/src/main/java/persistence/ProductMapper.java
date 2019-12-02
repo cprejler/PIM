@@ -366,6 +366,7 @@ public class ProductMapper {
         
         while (rs.next()) {
             productID.add(rs.getString("productID"));
+            
             productType.add(rs.getString("productType"));
         }
         
@@ -388,8 +389,9 @@ public class ProductMapper {
                     manufacturer = rs1.getString("manufacturer");
                     
                 }
-                Product product = new Product(name, manufacturer, productType.get(i), fields, fieldValues);
-                products.add(product);
+                    Product product = new Product(name, manufacturer, productType.get(i), fields, fieldValues);
+                    product.setID(rs1.getInt("ProductID"));
+                    products.add(product);
             }
         }
         return products;
