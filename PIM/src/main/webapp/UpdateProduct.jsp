@@ -81,8 +81,8 @@
                                     <input type="submit" class="btn btn-primary" value="Upload">
 
                                 </form>
-                            
-                                
+
+
 
                             </div>
                         </div>
@@ -94,7 +94,7 @@
                             </c:forEach>
                         </div>
 
-
+                        <!-- READ ONLY FIELDS -->
                         <div class="row">
 
 
@@ -121,115 +121,64 @@
                             </div>
 
 
-
+                                <!-- FIELDS YOU CAN EDIT -->
 
                             <div  class="col-lg-6 mg-2">
                                 <form action="FrontController">
+                                        <div>
+                                            <h5 class="text-primary">Manufacturer</h5>
+                                            <input type="text" name="manufacturer" value="${product.getManufacturer()}">
+                                        </div>
+                                        <div>
+                                            <h5 class="text-primary">Product Name</h5>
+                                            <input type="text" name="productName" value="${product.getName()}">
+                                        </div>
+                                        <div>
+                                            <h5 class="text-primary">Product Type</h5>
+                                            <input type="text" name="productType" value="${product.getType()}" readonly>
+                                        </div>
+                                        <c:forEach var="field" items="${product.getFields()}" varStatus="fieldCounter">
+                                            <h5 class="text-primary">${field}</h5>
+                                            <input type="text" name="${field}" value="${product.getFieldsValues().get(fieldCounter.index)}">
+                                        </c:forEach>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <input type="submit" class="btn btn-primary p-t-3" value="Apply Changes">
+                                                <input  type="hidden" name="productID" value="${product.getID()}">
+                                                <input  type="hidden" name="cmd" value="UpdateProduct">
+                                                </form>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <form action="FrontController">
+                                                    <input type="submit" class="btn btn-danger p-t-3" value="Delete Product">
+                                                    <input  type="hidden" name="productID" value="${product.getID()}">
+                                                    <input  type="hidden" name="cmd" value="DeleteProduct">
+                                                </form>
+                                            </div>
+                                        </div>
 
-                                    <h5 class="text-primary">Manufacturer</h5>
-                                    <input type="text" class="form-control" name="manufacturer"  value="${product.getManufacturer()}">
-                                    <h5 class="text-primary">Product Name</h5>
-                                    <input type="text" class="form-control" name="productName" value="${product.getName()}">
-                                    <h5 class="text-primary">Product Type</h5>
-                                    <input type="text" name="productType" value="${product.getType()}" readonly>
-
-
-                                    <c:set var="count" value="0"></c:set>
-                                    <c:forEach var="form"  items="${forms.get(productCounter.index)}">
-                                        <h5 class="text-primary">${form.getName()}</h5>
-
-                                        <c:if  test="${form.getInputType() eq 'select'}">
-                                            <select name="${form.getName()}">
-                                                <c:forEach var="item" items="${form.getOptions()}">
-                                                    <option>${item}</option>
-                                                </c:forEach>
-
-                                            </select>
-                                        </c:if>
-                                        <c:set var="fieldValues" value="${product.getFieldsValues()}"></c:set>
-
-
-                                        <c:if  test="${form.getInputType() ne 'select'}">
-                                            <input type="${form.getInputType()}" name="${form.getName()}" value="">
-                                        </c:if>
-
-                                    </c:forEach>
-
-                                    <input type="submit" class="btn btn-primary" value="Apply Changes">
-                                    <input  type="hidden" name="productID" value="${product.getID()}">
-                                    <input  type="hidden" name="cmd" value="UpdateProduct">
-                                </form>
-
-                                <form action="FrontController">
-                                    <input type="submit" class="btn btn-danger" value="Delete Product">
-                                    <input  type="hidden" name="productID" value="${product.getID()}">
-                                    <input  type="hidden" name="cmd" value="DeleteProduct">
-                                </form>
-
+                                    </div>
                             </div>
-
-
-
-
 
 
                         </div>
 
+                        <br>
+                    </c:forEach>
 
-
-
-
-
-
-
-
-                    </div>
-
-
-
-
-
-
-                    <br>
-                </c:forEach>
-
-
-
-
-
-
+                </div>
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-
-
-
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 
 
     </body>
