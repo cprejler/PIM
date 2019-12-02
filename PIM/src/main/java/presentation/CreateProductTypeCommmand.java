@@ -23,10 +23,10 @@ public class CreateProductTypeCommmand extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
-        
+        String webpage="";
         ArrayList<String> columnNames = new ArrayList<>(); 
-        ArrayList<String> EnumValues = new ArrayList<>();
-        
+        ArrayList<String> enums = new ArrayList<>();
+        ArrayList<String> enumValues = new ArrayList<>();
         
         Enumeration<String> parameterNames = request.getParameterNames();
         ArrayList<String>params  = new ArrayList<>();
@@ -35,18 +35,19 @@ public class CreateProductTypeCommmand extends Command {
             params.add(parameterNames.nextElement());
         }
                 
-        ArrayList<String> requestParameters  = new  ArrayList<>();
-        
-        
         for (String param : params) {
-            
-            if (!param.equals("manufacturer") && !param.equals("productName") && !param.equals("productType") &&  !param.equals("cmd")){
-                columnNames.add(param);
-                requestParameters.add(request.getParameter(param));
+            if(param.contains("enum")){
+               enums.add(param);
+            }else if(param.contains("value")){
+                enumValues.add(param);
             }
-                       
+            else{
+                columnNames.add(param);
+            }
         }
-        return null;
+        
+        pMapper.createProductTable(params, enums, enumValues);
+        return webpage;
     }
 }
     
