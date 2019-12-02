@@ -3,61 +3,102 @@ var j = 1;
 var k = 1;  
 var buttonElement = document.getElementById('createInputBtn'); 
 var dropdownElement = document.getElementById('mySelect'); 
+
+ 
+function ifEnum () {
+    dropdownElement.addEventListener("click")
+
+    var div = document.querySelector('.book-list') ; 
+    var enums = document.createElement("input"); 
+
+    enums.setAttribute("name", "enums"+i)
+    enums.setAttribute("type", "text"); 
+    enums.setAttribute("placeholder", "skriv dine enums, comma separeret "); 
+
+    enums.setAttribute("id", "enums"+i); 
+
  
 
+
+
+}
 
 
 
 function createInputBox ()  {
     i++; 
-  //  var buttonid = "createInputBtn"+i; 
-    //var element = "buttonElement" + i; 
+    var li = document.createElement("li"); 
+    var br = document.createElement("br");
+
     var cloneButton  = buttonElement.cloneNode(true);
-   // var cloneDropdown = dropdownElement.cloneNode(true); 
-    //var button = cloneOK; 
 
-
-
-   var div = document.querySelector('.book-list') ; 
-   //var buttonName = document.getElementById('createInputBtn'); 
-   var li = document.createElement("li"); 
+    var div = document.querySelector('.book-list') ; 
    
     var x = document.createElement("input"); 
-   // cloneButton.setAttribute("Id", buttonid); 
     var dropdown = dropdown+i; 
+    var enums = document.createElement("input"); 
     
+    var select = mySelect.value; 
     
-    
-    x.setAttribute("name", "variabelNavn")
+    x.setAttribute("name", select+i)
     x.setAttribute("type", "text"); 
-    x.setAttribute("placeholder", dropdown); 
-
+    x.setAttribute("placeholder", select); 
     x.setAttribute("id", "variabel"+i); 
 
-    var y = x; 
 
-    //div.append(li);
-    //div.append(<br> </br> );  
-    div.append(li, x); 
-//        div.append(x);
 
+    enums.setAttribute("name", "value"+i)
+    enums.setAttribute("type", "text"); 
+    enums.setAttribute("placeholder", "Skriv enumværdierne sepereret af comma"); 
+    enums.setAttribute("id", "variabel"+i); 
+
+if (mySelect.value == "Enum") {
+    div.append(x,"      ", enums, br); 
+} else {
+    div.append(x, br); 
+}
     
-    // div.append();
-   //  div.createElement
+ 
+ 
+
     
 }
 
 function createDropDown () {
+    var li = document.createElement("li"); 
+    var br = document.createElement("br");
     j++;
     var div = document.querySelector('.book-list') ; 
     var cloneDropdown = dropdownElement.cloneNode(true); 
     cloneDropdown.setAttribute("id", "dropdown"+j); 
 
+    cloneDropdown.setAttribute("onchange", "changefunction(this.value)"); 
+
+
+
+    document.getElementById("dropdown"+j);
+
     div.append(cloneDropdown);     
+}
+
+function changefunction(val) {
+if (val == "Enum") {
+
+
+    createInputBox (); 
+
+    
+
+}
+
+
 }
 
 
 function createOk () {
+    var li = document.createElement("li"); 
+    var br = document.createElement("br");
+
     k++; 
     var div = document.querySelector('.book-list') ; 
     var clonebuttonOK = buttonElement.cloneNode(true);
@@ -67,7 +108,7 @@ function createOk () {
     clonebuttonOK.setAttribute("Id", buttonid); 
     
 
-    div.append(clonebuttonOK);
+    div.append(clonebuttonOK, br);
 
 }
 

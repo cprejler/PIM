@@ -86,6 +86,7 @@
                         <P>
 
                                 <input type ="text" name = "productType" placeholder="Skriv hvilken produkt type du vil lave"  id = "1"> 
+                                <button name= "createInputBtn" id= "createInputBtn"  onclick = " createInputBox()" > Generer nyt felt  </button>
                                 
                                          
                                
@@ -97,9 +98,9 @@
                             
                 <div class= "book-list" id="book-list">
                         <h2 class="title">Produkt variabler</h2>
-                          <p> vælg hvilken  variabel type du skal bruge og tryk OK!</p>  
+                          <p> v?lg hvilken  variabel type du skal bruge og tryk OK!</p>  
 
-                          <button name= "createInputBtn" id= "createInputBtn"  onclick = "createInputBox(), createDropDown(), createOk()" > OK!  </button>
+
 
 
 
