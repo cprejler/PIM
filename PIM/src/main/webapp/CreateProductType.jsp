@@ -85,7 +85,8 @@
                 <body>
                         <P>
 
-                                <input type ="text" name = "productType" placeholder="Skriv hvilken produkt type du vil lave" > 
+                                <input type ="text" name = "productType" placeholder="Skriv hvilken produkt type du vil lave"  id = "1"> 
+                                
                                          
                                
             
@@ -98,12 +99,12 @@
                         <h2 class="title">Produkt variabler</h2>
                           <p> vælg hvilken  variabel type du skal bruge og tryk OK!</p>  
 
-                          <button  id= "createInputBtn"  onclick = "createInputBox()" > OK!  </button>
+                          <button name= "createInputBtn" id= "createInputBtn"  onclick = "createInputBox(), createDropDown(), createOk()" > OK!  </button>
 
 
 
 
-                        <select id="mySelect">                                
+                        <select name ="myselect" id="mySelect">                                
                           <option value="String">String</option>
                           <option value="Integer">Integer</option>
                           <option value="Float">Float</option>
@@ -136,87 +137,9 @@
         </div>
 
 
-<script> function q() {
-    var i  ;  
-
- i++
-return i; 
-}
 
 
-</script>
 
-        <script>  function setid() {
-           // var varnavne = docuement.getElementById("mySelect");  
-                
-        
-                var bookList = document.querySelector('#book-list');
-                bookList.innerHTML += '<li> <span class="name">Skriv ny produkt variabel </span> </li>';
-                bookList.innerHTML += '<select id="mySelect"> <option value="String">String</option> <option value="Integer">Integer</option> <option value="Float">Float</option> <option value="Enum">Enum</option> </select>';
-                bookList.innerHTML += '<input type="text" />'  ; 
-                bookList.innerHTML += '<button onclick = "setid(), e(e)" > click me!  </button>'; 
-            
-                
-
-        }
-        </script>
-
-
-        <script> 
-                function createInputBox ()  {
-                    var i = 0; 
-                    i = document.getElementsByClassName("variabelNavn").length;
-                 
-                   
-                  //arrayInt.push(1); 
-                   
-       
-
-                   var div = document.querySelector('.book-list') ; 
-                j = document.querySelectorAll('.book-list').length; 
-                   var dropdown = document.getElementById('mySelect'); 
-                   var button = document.getElementById('createInputBtn'); 
-                   var li = document.createElement("li"); 
-                   
-                    var x = document.createElement("input"); 
-              //     var y = docuemnt.createElement("input") ; 
-                    
-                 //  var y = document.createElement("text"); 
-                    x.setAttribute("name", "variabelNavn")
-                //    x.setAttribute("id", "200");
-                    x.setAttribute("type", "text"); 
-                    x.setAttribute("placeholder", mySelect.value ); 
-
-                    x.setAttribute("id", j); 
-
-                    var y = x; 
-
-                    div.append(li); 
-                    div.append(x, dropdown, button); 
-            //        div.append(x);
-            
-                    
-                    // div.append();
-                   //  div.createElement
-
-
-            
-                    
-                }     
-                </script>
-
-                <script> 
-         //                           function setid() {
-          //          var boxcollection = document.getElementById("String")
-//
-  //                  for (i = 0, i < boxcollection.length, i++) {
-    //                    boxcollection[i].setAttribute("id", "String "+ i); 
-
-      //              }
-
-
-        //        }  
-                </script>
 
 
 
@@ -230,6 +153,8 @@ return i;
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+        <script src="newproduct.js"></script>
         
         
      
