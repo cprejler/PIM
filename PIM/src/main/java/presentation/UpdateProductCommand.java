@@ -64,7 +64,7 @@ public class UpdateProductCommand extends Command {
         }
         
         
-        Product product = new Product(productName, "test", productType, manufacturer, fields, fieldValues);
+        Product product = new Product(productName, productType, manufacturer, fields, fieldValues);
         product.setID(Integer.parseInt(request.getParameter("productID")));
         product.setPublished(Boolean.FALSE);
 

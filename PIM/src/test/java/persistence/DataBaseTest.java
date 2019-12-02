@@ -31,7 +31,7 @@ public class DataBaseTest {
         
        // assertFalse(db.connection().isClosed());
 
-       // assertFalse(cv.chooseConnections().isClosed());
+        assertFalse(cv.chooseConnections().isClosed());
        // assertEquals(cv.getDatabase(),"testpim");
 
         
