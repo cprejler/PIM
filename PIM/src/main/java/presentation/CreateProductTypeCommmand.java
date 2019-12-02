@@ -23,41 +23,60 @@ public class CreateProductTypeCommmand extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
-        String webpage="";
-        ArrayList<String> columnNames = new ArrayList<>(); 
-        ArrayList<String> enums = new ArrayList<>();
+        String webpage = "";
+        ArrayList<String> columnNames = new ArrayList<>();
+        ArrayList<String> type = new ArrayList<>();
         ArrayList<String> enumValues = new ArrayList<>();
-        
+
         Enumeration<String> parameterNames = request.getParameterNames();
-        ArrayList<String>params  = new ArrayList<>();
+        //Enumeration<String> parameterNeames = request.get();
+        ArrayList<String> params = new ArrayList<>();
         
-                while(parameterNames.hasMoreElements()){
+        ArrayList<String> requestParameters  = new  ArrayList<>();
+        
+        while (parameterNames.hasMoreElements()) {
             params.add(parameterNames.nextElement());
         }
-                
+        
         for (String param : params) {
-            if(param.contains("enum")){
-               enums.add(param);
-            }else if(param.contains("value")){
-                enumValues.add(param);
+            StringBuilder sb = new StringBuilder(param.toLowerCase());
+
+            
+        
+            switch (sb.charAt(0)) {
+                case 's':
+                    type.add("string");
+                    break;
+                case 'i':
+                    type.add("integer");
+                    break;
+                case 'e':
+                    type.add("enum");
+                    break;
+                case 'f':
+                    type.add("float");
+                    break;
+                default:
+                    break;
             }
-            else{
+             if {
                 columnNames.add(param);
             }
         }
+    //Get  the actual value   of  the  parameters, as well  as add the names to the fields array
+        //We  don't  want  manufacturer, productName, and  productType  added to that array
+        for (String param : params) {
+                requestParameters.add(request.getParameter(param));
+            }
+        for (String requestParameter : requestParameters) {
+                                
+                enumValues.add(requestParameter);
+            }
         
-        pMapper.createProductTable(params, enums, enumValues);
-        return webpage;
+    pMapper.createProductTable (params, type, enumValues);
+    return webpage ;
     }
 }
-    
-
-        
-        
-        
-        
-        
-        
 //        
 //        
 //        for (String table : tables) {
@@ -69,5 +88,4 @@ public class CreateProductTypeCommmand extends Command {
 //        
 //        
 //    }
-    
 
