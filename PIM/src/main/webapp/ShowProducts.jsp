@@ -81,8 +81,6 @@
                     </div>
                 </div>
 
-                
-
                     <form action="FrontController">
                         <input type="hidden" name="cmd" value="" id="hiddenId">
                         <div class="row" id="items">
@@ -120,10 +118,13 @@
                                                     </td>
                                                     <td>
                                                         <div class="form-check">
-                                                            <!--<input class="form-check-input" type="checkbox" value="${product.getID()}"
-                                                                   id="defaultCheck1" name="selectedProduct">-->
                                                             <button type="submit" class="btn btn-primary" name="selectedProduct"
                                                                     value="${product.getID()}" onclick="buttonB_clickHandler(event)">Go To Product</button>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <button type="submit" class="btn btn-primary" name="selectedEdit"
+                                                                    value="${product.getID()}" onclick="buttonA_clickHandler(event)">Edit Product</button>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
