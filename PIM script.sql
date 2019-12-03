@@ -14,7 +14,7 @@ productID int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
 productName VARCHAR(45),
 productType ENUM('wine', 'phone', 'toiletpaper'),
 manufacturer VARCHAR(45),
-published tinyint(0),
+description VARCHAR(300),
 PRIMARY KEY (productID)
 );
 
@@ -62,16 +62,16 @@ CREATE TABLE images(
 );
 
 
-insert into product (productName, productType, manufacturer)
-values ("Iphone X", "phone", "Apple"),
-('Samsung Galaxy S 7', 'phone', 'Samsung'),
-('Moto G6', 'phone', 'Motorola'),
-('Iphone 8', 'phone', 'Apple'),
-('Oneplus 3', 'phone', 'Oneplus'),
-('Nokia 5230', 'phone', 'Nokia'),
-('Meandro Do Vale Meão 2014', 'wine', 'Quinta do Vale Meão'),
-('test', 'wine', 'Dansk vin'),
-('Lambi toiletpaper', 'toiletPaper', 'Bambi');
+insert into product (productName, productType, manufacturer, description)
+values ("Iphone X", "phone", "Apple", "Nam quis nulla. Integer malesuada."),
+('Samsung Galaxy S 7', 'phone', 'Samsung', "Nam quis nulla. Integer malesuada."),
+('Moto G6', 'phone', 'Motorola', "Nam quis nulla. Integer malesuada."),
+('Iphone 8', 'phone', 'Apple', "Nam quis nulla. Integer malesuada."),
+('Oneplus 3', 'phone', 'Oneplus', "Nam quis nulla. Integer malesuada."),
+('Nokia 5230', 'phone', 'Nokia', "Nam quis nulla. Integer malesuada."),
+('Meandro Do Vale Meão 2014', 'wine', 'Quinta do Vale Meão', "Nam quis nulla. Integer malesuada."),
+('test', 'wine', 'Dansk vin', "Nam quis nulla. Integer malesuada."),
+('Lambi toiletpaper', 'toiletPaper', 'Bambi', "Nam quis nulla. Integer malesuada.");
 
 
 insert into phone
