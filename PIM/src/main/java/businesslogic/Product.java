@@ -47,7 +47,9 @@ public class Product {
         return ID;
     }
 
-    
+    public String setType() {
+        return type;
+    }
 
     public String getType() {
         return type;
@@ -89,6 +91,8 @@ public class Product {
         return images;
     }
     
-    
+    public void setImages(ArrayList<Image> images) {
+        this.images = images;
+    } 
 
 }
