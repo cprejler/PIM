@@ -62,81 +62,113 @@
             </nav>
         </form>
 
+        <div class="container-fluid" id="page-wrapper">
 
-        <form action="FrontController">
-            <input type="hidden" name="cmd" value="gotoUpdateProduct">
-            <div class="row" id="items">
-                <div class="col-lg-1">
-                    <div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button>
+            <div class="container">
+                <div class="row mx-auto px-md-5">
+                    <div class="col">
+                        <div class="search-bar">
+                            <form action="FrontController">
+
+                                <input type="text" name="searchItem">
+                                <input type="hidden" name="cmd" value="search">
+
+                                <input type="submit" name="button" value="Search">
+                            </form>
+
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-11 col-xs-1">
-
-                    <% ArrayList<Product> products = (ArrayList) request.getAttribute("productList");%>
-                    <% int counter; %>
-                    <% HashMap<String, Integer> countMap = new HashMap<>();
-
-                        for (Product product : products) {
-
-                            if (countMap.containsKey(product.getType())) {
-                                countMap.put(product.getType(), countMap.get(product.getType()) + 1);
-                            } else {
-                                countMap.put(product.getType(), 1);
-                            }
-                        }
-                    %>
-
-                    <%
-                        int placement = 0;
-                        for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
-                            int value = entry.getValue();
-
-
-                    %>
-                    <table class="table"> 
-                        <thead> 
-                            <% for (int i = 0; i < products.get(placement).getFields().size(); i++) {%>
-
-                        <th>    <%=products.get(placement).getFields().get(i)%> </th>
-                            <% } %>    
-                        </thead>    
-
-                        <tr>
-                            <%     for (int j = placement; j < value + placement; j++) { %>
-
-                            <%     for (int t = 0; t < products.get(j).getFields().size(); t++) {%>
-                            <td>    <%=products.get(j).getFieldsValues().get(t)%>               </td>
-
-
-                            <% }%>
-                            <td> 
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="<%=products.get(j).getID()%>"
-                                           id="defaultCheck1" name="selectedEdit">
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <button type="submit" class="btn btn-primary" name="selectedProduct"
-                                                    value="<%=products.get(j).getID()%>" onclick="buttonB_clickHandler(event)">Go To Product</button>
-                                    </td>
-
-                                    <td>
-                                        <div class="form-check">
-                                            <button type="submit" class="btn btn-primary" name="selectedEdit"
-                                                    value=" <%=products.get(j).getID()%>" onclick="buttonA_clickHandler(event)">Edit Product</button>
-                                    </td>
-
-                        </tr>
-                        <% } %>
-                    </table>
-                    <% placement = placement + value;
-                           }%>     
-
-
-
-
+        
+        <form action="FrontController">
+            <input type="hidden" name="cmd" value="" id="hiddenId">
+            <div class="row" mx-auto>
+                <div class="col-lg-1 mx-auto">
+                    <div class="px-md-5">
+                        <button type="submit" class="btn btn-primary" onclick="buttonA_clickHandler(event)">Bulk Edit Products</button>
+                    </div>
                 </div>
-            </div>                  
-        </form>
-    </body>
+            </div>
+
+            <% ArrayList<Product> products = (ArrayList) request.getAttribute("productList");%>
+            <% int counter; %>
+            <% HashMap<String, Integer> countMap = new HashMap<>();
+
+                for (Product product : products) {
+
+                    if (countMap.containsKey(product.getType())) {
+                        countMap.put(product.getType(), countMap.get(product.getType()) + 1);
+                    } else {
+                        countMap.put(product.getType(), 1);
+                    }
+                }
+
+                int placement = 0;
+                for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
+                    int value = entry.getValue();
+
+
+            %>
+             <div class="col-lg">
+                                <div class="row">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover">
+                <thead class="thead"> 
+                    <% for (int i = 0; i < products.get(placement).getFields().size(); i++) {%>
+
+                <th>    <%=products.get(placement).getFields().get(i)%> </th>
+                    <% } %>    
+                </thead>    
+
+                <tr>
+                    <%     for (int j = placement; j < value + placement; j++) {
+
+                                    for (int t = 0; t < products.get(j).getFields().size(); t++) {%>
+                    <td>    <%=products.get(j).getFieldsValues().get(t)%>               </td>
+
+
+                    <% }%>
+                    <td> 
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="<%=products.get(j).getID()%>"
+                                   id="defaultCheck1" name="selectedEdit">
+                            </td>
+                            <td>
+                                <div class="form-check">
+                                    <button type="submit" class="btn btn-primary" name="selectedProduct"
+                                            value="<%=products.get(j).getID()%>" onclick="buttonB_clickHandler(event)">Go To Product</button>
+                            </td>
+
+                            <td>
+                                <div class="form-check">
+                                    <button type="submit" class="btn btn-primary" name="selectedEdit"
+                                            value="<%=products.get(j).getID()%>" onclick="buttonA_clickHandler(event)">Edit Product</button>
+                            </td>
+
+                </tr>
+                
+                <% } %>
+            </table>
+            <% placement = placement + value;
+                        }%>     
+
+
+
+
+            </div>
+        </div>        
+                        </div>                    
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+<script type="text/javascript" src="buttonFunction.js"></script>
+</body>
 </html>
