@@ -4,7 +4,7 @@
     <head>
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>CreateProductType</title>
+        <title>ShowProducts</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -20,7 +20,7 @@
                 <a class="navbar-brand" href="#">PIM</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>   
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -85,8 +85,7 @@
                 <body>
                         <P>
 
-                                <input type ="text" name = "productType" placeholder="Type in your new Producttype"  id = "1"> 
-                                <button name= "createInputBtn" id= "createInputBtn"  onclick = " createInputBox()" > Generate new field  </button>
+                                <input type ="text" name = "productType" placeholder="Skriv hvilken produkt type du vil lave"  id = "1"> 
                                 
                                          
                                
@@ -97,8 +96,8 @@
                             
                             
                 <div class= "book-list" id="book-list">
-                        <h2 class="title">Prodct variables</h2>
-                          <p> Pick the type of information you want to store</p>  
+                        <h2 class="title">Produkt variabler</h2>
+                          <p> vaelg hvilken  variabel type du skal bruge og tryk OK!</p>  
 
 
 
@@ -111,6 +110,7 @@
                           <option value="Float">Float</option>
                           <option value="Enum">Enum</option>
                         </select>
+                        <button name= "createInputBtn" id= "createInputBtn"  onclick = " createInputBox()" > Generer nyt felt  </button>
 
 
                         <ul>
@@ -119,7 +119,7 @@
 
                     <div class = " bunden" id = "bottomm">
                         <p></p>
-                        <p> </p>
+                        <p>  Afslut her</p>
                         <form action="FrontController">
                                 <input type="submit" class="btn btn-danger" value="Create Product">
                                 <input  type="hidden" name="cmd" value="CreateProductType">
