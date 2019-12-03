@@ -27,7 +27,7 @@ public class CreateProductTypeCommmand extends Command {
         ArrayList<String> columnNames = new ArrayList<>();
         ArrayList<String> type = new ArrayList<>();
         ArrayList<String> enumValues = new ArrayList<>();
-
+        String productType = "";
         Enumeration<String> parameterNames = request.getParameterNames();
         //Enumeration<String> parameterNeames = request.get();
         ArrayList<String> params = new ArrayList<>();
@@ -40,9 +40,6 @@ public class CreateProductTypeCommmand extends Command {
         
         for (String param : params) {
             StringBuilder sb = new StringBuilder(param.toLowerCase());
-
-            
-        
             switch (sb.charAt(0)) {
                 case 's':
                     type.add("string");
@@ -69,12 +66,15 @@ public class CreateProductTypeCommmand extends Command {
         for (String requestParameter : requestParameters) {
                 if(requestParameter.contains("enum")) {               
                 enumValues.add(requestParameter);
-                } else{
+                }else if(requestParameter.contains("produtType")){
+                    productType=requestParameter;
+                } 
+                else{
                     columnNames.add(requestParameter);
                 }
             }
         
-    pMapper.createProductTable (params, type, enumValues);
+    //pMapper.createProductTable (params, type, enumValues, productType);
     return webpage ;
     }
 }
