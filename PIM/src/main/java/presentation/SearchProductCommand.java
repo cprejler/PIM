@@ -32,7 +32,7 @@ public class SearchProductCommand extends Command{
         request.setAttribute("productList", products);
         
         
-        return "searchResults";
+        return "SearchResults2";
     }
     
 }
