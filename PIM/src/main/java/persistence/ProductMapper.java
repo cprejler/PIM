@@ -90,11 +90,12 @@ public class ProductMapper {
 
         //Insert a product and get the ID to create a product type after
         Integer productID = 0;
-        String insertProduct = "INSERT INTO  product (productName, productType, manufacturer) VALUES(?,?,?)";
+        String insertProduct = "INSERT INTO  product (productName, productType, manufacturer, description) VALUES(?,?,?,?)";
         PreparedStatement statementInsertProduct = connection.prepareStatement(insertProduct);
         statementInsertProduct.setString(1, product.getName());
         statementInsertProduct.setString(2, product.getType().toLowerCase());
         statementInsertProduct.setString(3, product.getManufacturer());
+        statementInsertProduct.setString(4, product.getDescription());
         statementInsertProduct.execute();
         
         Statement getProductID = connection.createStatement();
