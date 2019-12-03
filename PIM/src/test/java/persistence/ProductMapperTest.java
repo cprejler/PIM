@@ -239,4 +239,15 @@ public class ProductMapperTest {
         
         
     }
+    
+    @Test
+    public void testapostrof () throws ClassNotFoundException, SQLException {
+        String test  = "25,100,200"; 
+        ProductMapper pMapper  = new ProductMapper();
+        
+        String test2 = pMapper.apostrof(test); 
+        
+        System.out.println(test2);
+                 
+    }
 }

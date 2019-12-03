@@ -251,11 +251,13 @@ public class ProductMapper {
     public String alterProductTypeEnum(String newproduct) throws SQLException {
         newproduct = ",'" + newproduct + "'";        
         String product = "product";  //Tabel navn
+
         String productType = "productType"; //Kolonne navn i tabel
         
         String getEnumsQuery = getProductEnums(product, productType);
         
         Statement st = connection.createStatement();        
+
         ResultSet rs = st.executeQuery(getEnumsQuery);
         String enums = "";        
         
@@ -266,27 +268,32 @@ public class ProductMapper {
         
         String newEnumVars = enums;
         if (!enums.contains(newproduct)) {
-            StringBuilder sb = new StringBuilder(enums);
-            sb.insert(sb.length() - 1, newproduct);
-            enums = sb.toString();            
-            newEnumVars = enums;            
-            newEnumVars = newEnumVars.toLowerCase();
+
+        StringBuilder sb = new StringBuilder(enums);
+        sb.insert(sb.length()-1, newproduct);
+        enums = sb.toString(); 
+         newEnumVars = enums; 
+        newEnumVars = newEnumVars.toLowerCase();
+        String alterTableQuery = "alter table product modify column productType " + newEnumVars ;
+        st.executeUpdate(alterTableQuery);
+
             
-            String alterTableQuery = "alter table product modify column productType " + newEnumVars;
-            
-            st.executeUpdate(alterTableQuery);
-            connection.close();
+
+
+        //connection.close();
             
         }
+
         
         return newEnumVars;
     }
-    
-    public String getProductEnums(String TableName, String ColumnName) throws SQLException {
-        TableName = "'" + TableName + "'";        
-        ColumnName = "'" + ColumnName + "'";
+
+    public String getProductEnums(String TableName, String ColumnName) throws SQLException{
+        TableName = "'"+TableName+"'"; 
+        ColumnName = "'"+ColumnName+"'";
+        String database = "'"+cv.getDatabase()+"'";
         
-        String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_NAME = " + TableName + " AND COLUMN_NAME =" + ColumnName + "";
+        String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_SCHEMA = "+database+ " AND TABLE_NAME = "+ TableName+ " AND COLUMN_NAME ="+ ColumnName +"";
         return getEnumsQuery;
     }
     
@@ -294,13 +301,16 @@ public class ProductMapper {
         Statement st = connection.createStatement();        
         String CreateTableQuery = "";
         StringBuilder sb = new StringBuilder();
-        String foreignKeyProductID = "productID int(5) unsigned zerofill NOT NULL, \n"
-                + " foreign key (productID) references product(productID))";        
-        
+
+        String foreignKeyProductID =  "productID int(5) unsigned zerofill NOT NULL, \n"
+                + " foreign key (productID) references product(productID))"; 
+         int p = 0; 
         for (int i = 0; i < product.size(); i++) {
-            int l = 0;            
             if (i == 0) {
-                CreateTableQuery = "CREATE TABLE " + product.get(i) + "(";                
+                String productType = product.get(i).toString().toLowerCase();
+                CreateTableQuery = "CREATE TABLE " + productType +" (" ; 
+                alterProductTypeEnum(productType); 
+
             }
             String products = (String) product.get(i);            
             sb = new StringBuilder(products);
@@ -318,17 +328,20 @@ public class ProductMapper {
                     String varfloat = sb.substring(1) + " float, \n";                    
                     CreateTableQuery = CreateTableQuery + varfloat;
                     break;
-                case 'E':                    
-                    String varEnum = sb.substring(1) + " enum(" + enums.get(l).toString() + "), \n";
-                    CreateTableQuery = CreateTableQuery + varEnum;
-                    l++;
+
+                case 'E': 
+                    String varEnum = sb.substring(1) + " enum("+ apostrof(enums.get(p).toString())+"), \n" ;
+                    CreateTableQuery = CreateTableQuery +varEnum;
+                    p++;
                 default:
                     break;
             }
         }
-        CreateTableQuery = CreateTableQuery + foreignKeyProductID;
-        
+
+        CreateTableQuery = CreateTableQuery + foreignKeyProductID ;
         st.executeUpdate(CreateTableQuery);        
+ 
+
         connection.close();
         
         return CreateTableQuery;
@@ -409,7 +422,31 @@ public class ProductMapper {
         }
         return products;
     }
+     
+     public String apostrof (String Enums) {
+         String EnumsToSQL = "'";
+         String[] parts = Enums.split(","); 
+         ArrayList parts2 = new ArrayList() ; 
+         
+         for (int i = 0; i < parts.length; i++) {
+        parts2.add(parts[i]); 
+         }
+        
+         for (int i = 0; i < parts2.size(); i++) {
+             EnumsToSQL = EnumsToSQL + parts2.get(i)+"','"; 
+         }
+
+         StringBuilder sb = new StringBuilder(EnumsToSQL) ; 
+        EnumsToSQL = EnumsToSQL.substring(0,EnumsToSQL.length()-2);
+        
+        return EnumsToSQL;
+         
+         
+         }
+         
+         
     
+
     public ArrayList<Image> getImages(Integer productID) throws ClassNotFoundException, SQLException {
         ArrayList<Image> images = new ArrayList<>();
         
