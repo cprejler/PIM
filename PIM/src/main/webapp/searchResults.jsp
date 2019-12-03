@@ -20,6 +20,58 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+        .allProduct{
+            width:90%;
+            padding:20px;
+            border:solid;
+            overflow:auto;
+        }
+        .productInfo{
+            vertical-align: top;
+            float:left;
+            display:inline-block;
+            width:200px;
+        }
+        .imageBox{
+            display:inline-block;
+            float:left;
+            width:100px;
+        }
+        .checksButtons{
+            float:right;
+            width:10%;
+        }
+        p{
+            text-align:left;
+            color:black;
+        }
+        .invisible{
+            opacity: 0;
+            height: 5%;
+        }
+        .overview{
+            float:right;
+            width:80%;
+        }
+        .filter{
+            float:left;
+            width:20%;
+        }
+        .form-check{
+            float: left;
+            margin: 10px;
+        }
+        .form-check col{
+            float:right;
+            margin: 10px;
+        }
+        .checkBoxBox{
+            margin: 20px;
+            float: right;
+            width:5%;
+        }
+        </style>
     </head>
 
     <body>
@@ -53,93 +105,77 @@
                                 <div class="dropdown-divider"></div>
                                 <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
                                     Data</button>
-
+                               
                             </div>
+                               </nav>
+                            </form>
+                            </div>
+                <div class="row mx-auto px-md-5">
+                    <div class="col">
+                        <div class="search-bar">
+                            <form action="FrontController">
+
+                                <input type="text" name="searchItem">
+                                <input type="hidden" name="cmd" value="search">
+
+                                <input type="submit" name="button" value="Search">
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                            <form action="FrontController">
+                    <input type="hidden" name="cmd" value="" id="hiddenId">
+                    <div class="row" mx-auto>
+                        <div class="col-lg-1 mx-auto">
+                            <div class="px-md-5">
+                                <button type="submit" class="btn btn-primary" onclick="buttonA_clickHandler(event)">Bulk Edit Products</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter"></div>
+                            <div class="overview" align="center">
+                                <c:forEach var="product" items ="${requestScope.productList}" varStatus="count">
+                                    <div class="row">
+                                    <div class="allProduct" align="center">
+                                        <div class="imageBox">
+                                                <c:if test="${product.getImages().size() > 0 }">
+                                                    <c:set var="image" value="${product.getImages().get(0)}"/>
+                                                    <img class="img-thumbnail" style="max-height:83px; max-width:83px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                                </c:if>
+                                        </div>
+                                        <div class="productInfo">
+                                        <p><b>${product.getName()}</b></p>
+                                        <p>${product.getID()}</p>
+                                        <p>${product.getType()}</p>
+                                    </div>
+                                    <div class="checkBoxBox">
+                                        <div class="form-check">
+                                            <p>Edit</p>
+                                            
+                                            <input class="form-check-input" type="checkbox" value="${product.getID()}"
+                                                   id="defaultCheck1" name="selectedEdit"></div>
+                                    </div>
+                                    <div class="checksButtons">
+                                                        <div class="form-check col">
+                                                            <button type="submit" class="btn btn-primary" name="selectedProduct"
+                                                                    value="${product.getID()}" onclick="buttonB_clickHandler(event)">Go To Product</button></div>
+                                                        <div class="form-check col">
+                                                            <button type="submit" class="btn btn-primary" name="selectedEdit"
+                                                                    value="${product.getID()}" onclick="buttonA_clickHandler(event)">Edit Product</button></div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </c:forEach>
+                                
+                                
+                            
+                            
                         </li>
 
                     </ul>
                 </div>
-            </nav>
         </form>
-
-
-        <form action="FrontController">
-            <input type="hidden" name="cmd" value="gotoUpdateProduct">
-            <div class="row" id="items">
-                <div class="col-lg-1">
-                    <div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button>
-                    </div>
-
-                </div>
-                <div class="col-lg-11 col-xs-1">
-
-                    <% ArrayList<Product> products = (ArrayList) request.getAttribute("productList");%>
-                    <% int counter; %>
-                    <% HashMap<String, Integer> countMap = new HashMap<>();
-
-                        for (Product product : products) {
-
-                            if (countMap.containsKey(product.getType())) {
-                                countMap.put(product.getType(), countMap.get(product.getType()) + 1);
-                            } else {
-                                countMap.put(product.getType(), 1);
-                            }
-                        }
-                    %>
-
-                    <%
-                        int placement = 0;
-                        for (Map.Entry<String, Integer> entry : countMap.entrySet()) {
-                            int value = entry.getValue();
-
-
-                    %>
-                    <table class="table"> 
-                        <thead> 
-                            <% for (int i = 0; i < products.get(placement).getFields().size(); i++) {%>
-
-                        <th>    <%=products.get(placement).getFields().get(i)%> </th>
-                            <% } %>    
-                        </thead>    
-
-                        <tr>
-                            <%     for (int j = placement; j < value + placement; j++) { %>
-
-                            <%     for (int t = 0; t < products.get(j).getFields().size(); t++) {%>
-                            <td>    <%=products.get(j).getFieldsValues().get(t)%>               </td>
-
-
-                            <% }%>
-                            <td> 
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="<%=products.get(j).getID()%>"
-                                           id="defaultCheck1" name="selectedEdit">
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <button type="submit" class="btn btn-primary" name="selectedProduct"
-                                                    value="<%=products.get(j).getID()%>" onclick="buttonB_clickHandler(event)">Go To Product</button>
-                                    </td>
-
-                                    <td>
-                                        <div class="form-check">
-                                            <button type="submit" class="btn btn-primary" name="selectedEdit"
-                                                    value="<%=products.get(j).getID()%>" onclick="buttonA_clickHandler(event)">Edit Product</button>
-                                    </td>
-
-                        </tr>
-                        <% } %>
-                    </table>
-                    <% placement = placement + value;
-                           }%>     
-
-
-
-
-                </div>
-            </div>                  
-        </form>
-                           <script type="text/javascript" src="buttonFunction.js"></script>
-
+                <script type="text/javascript" src="buttonFunction.js"></script>
     </body>
 </html>
