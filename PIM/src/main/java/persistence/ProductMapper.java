@@ -371,7 +371,7 @@ public class ProductMapper {
         }
         
         for (int i = 0; i < productID.size(); i++) {
-            String showSearchQuery = "SELECT product.manufacturer,  product.productName, product.productType, " + productType.get(i) + ".* FROM product"
+            String showSearchQuery = "SELECT product.manufacturer,  product.productName, product.productType, product.description, " + productType.get(i) + ".* FROM product"
                     + ", " + productType.get(i) + " where product.productID=" + productID.get(i) + " and " + productType.get(i) + ".productID =" + productID.get(i);
             
             ResultSet rs1 = statement.executeQuery(showSearchQuery);
