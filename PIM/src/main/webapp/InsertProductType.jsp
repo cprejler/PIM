@@ -117,17 +117,7 @@
 
         </div>
 
-        <div class="container">
-            <form action="http://206.189.57.7:8080/FileUploaderRestService-1.0/rest/upload" method="POST" enctype="multipart/form-data">
-                <h5 class="text-primary">Upload Image</h5>
-                <input type="file" name="fileToUpload">
-
-                <input type="submit" value="Upload">
-            </form>
-
-
-
-        </div>
+        
 
     </div>
 
