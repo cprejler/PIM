@@ -64,11 +64,27 @@
 
         <div class="container-fluid" id="page-wrapper">
 
+<<<<<<< HEAD
             <div class="container">
                 <div class="row mx-auto px-md-5">
                     <div class="col">
                         <div class="search-bar">
                             <form action="FrontController">
+=======
+        <form action="FrontController">
+            <input type="hidden" name="cmd" value="gotoUpdateProduct">
+            <div class="row" id="items">
+                <div class="col-lg-1">
+                    <div class="position-fixed"><button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+
+                </div>
+                <div class="col-lg-11 col-xs-1">
+
+                    <% ArrayList<Product> products = (ArrayList) request.getAttribute("productList");%>
+                    <% int counter; %>
+                    <% HashMap<String, Integer> countMap = new HashMap<>();
+>>>>>>> 23db87588d1905564c5759bde607a6b078a80388
 
                                 <input type="text" name="searchItem">
                                 <input type="hidden" name="cmd" value="search">
@@ -117,9 +133,17 @@
                 <thead class="thead"> 
                     <% for (int i = 0; i < products.get(placement).getFields().size(); i++) {%>
 
+<<<<<<< HEAD
                 <th>    <%=products.get(placement).getFields().get(i)%> </th>
                     <% } %>    
                 </thead>    
+=======
+                                    <td>
+                                        <div class="form-check">
+                                            <button type="submit" class="btn btn-primary" name="selectedEdit"
+                                                    value="<%=products.get(j).getID()%>" onclick="buttonA_clickHandler(event)">Edit Product</button>
+                                    </td>
+>>>>>>> 23db87588d1905564c5759bde607a6b078a80388
 
                 <tr>
                     <%     for (int j = placement; j < value + placement; j++) {
@@ -140,6 +164,7 @@
                                             value="<%=products.get(j).getID()%>" onclick="buttonB_clickHandler(event)">Go To Product</button>
                             </td>
 
+<<<<<<< HEAD
                             <td>
                                 <div class="form-check">
                                     <button type="submit" class="btn btn-primary" name="selectedEdit"
@@ -171,4 +196,12 @@ crossorigin="anonymous"></script>
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 <script type="text/javascript" src="buttonFunction.js"></script>
 </body>
+=======
+                </div>
+            </div>                  
+        </form>
+                           <script type="text/javascript" src="buttonFunction.js"></script>
+
+    </body>
+>>>>>>> 23db87588d1905564c5759bde607a6b078a80388
 </html>

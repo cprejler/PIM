@@ -30,9 +30,9 @@ CREATE TABLE wine(
 );
 
     CREATE TABLE toiletpaper(
-    Antallag enum('2', '4', '6'),  
-    Meter float,  
-    AntalRuller enum('2', '4', '6'),  
+    layers enum('2', '4', '6'),  
+    meter float,  
+    numberOfRollsInBag enum('2', '4', '6'),  
     productID int(5) unsigned zerofill NOT NULL,   
     foreign key (productID) references product(productID)); 
 
@@ -70,8 +70,8 @@ values ("Iphone X", "phone", "Apple"),
 ('Oneplus 3', 'phone', 'Oneplus'),
 ('Nokia 5230', 'phone', 'Nokia'),
 ('Meandro Do Vale Meão 2014', 'wine', 'Quinta do Vale Meão'),
-('test', 'wine', 'dansk vin'),
-('Lambi toiletpapir', 'toiletPaper', 'Bambi');
+('test', 'wine', 'Dansk vin'),
+('Lambi toiletpaper', 'toiletPaper', 'Bambi');
 
 
 insert into phone

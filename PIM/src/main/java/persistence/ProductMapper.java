@@ -147,11 +147,15 @@ public class ProductMapper {
     
     public void deleteProduct(Product product) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
+        String deleteProductType = "DELETE FROM "+product.getType()+" where "+product.getType()+".productID=?";
+        PreparedStatement deleteProductTypeSt = connection.prepareStatement(deleteProductType);
+        deleteProductTypeSt.setInt(1, product.getID());
+        deleteProductTypeSt.executeUpdate();
         
-        String delete = "DELETE FROM product WHERE product.productID=?";
-        PreparedStatement ps = connection.prepareStatement(delete);
-        ps.setInt(1, product.getID());
-        ps.executeUpdate();
+        String deleteProduct = "DELETE FROM product WHERE product.productID=?";
+        PreparedStatement deleteProductSt = connection.prepareStatement(deleteProduct);
+        deleteProductSt.setInt(1, product.getID());
+        deleteProductSt.executeUpdate();
     }
     
     public ArrayList<Product> showProducts(String productType) throws ClassNotFoundException, SQLException {
