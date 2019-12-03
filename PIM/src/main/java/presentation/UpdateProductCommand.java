@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,11 +53,12 @@ public class UpdateProductCommand extends Command {
         String manufacturer = request.getParameter("manufacturer");
         String productName = request.getParameter("productName");
         String productType = request.getParameter("productType");
+        String description = request.getParameter("description");
         
        
 
         for (String requestParameter : requestParameters) {
-            if (!requestParameter.equals("manufacturer") && !requestParameter.equals("productName") && !requestParameter.equals("productType")&&!requestParameter.equals("cmd")) {
+            if (!requestParameter.equals("manufacturer") && !requestParameter.equals("productName") && !requestParameter.equals("productType")&&!requestParameter.equals("cmd") && !requestParameter.equals("description")); {
                                 
                 fieldValues.add(requestParameter);
             }
@@ -65,6 +67,7 @@ public class UpdateProductCommand extends Command {
         
         
         Product product = new Product(productName, productType, manufacturer, fields, fieldValues);
+        product.setDescription(description);
         product.setID(Integer.parseInt(request.getParameter("productID")));
         product.setPublished(Boolean.FALSE);
 
@@ -74,6 +77,7 @@ public class UpdateProductCommand extends Command {
 
         try {
             pMapper.updateProduct(productList);
+            response.sendRedirect("/FrontController?cmd=ShowProducts");
             
         } catch (SQLException e) {
             
@@ -85,7 +89,7 @@ public class UpdateProductCommand extends Command {
             
         }
 
-        webpage="UpdateProduct";
+        webpage="ShowProducts";
         return webpage;
     }
     

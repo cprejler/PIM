@@ -137,6 +137,7 @@ public class ProductMapperTest {
         Product testWine = new Product("test1", "wine", "test", fields, fieldsValue);
         testWine.setID(8);
         testWine.setPublished(Boolean.FALSE);
+        testWine.setDescription("testdescription");
         ArrayList<Product> productList = new ArrayList();
         productList.add(testWine);
         pMapper.updateProduct(productList);

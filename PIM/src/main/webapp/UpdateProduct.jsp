@@ -75,9 +75,13 @@
                             <div class="col-lg-6">
                                 <div><h1 class="text-primary">ProductID: ${product.getID()}</h1></div>
                                 <h4 class="text-primary">Upload an image</h4>
+                                <!-- IMAGE UPLOAD -->
                                 <form action="FileUploadServlet" method="post" enctype="multipart/form-data">
                                     <input type="file" name="image">
+
+
                                     <input type="hidden" name="productID" value="${product.getID()}">
+
                                     <input type="submit" class="btn btn-primary" value="Upload">
 
                                 </form>
@@ -109,6 +113,10 @@
                                     <input type="text" name="productName" value="${product.getName()}"  readonly>
                                 </div>
                                 <div>
+                                    <h5 class="text-primary">Description</h5>
+                                    <input type="text" name="description" value="${product.getDescription()}"  readonly>
+                                </div>
+                                <div>
                                     <h5 class="text-primary">Product Type</h5>
                                     <input type="text" name="productType" value="${product.getType()}"  readonly>
                                 </div>
@@ -121,64 +129,68 @@
                             </div>
 
 
-                                <!-- FIELDS YOU CAN EDIT -->
+                            <!-- FIELDS YOU CAN EDIT -->
 
                             <div  class="col-lg-6 mg-2">
                                 <form action="FrontController">
-                                        <div>
-                                            <h5 class="text-primary">Manufacturer</h5>
-                                            <input type="text" name="manufacturer" value="${product.getManufacturer()}">
-                                        </div>
-                                        <div>
-                                            <h5 class="text-primary">Product Name</h5>
-                                            <input type="text" name="productName" value="${product.getName()}">
-                                        </div>
-                                        <div>
-                                            <h5 class="text-primary">Product Type</h5>
-                                            <input type="text" name="productType" value="${product.getType()}" readonly>
-                                        </div>
-                                        <c:forEach var="field" items="${product.getFields()}" varStatus="fieldCounter">
-                                            <h5 class="text-primary">${field}</h5>
-                                            <input type="text" name="${field}" value="${product.getFieldsValues().get(fieldCounter.index)}">
-                                        </c:forEach>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <input type="submit" class="btn btn-primary p-t-3" value="Apply Changes">
-                                                <input  type="hidden" name="productID" value="${product.getID()}">
-                                                <input  type="hidden" name="cmd" value="UpdateProduct">
-                                                </form>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <form action="FrontController">
-                                                    <input type="submit" class="btn btn-danger p-t-3" value="Delete Product">
-                                                    <input  type="hidden" name="productID" value="${product.getID()}">
-                                                    <input  type="hidden" name="cmd" value="DeleteProduct">
-                                                </form>
-                                            </div>
-                                        </div>
-
+                                    <div>
+                                        <h5 class="text-primary">Manufacturer</h5>
+                                        <input type="text" name="manufacturer" value="${product.getManufacturer()}">
                                     </div>
+                                    <div>
+                                        <h5 class="text-primary">Product Name</h5>
+                                        <input type="text" name="productName" value="${product.getName()}">
+                                    </div>
+                                    <div>
+                                        <h5 class="text-primary">Description</h5>
+                                        <input type="text" name="description" value="${product.getDescription()}">
+                                    </div>
+                                    <div>
+                                        <h5 class="text-primary">Product Type</h5>
+                                        <input type="text" name="productType" value="${product.getType()}" readonly>
+                                    </div>
+                                    <c:forEach var="field" items="${product.getFields()}" varStatus="fieldCounter">
+                                        <h5 class="text-primary">${field}</h5>
+                                        <input type="text" name="${field}" value="${product.getFieldsValues().get(fieldCounter.index)}">
+                                    </c:forEach>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <input type="submit" class="btn btn-primary p-t-3" value="Apply Changes">
+                                            <input  type="hidden" name="productID" value="${product.getID()}">
+                                            <input  type="hidden" name="cmd" value="UpdateProduct">
+                                            </form>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <form action="FrontController">
+                                                <input type="submit" class="btn btn-danger p-t-3" value="Delete Product">
+                                                <input  type="hidden" name="productID" value="${product.getID()}">
+                                                <input  type="hidden" name="cmd" value="DeleteProduct">
+                                            </form>
+                                        </div>
+                                    </div>
+
                             </div>
-
-
                         </div>
 
-                        <br>
-                    </c:forEach>
 
-                </div>
+                    </div>
+
+                    <br>
+                </c:forEach>
+
             </div>
+        </div>
 
 
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-                    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 
     </body>
