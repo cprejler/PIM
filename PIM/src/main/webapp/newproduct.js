@@ -46,6 +46,7 @@ function createInputBox ()  {
     y.setAttribute("value", select); 
     y.setAttribute("id", "variabel"+i);
     y.setAttribute("readonly", true); 
+    
 
 
     x.setAttribute("name", "attributes");

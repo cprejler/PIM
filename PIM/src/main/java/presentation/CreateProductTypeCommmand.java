@@ -114,8 +114,8 @@ public class CreateProductTypeCommmand extends Command {
         }
         
         System.out.println("columns: " + generateproducts.toString());
-        System.out.println("columns: " + enumValues.toString());
-
+        System.out.println("columns: " + enumValues.get(0).toString());
+        System.out.println("columns: " + enumValues.get(1).toString());
         pMapper.createProductTable(generateproducts, enumValues);
         System.out.println("");
         return "ShowProducts";

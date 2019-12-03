@@ -291,9 +291,8 @@ public class ProductMapper {
         StringBuilder sb = new StringBuilder();
         String foreignKeyProductID =  "productID int(5) unsigned zerofill NOT NULL, \n"
                 + " foreign key (productID) references product(productID))"; 
-        
+         int p = 0; 
         for (int i = 0; i < product.size(); i++) {
-            int l = 0; 
             if (i == 0) {
                 CreateTableQuery = "CREATE TABLE " + product.get(i) +"(" ; 
             }
@@ -314,9 +313,9 @@ public class ProductMapper {
                     CreateTableQuery = CreateTableQuery +varfloat;
                     break;
                 case 'E': 
-                    String varEnum = sb.substring(1) + " enum("+ enums.get(l).toString()+"), \n" ;
+                    String varEnum = sb.substring(1) + " enum("+ apostrof(enums.get(p).toString())+"), \n" ;
                     CreateTableQuery = CreateTableQuery +varEnum;
-                    l++;
+                    p++;
                 default:
                     break;
             }
@@ -397,7 +396,33 @@ public class ProductMapper {
         }
         return products;
     }
+     
+     public String apostrof (String Enums) {
+         String EnumsToSQL = "'";
+         String[] parts = Enums.split(","); 
+         ArrayList parts2 = new ArrayList() ; 
+         
+         for (int i = 0; i < parts.length; i++) {
+        parts2.add(parts[i]); 
+         }
+        
+         for (int i = 0; i < parts2.size(); i++) {
+             EnumsToSQL = EnumsToSQL + parts2.get(i)+"','"; 
+         }
+
+         StringBuilder sb = new StringBuilder(EnumsToSQL) ; 
+        EnumsToSQL = EnumsToSQL.substring(0,EnumsToSQL.length()-2);
+        
+        return EnumsToSQL;
+         
+         
+         }
+         
+         
+         
+         
+     }
     
     
    
-}
+

@@ -111,7 +111,7 @@ public class ProductMapperTest {
 //        
 //        pMapper.deleteProduct(testWine);
 //    }
-    @Test
+    //@Test
     public void updateProductTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();
@@ -238,5 +238,16 @@ public class ProductMapperTest {
         
         assertEquals("Oneplus 3", product.getName());
         assertEquals(5,  product.getID(),  0);
+    }
+    
+    @Test
+    public void testapostrof () throws ClassNotFoundException, SQLException {
+        String test  = "25,100,200"; 
+        ProductMapper pMapper  = new ProductMapper();
+        
+        String test2 = pMapper.apostrof(test); 
+        
+        System.out.println(test2);
+                 
     }
 }
