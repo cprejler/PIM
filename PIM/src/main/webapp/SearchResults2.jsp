@@ -32,7 +32,7 @@
             display:inline-block;
             width:20%;
         }
-        .imagebox{
+        .imageBox{
             display:inline-block;
             float:left;
             width:10%;
@@ -127,7 +127,6 @@
                                                 <c:if test="${product.getImages().size() > 0 }">
                                                     <c:set var="image" value="${product.getImages().get(0)}"/>
                                                     <img class="img-thumbnail" style="max-height:83px; max-width:83px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
-                                        
                                                 </c:if>
                                         </div>
                                         <div class="productInfo">
@@ -136,9 +135,9 @@
                                         <p>${product.getType()}</p>
                                     </div>
                                     <div class="checksButtons">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="${product.getID()}"
-                                                   id="defaultCheck1" name="selectedEdit"></div>
+                                         <div class="form-check">
+                                              <input class="form-check-input" type="checkbox" value="${product.getID()}"
+                                                    id="defaultCheck1" name="selectedEdit"></div>
                                                         <div class="form-check col">
                                                             <button type="submit" class="btn btn-primary" name="selectedProduct"
                                                                     value="${product.getID()}" onclick="buttonB_clickHandler(event)">Go To Product</button></div>
@@ -146,8 +145,6 @@
                                                             <button type="submit" class="btn btn-primary" name="selectedEdit"
                                                                     value="${product.getID()}" onclick="buttonA_clickHandler(event)">Edit Product</button></div>
                                     </div>
-                                    </div>
-                                    <div class="invisible">
                                     </div>
                                     </div>
                                 </c:forEach>
@@ -160,5 +157,6 @@
                     </ul>
                 </div>
         </form>
+                <script type="text/javascript" src="buttonFunction.js"></script>
     </body>
 </html>
