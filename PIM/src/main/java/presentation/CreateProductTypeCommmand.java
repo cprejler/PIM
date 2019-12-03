@@ -108,7 +108,7 @@ public class CreateProductTypeCommmand extends Command {
             generateproducts.add(productsss);
 
         }
-        
+        System.out.println("101");
         pMapper.createProductTable(generateproducts, enumValues);
         return "ShowProducts";
     }
