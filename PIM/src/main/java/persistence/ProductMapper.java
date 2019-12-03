@@ -322,7 +322,7 @@ public class ProductMapper {
             }
         }
         CreateTableQuery = CreateTableQuery + foreignKeyProductID ;
-        
+        System.out.println("YO"+CreateTableQuery);
         st.executeUpdate(CreateTableQuery); 
         connection.close();
         
