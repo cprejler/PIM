@@ -59,9 +59,7 @@ public class CreateProductTypeCommmand extends Command {
                 default:
                     break;
             }
-             if {
-                columnNames.add(param);
-            }
+             
         }
     //Get  the actual value   of  the  parameters, as well  as add the names to the fields array
         //We  don't  want  manufacturer, productName, and  productType  added to that array
@@ -69,8 +67,11 @@ public class CreateProductTypeCommmand extends Command {
                 requestParameters.add(request.getParameter(param));
             }
         for (String requestParameter : requestParameters) {
-                                
+                if(requestParameter.contains("enum")) {               
                 enumValues.add(requestParameter);
+                } else{
+                    columnNames.add(requestParameter);
+                }
             }
         
     pMapper.createProductTable (params, type, enumValues);
