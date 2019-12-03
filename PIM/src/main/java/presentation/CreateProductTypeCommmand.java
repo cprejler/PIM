@@ -39,11 +39,12 @@ public class CreateProductTypeCommmand extends Command {
                 columnNames = new ArrayList<>(Arrays.asList(parametermap.get(key)));
             } else if(key.equalsIgnoreCase("enumAttributes")){
                 enumValues = new ArrayList<>(Arrays.asList(parametermap.get(key)));
-            } else if(key.contains("string")|| key.contains("integer")|| key.contains("enum")||){
+            } else if(key.equalsIgnoreCase("type")){
                 type = new ArrayList<>(Arrays.asList(parametermap.get(key)));
-            } 
+            } else if(key.equalsIgnoreCase("productType")){
+                productType = parametermap.get(key).toString();
         }
-        
+        }
         System.out.println("columns: " + columnNames.toString());
         System.out.println("type: " + type.toString());
         System.out.println("enum: " + enumValues.toString());
