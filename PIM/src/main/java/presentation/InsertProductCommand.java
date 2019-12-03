@@ -42,7 +42,7 @@ public class InsertProductCommand extends Command {
         //We  don't  want  manufacturer, productName, and  productType  added to that array
         for (String param : params) {
             
-            if (!param.equals("manufacturer") && !param.equals("productName") && !param.equals("productType") &&  !param.equals("cmd")){
+            if (!param.equals("manufacturer") && !param.equals("productName") && !param.equals("productType") &&  !param.equals("cmd") &&!param.equals("description")){
                 fields.add(param);
                 requestParameters.add(request.getParameter(param));
             }
