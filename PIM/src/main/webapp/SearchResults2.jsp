@@ -21,41 +21,41 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
-        .allProduct{
-            width:90%;
-            padding:20px;
-            border:solid;
-            overflow:auto;
-        }
-        .productInfo{
-            vertical-align: top;
-            display:inline-block;
-            width:20%;
-        }
-        .imageBox{
-            display:inline-block;
-            float:left;
-            width:10%;
-        }
-        .checksButtons{
-            float:right;
-        }
-        p{
-            text-align:left;
-            color:black;
-        }
-        .invisible{
-            opacity: 0;
-            height: 5%;
-        }
-        .overview{
-            float:right;
-            width:80%;
-        }
-        .filter{
-            float:left;
-            width:20%;
-        }
+            .allProduct{
+                width:90%;
+                padding:20px;
+                border:solid;
+                overflow:auto;
+            }
+            .productInfo{
+                vertical-align: top;
+                display:inline-block;
+                width:20%;
+            }
+            .imageBox{
+                display:inline-block;
+                float:left;
+                width:10%;
+            }
+            .checksButtons{
+                float:right;
+            }
+            p{
+                text-align:left;
+                color:black;
+            }
+            .invisible{
+                opacity: 0;
+                height: 5%;
+            }
+            .overview{
+                float:right;
+                width:80%;
+            }
+            .filter{
+                float:left;
+                width:20%;
+            }
         </style>
     </head>
 
@@ -90,73 +90,73 @@
                                 <div class="dropdown-divider"></div>
                                 <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
                                     Data</button>
-                               
+
                             </div>
-                               </nav>
+                            </nav>
                             </form>
                             </div>
-                <div class="row mx-auto px-md-5">
-                    <div class="col">
-                        <div class="search-bar">
-                            <form action="FrontController">
+                            <div class="row mx-auto px-md-5">
+                                <div class="col">
+                                    <div class="search-bar">
+                                        <form action="FrontController">
 
-                                <input type="text" name="searchItem">
-                                <input type="hidden" name="cmd" value="search">
+                                            <input type="text" name="searchItem">
+                                            <input type="hidden" name="cmd" value="search">
 
-                                <input type="submit" name="button" value="Search">
-                            </form>
+                                            <input type="submit" name="button" value="Search">
+                                        </form>
 
-                        </div>
-                    </div>
-                </div>
-                            <form action="FrontController">
-                    <input type="hidden" name="cmd" value="" id="hiddenId">
-                    <div class="row" mx-auto>
-                        <div class="col-lg-1 mx-auto">
-                            <div class="px-md-5">
-                                <button type="submit" class="btn btn-primary" onclick="buttonA_clickHandler(event)">Bulk Edit Products</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="filter"></div>
-                            <div class="overview" align="center">
-                                <c:forEach var="product" items ="${requestScope.productList}" varStatus="count">
-                                    <div class="row">
-                                    <div class="allProduct" align="center">
-                                        <div class="imageBox">
-                                                <c:if test="${product.getImages().size() > 0 }">
-                                                    <c:set var="image" value="${product.getImages().get(0)}"/>
-                                                    <img class="img-thumbnail" style="max-height:83px; max-width:83px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
-                                                </c:if>
+                            <form action="FrontController">
+                                <input type="hidden" name="cmd" value="" id="hiddenId">
+                                <div class="row" mx-auto>
+                                    <div class="col-lg-1 mx-auto">
+                                        <div class="px-md-5">
+                                            <button type="submit" class="btn btn-primary" onclick="buttonA_clickHandler(event)">Bulk Edit Products</button>
                                         </div>
-                                        <div class="productInfo">
-                                        <p><b>${product.getName()}</b></p>
-                                        <p>${product.getID()}</p>
-                                        <p>${product.getType()}</p>
                                     </div>
-                                    <div class="checksButtons">
-                                         <div class="form-check">
-                                              <input class="form-check-input" type="checkbox" value="${product.getID()}"
-                                                    id="defaultCheck1" name="selectedEdit"></div>
-                                                        <div class="form-check col">
-                                                            <button type="submit" class="btn btn-primary" name="selectedProduct"
-                                                                    value="${product.getID()}" onclick="buttonB_clickHandler(event)">Go To Product</button></div>
-                                                        <div class="form-check col">
-                                                            <button type="submit" class="btn btn-primary" name="selectedEdit"
-                                                                    value="${product.getID()}" onclick="buttonA_clickHandler(event)">Edit Product</button></div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                </c:forEach>
-                                
-                                
-                            
-                            
-                        </li>
+                                </div>
+                                <div class="filter"></div>
+                                <div class="overview" align="center">
+                                    <c:forEach var="product" items ="${requestScope.productList}" varStatus="count">
+                                        <div class="row">
+                                            <div class="allProduct" align="center">
+                                                <div class="imageBox">
+                                                    <c:if test="${product.getImages().size() > 0 }">
+                                                        <c:set var="image" value="${product.getImages().get(0)}"/>
+                                                        <img class="img-thumbnail" style="max-height:83px; max-width:83px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                                    </c:if>
+                                                </div>
+                                                <div class="productInfo">
+                                                    <p><b>${product.getName()}</b></p>
+                                                    <p>${product.getID()}</p>
+                                                    <p>${product.getType()}</p>
+                                                </div>
+                                                <div class="checksButtons">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="${product.getID()}"
+                                                               id="defaultCheck1" name="selectedEdit"></div>
+                                                    <div class="form-check col">
+                                                        <button type="submit" class="btn btn-primary" name="selectedProduct"
+                                                                value="${product.getID()}" onclick="buttonB_clickHandler(event)">Go To Product</button></div>
+                                                    <div class="form-check col">
+                                                        <button type="submit" class="btn btn-primary" name="selectedEdit"
+                                                                value="${product.getID()}" onclick="buttonA_clickHandler(event)">Edit Product</button></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
 
-                    </ul>
-                </div>
-        </form>
-                <script type="text/javascript" src="buttonFunction.js"></script>
-    </body>
-</html>
+
+
+
+                                    </li>
+
+                                    </ul>
+                                </div>
+                            </form>
+                            <script type="text/javascript" src="buttonFunction.js"></script>
+                            </body>
+                            </html>
