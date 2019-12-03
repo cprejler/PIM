@@ -29,16 +29,18 @@
         }
         .productInfo{
             vertical-align: top;
+            float:left;
             display:inline-block;
-            width:20%;
+            width:200px;
         }
-        .imagebox{
+        .imageBox{
             display:inline-block;
             float:left;
-            width:10%;
+            width:100px;
         }
         .checksButtons{
             float:right;
+            width:10%;
         }
         p{
             text-align:left;
@@ -55,6 +57,19 @@
         .filter{
             float:left;
             width:20%;
+        }
+        .form-check{
+            float: left;
+            margin: 10px;
+        }
+        .form-check col{
+            float:right;
+            margin: 10px;
+        }
+        .checkBoxBox{
+            margin: 20px;
+            float: right;
+            width:5%;
         }
         </style>
     </head>
@@ -135,10 +150,14 @@
                                         <p>${product.getID()}</p>
                                         <p>${product.getType()}</p>
                                     </div>
-                                    <div class="checksButtons">
+                                    <div class="checkBoxBox">
                                         <div class="form-check">
+                                            <p>Edit</p>
+                                            
                                             <input class="form-check-input" type="checkbox" value="${product.getID()}"
                                                    id="defaultCheck1" name="selectedEdit"></div>
+                                    </div>
+                                    <div class="checksButtons">
                                                         <div class="form-check col">
                                                             <button type="submit" class="btn btn-primary" name="selectedProduct"
                                                                     value="${product.getID()}" onclick="buttonB_clickHandler(event)">Go To Product</button></div>
@@ -160,5 +179,7 @@
                     </ul>
                 </div>
         </form>
+                                           <script type="text/javascript" src="buttonFunction.js"></script>
+
     </body>
 </html>
