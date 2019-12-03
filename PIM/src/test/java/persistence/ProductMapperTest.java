@@ -18,7 +18,7 @@ import org.junit.Test;
  */
 public class ProductMapperTest {
 
-    @Before
+    //@Before
     public void setUp() throws ClassNotFoundException, SQLException {
         ChooseConnection cv = new ChooseConnection();
         Connection connection = cv.chooseConnections();
