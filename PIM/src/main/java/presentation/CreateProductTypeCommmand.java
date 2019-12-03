@@ -74,7 +74,24 @@ public class CreateProductTypeCommmand extends Command {
                 }
             }
         
-    //pMapper.createProductTable (params, type, enumValues, productType);
+        String producttype =" " ; 
+        ArrayList<String> generateproducts= new ArrayList();
+        
+        generateproducts.add(producttype); 
+        
+        for (int i = 0; i < type.size(); i++) {
+        String productsss =""; 
+        StringBuilder sb = new StringBuilder(productsss); 
+       
+           productsss = type.get(i);
+           productsss = sb.substring(1) + columnNames.get(i); 
+           generateproducts.add(productsss); 
+            
+        }
+        
+        
+        
+    pMapper.createProductTable (generateproducts, enumValues);
     return webpage ;
     }
 }
