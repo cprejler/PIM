@@ -18,14 +18,15 @@ public class Product {
     private ArrayList<String> fields;
     private ArrayList<Object> fieldsValues;
     private ArrayList<Image> images;
+    private String description;
 
     public Product(String name,  String type, String manufacturer, ArrayList<String> fields, ArrayList<Object> fieldsValues) {
         this.name = name;
-        
         this.type = type;
         this.manufacturer = manufacturer;
         this.fields = fields;
         this.fieldsValues = fieldsValues;
+        
     }
 
     public Product(String name, String type, String manufacturer, ArrayList<String> fields, ArrayList<Object> fieldsValues, ArrayList<Image> images) {
@@ -93,5 +94,13 @@ public class Product {
     public void setImages(ArrayList<Image> images) {
         this.images = images;
     } 
+    
+    public void setDescription(String description){
+        this.description = description;
+    }
+    
+    public String getDescription(){
+        return description;
+    }
 
 }

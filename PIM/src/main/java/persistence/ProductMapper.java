@@ -394,6 +394,7 @@ public class ProductMapper {
                     Product product = new Product(name, manufacturer, productType.get(i), fields, fieldValues, images);
                     product.setID(rs1.getInt("ProductID"));
                     product.setType(rs1.getString("productType"));
+                    product.setDescription(rs1.getString("description"));
                     products.add(product);
             }
         }
