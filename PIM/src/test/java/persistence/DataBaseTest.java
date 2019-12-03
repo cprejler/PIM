@@ -18,7 +18,7 @@ import org.junit.Test;
 public class DataBaseTest {
     
     
-    @Test
+    //@Test
     public void connectionTest() throws ClassNotFoundException, SQLException{
         DataBase db = new DataBase();
         ChooseConnection cv = new ChooseConnection();

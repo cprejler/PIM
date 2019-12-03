@@ -18,7 +18,7 @@ import org.junit.Test;
  */
 public class ProductMapperTest {
 
-    @Before
+    //@Before
     public void setUp() throws ClassNotFoundException, SQLException {
         ChooseConnection cv = new ChooseConnection();
         Connection connection = cv.chooseConnections();
@@ -49,7 +49,7 @@ public class ProductMapperTest {
         }
     }
 
-    @Test
+    //@Test
     public void insertProductTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();
@@ -111,7 +111,7 @@ public class ProductMapperTest {
 //        
 //        pMapper.deleteProduct(testWine);
 //    }
-    @Test
+    //@Test
     public void updateProductTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();
@@ -144,7 +144,7 @@ public class ProductMapperTest {
 
     }
 
-    @Test
+    //@Test
     public void showProductsTest() throws ClassNotFoundException, SQLException {
 //        ProductMapper pMapper = new ProductMapper();
 //
@@ -162,7 +162,7 @@ public class ProductMapperTest {
 
     }
 
-  @Test
+  //@Test
     public void alterEnumTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();
@@ -210,7 +210,7 @@ public class ProductMapperTest {
 
     }
 */
-    @Test
+    //@Test
     public void getTableNames() throws SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
         String DatabaseName = "test";
@@ -223,7 +223,7 @@ public class ProductMapperTest {
         
     }
 
-    @Test
+    //@Test
     public void searchForProductTest() throws ClassNotFoundException, SQLException {
         ProductMapper pMapper = new ProductMapper();
         ArrayList<Product> p = pMapper.searchForProduct("iphone");
@@ -231,7 +231,7 @@ public class ProductMapperTest {
     }
     
     
-    @Test
+    //@Test
     public void getProductTest() throws ClassNotFoundException, SQLException{
         ProductMapper pMapper  = new ProductMapper();
         

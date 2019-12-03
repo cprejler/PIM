@@ -71,6 +71,13 @@
             float: right;
             width:5%;
         }
+        .description{
+            float: left;
+            margin: 20px;
+            width:40%;
+            font-size:small;
+            color: gray;
+        }
         </style>
     </head>
 
@@ -141,13 +148,19 @@
                                         <div class="imageBox">
                                                 <c:if test="${product.getImages().size() > 0 }">
                                                     <c:set var="image" value="${product.getImages().get(0)}"/>
-                                                    <img class="img-thumbnail" style="max-height:83px; max-width:83px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                                    <img class="img-thumbnail" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                                </c:if>
+                                                <c:if test="${product.getImages().size() < 1}">
+                                                    <img src="Udklip.PNG" style="max-height:83px; max-width:83;">
                                                 </c:if>
                                         </div>
                                         <div class="productInfo">
                                         <p><b>${product.getName()}</b></p>
-                                        <p>${product.getID()}</p>
+                                        <p>ProductID: ${product.getID()}</p>
                                         <p>${product.getType()}</p>
+                                    </div>
+                                    <div class="description">
+                                        <p>${product.getDescription()}</p> 
                                     </div>
                                     <div class="checkBoxBox">
                                         <div class="form-check">
