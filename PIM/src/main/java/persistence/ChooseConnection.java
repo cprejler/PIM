@@ -31,7 +31,7 @@ public class ChooseConnection {
         switch (databasevalg) {
             case 1:
                 connection = db.dropletTestDB() ;
-                setDatabase("testpim");
+                setDatabase("test");
                 break;
             case 2: 
                 connection = db.localTestDB();
