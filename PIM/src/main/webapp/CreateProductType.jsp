@@ -73,36 +73,24 @@
                 </div>
 
 
-                <div class="row mx-auto">
-
-                    <h1>Create new product type</h1>
-
-                </div>
+                
 
 
 
 
                 <body>
+                    
+                        <form action="FrontController">
+                <div class="row mx-auto">
+                    <h1>Create new product type</h1>
+                </div>
                         <P>
 
                                 <input type ="text" name = "productType" placeholder="Skriv hvilken produkt type du vil lave"  id = "1"> 
-                                
-                                         
-                               
-            
-                      
                         </P>
-
-                            
-                            
-                <div class= "book-list" id="book-list">
+                        <div class= "book-list" id="book-list">
                         <h2 class="title">Produkt variabler</h2>
                           <p> vaelg hvilken  variabel type du skal bruge og tryk OK!</p>  
-
-
-
-
-
 
                         <select name ="myselect" id="mySelect">                                
                           <option value="String">String</option>
@@ -110,20 +98,19 @@
                           <option value="Float">Float</option>
                           <option value="Enum">Enum</option>
                         </select>
-                        <button name= "createInputBtn" id= "createInputBtn"  onclick = " createInputBox()" > Generer nyt felt  </button>
-
-
-                        <ul>
-                        </ul>
+                        <button type="button" name= "createInputBtn" id= "createInputBtn"  onclick = " createInputBox()" > Generer nyt felt </button>
+                        
                     </div>
 
                     <div class = " bunden" id = "bottomm">
                         <p></p>
                         <p>  Afslut her</p>
-                        <form action="FrontController">
+
+                            <input type="text" name="hej" value="0" />
                                 <input type="submit" class="btn btn-danger" value="Create Product">
                                 <input  type="hidden" name="cmd" value="CreateProductType">
-                            </form>
+                           
+                        </form>
 
 
 

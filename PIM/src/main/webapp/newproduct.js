@@ -40,14 +40,14 @@ function createInputBox ()  {
     
     var select = mySelect.value; 
     
-    x.setAttribute("name", select+i)
+    x.setAttribute("name", "attributes")
     x.setAttribute("type", "text"); 
     x.setAttribute("placeholder", select); 
     x.setAttribute("id", "variabel"+i); 
 
 
 
-    enums.setAttribute("name", "value"+i)
+    enums.setAttribute("name", "enumAttributes")
     enums.setAttribute("type", "text"); 
     enums.setAttribute("placeholder", "Skriv enumværdierne sepereret af comma"); 
     enums.setAttribute("id", "variabel"+i); 
