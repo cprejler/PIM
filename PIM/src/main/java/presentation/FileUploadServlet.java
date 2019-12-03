@@ -101,7 +101,7 @@ public class FileUploadServlet extends HttpServlet {
             statement.setBlob(1, inputStream);
             statement.setInt(2, productID);
             statement.execute();
-            response.sendRedirect("/FrontController?cmd=gotoUpdateProduct&selectedEdit="+productID+"");
+            response.sendRedirect("/PIM/FrontController?cmd=gotoUpdateProduct&selectedEdit="+productID+"");
             
             
             

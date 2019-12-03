@@ -77,7 +77,7 @@
                                 <h4 class="text-primary">Upload an image</h4>
                                 <!-- IMAGE UPLOAD -->
                                 <form action="FileUploadServlet" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="image">
+                                    <input type="file" name="image" accept="image/png, image/jpeg">
 
 
                                     <input type="hidden" name="productID" value="${product.getID()}">
