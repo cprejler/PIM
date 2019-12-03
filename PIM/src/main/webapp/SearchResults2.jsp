@@ -22,12 +22,20 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
         .allProduct{
-            width:70%;
+            width:90%;
             padding:20px;
+            border:solid;
+            overflow:auto;
         }
         .productInfo{
-            float: left;
-            
+            vertical-align: top;
+            display:inline-block;
+            width:20%;
+        }
+        .imagebox{
+            display:inline-block;
+            float:left;
+            width:10%;
         }
         .checksButtons{
             float:right;
@@ -115,7 +123,14 @@
                                 <c:forEach var="product" items ="${requestScope.productList}" varStatus="count">
                                     <div class="row">
                                     <div class="allProduct" align="center">
-                                    <div class="productInfo">
+                                        <div class="imageBox">
+                                                <c:if test="${product.getImages().size() > 0 }">
+                                                    <c:set var="image" value="${product.getImages().get(0)}"/>
+                                                    <img class="img-thumbnail" style="max-height:83px; max-width:83px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                        
+                                                </c:if>
+                                        </div>
+                                        <div class="productInfo">
                                         <p><b>${product.getName()}</b></p>
                                         <p>${product.getID()}</p>
                                         <p>${product.getType()}</p>
@@ -138,7 +153,7 @@
                                 </c:forEach>
                                 
                                 
-                            </div>
+                            
                             
                         </li>
 

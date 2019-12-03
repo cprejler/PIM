@@ -378,6 +378,7 @@ public class ProductMapper {
             ResultSetMetaData rsmd = rs1.getMetaData();
             
             int intColumnCount = rsmd.getColumnCount();
+            ProductMapper pm = new ProductMapper();
             
             while (rs1.next()) {
                 ArrayList<Object> fieldValues = new ArrayList<>();
@@ -389,7 +390,8 @@ public class ProductMapper {
                     manufacturer = rs1.getString("manufacturer");
                     
                 }
-                    Product product = new Product(name, manufacturer, productType.get(i), fields, fieldValues);
+                    ArrayList<Image> images = pm.getImages(rs1.getInt("ProductID"));
+                    Product product = new Product(name, manufacturer, productType.get(i), fields, fieldValues, images);
                     product.setID(rs1.getInt("ProductID"));
                     product.setType(rs1.getString("productType"));
                     products.add(product);
