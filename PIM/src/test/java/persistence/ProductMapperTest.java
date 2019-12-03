@@ -134,12 +134,12 @@ public class ProductMapperTest {
         fieldsValue.add(productID);
         fields.add("empty");
 
-        Product testWine = new Product("test1", "wine", "test", fields, fieldsValue);
-        testWine.setID(8);
-        testWine.setPublished(Boolean.FALSE);
-        ArrayList<Product> productList = new ArrayList();
-        productList.add(testWine);
-        pMapper.updateProduct(productList);
+//        Product testWine = new Product("test1", "wine", "test", fields, fieldsValue);
+//        testWine.setID(8);
+//        testWine.setPublished(Boolean.FALSE);
+//        ArrayList<Product> productList = new ArrayList();
+//        productList.add(testWine);
+//        pMapper.updateProduct(productList);
 
     }
 
