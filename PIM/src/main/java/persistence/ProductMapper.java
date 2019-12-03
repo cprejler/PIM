@@ -245,9 +245,7 @@ public class ProductMapper {
         String productType ="productType"; //Kolonne navn i tabel
         
         
-        
         String getEnumsQuery = getProductEnums(product, productType);
-        
         Statement st = connection.createStatement();  
         ResultSet rs = st.executeQuery(getEnumsQuery);
         String enums = ""; 
@@ -264,14 +262,13 @@ public class ProductMapper {
         enums = sb.toString(); 
          newEnumVars = enums; 
         newEnumVars = newEnumVars.toLowerCase();
-
         String alterTableQuery = "alter table product modify column productType " + newEnumVars ;
-        
         st.executeUpdate(alterTableQuery);
-        connection.close();
+            
+        
+        //connection.close();
             
         }
-        
 
         
         return newEnumVars;
@@ -280,8 +277,10 @@ public class ProductMapper {
     public String getProductEnums(String TableName, String ColumnName) throws SQLException{
         TableName = "'"+TableName+"'"; 
         ColumnName = "'"+ColumnName+"'";
+        String database = "'"+cv.getDatabase()+"'";
         
-        String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_NAME = "+ TableName+ " AND COLUMN_NAME ="+ ColumnName +"";
+        String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_SCHEMA = "+database+ " AND TABLE_NAME = "+ TableName+ " AND COLUMN_NAME ="+ ColumnName +"";
+        System.out.println(getEnumsQuery);
         return getEnumsQuery;
     }
     
@@ -294,7 +293,9 @@ public class ProductMapper {
          int p = 0; 
         for (int i = 0; i < product.size(); i++) {
             if (i == 0) {
-                CreateTableQuery = "CREATE TABLE " + product.get(i) +"(" ; 
+                String productType = product.get(i).toString().toLowerCase();
+                CreateTableQuery = "CREATE TABLE " + productType +" (" ; 
+                alterProductTypeEnum(productType); 
             }
             String products = (String) product.get(i); 
             sb = new StringBuilder (products);
@@ -321,8 +322,8 @@ public class ProductMapper {
             }
         }
         CreateTableQuery = CreateTableQuery + foreignKeyProductID ;
-        System.out.println("YO"+CreateTableQuery);
-        st.executeUpdate(CreateTableQuery); 
+        st.executeUpdate(CreateTableQuery);        
+ 
         connection.close();
         
         return CreateTableQuery;

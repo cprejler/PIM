@@ -48,10 +48,6 @@ public class CreateProductTypeCommmand extends Command {
         }
         }
 
-        System.out.println("columns: " + columnNames.toString());
-        System.out.println("type: " + type.toString());
-        System.out.println("enum: " + enumValues.toString());
-        System.out.println(productType);
 //        ArrayList<String> requestParameters = new ArrayList<>();
 
 //        while (parameterNames.hasMoreElements()) {
@@ -113,11 +109,7 @@ public class CreateProductTypeCommmand extends Command {
 
         }
         
-//        System.out.println("columns: " + generateproducts.toString());
-//        System.out.println("columns: " + enumValues.get(0).toString());
-//        System.out.println("columns: " + enumValues.get(1).toString());
         pMapper.createProductTable(generateproducts, enumValues);
-        System.out.println("");
         return "ShowProducts";
     }
 }

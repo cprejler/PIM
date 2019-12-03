@@ -13,7 +13,7 @@ function ifEnum () {
 
     enums.setAttribute("name", "enums"+i)
     enums.setAttribute("type", "text"); 
-    enums.setAttribute("placeholder", "skriv dine enums, comma separeret "); 
+    enums.setAttribute("placeholder", "type in your enums values "); 
 
     enums.setAttribute("id", "enums"+i); 
 
@@ -42,7 +42,7 @@ function createInputBox ()  {
     
     var y = x.cloneNode(true);  
     y.setAttribute("name", "type"); 
-    y.setAttribute("type", "text"); 
+    y.setAttribute("type", "hidden"); 
     y.setAttribute("value", select); 
     y.setAttribute("id", "variabel"+i);
     y.setAttribute("readonly", true); 
@@ -58,7 +58,7 @@ function createInputBox ()  {
 
     enums.setAttribute("name", "enumAttributes")
     enums.setAttribute("type", "text"); 
-    enums.setAttribute("placeholder", "Skriv enumværdierne sepereret af comma"); 
+    enums.setAttribute("placeholder", "type in your enums values"); 
     enums.setAttribute("id", "variabel"+i); 
 
 if (mySelect.value == "Enum") {

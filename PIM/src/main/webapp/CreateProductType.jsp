@@ -4,7 +4,7 @@
     <head>
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>ShowProducts</title>
+        <title>CreateNewProductType</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -86,11 +86,11 @@
                         </div>
                         <P>
 
-                            <input type ="text" name = "productType" placeholder="Skriv hvilken produkt type du vil lave"  id = "1"> 
+                            <input type ="text" name = "productType" placeholder="Type the name of your new producttype."  id = "1"> 
                         </P>
                         <div class= "book-list" id="book-list">
-                            <h2 class="title">Produkt variabler</h2>
-                            <p> vaelg hvilken  variabel type du skal bruge og tryk OK!</p>  
+                            <h2 class="title">Product variables</h2>
+                            <p> Pick what type of variable, you want to insert.</p>  
 
                             <select name ="myselect" id="mySelect">                                
                                 <option value="String">String</option>
@@ -98,13 +98,13 @@
                                 <option value="Float">Float</option>
                                 <option value="Enum">Enum</option>
                             </select>
-                            <button type="button" name= "createInputBtn" id= "createInputBtn"  onclick = " createInputBox()" > Generer nyt felt </button>
+                            <button type="button" name= "createInputBtn" id= "createInputBtn"  onclick = " createInputBox()" > Create new input field </button>
                             <br>
                         </div>
 
                         <div class = " bunden" id = "bottomm">
                             <p></p>
-                            <p>  Afslut her</p>
+                            <p></p>
 
                             <input type="submit" class="btn btn-danger" value="Create Product">
                             <input  type="hidden" name="cmd" value="CreateProductType">
