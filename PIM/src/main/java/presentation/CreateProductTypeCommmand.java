@@ -29,6 +29,7 @@ public class CreateProductTypeCommmand extends Command {
         ArrayList<String> columnNames = new ArrayList<>();
         ArrayList<String> type = new ArrayList<>();
         ArrayList<String> enumValues = new ArrayList<>();
+        ArrayList<String> productTypeArray = new ArrayList<>();
         String productType = "";
         Enumeration<String> parameterNames = request.getParameterNames();
         //Enumeration<String> parameterNeames = request.get();
@@ -42,48 +43,50 @@ public class CreateProductTypeCommmand extends Command {
             } else if(key.equalsIgnoreCase("type")){
                 type = new ArrayList<>(Arrays.asList(parametermap.get(key)));
             } else if(key.equalsIgnoreCase("productType")){
-                productType = parametermap.get(key).toString();
+                productTypeArray = new ArrayList<>(Arrays.asList(parametermap.get(key)));
+                productType = productTypeArray.get(0).toString();
         }
         }
 
         System.out.println("columns: " + columnNames.toString());
         System.out.println("type: " + type.toString());
         System.out.println("enum: " + enumValues.toString());
-        ArrayList<String> requestParameters = new ArrayList<>();
+        System.out.println(productType);
+//        ArrayList<String> requestParameters = new ArrayList<>();
 
-        while (parameterNames.hasMoreElements()) {
-            params.add(parameterNames.nextElement());
-        }
+//        while (parameterNames.hasMoreElements()) {
+//            params.add(parameterNames.nextElement());
+//        }
 
-        for (String param : params) {
-            String sb = param.toLowerCase();
-            switch (sb.charAt(0)) {
-                case 's':
-                    type.add("string");
-                    break;
-                case 'i':
-                    type.add("integer");
-                    break;
-                case 'e':
-                    type.add("enum");
-                    break;
-                case 'f':
-                    type.add("float");
-                    break;
-                default:
-                    break;
-            }
-        }
-        for (String param : params) {
-            requestParameters.add(request.getParameter(param));
-            if ((param.contains("enum"))) {
-                enumValues.add(request.getParameter(param));
-            } else if (param.contains("productType")) {
-                productType = (request.getParameter(param));
-            } else {
-                columnNames.add(request.getParameter(param));
-            }
-        }
+//        for (String typer : type) {
+//            String sb = typer.toLowerCase();
+//            switch (sb.charAt(0)) {
+//                case 's':
+//                    type.add("string");
+//                    break;
+//                case 'i':
+//                    type.add("integer");
+//                    break;
+//                case 'e':
+//                    type.add("enum");
+//                    break;
+//                case 'f':
+//                    type.add("float");
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+//        for (String param : params) {
+//            requestParameters.add(request.getParameter(param));
+//            if ((param.contains("enum"))) {
+//                enumValues.add(request.getParameter(param));
+//            } else if (param.contains("productType")) {
+//                productType = (request.getParameter(param));
+//            } else {
+//                columnNames.add(request.getParameter(param));
+//            }
+//        }
 //        for (String requestParameter : requestParameters) {
 //                if(requestParameter.contains("enum")) {               
 //                enumValues.add(requestParameter);
@@ -95,7 +98,7 @@ public class CreateProductTypeCommmand extends Command {
 //                }
 //            }
 
-        String producttype = " ";
+        String producttype = "";
         ArrayList<String> generateproducts = new ArrayList();
 
         generateproducts.add(producttype);
@@ -104,11 +107,15 @@ public class CreateProductTypeCommmand extends Command {
             String productsss = "";
             StringBuilder sb = new StringBuilder(productsss);
 
-            productsss = type.get(i);
+           // char c = type.get(i).charAt(0); 
+            //productsss = ""+c+"";
             productsss = sb.substring(1) + columnNames.get(i);
             generateproducts.add(productsss);
 
         }
+        
+        System.out.println("columns: " + generateproducts.toString());
+        System.out.println("columns: " + enumValues.toString());
 
         pMapper.createProductTable(generateproducts, enumValues);
         return "ShowProducts";

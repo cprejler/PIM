@@ -6,7 +6,7 @@ var dropdownElement = document.getElementById('mySelect');
 
  
 function ifEnum () {
-    dropdownElement.addEventListener("click")
+    dropdownElement.addEventListener("click");
 
     var div = document.querySelector('.book-list') ; 
     var enums = document.createElement("input"); 
