@@ -85,7 +85,7 @@ public class InsertProductCommand extends Command {
             
         }
 
-        webpage="ShowProducts";
+        webpage="/FrontController?cmd=ShowProducts";
         return webpage;
 //        
     } 

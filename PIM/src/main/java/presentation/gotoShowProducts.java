@@ -20,7 +20,7 @@ public class gotoShowProducts extends Command {
      @Override
     String execute(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException, SQLException, ClassNotFoundException{
-        String webpage = "ShowProduct";
+        String webpage = "ShowProduct.jsp";
         return webpage;
     }
 }
