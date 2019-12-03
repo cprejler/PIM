@@ -49,7 +49,7 @@ public class ProductMapperTest {
         }
     }
 
-    //@Test
+    @Test
     public void insertProductTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();
@@ -74,10 +74,12 @@ public class ProductMapperTest {
         fieldValues.add(wineVolume);
         fieldValues.add(wineAlchoholpercentage);
         fieldValues.add(wineCountry);
+        
 
         Product testWine = new Product("test", "wine", "test", fields, fieldValues);
+        testWine.setDescription("test");
 
-        //pMapper.insertProduct(testWine);
+        pMapper.insertProduct(testWine);
     }
 
 //   @Test
@@ -107,7 +109,8 @@ public class ProductMapperTest {
 //        
 //        
 //        
-//        Product testWine = new Product("test", "test", "wine", "test", fields, fieldValues);
+//        Product testWine = new Product("test", "wine", "test", fields, fieldValues);
+//        
 //        
 //        pMapper.deleteProduct(testWine);
 //    }
