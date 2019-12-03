@@ -88,6 +88,8 @@
                 <input type="text" class="form-control" name="manufacturer">
                 <h5 class="text-primary">Product Name</h5>
                 <input type="text" class="form-control" name="productName">
+                <h5 class="text-primary">Description</h5>
+                <input type="text" class="form-control" name="description">
                 <h5 class="text-primary">Product Type</h5>
                 <input type="text" name="productType" value="${param.productType}" readonly>
 

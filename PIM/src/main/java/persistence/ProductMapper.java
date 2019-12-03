@@ -38,12 +38,12 @@ public class ProductMapper {
         
         for (Product product : productList) {
             
-            String updateProduct = "UPDATE product SET productName = ?, productType = ?, manufacturer = ?, published = ? WHERE productID = " + product.getID();
+            String updateProduct = "UPDATE product SET productName = ?, productType = ?, manufacturer = ?, description = ? WHERE productID = " + product.getID();
             PreparedStatement statementUpdateProduct = connection.prepareStatement(updateProduct);
             statementUpdateProduct.setString(1, product.getName());
             statementUpdateProduct.setString(2, product.getType());
             statementUpdateProduct.setString(3, product.getManufacturer());
-            statementUpdateProduct.setBoolean(4, product.getPublished());
+            statementUpdateProduct.setString(4, product.getDescription());
             statementUpdateProduct.execute();
             
             ArrayList<String> columnNames = new ArrayList<String>();
@@ -90,11 +90,12 @@ public class ProductMapper {
 
         //Insert a product and get the ID to create a product type after
         Integer productID = 0;
-        String insertProduct = "INSERT INTO  product (productName, productType, manufacturer) VALUES(?,?,?)";
+        String insertProduct = "INSERT INTO  product (productName, productType, manufacturer, description) VALUES(?,?,?,?)";
         PreparedStatement statementInsertProduct = connection.prepareStatement(insertProduct);
         statementInsertProduct.setString(1, product.getName());
         statementInsertProduct.setString(2, product.getType().toLowerCase());
         statementInsertProduct.setString(3, product.getManufacturer());
+        statementInsertProduct.setString(4, product.getDescription());
         statementInsertProduct.execute();
         
         Statement getProductID = connection.createStatement();
@@ -163,8 +164,9 @@ public class ProductMapper {
         ArrayList<Product> products = new ArrayList<Product>();
         String name = "";
         String manufacturer = "";
+        String description = "";
         
-        String showProductQuery = "SELECT product.manufacturer,  product.productName, product.productType, " + productType + ".* FROM product"
+        String showProductQuery = "SELECT product.manufacturer,  product.productName, product.description, product.productType, " + productType + ".* FROM product"
                 + ", " + productType + " where product.productID=" + productType + ".productID order by productID";
         
         Statement statement = connection.createStatement();
@@ -182,10 +184,13 @@ public class ProductMapper {
                 fieldValues.add(rs.getObject(j + 1));
                 name = rs.getString("productName");
                 manufacturer = rs.getString("manufacturer");
+                description = rs.getString("description");
+                
                 
             }
             Product product = new Product(name, manufacturer, productType, fields, fieldValues);
             product.setID(rs.getInt("productID"));
+            product.setDescription(description);
             products.add(product);
             
         }
@@ -199,6 +204,7 @@ public class ProductMapper {
         String productType = "";
         String productName = "";
         String manufacturer = "";
+        String description = "";
         String getProductType = "SELECT  * FROM  product where productID = " + id + "";
         Statement statement = connection.createStatement();
         ResultSet rsGetType = statement.executeQuery(getProductType);
@@ -206,6 +212,8 @@ public class ProductMapper {
             productType = rsGetType.getString("productType");
             productName = rsGetType.getString("productName");
             manufacturer = rsGetType.getString("manufacturer");
+            description = rsGetType.getString("description");
+            
         }
         
         ArrayList<String> fields = new ArrayList<>();
@@ -226,6 +234,7 @@ public class ProductMapper {
         ArrayList<Image> images = getImages(id);
         Product product = new Product(productName, productType, manufacturer, fields, fieldValues, images);
         product.setID(id);
+        product.setDescription(description);
         
         return product;
     }

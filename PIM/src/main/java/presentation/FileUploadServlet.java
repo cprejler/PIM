@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -77,6 +78,11 @@ public class FileUploadServlet extends HttpServlet {
         processRequest(request, response);
         
         
+        
+        
+        
+        
+        
         String getProductID = request.getParameter("productID");
         Integer productID = Integer.parseInt(getProductID);
         
@@ -95,6 +101,9 @@ public class FileUploadServlet extends HttpServlet {
             statement.setBlob(1, inputStream);
             statement.setInt(2, productID);
             statement.execute();
+            response.sendRedirect("/FrontController?cmd=gotoUpdateProduct&selectedEdit="+productID+"");
+            
+            
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(FileUploadServlet.class.getName()).log(Level.SEVERE, null, ex);

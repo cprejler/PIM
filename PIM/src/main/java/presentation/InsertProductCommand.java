@@ -55,11 +55,12 @@ public class InsertProductCommand extends Command {
 
         String productName = request.getParameter("productName");
         String productType = request.getParameter("productType");
+        String description = request.getParameter("description");
         
        
 
         for (String requestParameter : requestParameters) {
-            if (!requestParameter.equals("manufacturer") && !requestParameter.equals("productName") && !requestParameter.equals("productType")&&!requestParameter.equals("cmd")) {
+            if (!requestParameter.equals("manufacturer") && !requestParameter.equals("productName") && !requestParameter.equals("productType")&&!requestParameter.equals("cmd") && !requestParameter.equals("description")) {
                                 
                 fieldValues.add(requestParameter);
             }
@@ -69,6 +70,7 @@ public class InsertProductCommand extends Command {
 
         
         Product product = new Product(productName, productType, manufacturer, fields, fieldValues);
+        product.setDescription(description);
 
         ProductMapper pMapper = new ProductMapper();
 
