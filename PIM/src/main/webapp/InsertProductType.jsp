@@ -1,19 +1,10 @@
-<%-- 
-    Document   : test
-    Created on : Nov 12, 2019, 9:08:13 PM
-    Author     : casper
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
     <head>
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>Insert product</title>
+        <title>ShowProducts</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -23,13 +14,13 @@
     <body>
 
         <!-- NAVBAR -->
-       <form action="FrontController">
+        <form action="FrontController">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#">PIM</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>   
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -44,7 +35,7 @@
                                 Action
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                
+
                                 <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
                                     Product</button>
                                 <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
@@ -64,58 +55,98 @@
             </nav>
         </form>
         <div class="container-fluid" id="page-wrapper">
-            <div class="container">
-                <h1 class="text-primary">Insert product</h1>
-                <h3 class="text-primary">Type of product to insert</h3>
-                <form action="FrontController">
-                    <select class="form-control  m-2" name="productType">
-                        <%-- Inputs are  made for each productType in database --%>
-                        <c:forEach var="item" items="${tables}">
-                        <option value="${item}">${item}</option>    
-                        </c:forEach>
-                    </select>
-                    <input type="submit" value="Select" class="btn btn-primary m-2">
-                    <input type="hidden"  name="cmd" value="generateForm">
-
-                </form>
-
-            </div>
 
             <div class="container">
-                <form action="FrontController">
+                <div class="row mx-auto px-md-5">
+                    <div class="col">
+                        <div class="search-bar">
+                            <form action="FrontController">
 
-                    <h5 class="text-primary">Manufacturer</h5>
-                    <input type="text" class="form-control" name="manufacturer">
-                    <h5 class="text-primary">Product Name</h5>
-                    <input type="text" class="form-control" name="productName">
-                    <h5 class="text-primary">Product Type</h5>
-                    <input type="text" name="productType" value="${param.productType}" readonly>
+                                <input type="text" name="searchItem">
+                                <input type="hidden" name="cmd" value="search">
+
+                                <input type="submit" name="button" value="Search">
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                
+
+
+
+
+                <body>
                     
+                        <form action="FrontController">
+                <div class="row mx-auto">
+                    <h1>Create new product type</h1>
+                </div>
+                        <P>
+
+                                <input type ="text" name = "productType" placeholder="Skriv hvilken produkt type du vil lave"  id = "1"> 
+                        </P>
+                        <div class= "book-list" id="book-list">
+                        <h2 class="title">Produkt variabler</h2>
+                          <p> vaelg hvilken  variabel type du skal bruge og tryk OK!</p>  
+
+                        <select name ="myselect" id="mySelect">                                
+                          <option value="String">String</option>
+                          <option value="Integer">Integer</option>
+                          <option value="Float">Float</option>
+                          <option value="Enum">Enum</option>
+                        </select>
+                        <button type="button" name= "createInputBtn" id= "createInputBtn"  onclick = " createInputBox()" > Generer nyt felt </button>
+                        <br>
+
+                    </div>
+
+                    <div class = " bunden" id = "bottomm">
+                        <p></p>
+                        <p>  Afslut her</p>
+
+                            <input type="text" name="hej" value="0" />
+                                <input type="submit" class="btn btn-danger" value="Create Product">
+                                <input  type="hidden" name="cmd" value="CreateProductType">
+                           
+                        </form>
 
 
-                    <c:forEach var="form"  items="${requestScope.forms}">
-                        <h5 class="text-primary">${form.getName()}</h5>
 
-                        <c:if  test="${form.getInputType() eq 'select'}">
-                            <select name="${form.getName()}">
-                                <c:forEach var="item" items="${form.getOptions()}">
-                                    <option>${item}</option>
-                                </c:forEach>
+                    </div>
 
-                            </select>
-                        </c:if>
-                        <c:if  test="${form.getInputType() ne 'select'}">
-                            <input type="${form.getInputType()}" name="${form.getName()}">
-                        </c:if>
 
-                    </c:forEach>
-                    <input type="submit" class="btn btn-primary" value="Insert Product">
-                    <input  type="hidden" name="cmd" value="InsertProduct">
-                </form>
 
             </div>
+
+
+
         </div>
 
+
+
+
+
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+        <script src="newproduct.js"></script>
+        
+        
+     
 
 
     </body>

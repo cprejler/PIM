@@ -40,7 +40,15 @@ function createInputBox ()  {
     
     var select = mySelect.value; 
     
-    x.setAttribute("name", "attributes")
+    var y = x.cloneNode(true);  
+    y.setAttribute("name", "type"); 
+    y.setAttribute("type", "text"); 
+    y.setAttribute("value", select); 
+    y.setAttribute("id", "variabel"+i);
+    y.setAttribute("readonly", true); 
+
+
+    x.setAttribute("name", "attributes");
     x.setAttribute("type", "text"); 
     x.setAttribute("placeholder", select); 
     x.setAttribute("id", "variabel"+i); 
@@ -53,9 +61,9 @@ function createInputBox ()  {
     enums.setAttribute("id", "variabel"+i); 
 
 if (mySelect.value == "Enum") {
-    div.append(x,"      ", enums, br); 
+    div.append(y,"     ", x,"      ", enums, br); 
 } else {
-    div.append(x, br); 
+    div.append(y,"    ", x, br); 
 }
     
  

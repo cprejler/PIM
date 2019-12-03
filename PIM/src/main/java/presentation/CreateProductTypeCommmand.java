@@ -43,7 +43,7 @@ public class CreateProductTypeCommmand extends Command {
                 type = new ArrayList<>(Arrays.asList(parametermap.get(key)));
             } 
         }
-        
+    
         System.out.println("columns: " + columnNames.toString());
         System.out.println("type: " + type.toString());
         System.out.println("enum: " + enumValues.toString());
