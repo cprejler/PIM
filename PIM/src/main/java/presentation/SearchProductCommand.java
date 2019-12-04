@@ -28,9 +28,14 @@ public class SearchProductCommand extends Command{
         ProductMapper pm = new ProductMapper();
         
         ArrayList<Product> products = pm.searchForProduct(searchItem);
+        ArrayList<String> tables = pm.getTableNames();
+        ArrayList<String> attributes = new ArrayList<>();
         
+        for (String table : tables) {
+            attributes.add(table);
+        }
         request.setAttribute("productList", products);
-        
+        request.setAttribute("tables", attributes);
         
         return "SearchResults2";
     }
