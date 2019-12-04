@@ -297,11 +297,9 @@ public class ProductMapper {
     }
     
     public String createProductTable(ArrayList product, ArrayList enums) throws SQLException {  
-        System.out.println("301");
         Statement st = connection.createStatement();        
         String CreateTableQuery = "";
         StringBuilder sb = new StringBuilder();
-        System.out.println("304");
         String foreignKeyProductID =  "productID int(5) unsigned zerofill NOT NULL, \n"
                 + " foreign key (productID) references product(productID))"; 
          int p = 0; 
@@ -340,7 +338,6 @@ public class ProductMapper {
 
         CreateTableQuery = CreateTableQuery + foreignKeyProductID ;
         st.executeUpdate(CreateTableQuery);        
-        System.out.println("343");
 
         connection.close();
         
