@@ -33,7 +33,6 @@ public class generateFilterCommand extends Command{
 
         //Send table names in order to dynamically generate dropdown boxes, if user wants to change product type
         ProductMapper pMapper = new ProductMapper();
-        ArrayList<Product> products = pMapper.searchForProduct(search);
         ArrayList<String> tables = pMapper.getTableNames();
 
         ArrayList<Product> productType = pMapper.showProducts(formToGenerate);
@@ -44,10 +43,9 @@ public class generateFilterCommand extends Command{
             attributes.add(table);
         }
         request.setAttribute("tables", attributes);
-        request.setAttribute("productList", products);
 
         request.setAttribute("getProductType", productType);
-        
+        System.out.println("48"+productType.get(0).getName().toString());
 
         webpage = "SearchAndFilter";
         return webpage;

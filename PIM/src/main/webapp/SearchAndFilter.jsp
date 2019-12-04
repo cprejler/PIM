@@ -85,7 +85,7 @@
         <form action="FrontController">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/index.html">PIM</a>
+                <a class="navbar-brand" href="#">PIM</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -112,12 +112,16 @@
                                 <div class="dropdown-divider"></div>
                                 <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
                                     Data</button>
-                               
-                            </div>
-                               </nav>
-                            </form>
-                            </div>
 
+                            </div>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+            </nav>
+        </form>
                 <div class="container-fluid" id="page-wrapper">
 
             <div class="container">
@@ -153,7 +157,7 @@
 
                 </form>
                 </div>
-                <form action="FrontController">
+               <!-- <form action="FrontController">
 
                     <input type="hidden" name="cmd" value="" id="hiddenId">
                     <div class="row" mx-auto>
@@ -165,11 +169,8 @@
                     </div>
           
                     <div class="row">
-                        <c:set var="products" value="${requestScope.products}" />
-                        <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
                                 <div class="overview" align="center">
-                                <c:set var="productList" value="${products.get(tableCount.index)}" />
-                                <c:forEach var="product" items ="${productList}" varStatus="count">
+               <%-- <c:forEach var="product" items ="${requestScope.tables}" varStatus="count"> 
 
                                     <div class="row">
                                     <div class="allProduct" align="center">
@@ -178,7 +179,7 @@
                                                     <c:set var="image" value="${product.getImages().get(0)}"/>
                                                     <img class="img-thumbnail" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
                                                 </c:if>
-                                                <c:if test="${product.getImages().size() < 1}">
+                                                <c:if test="${product.getImages().size() < 1}"> 
 
                                                     <img src="Udklip.PNG" style="max-height:83px; max-width:83px;">
 
@@ -209,12 +210,11 @@
                                     </div>
                                     </div>
                                     </div>
-                                </c:forEach>
+                                </c:forEach> --%>
 
                                 </div>
-                                </c:forEach>
                     </div>
-                </form>
+                </form>--> 
             </div>
     </div>
 
