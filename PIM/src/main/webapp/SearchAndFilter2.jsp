@@ -26,6 +26,7 @@
             padding:20px;
             border:solid;
             overflow:auto;
+            
         }
         .productInfo{
             vertical-align: top;
@@ -51,12 +52,24 @@
             height: 5%;
         }
         .overview{
+            position: relative;
             float:right;
             width:80%;
+            left:180px;
         }
         .filter{
             float:left;
             width:20%;
+            position:fixed;
+            left:0;
+            top: 90px;
+        }
+        .filter2{
+            float:left;
+            width:20%;
+            position:fixed;
+            left:0;
+            margin-left: 15px;
         }
         .form-check{
             float: left;
@@ -77,6 +90,17 @@
             width:40%;
             font-size:small;
             color: gray;
+        }
+        .navSearch{
+            float: right;
+            margin: 20px;
+            top: 10px;
+        }
+        .centering{
+            position: relative;
+            left: 75px;
+            margin-left: 20px;
+            
         }
         </style>
     </head>
@@ -119,27 +143,27 @@
 
 
                 </div>
-            </nav>
-        </form>
-                <div class="container-fluid" id="page-wrapper">
-
-            <div class="container">
-
                 <div class="row mx-auto px-md-5">
                     <div class="col">
+                        
                         <div class="search-bar">
                             <form action="FrontController">
 
                                 <input type="text" name="searchItem">
                                 <input type="hidden" name="cmd" value="search">
-
                                 <input type="submit" name="button" value="Search">
 
                             </form>
-
                         </div>
                     </div>
                 </div>
+            </nav>
+        </form>
+                <div class="container-fluid" id="page-wrapper">
+
+            <div class="container">
+                <!--HER-->
+            
                 <div class="filter">
                
                 <form action="FrontController">
@@ -150,10 +174,10 @@
                         </c:forEach>
 
                     </select>
-                       
+                    <div class="centering">   
                     <input type="submit" value="Select" class="btn btn-primary m-2">
                     <input type="hidden"  name="cmd" value="generateFilter">
-
+                    </div>
                 </form>
                 </div>
                 <form action="FrontController">
@@ -161,10 +185,13 @@
                     <input type="hidden" name="cmd" value="" id="hiddenId">
                     <div class="row" mx-auto>
                         <div class="col-lg-1 mx-auto">
+                            <div class="filter2">
                             <div class="px-md-5">
+                                
                                 <button type="submit" class="btn btn-primary" onclick="buttonA_clickHandler(event)">Bulk Edit Products</button>
                             </div>
                         </div>
+                        </div>    
                     </div>
           
                     <div class="row">
