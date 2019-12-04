@@ -53,11 +53,12 @@
         }
         .overview{
             float:right;
-            width:80%;
+
         }
         .filter{
             float:left;
             width:20%;
+            height:500px;
         }
         .form-check{
             float: left;
@@ -84,12 +85,10 @@
 
 
     <body>
-
-        <!-- NAVBAR -->
         <form action="FrontController">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">PIM</a>
+                <a class="navbar-brand" href="/index.html">PIM</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -116,19 +115,11 @@
                                 <div class="dropdown-divider"></div>
                                 <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
                                     Data</button>
-
+                               
                             </div>
-                        </li>
-
-                    </ul>
-
-
-                </div>
-            </nav>
-        </form>
-        <div class="container-fluid" id="page-wrapper">
-
-            <div class="container">
+                               </nav>
+                            </form>
+                            </div>
                 <div class="row mx-auto px-md-5">
                     <div class="col">
                         <div class="search-bar">
@@ -142,8 +133,8 @@
 
                         </div>
                     </div>
-                </div>
-
+                </div>            
+                <div class="filter"></div>
                 <form action="FrontController">
                     <input type="hidden" name="cmd" value="" id="hiddenId">
                     <div class="row" mx-auto>
@@ -156,6 +147,7 @@
                     
                         
                     <div class="row">
+                        <div class="overview"><p> </p> <p> </p><p> </p><p> </p> <p> </p> <p> </p></div>
                         <c:set var="products" value="${requestScope.products}" />
                         <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
                                 <div class="overview" align="center">
@@ -165,17 +157,18 @@
                                     <div class="allProduct" align="center">
                                         <div class="imageBox">
                                                 <c:if test="${product.getImages().size() > 0 }">
-                                                    <c:set var="image" value="${product.getImages().get(0)}"/>
-                                                    <img class="img-thumbnail" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                                    <%--<c:set var="image" value="${product.getImages().get(0)}"/> --%>
+                                                    <%--<img class="img-thumbnail" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}"> --%>
+                                                    <p><b>No image</b></p>
                                                 </c:if>
                                                 <c:if test="${product.getImages().size() < 1}">
-                                                    <img src="Udklip.PNG" style="max-height:83px; max-width:83px;">
+                                                    <p><b>No image</b></p>
                                                 </c:if>
                                         </div>
                                         <div class="productInfo">
                                         <p><b>${product.getName()}</b></p>
                                         <p>ProductID: ${product.getID()}</p>
-                                        <p>${product.getType()}</p>
+                                        <p>${tableName}</p>
                                     </div>
                                     <div class="description">
                                         <p>${product.getDescription()}</p> 
@@ -202,8 +195,7 @@
                                 </c:forEach>
                     </div>
                 </form>
-            </div>
-    </div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
