@@ -4,6 +4,10 @@
     Author     : casper
 --%>
 
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="businesslogic.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -17,8 +21,67 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+        <style>
+        .allProduct{
+            width:90%;
+            padding:20px;
+            border:solid;
+            overflow:auto;
+        }
+        .productInfo{
+            vertical-align: top;
+            float:left;
+            display:inline-block;
+            width:200px;
+        }
+        .imageBox{
+            display:inline-block;
+            float:left;
+            width:100px;
+        }
+        .checksButtons{
+            float:right;
+            width:10%;
+        }
+        p{
+            text-align:left;
+            color:black;
+        }
+        .invisible{
+            opacity: 0;
+            height: 5%;
+        }
+        .overview{
+            float:right;
+            width:80%;
+        }
+        .filter{
+            float:left;
+            width:20%;
+        }
+        .form-check{
+            float: left;
+            margin: 10px;
+        }
+        .form-check col{
+            float:right;
+            margin: 10px;
+        }
+        .checkBoxBox{
+            margin: 20px;
+            float: right;
+            width:5%;
+        }
+        .description{
+            float: left;
+            margin: 20px;
+            width:40%;
+            font-size:small;
+            color: gray;
+        }
+        </style>
     </head>
+
 
     <body>
 
@@ -105,7 +168,7 @@
                                                     <img class="img-thumbnail" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
                                                 </c:if>
                                                 <c:if test="${product.getImages().size() < 1}">
-                                                    <img src="Udklip.PNG" style="max-height:83px; max-width:83;">
+                                                    <img src="Udklip.PNG" style="max-height:83px; max-width:83px;">
                                                 </c:if>
                                         </div>
                                         <div class="productInfo">
