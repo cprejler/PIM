@@ -121,30 +121,20 @@
                     <div class="col">
                         <div class="search-bar">
                             <form action="FrontController">
-
+                    
                                 <input type="text" name="searchItem">
                                 <input type="hidden" name="cmd" value="search">
 
                                 <input type="submit" name="button" value="Search">
+                    
                             </form>
-
+    
+                            <div class="container-fluid" id="page-wrapper">
+       
                         </div>
                     </div>
                 </div>
-                <div class="filter">
-                    <form action="FrontController">
-                    <select class="form-control  m-2" name="productType">
-                        <%-- Inputs are  made for each productType in database --%>
-                        <c:forEach var="item" items="${tables}">
-                            <option value="${item}">${item}</option>    
-                        </c:forEach>
-
-                    </select>
-                    <input type="submit" value="Select" class="btn btn-primary m-2">
-                    <input type="hidden"  name="cmd" value="generateFilter">
-
-                </form>
-                </div>
+                
                             <form action="FrontController">
                     <input type="hidden" name="cmd" value="" id="hiddenId">
                     <div class="row" mx-auto>
