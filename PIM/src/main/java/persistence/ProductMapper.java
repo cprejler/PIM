@@ -362,7 +362,7 @@ public class ProductMapper {
                 tableNames.add(tableName);
             }
         }
-        
+        connection.close();
         return tableNames;
         
     }
@@ -416,6 +416,7 @@ public class ProductMapper {
                     products.add(product);
             }
         }
+        connection.close();
         return products;
     }
      
