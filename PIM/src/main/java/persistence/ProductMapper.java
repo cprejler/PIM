@@ -117,7 +117,7 @@ public class ProductMapper {
         for (int i = 0; i < intColumnCount; i++) {
             columnNames.add(rsmd.getColumnName(i + 1));
         }
-        //Create fields and insert values to insert
+        //Create fields and insert values to use in PreparedStatement
         StringBuilder statementFields = new StringBuilder();
         StringBuilder statementValues = new StringBuilder();
         for (Object field : product.getFieldsValues()) {
@@ -159,12 +159,14 @@ public class ProductMapper {
         deleteProductSt.executeUpdate();
     }
     
+    //Method returns an arraylist of product, takes argument of a productType
     public ArrayList<Product> showProducts(String productType) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
         ArrayList<Product> products = new ArrayList<Product>();
         String name = "";
         String manufacturer = "";
         String description = "";
+        
         
         String showProductQuery = "SELECT product.manufacturer,  product.productName, product.description, product.productType, " + productType + ".* FROM product"
                 + ", " + productType + " where product.productID=" + productType + ".productID order by productID";
@@ -174,9 +176,9 @@ public class ProductMapper {
         ResultSetMetaData rsmd = rs.getMetaData();
         
         int intColumnCount = rsmd.getColumnCount();
-        
+        //Get columncount to iterate over.
         while (rs.next()) {
-            
+            //fieldValues are row values in the database and fields are the column headers.
             ArrayList<Object> fieldValues = new ArrayList<>();
             ArrayList<String> fields = new ArrayList<>();
             for (int j = 0; j < intColumnCount; j++) {
@@ -199,7 +201,7 @@ public class ProductMapper {
         return products;
     }
 
-    //Return a product from a productID. Used to forward  the right items from ShowProducts.jsp to UpdateProduct.jsp
+    //Return a product from a productID. Used to forward  the right items from ShowProducts.jsp to UpdateProduct.jsp as well as SpecificProduct.jsp
     public Product getProduct(Integer id) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
         String productType = "";
@@ -346,7 +348,7 @@ public class ProductMapper {
 
     public ArrayList<String> getTableNames() throws SQLException, ClassNotFoundException {
         connection = cv.chooseConnections();
-        
+        //Method used to get table names in database and later used for calling showProducts on each table returned
         String database = cv.getDatabase();
         ArrayList<String> tableNames = new ArrayList();
         Statement st = connection.createStatement();        
@@ -362,7 +364,7 @@ public class ProductMapper {
                 tableNames.add(tableName);
             }
         }
-        
+        connection.close();
         return tableNames;
         
     }
@@ -416,6 +418,7 @@ public class ProductMapper {
                     products.add(product);
             }
         }
+        connection.close();
         return products;
     }
      

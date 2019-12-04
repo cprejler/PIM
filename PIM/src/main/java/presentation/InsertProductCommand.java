@@ -27,9 +27,9 @@ public class InsertProductCommand extends Command {
         throws ServletException, IOException, SQLException, ClassNotFoundException{
         String webpage = "";
         
-        ArrayList<String> fields = new ArrayList<>();
-        ArrayList<Object> fieldValues = new ArrayList<>();
-        Enumeration<String> parameterNames = request.getParameterNames();
+        ArrayList<String> fields = new ArrayList<>(); //Represents the columnHeaders in the database
+        ArrayList<Object> fieldValues = new ArrayList<>(); //Represents the row values 
+        Enumeration<String> parameterNames = request.getParameterNames(); // Since forms are always dynamically made from the database based on the product type selected, we need to get the names
         ArrayList<String>params  = new ArrayList<>();
         
         //Get the names of  the  Parameters in  order to make request.getParameter() on them after to get the  actual  value
@@ -39,7 +39,7 @@ public class InsertProductCommand extends Command {
         
         ArrayList<String> requestParameters  = new  ArrayList<>();
         //Get  the actual value   of  the  parameters, as well  as add the names to the fields array
-        //We  don't  want  manufacturer, productName, and  productType  added to that array
+        //We  don't  want  manufacturer, productName, and  productType, cmd and description  added to that array
         for (String param : params) {
             
             if (!param.equals("manufacturer") && !param.equals("productName") && !param.equals("productType") &&  !param.equals("cmd") &&!param.equals("description")){
@@ -49,7 +49,7 @@ public class InsertProductCommand extends Command {
                        
         }
         
-        //Manufacturer, productName, productType, will  always  be the first 3
+        //Manufacturer, productName, productType, description will  always  be the first 4
         
         String manufacturer = request.getParameter("manufacturer");
 
