@@ -24,7 +24,6 @@ public class generateFilterCommand extends Command{
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
         String webpage = "";
         String formToGenerate = request.getParameter("productType");
-        String search = request.getParameter("searchItem");
         
         FormGenerator fg = new FormGenerator();
         //ArrayList<HashMap<String, Object>> forms = fg.generateForm(formToGenerate);
@@ -47,7 +46,7 @@ public class generateFilterCommand extends Command{
         request.setAttribute("getProductType", productType);
         System.out.println("48"+productType.get(0).getName().toString());
 
-        webpage = "SearchAndFilter";
+        webpage = "SearchAndFilter2";
         return webpage;
     }
 
