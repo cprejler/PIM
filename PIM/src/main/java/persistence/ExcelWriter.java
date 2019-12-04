@@ -53,12 +53,13 @@ public class ExcelWriter {
         }
         
         
-        FileOutputStream fileOut = new FileOutputStream("products.xlsx");
-        workbook.write(fileOut);
-        fileOut.close();
+        //FileOutputStream fileOut = new FileOutputStream("products.xlsx");
+        //workbook.write(fileOut);
+        
+        //fileOut.close();
         
         
-        workbook.close();
+        //workbook.close();
         
         return workbook;
         
@@ -112,7 +113,7 @@ public class ExcelWriter {
             row.createCell(3).setCellValue(product.getType());
             int cellCounter = 4;
             for (int i = 0; i < product.getFieldsValues().size(); i++) {
-                row.createCell(cellCounter).setCellValue((String)product.getFieldsValues().get(i));
+                row.createCell(cellCounter).setCellValue(String.valueOf(product.getFieldsValues().get(i)));
                 cellCounter++;
                 
             }
