@@ -153,12 +153,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    
                         <c:set var="i" value="0" scope="page"/>
-                        <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
+                            <div class="row">
                                 <div class="overview" align="center">
+                                    <c:set var="productList" value="${requestScope.products.get(i)}" />
                                 <c:set var="i" value ="${i +1}" scope="page"/>
-                                <c:set var="productList" value="${requestScope.products.get(i)}" />
                                 <c:forEach var="product" items ="${requestScope.productList}" varStatus="count">
                                     <div class="row">
                                     <div class="allProduct" align="center">
@@ -198,7 +198,6 @@
                                     </div>
                                 </c:forEach>
                                 </div>
-                        </c:forEach>
                     </div>
                 </form>
             </div>

@@ -35,8 +35,6 @@ public class ShowProductsCommand extends Command {
             ArrayList<Product> productType   = pMapper.showProducts(tableName);
             products.add(productType);
             
-            
-            
         }
         
         
