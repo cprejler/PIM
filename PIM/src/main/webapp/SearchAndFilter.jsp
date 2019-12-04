@@ -140,10 +140,8 @@
                         </c:forEach>
 
                     </select>
-                    <input type="hidden" name="cmd" value="search">
                     <input type="submit" value="Select" class="btn btn-primary m-2">
                     <input type="hidden"  name="cmd" value="generateFilter">
-                    
 
                 </form>
                 </div>
@@ -163,10 +161,10 @@
                                         <div class="imageBox">
                                                 <c:if test="${product.getImages().size() > 0 }">
                                                     <c:set var="image" value="${product.getImages().get(0)}"/>
-                                                    <img class="img-thumbnail" style="max-height:100px; max-width:100px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                                    <img class="img-thumbnail" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
                                                 </c:if>
                                                 <c:if test="${product.getImages().size() < 1}">
-                                                    <img src="Udklip.PNG" style="max-height:100px; max-width:100;">
+                                                    <img src="Udklip.PNG" style="max-height:83px; max-width:83;">
                                                 </c:if>
                                         </div>
                                         <div class="productInfo">
@@ -204,7 +202,6 @@
                     </ul>
                 </div>
         </form>
-
                         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -215,6 +212,5 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
                 <script type="text/javascript" src="buttonFunction.js"></script>
-
     </body>
 </html>
