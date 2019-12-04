@@ -30,21 +30,25 @@ public class generateFilterCommand extends Command{
         //ArrayList<HashMap<String, Object>> forms = fg.generateForm(formToGenerate);
         ArrayList<Form> forms =  fg.generateForm(formToGenerate);
         request.setAttribute("forms", forms);
-        System.out.println("33");
+
         //Send table names in order to dynamically generate dropdown boxes, if user wants to change product type
         ProductMapper pMapper = new ProductMapper();
         ArrayList<Product> products = pMapper.searchForProduct(search);
         ArrayList<String> tables = pMapper.getTableNames();
+
         ArrayList<Product> productType = pMapper.showProducts(formToGenerate);
         ArrayList<String> attributes = new ArrayList<>();
-        System.out.println("40");
+        
+
         for (String table : tables) {
             attributes.add(table);
         }
         request.setAttribute("tables", attributes);
         request.setAttribute("productList", products);
+
         request.setAttribute("getProductType", productType);
-        System.out.println("47");
+        
+
         webpage = "SearchAndFilter";
         return webpage;
     }

@@ -117,18 +117,26 @@
                                </nav>
                             </form>
                             </div>
+<<<<<<< HEAD
                 <div class="container-fluid" id="page-wrapper">
 
             <div class="container">
+=======
+>>>>>>> bfdc3c714bf3dd2eb9402e4c7a46e0ca2cd7c3ab
                 <div class="row mx-auto px-md-5">
                     <div class="col">
                         <div class="search-bar">
                             <form action="FrontController">
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> bfdc3c714bf3dd2eb9402e4c7a46e0ca2cd7c3ab
                                 <input type="text" name="searchItem">
                                 <input type="hidden" name="cmd" value="search">
 
                                 <input type="submit" name="button" value="Search">
+<<<<<<< HEAD
                             </form>
 
                         </div>
@@ -151,6 +159,18 @@
                 </form>
                 </div>
                 <form action="FrontController">
+=======
+                    
+                            </form>
+    
+                            <div class="container-fluid" id="page-wrapper">
+       
+                        </div>
+                    </div>
+                </div>
+                
+                            <form action="FrontController">
+>>>>>>> bfdc3c714bf3dd2eb9402e4c7a46e0ca2cd7c3ab
                     <input type="hidden" name="cmd" value="" id="hiddenId">
                     <div class="row" mx-auto>
                         <div class="col-lg-1 mx-auto">
@@ -159,6 +179,7 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     
                         
                     <div class="row">
@@ -167,6 +188,10 @@
                                 <div class="overview" align="center">
                                 <c:set var="productList" value="${products.get(tableCount.index)}" />
                                 <c:forEach var="product" items ="${productList}" varStatus="count">
+=======
+                            <div class="overview" align="center">
+                                <c:forEach var="product" items ="${requestScope.productList}" varStatus="count">
+>>>>>>> bfdc3c714bf3dd2eb9402e4c7a46e0ca2cd7c3ab
                                     <div class="row">
                                     <div class="allProduct" align="center">
                                         <div class="imageBox">
@@ -175,7 +200,11 @@
                                                     <img class="img-thumbnail" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
                                                 </c:if>
                                                 <c:if test="${product.getImages().size() < 1}">
+<<<<<<< HEAD
                                                     <img src="Udklip.PNG" style="max-height:83px; max-width:83px;">
+=======
+                                                    <img src="Udklip.PNG" style="max-height:83px; max-width:83;">
+>>>>>>> bfdc3c714bf3dd2eb9402e4c7a46e0ca2cd7c3ab
                                                 </c:if>
                                         </div>
                                         <div class="productInfo">
@@ -204,6 +233,7 @@
                                     </div>
                                     </div>
                                 </c:forEach>
+
                                 </div>
                                 </c:forEach>
                     </div>
@@ -224,5 +254,6 @@ crossorigin="anonymous"></script>
 <script type="text/javascript" src="buttonFunction.js"></script>
 
 </body>
+
 
 </html>
