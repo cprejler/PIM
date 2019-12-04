@@ -117,25 +117,40 @@
                                </nav>
                             </form>
                             </div>
+                <div class="container-fluid" id="page-wrapper">
+
+            <div class="container">
                 <div class="row mx-auto px-md-5">
                     <div class="col">
                         <div class="search-bar">
                             <form action="FrontController">
-                    
+
                                 <input type="text" name="searchItem">
                                 <input type="hidden" name="cmd" value="search">
 
                                 <input type="submit" name="button" value="Search">
-                    
                             </form>
-    
-                            <div class="container-fluid" id="page-wrapper">
-       
+
                         </div>
                     </div>
                 </div>
-                
-                            <form action="FrontController">
+                <div class="filter">
+               
+                <form action="FrontController">
+                    <select class="form-control  m-2" name="productType">
+                        <%-- Inputs are  made for each productType in database --%>
+                        <c:forEach var="item" items="${tables}">
+                            <option value="${item}">${item}</option>    
+                        </c:forEach>
+
+                    </select>
+                       
+                    <input type="submit" value="Select" class="btn btn-primary m-2">
+                    <input type="hidden"  name="cmd" value="generateFilter">
+
+                </form>
+                </div>
+                <form action="FrontController">
                     <input type="hidden" name="cmd" value="" id="hiddenId">
                     <div class="row" mx-auto>
                         <div class="col-lg-1 mx-auto">
@@ -144,8 +159,14 @@
                             </div>
                         </div>
                     </div>
-                            <div class="overview" align="center">
-                                <c:forEach var="product" items ="${requestScope.productList}" varStatus="count">
+                    
+                        
+                    <div class="row">
+                        <c:set var="products" value="${requestScope.products}" />
+                        <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
+                                <div class="overview" align="center">
+                                <c:set var="productList" value="${products.get(tableCount.index)}" />
+                                <c:forEach var="product" items ="${productList}" varStatus="count">
                                     <div class="row">
                                     <div class="allProduct" align="center">
                                         <div class="imageBox">
@@ -154,7 +175,7 @@
                                                     <img class="img-thumbnail" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
                                                 </c:if>
                                                 <c:if test="${product.getImages().size() < 1}">
-                                                    <img src="Udklip.PNG" style="max-height:83px; max-width:83;">
+                                                    <img src="Udklip.PNG" style="max-height:83px; max-width:83px;">
                                                 </c:if>
                                         </div>
                                         <div class="productInfo">
@@ -183,24 +204,25 @@
                                     </div>
                                     </div>
                                 </c:forEach>
-                                
-                                
-                            
-                            
-                        </li>
+                                </div>
+                                </c:forEach>
+                    </div>
+                </form>
+            </div>
+    </div>
 
-                    </ul>
-                </div>
-        </form>
-                        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-                <script type="text/javascript" src="buttonFunction.js"></script>
-    </body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+crossorigin="anonymous"></script>
+<script type="text/javascript" src="buttonFunction.js"></script>
+
+</body>
+
 </html>
