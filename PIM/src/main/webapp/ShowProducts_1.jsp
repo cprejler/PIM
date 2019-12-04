@@ -154,12 +154,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <c:set var="i" value="0" scope="page"/>
+                        <c:set var="products" value="${requestScope.products}" />
                         <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
                                 <div class="overview" align="center">
-                                <c:set var="i" value ="${i +1}" scope="page"/>
-                                <c:set var="productList" value="${requestScope.products.get(i)}" />
-                                <c:forEach var="product" items ="${requestScope.productList}" varStatus="count">
+                                <c:set var="productList" value="${products.get(tableCount.index)}" />
+                                <c:forEach var="product" items ="${productList}" varStatus="count">
                                     <div class="row">
                                     <div class="allProduct" align="center">
                                         <div class="imageBox">
