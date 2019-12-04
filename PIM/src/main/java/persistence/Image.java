@@ -13,7 +13,7 @@ import java.sql.Blob;
  */
 public class Image {
     
-    private String image; //Base 64 Encoding  of the SQL blob
+    private String image; //Base 64 Encoded String  of the SQL blob to use in HTML
     private Integer productID;
     private Integer imageID;
 
