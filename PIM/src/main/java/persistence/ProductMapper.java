@@ -162,6 +162,7 @@ public class ProductMapper {
     //Method returns an arraylist of product, takes argument of a productType
     public ArrayList<Product> showProducts(String productType) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
+        ProductMapper pm = new ProductMapper();
         ArrayList<Product> products = new ArrayList<Product>();
         String name = "";
         String manufacturer = "";
@@ -190,7 +191,8 @@ public class ProductMapper {
                 
                 
             }
-            Product product = new Product(name, manufacturer, productType, fields, fieldValues);
+            ArrayList<Image> images = pm.getImages(rs.getInt("ProductID"));
+            Product product = new Product(name, manufacturer, productType, fields, fieldValues, images);
             product.setID(rs.getInt("productID"));
             product.setDescription(description);
             products.add(product);
