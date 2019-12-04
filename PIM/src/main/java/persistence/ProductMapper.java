@@ -194,6 +194,7 @@ public class ProductMapper {
             products.add(product);
             
         }
+        connection.close();
         
         return products;
     }
@@ -235,18 +236,12 @@ public class ProductMapper {
         Product product = new Product(productName, productType, manufacturer, fields, fieldValues, images);
         product.setID(id);
         product.setDescription(description);
-        
+        connection.close();
         return product;
+        
     }
 
-    public ArrayList<String> getMetaData() throws SQLException {
-        
-        Statement getMetaData = connection.createStatement();
-        ResultSet rs = getMetaData.executeQuery("SELECT * from product");
-        ResultSetMetaData rsmd = rs.getMetaData();
-        
-        return null;
-    }
+    
     
     public String alterProductTypeEnum(String newproduct) throws SQLException {
         newproduct = ",'" + newproduct + "'";        
@@ -468,7 +463,7 @@ public class ProductMapper {
             images.add(image);
             
         }
-        
+        connection.close();
         return images;
         
     }
