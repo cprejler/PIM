@@ -12,19 +12,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import presentation.Form;
+import presentation.Filter;
 
 /**
  *
  * @author jonat
  */
 public class FilterGenerator {
-    public ArrayList<Form> generateFilter(String table) throws ClassNotFoundException, SQLException {
+    public ArrayList<Filter> generateFilter(String table) throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
         ChooseConnection cv = new ChooseConnection();
         Connection connection = cv.chooseConnections();
         String database = cv.getDatabase();
-        ArrayList<Form>  filters  = new ArrayList();
+        ArrayList<Filter>  filters  = new ArrayList();
        
 
         Statement st = connection.createStatement();
@@ -33,7 +33,7 @@ public class FilterGenerator {
         while (rs.next()) {
             String field = rs.getString("COLUMN_NAME");
             String type = rs.getString("COLUMN_TYPE");
-            ResultSet rsValues = st2.executeQuery("SELECT "+field+" FROM "+table+";");
+            ResultSet rsValues = st2.executeQuery("SELECT DISTINCT "+field+" FROM "+table+";");
             ArrayList<String> fieldValues = new ArrayList();
             
             while (rsValues.next()){
@@ -42,15 +42,20 @@ public class FilterGenerator {
                     }
             if (type.contains("varchar")) {
                     //If the SQL type is VARCHAR an input box of type text is made
-                  Form form = new  Form(field, "checkbox",fieldValues);
-                  filters.add(form);
-            } else if (type.contains("int")) {
+                  Filter filter = new  Filter(field, "hidden",fieldValues,"varchar");
+                  filters.add(filter);
+            }else if (type.toLowerCase().contains("tinyint")) {
                 //If the SQL type is VARCHAR an input box of type number is made
-                  Form  form = new Form(field,"range");
-                  filters.add(form);
+                  Filter  filter = new Filter(field, "hidden", fieldValues,"tinyint");
+                  filters.add(filter);
+            }
+            else if (type.substring(0, 2).contains("int")) {
+                //If the SQL type is VARCHAR an input box of type number is made
+                  Filter  filter = new Filter(field,"hidden","intfloat");
+                  filters.add(filter);
             } else if (type.contains("float")) {
-                  Form form =  new Form(field, "range");
-                  filters.add(form);
+                  Filter filter =  new Filter(field, "hidden","intfloat");
+                  filters.add(filter);
                 // If it's not VARCHAR, INT  or float, we conclude it's an enum, and we create a statement, based on the Field  
             } else {
                 //If the  columntype  is ENUM,  another  query is  made to get the ENUM values
@@ -70,16 +75,16 @@ public class FilterGenerator {
                     String[] enumValuesArray = trimValuesAgain.split(",");
                     List<String> enumValues = new ArrayList<String>(Arrays.asList(enumValuesArray));
                     
-                    Form form  =  new Form(field, "select", enumValues);
-                    filters.add(form);
+                    Filter filter  =  new Filter(field, "select", enumValues,"enum");
+                    filters.add(filter);
                 } 
             }
         }
         //remove productID as we don't want it when a new product is made because productID in database is auto_increment
         int i = 0;
-        for (Form form : filters) {
-            if(form.getName().equals("productID")){
-                i = filters.indexOf(form);
+        for (Filter filter : filters) {
+            if(filter.getName().equals("productID")){
+                i = filters.indexOf(filter);
             }
         } 
         filters.remove(i);

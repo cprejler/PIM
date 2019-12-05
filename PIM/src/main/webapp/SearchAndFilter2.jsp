@@ -180,7 +180,7 @@
                     </div>
                 </form>
                         <div class="container">
-            <form action="FrontController">
+            
 
                 <h5 class="text-primary">Manufacturer</h5>
                 <input type="text" class="form-control" name="manufacturer">
@@ -189,25 +189,46 @@
 
 
 
-                <c:forEach var="form"  items="${requestScope.filters}">
-                    <h5 class="text-primary">${form.getName()}</h5>
+                <c:forEach var="filter"  items="${requestScope.filters}">
+                    <h5 class="text-primary">${filter.getName()}</h5>
 
-                    <c:if  test="${form.getInputType() eq 'select'}">
-                        <select name="${form.getName()}">
-                            <c:forEach var="item" items="${form.getOptions()}">
+                    <c:if  test="${filter.getiD() eq 'enum'}">
+                        <select name="${filter.getName()}">
+                            <c:forEach var="item" items="${filter.getOptions()}">
                                 <option>${item}</option>
                             </c:forEach>
 
                         </select>
                     </c:if>
-                    <c:if  test="${form.getInputType() ne 'select'}">
-                        <input type="${form.getInputType()}" name="${form.getName()}">
+                    <c:if  test="${filter.getiD() eq 'varchar'}">
+                        <input type="${filter.getInputType()}" name="${filter.getName()} value="${filter.getValue()}>
+                        <c:forEach var="value" items="${filter.getValue()}">
+                            <input type="checkbox" name="${filter.getValue()}"> 
+                            ${value} 
+                            <br>
+                        </c:forEach>
+                            </c:if>
+                       <c:if  test="${filter.getiD() eq 'intfloat'}">
+                        <input type="${filter.getInputType()}" name="${filter.getName()} value="${filter.getValue()}>
+                        <c:forEach var="value" items="${filter.getValue()}">
+                            <input type="range" name="${filter.getValue()}"> 
+                            <br>
+                        </c:forEach>
+                            
+                    </c:if>
+                    <c:if  test="${filter.getiD() eq 'tinyint'}">
+                        <input type="${filter.getInputType()}" name="${filter.getName()} value="${filter.getValue()}>
+                        <c:forEach var="value" items="${filter.getValue()}">
+                            <input type="checkbox" name="${filter.getValue()}">   
+                            ${value} 
+                            <br>
+                        </c:forEach>
                     </c:if>
 
                 </c:forEach>
                 <!--<input type="submit" class="btn btn-primary" value="Insert Product">
                 <input  type="hidden" name="cmd" value="InsertProduct">-->
-            </form>
+            
 
         </div>
     </div>
