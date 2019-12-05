@@ -58,10 +58,10 @@
             left:180px;
         }
         .filter{
+            position: relative;
             float:left;
             width:20%;
-            position:fixed;
-            left:0;
+            left:-50px;
             top: 90px;
         }
         .filter2{
@@ -179,7 +179,38 @@
                     <input type="hidden"  name="cmd" value="generateFilter">
                     </div>
                 </form>
-                </div>
+                        <div class="container">
+            <form action="FrontController">
+
+                <h5 class="text-primary">Manufacturer</h5>
+                <input type="text" class="form-control" name="manufacturer">
+                <h5 class="text-primary">Product Name</h5>
+                <input type="text" class="form-control" name="productName">
+
+
+
+                <c:forEach var="form"  items="${requestScope.filters}">
+                    <h5 class="text-primary">${form.getName()}</h5>
+
+                    <c:if  test="${form.getInputType() eq 'select'}">
+                        <select name="${form.getName()}">
+                            <c:forEach var="item" items="${form.getOptions()}">
+                                <option>${item}</option>
+                            </c:forEach>
+
+                        </select>
+                    </c:if>
+                    <c:if  test="${form.getInputType() ne 'select'}">
+                        <input type="${form.getInputType()}" name="${form.getName()}">
+                    </c:if>
+
+                </c:forEach>
+                <input type="submit" class="btn btn-primary" value="Insert Product">
+                <input  type="hidden" name="cmd" value="InsertProduct">
+            </form>
+
+        </div>
+    </div>
                 <form action="FrontController">
 
                     <input type="hidden" name="cmd" value="" id="hiddenId">
