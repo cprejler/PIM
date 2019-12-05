@@ -201,26 +201,27 @@
                         </select>
                     </c:if>
                     <c:if  test="${filter.getiD() eq 'varchar'}">
-                        <input type="${filter.getInputType()}" name="${filter.getName()} value="${filter.getValue()}>
+                        <input name="${filter.getName()} value="${filter.getValue()}>
                         <c:forEach var="value" items="${filter.getValue()}">
                             <input type="checkbox" name="${filter.getValue()}"> 
                             ${value} 
                             <br>
                         </c:forEach>
                             </c:if>
-                       <c:if  test="${filter.getiD() eq 'intfloat'}">
+                       <c:if  test="${filter.getiD() eq 'intFloat'}">
                         <input type="${filter.getInputType()}" name="${filter.getName()} value="${filter.getValue()}>
-                        <c:forEach var="value" items="${filter.getValue()}">
+                        <c:forEach var="valueIntFloat" items="${filter.getValue()}">
                             <input type="range" name="${filter.getValue()}"> 
+                            ${valueIntFloat}
                             <br>
                         </c:forEach>
                             
                     </c:if>
                     <c:if  test="${filter.getiD() eq 'tinyint'}">
                         <input type="${filter.getInputType()}" name="${filter.getName()} value="${filter.getValue()}>
-                        <c:forEach var="value" items="${filter.getValue()}">
+                        <c:forEach var="valueTinyInt" items="${filter.getValue()}">
                             <input type="checkbox" name="${filter.getValue()}">   
-                            ${value} 
+                            ${valueTinyInt} 
                             <br>
                         </c:forEach>
                     </c:if>
