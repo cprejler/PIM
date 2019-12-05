@@ -205,8 +205,8 @@
                     </c:if>
 
                 </c:forEach>
-                <input type="submit" class="btn btn-primary" value="Insert Product">
-                <input  type="hidden" name="cmd" value="InsertProduct">
+                <!--<input type="submit" class="btn btn-primary" value="Insert Product">
+                <input  type="hidden" name="cmd" value="InsertProduct">-->
             </form>
 
         </div>

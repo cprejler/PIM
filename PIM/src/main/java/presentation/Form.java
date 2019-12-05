@@ -16,6 +16,7 @@ public class Form {
     
     String name;
     String  inputType;
+    ArrayList<String> value;
     List<String> options;
     //Constructor if it's an ENUM
     public Form(String name, String inputType, List<String> options) {
@@ -28,7 +29,15 @@ public class Form {
         this.name = name;
         this.inputType = inputType;
     }
+    public Form(String name, String inputType, ArrayList<String> value) {
+        this.name = name;
+        this.inputType = inputType;
+        this.value = value;
+    }
 
+    public ArrayList<String> getValue() {
+        return value;
+    }
     public String getName() {
         return name;
     }
