@@ -69,10 +69,8 @@ public class ExcelWriter {
     //Generates a sheet and fills it with data for the specific product type
     private Sheet createSheet(Workbook workbook, ArrayList<Product> products){
         ArrayList<String> headers = new ArrayList();
-        headers.add("productName");
-        headers.add("manufacturer");
-        headers.add("description");
-        headers.add("productType");
+        
+        //headers.add("productType");
         for(String field: products.get(0).getFields()){
             headers.add(field);
         }
@@ -82,7 +80,7 @@ public class ExcelWriter {
         Font headerFont = workbook.createFont();
         
         headerFont.setBold(true);
-        headerFont.setFontHeight((short) 20);
+        //headerFont.setFontHeight((short) 20);
         headerFont.setColor(IndexedColors.RED.getIndex());
         
         CellStyle headerCellStyle = workbook.createCellStyle();
@@ -107,11 +105,11 @@ public class ExcelWriter {
         for (Product product: products){
             Row row = sheet.createRow(rowNum++);
             
-            row.createCell(0).setCellValue(product.getName());
-            row.createCell(1).setCellValue(product.getManufacturer());
-            row.createCell(2).setCellValue(product.getDescription());
-            row.createCell(3).setCellValue(product.getType());
-            int cellCounter = 4;
+            //row.createCell(0).setCellValue(product.getName());
+            //row.createCell(1).setCellValue(product.getManufacturer());
+            //row.createCell(2).setCellValue(product.getDescription());
+            //row.createCell(3).setCellValue(product.getType());
+            int cellCounter = 0;
             for (int i = 0; i < product.getFieldsValues().size(); i++) {
                 row.createCell(cellCounter).setCellValue(String.valueOf(product.getFieldsValues().get(i)));
                 cellCounter++;
