@@ -77,7 +77,7 @@ public class UpdateProductCommand extends Command {
 
         try {
             pMapper.updateProduct(productList);
-            response.sendRedirect("/FrontController?cmd=ShowProducts");
+            
             
         } catch (SQLException e) {
             
@@ -89,7 +89,7 @@ public class UpdateProductCommand extends Command {
             
         }
 
-        webpage="ShowProducts";
+        webpage="/FrontController?cmd=ShowProducts";
         return webpage;
     }
     

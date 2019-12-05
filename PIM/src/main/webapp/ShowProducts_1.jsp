@@ -21,6 +21,8 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        
         <style>
             .allProduct{
                 width:90%;
@@ -168,10 +170,10 @@
                                             <div class="imageBox">
                                                 <c:if test="${product.getImages().size() > 0 }">
                                                     <c:set var="image" value="${product.getImages().get(0)}"/>
-                                                    <img class="img-thumbnail" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                                    <img class="img-thumbnail lozad" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
                                                 </c:if>
                                                 <c:if test="${product.getImages().size() < 1}">
-                                                    <img src="Udklip.PNG" style="max-height:83px; max-width:83px;">
+                                                    <img class="lozad" src="Udklip.PNG" style="max-height:83px; max-width:83px;">
                                                 </c:if>
                                             </div>
                                             <div class="productInfo">
@@ -218,6 +220,7 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script type="text/javascript" src="buttonFunction.js"></script>
+        
 
     </body>
 

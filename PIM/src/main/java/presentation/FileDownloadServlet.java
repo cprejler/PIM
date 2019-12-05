@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -108,6 +109,8 @@ public class FileDownloadServlet extends HttpServlet {
             } catch (Exception e) {
                 Logger.getLogger(FileDownloadServlet.class.getName()).log(Level.SEVERE, null, e);
             }
+            RequestDispatcher rd = request.getRequestDispatcher("DataExport.jsp");
+            rd.forward(request, response);
 
         } else if (request.getParameter("cmd").equals("exportJSON")) {
 

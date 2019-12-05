@@ -447,7 +447,7 @@ public class ProductMapper {
     public ArrayList<Image> getImages(Connection connection, Integer productID) throws ClassNotFoundException, SQLException {
         ArrayList<Image> images = new ArrayList<>();
         
-        //Connection connection = cv.chooseConnections();
+        
         
         String SQL = "SELECT * from images where productID =" + productID + "";
         Statement statement = connection.createStatement();
@@ -466,6 +466,37 @@ public class ProductMapper {
         }
         
         return images;
+        
+    }
+    
+    public ArrayList<Product> filteredProducts(String productType, String field, String fieldValue) throws ClassNotFoundException, SQLException{
+        Connection connection = cv.chooseConnections();
+        
+        ArrayList<Product> products = new ArrayList<>();
+        
+        //Generate query based on productType and a field
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * from ");
+        sb.append(productType);
+        sb.append(" where ");
+        sb.append(field);
+        sb.append(" like ");
+        sb.append(fieldValue);
+        //sb.append("");
+        
+        String SQL = "SELECT * FROM "+productType+" where "+field+" like '"+fieldValue+"'";
+        
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(SQL);
+        
+        while(rs.next()){
+            Integer productID = rs.getInt("productID");
+            Product product = getProduct(productID);
+            products.add(product);
+        }
+        
+        
+        return products;
         
     }
     

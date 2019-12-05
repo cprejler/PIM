@@ -54,6 +54,7 @@ public class FrontController extends HttpServlet {
             request.setAttribute("error", e.getMessage());
             request.setAttribute("cause", e.getCause());
             request.setAttribute("stacktrace", e.getStackTrace());
+            request.getRequestDispatcher("Error.jsp").forward(request, response);
         }
         
 
