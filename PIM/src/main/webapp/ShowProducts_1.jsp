@@ -153,7 +153,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="filter"></div>
                         
                     <div class="row">
                         <c:set var="products" value="${requestScope.products}" />
@@ -166,10 +166,10 @@
                                         <div class="imageBox">
                                                 <c:if test="${product.getImages().size() > 0 }">
                                                     <c:set var="image" value="${product.getImages().get(0)}"/>
-                                                    <img class="img-thumbnail" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                                    <img class="img-thumbnail" style="max-height:100px; max-width:100px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
                                                 </c:if>
                                                 <c:if test="${product.getImages().size() < 1}">
-                                                    <img src="Udklip.PNG" style="max-height:83px; max-width:83px;">
+                                                    <img src="Udklip.PNG" style="max-height:100px; max-width:100px;">
                                                 </c:if>
                                         </div>
                                         <div class="productInfo">
