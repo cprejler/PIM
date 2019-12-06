@@ -190,6 +190,7 @@ public class ProductMapper {
                 description = rs.getString("description");
                 
                 
+                
             }
             ArrayList<Image> images = pm.getImages(connection, rs.getInt("ProductID"));
             Product product = new Product(name, manufacturer, productType, fields, fieldValues, images);
