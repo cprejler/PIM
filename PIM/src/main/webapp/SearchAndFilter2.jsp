@@ -216,6 +216,7 @@
                                         <br>
 
                                     </c:forEach>
+                                    <input type="hidden"  name="${filter.getName()}" value="${filter.getName()}">
                                     <input type="submit" value="Apply" class="btn btn-sm btn-primary m-2">
                                     <input type="hidden"  name="productType" value="${productType}">
                                     <input type="hidden"  name="cmd" value="applyFilter">
