@@ -40,27 +40,31 @@ public class FilterGenerator {
             String fieldValue = rsValues.getString(field);
             fieldValues.add(fieldValue);
                     }
-            if (type.contains("varchar")) {
-                    //If the SQL type is VARCHAR an input box of type text is made
-                  Filter filter = new  Filter(field, "hidden",fieldValues,"varchar");
+            
+                             Filter filter = new  Filter(field, "hidden",fieldValues,"varchar");
                   filters.add(filter);
-            }else if (type.toLowerCase().contains("tinyint")) {
-                //If the SQL type is VARCHAR an input box of type number is made
-                  Filter  filter = new Filter(field, "hidden", fieldValues,"tinyint");
-                  filters.add(filter);
-            }
-            else if (type.substring(0,4).contains("int")) {
-                //If the SQL type is VARCHAR an input box of type number is made
-                  Filter  filter = new Filter(field,"hidden", fieldValues,"intFloat");
-                  filters.add(filter);
-            } else if (type.contains("float")) {
-                  Filter filter =  new Filter(field, "hidden", fieldValues, "intFloat");
-                  filters.add(filter);
-                // If it's not VARCHAR, INT  or float, we conclude it's an enum, and we create a statement, based on the Field 
-                
-            } else if (type.contains("enum")) {
-                  Filter filter =  new Filter(field, "hidden", fieldValues, "enum");
-                  filters.add(filter);
+            
+//            if (type.contains("varchar")) {
+//                    //If the SQL type is VARCHAR an input box of type text is made
+//                  Filter filter = new  Filter(field, "hidden",fieldValues,"varchar");
+//                  filters.add(filter);
+//            }else if (type.toLowerCase().contains("tinyint")) {
+//                //If the SQL type is VARCHAR an input box of type number is made
+//                  Filter  filter = new Filter(field, "hidden", fieldValues,"tinyint");
+//                  filters.add(filter);
+//            }
+//            else if (type.substring(0,4).contains("int")) {
+//                //If the SQL type is VARCHAR an input box of type number is made
+//                  Filter  filter = new Filter(field,"hidden", fieldValues,"intFloat");
+//                  filters.add(filter);
+//            } else if (type.contains("float")) {
+//                  Filter filter =  new Filter(field, "hidden", fieldValues, "intFloat");
+//                  filters.add(filter);
+//                // If it's not VARCHAR, INT  or float, we conclude it's an enum, and we create a statement, based on the Field 
+//                
+//            } else if (type.contains("enum")) {
+//                  Filter filter =  new Filter(field, "hidden", fieldValues, "enum");
+//                  filters.add(filter);
                 
 //            } else {
 //                
@@ -85,7 +89,7 @@ public class FilterGenerator {
 //                    filters.add(filter);
 //                } 
             }
-        }
+        
         //remove productID as we don't want it when a new product is made because productID in database is auto_increment
         int i = 0;
         for (Filter filter : filters) {

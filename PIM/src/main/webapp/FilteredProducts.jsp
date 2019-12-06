@@ -162,8 +162,7 @@
 
                     <div class="row">
                         
-                        <c:forEach  var="product" items="${requestScope.filteredProducts}" varStatus="tableCount">
-                            <div class="overview" align="center">
+                     
                                 
                                 <c:forEach var="product" items ="${requestScope.filteredProducts}" varStatus="count">
                                     <div class="row">
@@ -203,8 +202,6 @@
                                         </div>
                                     </div>
                                 </c:forEach>
-                            </div>
-                        </c:forEach>
                     </div>
                 </form>
             </div>
