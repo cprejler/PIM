@@ -38,6 +38,7 @@ public abstract class Command{
         commands.put("gotoSpecificProduct", new gotoSpecificProduct());
         commands.put("CreateProductType", new CreateProductTypeCommmand());
         commands.put("gotoCreateProductType", new gotoCreateProductType());
+        commands.put("applyFilter", new ApplyFilterCommand());
 
     }
 

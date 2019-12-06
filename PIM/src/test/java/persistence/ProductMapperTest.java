@@ -5,11 +5,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -147,21 +144,14 @@ public class ProductMapperTest {
 
     }
 
-    //@Test
+    @Test
     public void showProductsTest() throws ClassNotFoundException, SQLException {
-//        ProductMapper pMapper = new ProductMapper();
-//
-//        ArrayList<Product> wine = pMapper.showProducts("wine");
-//        ArrayList<Product> phone = pMapper.showProducts("phone");
-//
-//        assertEquals("manufacturer", wine.get(0).getFields().get(0));
-//        assertEquals("productID", wine.get(0).getFields().get(9));
-//        //assertEquals(1960, wine.get(0).getFieldsValues().get(3));
-//        assertEquals("portugal", wine.get(2).getFieldsValues().get(8));
-//        assertEquals("grape", wine.get(5).getFields().get(5));
-//
-//        assertEquals("manufacturer", phone.get(0).getFields().get(0));
-//        assertEquals("Apple", phone.get(0).getFieldsValues().get(0));
+        ProductMapper pMapper = new ProductMapper();
+
+        ArrayList<Product> wine = pMapper.showProducts("wine");
+        ArrayList<Product> phone = pMapper.showProducts("phone");
+
+        
 
     }
 
@@ -252,5 +242,18 @@ public class ProductMapperTest {
         
         System.out.println(test2);
                  
+    }
+    
+    @Test
+    public void filteredProductsTest() throws ClassNotFoundException, SQLException{
+        
+        ProductMapper pMapper = new ProductMapper();
+        
+        ArrayList<Product> redwine = pMapper.filteredProducts("wine", "wineType", "Red");
+        
+        assertEquals(2014, redwine.get(0).getFieldsValues().get(0));
+        
+        
+        
     }
 }
