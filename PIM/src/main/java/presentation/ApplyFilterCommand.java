@@ -9,6 +9,7 @@ import businesslogic.Product;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,16 +25,28 @@ public class ApplyFilterCommand extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
         String webpage = "";
         ProductMapper pMapper = new ProductMapper();
-        String productType = request.getParameter("");
-        String field = request.getParameter("field");
-        String fieldValue = request.getParameter("fieldValue");
-        
-        ArrayList<Product> filteredProducts = pMapper.filteredProducts(productType, field, fieldValue);
-        
+        Enumeration<String> getParameterNames = request.getParameterNames();
+        ArrayList<String> parameterNames = new ArrayList<>();
+
+        while (getParameterNames.hasMoreElements()) {
+            if (getParameterNames.nextElement().equals("cmd")) {
+
+            } else {
+                parameterNames.add(getParameterNames.nextElement());
+            }
+
+        }
+        ArrayList<String> parameters = new ArrayList<String>();
+        for (String parameterName : parameterNames) {
+            parameters.add(request.getParameter(parameterName));
+        }
+
+        ArrayList<Product> filteredProducts = pMapper.filteredProducts(parameters.get(1), parameters.get(0), parameters.get(2));
+
         request.setAttribute("filteredProducts", filteredProducts);
-        
+
         return webpage;
-        
+
     }
-    
+
 }
