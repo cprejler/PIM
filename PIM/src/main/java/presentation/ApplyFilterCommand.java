@@ -29,16 +29,15 @@ public class ApplyFilterCommand extends Command {
         ArrayList<String> parameterNames = new ArrayList<>();
 
         while (getParameterNames.hasMoreElements()) {
-            if (getParameterNames.nextElement().equals("cmd")) {
-
-            } else {
-                parameterNames.add(getParameterNames.nextElement());
-            }
+            parameterNames.add(getParameterNames.nextElement());
 
         }
         ArrayList<String> parameters = new ArrayList<String>();
         for (String parameterName : parameterNames) {
-            parameters.add(request.getParameter(parameterName));
+            if(!parameterName.equals("cmd")){
+                parameters.add(request.getParameter(parameterName));
+            }
+            
         }
 
         ArrayList<Product> filteredProducts = pMapper.filteredProducts(parameters.get(2), parameters.get(1), parameters.get(0));
