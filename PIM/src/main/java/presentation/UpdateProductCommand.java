@@ -90,28 +90,7 @@ public class UpdateProductCommand extends Command {
         }
 
         webpage="ShowProducts_1";
-        return metode(request, response) ; 
+        return returnToShowProducts(request, response) ; 
        // return webpage;
     }
-    
-    public String metode (HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException  {
-         String webpage = "ShowProducts_1";
-        ProductMapper pMapper = new ProductMapper();
-        
-        ArrayList<String> tableNames = pMapper.getTableNames();
-        
-        ArrayList<ArrayList<Product>> products = new ArrayList();
-        
-        for (String tableName : tableNames) {
-            ArrayList<Product> productType   = pMapper.showProducts(tableName);
-            products.add(productType);
-            
-        }
-        
-        
-        request.setAttribute("tableNames", tableNames);
-        request.setAttribute("products", products);
-        return webpage; 
     }
-    
-}

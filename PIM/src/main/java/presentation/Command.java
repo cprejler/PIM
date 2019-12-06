@@ -1,9 +1,11 @@
 package presentation;
 
 
+import businesslogic.Product;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,6 +43,23 @@ public abstract class Command{
         commands.put("applyFilter", new ApplyFilterCommand());
 
     }
+    
+        public String returnToShowProducts (HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException  {
+        String webpage = "ShowProducts_1";
+        ProductMapper pMapper = new ProductMapper();
+        ArrayList<String> tableNames = pMapper.getTableNames();
+        ArrayList<ArrayList<Product>> products = new ArrayList();
+        for (String tableName : tableNames) {
+            ArrayList<Product> productType   = pMapper.showProducts(tableName);
+            products.add(productType);
+            
+        }
+        
+        request.setAttribute("tableNames", tableNames);
+        request.setAttribute("products", products);
+        return webpage; 
+    }
+    
 
     static Command from(HttpServletRequest request) {
         String commandName = request.getParameter("cmd");
@@ -49,9 +68,14 @@ public abstract class Command{
         }
         return commands.getOrDefault(commandName, new UnknownCommand());
     }
+    
+    
 
     
 
     abstract String execute(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException;
+    
+    
+    
 }
