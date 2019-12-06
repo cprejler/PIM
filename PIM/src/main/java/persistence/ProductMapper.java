@@ -191,7 +191,7 @@ public class ProductMapper {
                 
                 
             }
-            ArrayList<Image> images = pm.getImages(rs.getInt("ProductID"));
+            ArrayList<Image> images = pm.getImages(connection, rs.getInt("ProductID"));
             Product product = new Product(name, manufacturer, productType, fields, fieldValues, images);
             product.setID(rs.getInt("productID"));
             product.setDescription(description);
@@ -236,7 +236,7 @@ public class ProductMapper {
             }
             
         }
-        ArrayList<Image> images = getImages(id);
+        ArrayList<Image> images = getImages(connection, id);
         Product product = new Product(productName, productType, manufacturer, fields, fieldValues, images);
         product.setID(id);
         product.setDescription(description);
@@ -297,11 +297,9 @@ public class ProductMapper {
     }
     
     public String createProductTable(ArrayList product, ArrayList enums) throws SQLException {  
-        System.out.println("301");
         Statement st = connection.createStatement();        
         String CreateTableQuery = "";
         StringBuilder sb = new StringBuilder();
-        System.out.println("304");
         String foreignKeyProductID =  "productID int(5) unsigned zerofill NOT NULL, \n"
                 + " foreign key (productID) references product(productID))"; 
          int p = 0; 
@@ -340,7 +338,6 @@ public class ProductMapper {
 
         CreateTableQuery = CreateTableQuery + foreignKeyProductID ;
         st.executeUpdate(CreateTableQuery);        
-        System.out.println("343");
 
         connection.close();
         
@@ -411,7 +408,7 @@ public class ProductMapper {
                     manufacturer = rs1.getString("manufacturer");
                     
                 }
-                    ArrayList<Image> images = pm.getImages(rs1.getInt("ProductID"));
+                    ArrayList<Image> images = pm.getImages(connection, rs1.getInt("ProductID"));
                     Product product = new Product(name, manufacturer, productType.get(i), fields, fieldValues, images);
                     product.setID(rs1.getInt("ProductID"));
                     product.setType(rs1.getString("productType"));
@@ -447,10 +444,10 @@ public class ProductMapper {
          
     
 
-    public ArrayList<Image> getImages(Integer productID) throws ClassNotFoundException, SQLException {
+    public ArrayList<Image> getImages(Connection connection, Integer productID) throws ClassNotFoundException, SQLException {
         ArrayList<Image> images = new ArrayList<>();
         
-        Connection connection = cv.chooseConnections();
+        
         
         String SQL = "SELECT * from images where productID =" + productID + "";
         Statement statement = connection.createStatement();
@@ -467,8 +464,39 @@ public class ProductMapper {
             images.add(image);
             
         }
-        connection.close();
+        
         return images;
+        
+    }
+    
+    public ArrayList<Product> filteredProducts(String productType, String field, String fieldValue) throws ClassNotFoundException, SQLException{
+        Connection connection = cv.chooseConnections();
+        
+        ArrayList<Product> products = new ArrayList<>();
+        
+        //Generate query based on productType and a field
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * from ");
+        sb.append(productType);
+        sb.append(" where ");
+        sb.append(field);
+        sb.append(" like ");
+        sb.append(fieldValue);
+        //sb.append("");
+        
+        String SQL = "SELECT * FROM "+productType+" where "+field+" like '"+fieldValue+"'";
+        
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(SQL);
+        
+        while(rs.next()){
+            Integer productID = rs.getInt("productID");
+            Product product = getProduct(productID);
+            products.add(product);
+        }
+        
+        
+        return products;
         
     }
     
