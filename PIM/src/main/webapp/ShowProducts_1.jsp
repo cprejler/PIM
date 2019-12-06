@@ -21,67 +21,67 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        
-        
-        <style>
-            .allProduct{
-                width:90%;
-                padding:20px;
-                border:solid;
-                overflow:auto;
-            }
-            .productInfo{
-                vertical-align: top;
-                float:left;
-                display:inline-block;
-                width:200px;
-            }
-            .imageBox{
-                display:inline-block;
-                float:left;
-                width:100px;
-            }
-            .checksButtons{
-                float:right;
-                width:10%;
-            }
-            p{
-                text-align:left;
-                color:black;
-            }
-            .invisible{
-                opacity: 0;
-                height: 5%;
-            }
-            .overview{
-                float:right;
-                width:80%;
-            }
-            .filter{
-                float:left;
-                width:20%;
-            }
-            .form-check{
-                float: left;
-                margin: 10px;
-            }
-            .form-check col{
-                float:right;
-                margin: 10px;
-            }
-            .checkBoxBox{
-                margin: 20px;
-                float: right;
-                width:5%;
-            }
-            .description{
-                float: left;
-                margin: 20px;
-                width:40%;
-                font-size:small;
-                color: gray;
-            }
-        </style>
+
+        <link rel = "stylesheet" type = "text/css" href = "ProductView.css" />
+     <!--   <style> MADE CSS FILE
+        .allProduct{
+            width:90%;
+            padding:20px;
+            border:solid;
+            overflow:auto;
+        }
+        .productInfo{
+            vertical-align: top;
+            float:left;
+            display:inline-block;
+            width:200px;
+        }
+        .imageBox{
+            display:inline-block;
+            float:left;
+            width:100px;
+        }
+        .checksButtons{
+            float:right;
+            width:10%;
+        }
+        p{
+            text-align:left;
+            color:black;
+        }
+        .invisible{
+            opacity: 0;
+            height: 5%;
+        }
+        .overview{
+            float:right;
+            width:80%;
+        }
+        .filter{
+            float:left;
+            width:20%;
+        }
+        .form-check{
+            float: left;
+            margin: 10px;
+        }
+        .form-check col{
+            float:right;
+            margin: 10px;
+        }
+        .checkBoxBox{
+            margin: 20px;
+            float: right;
+            width:5%;
+        }
+        .description{
+            float: left;
+            margin: 20px;
+            width:40%;
+            font-size:small;
+            color: gray;
+        }
+        </style>-->
     </head>
 
 
@@ -147,7 +147,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="filter">
+               
+                <form action="FrontController">
+                    <select class="form-control  m-2" name="productType">
+                        <%-- Inputs are  made for each productType in database --%>
+                        <c:forEach var="item" items="${tables}">
+                            <option value="${item}">${item}</option>    
+                        </c:forEach>
 
+                    </select>
+                       
+                    <input type="submit" value="Select" class="btn btn-primary m-2">
+                    <input type="hidden"  name="cmd" value="generateFilter">
+
+                </form>
+                </div>
                 <form action="FrontController">
                     <input type="hidden" name="cmd" value="" id="hiddenId">
                     <div class="row" mx-auto>

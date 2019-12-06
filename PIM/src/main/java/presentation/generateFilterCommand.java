@@ -12,32 +12,45 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import persistence.FilterGenerator;
 import persistence.ProductMapper;
 
 /**
  *
- * @author jenso
+ * @author jonat
  */
-public class SearchProductCommand extends Command{
-
+public class generateFilterCommand extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
+        String webpage = "";
+        String filterToGenerate = request.getParameter("productType");
         
-        String searchItem = request.getParameter("searchItem");
+        FilterGenerator fg = new FilterGenerator();
+        ArrayList<Filter> filters =  fg.generateFilter(filterToGenerate);
         
-        ProductMapper pm = new ProductMapper();
+        request.setAttribute("filters", filters);
         
-        ArrayList<Product> products = pm.searchForProduct(searchItem);
-        ArrayList<String> tables = pm.getTableNames();
+        
+
+        //Send table names in order to dynamically generate dropdown boxes, if user wants to change product type
+        ProductMapper pMapper = new ProductMapper();
+        ArrayList<String> tables = pMapper.getTableNames();
+
+        ArrayList<Product> productType = pMapper.showProducts(filterToGenerate);
         ArrayList<String> attributes = new ArrayList<>();
         
+
         for (String table : tables) {
             attributes.add(table);
         }
-        request.setAttribute("productList", products);
         request.setAttribute("tables", attributes);
-        
-        return "SearchResults2";
+
+        request.setAttribute("getProductType", productType);
+        System.out.println("48"+productType.get(0).getName().toString());
+
+        webpage = "SearchAndFilter2";
+        return webpage;
     }
-    
+
 }
+

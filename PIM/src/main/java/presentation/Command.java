@@ -37,6 +37,7 @@ public abstract class Command{
         commands.put("gotoShowProducts", new gotoShowProducts());
         commands.put("search", new SearchProductCommand());
         commands.put("generateForm", new generateFormCommand());
+        commands.put("generateFilter", new generateFilterCommand());
         commands.put("gotoSpecificProduct", new gotoSpecificProduct());
         commands.put("CreateProductType", new CreateProductTypeCommmand());
         commands.put("gotoCreateProductType", new gotoCreateProductType());

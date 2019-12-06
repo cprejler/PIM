@@ -1,0 +1,67 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04-Dec-2019, 20:26:07
+    Author     : jonat
+*/
+
+.allProduct{
+            width:90%;
+            padding:20px;
+            border:solid;
+            overflow:auto;
+        }
+        .productInfo{
+            vertical-align: top;
+            float:left;
+            display:inline-block;
+            width:200px;
+        }
+        .imageBox{
+            display:inline-block;
+            float:left;
+            width:100px;
+        }
+        .checksButtons{
+            float:right;
+            width:10%;
+        }
+        p{
+            text-align:left;
+            color:black;
+        }
+        .invisible{
+            opacity: 0;
+            height: 5%;
+        }
+        .overview{
+            float:right;
+            width:80%;
+        }
+        .filter{
+            float:left;
+            width:20%;
+        }
+        .form-check{
+            float: left;
+            margin: 10px;
+        }
+        .form-check col{
+            float:right;
+            margin: 10px;
+        }
+        .checkBoxBox{
+            margin: 20px;
+            float: right;
+            width:5%;
+        }
+        .description{
+            float: left;
+            margin: 20px;
+            width:40%;
+            font-size:small;
+            color: gray;
+        }

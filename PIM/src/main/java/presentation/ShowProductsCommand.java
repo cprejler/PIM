@@ -36,6 +36,13 @@ public class ShowProductsCommand extends Command {
             products.add(productType);
             
         }
+        ArrayList<String> tables = pMapper.getTableNames();
+        ArrayList<String> attributes = new ArrayList<>();
+        
+        for (String table : tables) {
+            attributes.add(table);
+        }
+        request.setAttribute("tables", attributes);
         
         
         request.setAttribute("tableNames", tableNames);

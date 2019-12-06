@@ -74,6 +74,7 @@
                         </c:forEach>
 
                     </select>
+                       
                     <input type="submit" value="Select" class="btn btn-primary m-2">
                     <input type="hidden"  name="cmd" value="generateForm">
 
