@@ -161,10 +161,9 @@
 
 
                     <div class="row">
-                        <c:set var="products" value="${requestScope.products}" />
-                        <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
-                            <div class="overview" align="center">
-                                <c:set var="productList" value="${products.get(tableCount.index)}" />
+                        
+                     
+                                
                                 <c:forEach var="product" items ="${requestScope.filteredProducts}" varStatus="count">
                                     <div class="row">
                                         <div class="allProduct" align="center">
@@ -203,8 +202,6 @@
                                         </div>
                                     </div>
                                 </c:forEach>
-                            </div>
-                        </c:forEach>
                     </div>
                 </form>
             </div>
