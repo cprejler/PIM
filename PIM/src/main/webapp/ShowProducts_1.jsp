@@ -51,11 +51,16 @@
                 }
                 .invisible{
                     opacity: 0;
-                    height: 5%;
+                    height: 10px;
+                    width: 100%;
+                }
+                .productView{
+                    float:right;
+                    width:90%;
                 }
                 .overview{
                     float:right;
-                    width:90%;
+                    width:100%;
                 }
                 .filter{
                     float:left;
@@ -161,9 +166,11 @@
     
     
                         <div class="row">
+                            <div class="productView">
                             <c:set var="products" value="${requestScope.products}" />
                             <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
                                 <div class="overview" align="center">
+                                    <p><b>${tableName}</b></p>
                                     <c:set var="productList" value="${products.get(tableCount.index)}" />
                                     <c:forEach var="product" items ="${productList}" varStatus="count">
                                         <div class="row">
@@ -201,10 +208,13 @@
                                                                 value="${product.getID()}" onclick="buttonA_clickHandler(event)">Edit Product</button></div>
                                                 </div>
                                             </div>
+                                        <div class="invisible">        
                                         </div>
+                                    </div>
                                     </c:forEach>
                                 </div>
                             </c:forEach>
+                            </div>
                         </div>
                     </form>
                 </div>
