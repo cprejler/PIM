@@ -187,9 +187,21 @@
                         <form>
                             <h5 class="text-primary">Manufacturer</h5>
                             <input type="text" class="form-control" name="manufacturer">
-                        </form> <form>
+
+                            <input type="hidden"  name="${filter.getName()}" value="${filter.getName()}">
+                            <input type="submit" value="Apply" class="btn btn-sm btn-primary m-2">
+                            <input type="hidden"  name="productType" value="${productType}">
+                            <input type="hidden"  name="cmd" value="applyFilter">
+
+                        </form> 
+                        <form>
                             <h5 class="text-primary">Product Name</h5>
                             <input type="text" class="form-control" name="productName">
+
+                            <input type="hidden"  name="${filter.getName()}" value="${filter.getName()}">
+                            <input type="submit" value="Apply" class="btn btn-sm btn-primary m-2">
+                            <input type="hidden"  name="productType" value="${productType}">
+                            <input type="hidden"  name="cmd" value="applyFilter">
                         </form>
 
 
@@ -198,12 +210,15 @@
 
                             <c:if  test="${filter.getiD() eq 'enum'}">
                                 <form>
-                                    <select name="${filter.getName()}">
-                                        <c:forEach var="item" items="${filter.getOptions()}">
-                                            <option>${item}</option>
-                                        </c:forEach>
-                                        <input type="submit" value="Apply" class="btn btn-sm btn-primary m-2">
-                                        <input type="hidden"  name="cmd" value="applyFilter">
+                                    <c:forEach var="value" items="${filter.getValue()}">
+                                        <input type="checkbox" name="${value}" value=${value}> 
+                                        ${value} 
+                                        <br>
+                                    </c:forEach>
+                                    <input type="hidden"  name="${filter.getName()}" value="${filter.getName()}">
+                                    <input type="submit" value="Apply" class="btn btn-sm btn-primary m-2">
+                                    <input type="hidden"  name="productType" value="${productType}">
+                                    <input type="hidden"  name="cmd" value="applyFilter">
                                     </select>
                                 </form>
                             </c:if>
@@ -225,32 +240,34 @@
                             <c:if  test="${filter.getiD() eq 'intFloat'}">
                                 <form>
                         <!--     <input type="${filter.getInputType()}" name="${filter.getName()}" value="${filter.getValue()}"> -->
-                                    <c:forEach var="valueIntFloat" items="${filter.getValue()}">
-                                        <input type="range" name="${value}"> 
-                                        ${valueIntFloat}
+                                    <c:forEach var="value" items="${filter.getValue()}">
+                                        <input type="checkbox" name="${value}" value=${value}> 
+                                        ${value} 
                                         <br>
-                                        <input type="submit" value="Apply" class="btn btn-sm btn-primary m-2">
-                                        <input type="hidden"  name="cmd" value="applyFilter">
                                     </c:forEach>
+                                    <input type="hidden"  name="${filter.getName()}" value="${filter.getName()}">
+                                    <input type="submit" value="Apply" class="btn btn-sm btn-primary m-2">
+                                    <input type="hidden"  name="productType" value="${productType}">
+                                    <input type="hidden"  name="cmd" value="applyFilter">
                                 </form>  
                             </c:if>
                             <c:if  test="${filter.getiD() eq 'tinyint'}">
                                 <form> 
                                     <!--       <input type="${filter.getInputType()}" name="${filter.getName()}" value="${filter.getValue()}">  -->
-                                    <c:forEach var="valueTinyInt" items="${filter.getValue()}">
-                                        <input type="checkbox" name="${value}">   
-                                        Ja/Nej 
+                                    <c:forEach var="value" items="${filter.getValue()}">
+                                        <input type="checkbox" name="${value}" value=${value}> 
+                                        ${value} 
                                         <br>
-                                        <input type="submit" value="Apply" class="btn btn-sm btn-primary m-2">
-                                        <input type="hidden"  name="cmd" value="applyFilter">
                                     </c:forEach>
+                                    <input type="hidden"  name="${filter.getName()}" value="${filter.getName()}">
+                                    <input type="submit" value="Apply" class="btn btn-sm btn-primary m-2">
+                                    <input type="hidden"  name="productType" value="${productType}">
+                                    <input type="hidden"  name="cmd" value="applyFilter">
                                 </form>
                             </c:if>
 
                         </c:forEach>
 
-                        <input type="submit" value="Apply Filter" class="btn btn-primary m-2">
-                        <input type="hidden"  name="cmd" value="applyFilter">
 
                         <!--<input type="submit" class="btn btn-primary" value="Insert Product">
                         <input  type="hidden" name="cmd" value="InsertProduct">-->

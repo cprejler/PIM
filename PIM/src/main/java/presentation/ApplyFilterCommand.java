@@ -23,7 +23,7 @@ public class ApplyFilterCommand extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
-        String webpage = "";
+        String webpage = "FilteredProducts";
         ProductMapper pMapper = new ProductMapper();
         Enumeration<String> getParameterNames = request.getParameterNames();
         ArrayList<String> parameterNames = new ArrayList<>();
