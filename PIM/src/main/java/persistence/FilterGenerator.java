@@ -52,10 +52,10 @@ public class FilterGenerator {
             else if (type.substring(0,4).contains("int")) {
                 System.out.println("53"+type);
                 //If the SQL type is VARCHAR an input box of type number is made
-                  Filter  filter = new Filter(field,"hidden","intFloat");
+                  Filter  filter = new Filter(field,"hidden", fieldValues,"intFloat");
                   filters.add(filter);
             } else if (type.contains("float")) {
-                  Filter filter =  new Filter(field, "hidden","intFloat");
+                  Filter filter =  new Filter(field, "hidden", fieldValues, "intFloat");
                   filters.add(filter);
                 // If it's not VARCHAR, INT  or float, we conclude it's an enum, and we create a statement, based on the Field  
             } else {
