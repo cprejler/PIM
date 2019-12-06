@@ -25,7 +25,7 @@ public class UpdateProductCommand extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException, SQLException, ClassNotFoundException{
-        String webpage  = "";
+        
         ArrayList<String> fields = new ArrayList<>();
         ArrayList<Object> fieldValues = new ArrayList<>();
         Enumeration<String> parameterNames = request.getParameterNames();
@@ -84,13 +84,13 @@ public class UpdateProductCommand extends Command {
             request.setAttribute("error", e.getMessage());
             request.setAttribute("cause", e.getCause());
             request.setAttribute("stacktrace", e.getStackTrace());
-            webpage="Error";
+            
            
             
         }
 
-        webpage="/FrontController?cmd=ShowProducts";
-        return webpage;
+        
+        return returnToShowProducts(request, response) ; 
+       
     }
-    
-}
+    }

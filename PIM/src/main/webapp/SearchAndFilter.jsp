@@ -20,8 +20,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel = "stylesheet" type = "text/css" href = "ProductView.css" />
-      <!--  <style> MADE CSS FILE FOR THIS
+        <style>
         .allProduct{
             width:90%;
             padding:20px;
@@ -79,14 +78,14 @@
             font-size:small;
             color: gray;
         }
-        </style> -->
+        </style>
     </head>
 
     <body>
         <form action="FrontController">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/index.html">PIM</a>
+                <a class="navbar-brand" href="#">PIM</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -113,11 +112,20 @@
                                 <div class="dropdown-divider"></div>
                                 <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
                                     Data</button>
-                               
+
                             </div>
-                               </nav>
-                            </form>
-                            </div>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+            </nav>
+        </form>
+                <div class="container-fluid" id="page-wrapper">
+
+            <div class="container">
+
                 <div class="row mx-auto px-md-5">
                     <div class="col">
                         <div class="search-bar">
@@ -127,13 +135,30 @@
                                 <input type="hidden" name="cmd" value="search">
 
                                 <input type="submit" name="button" value="Search">
+
                             </form>
 
                         </div>
                     </div>
                 </div>
+                <div class="filter">
                
-                            <form action="FrontController">
+                <form action="FrontController">
+                    <select class="form-control  m-2" name="productType">
+                        <%-- Inputs are  made for each productType in database --%>
+                        <c:forEach var="item" items="${tables}">
+                            <option value="${item}">${item}</option>    
+                        </c:forEach>
+
+                    </select>
+                       
+                    <input type="submit" value="Select" class="btn btn-primary m-2">
+                    <input type="hidden"  name="cmd" value="generateFilter">
+
+                </form>
+                </div>
+               <!-- <form action="FrontController">
+
                     <input type="hidden" name="cmd" value="" id="hiddenId">
                     <div class="row" mx-auto>
                         <div class="col-lg-1 mx-auto">
@@ -142,17 +167,22 @@
                             </div>
                         </div>
                     </div>
-                            <div class="overview" align="center">
-                                <c:forEach var="product" items ="${requestScope.productList}" varStatus="count">
+          
+                    <div class="row">
+                                <div class="overview" align="center">
+               <%-- <c:forEach var="product" items ="${requestScope.tables}" varStatus="count"> 
+
                                     <div class="row">
                                     <div class="allProduct" align="center">
                                         <div class="imageBox">
                                                 <c:if test="${product.getImages().size() > 0 }">
                                                     <c:set var="image" value="${product.getImages().get(0)}"/>
-                                                    <img class="img-thumbnail" style="max-height:100px; max-width:100px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
+                                                    <img class="img-thumbnail" style="max-height:110px; max-width:110px;" src="data:image/jpeg;base64,${image.getImage()}" title="${product.getID()}">
                                                 </c:if>
-                                                <c:if test="${product.getImages().size() < 1}">
-                                                    <img src="Udklip.PNG" style="max-height:100px; max-width:100;">
+                                                <c:if test="${product.getImages().size() < 1}"> 
+
+                                                    <img src="Udklip.PNG" style="max-height:83px; max-width:83px;">
+
                                                 </c:if>
                                         </div>
                                         <div class="productInfo">
@@ -180,27 +210,27 @@
                                     </div>
                                     </div>
                                     </div>
-                                </c:forEach>
-                                
-                                
-                            
-                            
-                        </li>
+                                </c:forEach> --%>
 
-                    </ul>
-                </div>
-        </form>
+                                </div>
+                    </div>
+                </form>--> 
+            </div>
+    </div>
 
-                        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-                <script type="text/javascript" src="buttonFunction.js"></script>
 
-    </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+crossorigin="anonymous"></script>
+<script type="text/javascript" src="buttonFunction.js"></script>
+
+</body>
+
+
 </html>

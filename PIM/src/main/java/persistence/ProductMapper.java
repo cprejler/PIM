@@ -190,6 +190,7 @@ public class ProductMapper {
                 description = rs.getString("description");
                 
                 
+                
             }
             ArrayList<Image> images = pm.getImages(connection, rs.getInt("ProductID"));
             Product product = new Product(name, manufacturer, productType, fields, fieldValues, images);
@@ -328,7 +329,7 @@ public class ProductMapper {
                     break;
 
                 case 'E': 
-                    String varEnum = sb.substring(1) + " enum("+ apostrof(enums.get(p).toString())+"), \n" ;
+                    String varEnum = sb.substring(1) + " enum("+ convertToSQLEnum(enums.get(p).toString())+"), \n" ;
                     CreateTableQuery = CreateTableQuery +varEnum;
                     p++;
                 default:
@@ -420,7 +421,7 @@ public class ProductMapper {
         return products;
     }
      
-     public String apostrof (String Enums) {
+     public String convertToSQLEnum (String Enums) {
          String EnumsToSQL = "'";
          String[] parts = Enums.split(","); 
          ArrayList parts2 = new ArrayList() ; 
