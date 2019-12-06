@@ -238,7 +238,7 @@ public class ProductMapperTest {
         String test  = "25,100,200"; 
         ProductMapper pMapper  = new ProductMapper();
         
-        String test2 = pMapper.apostrof(test); 
+        String test2 = pMapper.convertToSQLEnum(test); 
         
         System.out.println(test2);
                  
