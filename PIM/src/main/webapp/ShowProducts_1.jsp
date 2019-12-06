@@ -1,130 +1,129 @@
-    <%-- 
-        Document   : test
-        Created on : Nov 12, 2019, 9:08:13 PM
-        Author     : casper
-    --%>
-    
-    <%@page import="java.util.Map"%>
-    <%@page import="java.util.HashMap"%>
-    <%@page import="java.util.ArrayList"%>
-    <%@page import="businesslogic.Product"%>
-    <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <!DOCTYPE html>
-    <html>
-    
-        <head>
-            <meta charset='utf-8'>
-            <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-            <title>Show Products</title>
-            <meta name='viewport' content='width=device-width, initial-scale=1'>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-                  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-            
-            
-            <style>
-                .allProduct{
-                    width:100%;
-                    padding:20px;
-                    border:solid;
-                    overflow:auto;
-                }
-                .productInfo{
-                    vertical-align: top;
-                    float:left;
-                    display:inline-block;
-                    width:200px;
-                }
-                .imageBox{
-                    display:inline-block;
-                    float:left;
-                    width:100px;
-                }
-                .checksButtons{
-                    float:right;
-                    width:10%;
-                }
-                p{
-                    text-align:left;
-                    color:black;
-                }
-                .invisible{
-                    opacity: 0;
-                    height: 10px;
-                    width: 100%;
-                }
+
+<%-- 
+    Document   : test
+    Created on : Nov 12, 2019, 9:08:13 PM
+    Author     : casper
+--%>
+
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="businesslogic.Product"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Show Products</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <link rel = "stylesheet" type = "text/css" href = "ProductView.css" />
+     <!--   <style> MADE CSS FILE
+        .allProduct{
+            width:90%;
+            padding:20px;
+            border:solid;
+            overflow:auto;
+        }
+        .productInfo{
+            vertical-align: top;
+            float:left;
+            display:inline-block;
+            width:200px;
+        }
+        .imageBox{
+            display:inline-block;
+            float:left;
+            width:100px;
+        }
+        .checksButtons{
+            float:right;
+            width:10%;
+        }
+        p{
+            text-align:left;
+            color:black;
+        }
+        .invisible{
+            opacity: 0;
+            height: 5%;
+        }
                 .productView{
                     float:right;
                     width:90%;
                 }
-                .overview{
-                    float:right;
-                    width:100%;
-                }
-                .filter{
-                    float:left;
-                    width:10%;
-                    height:200px;
-                }
-                .form-check{
-                    float: left;
-                    margin: 10px;
-                }
-                .form-check col{
-                    float:right;
-                    margin: 10px;
-                }
-                .checkBoxBox{
-                    margin: 20px;
-                    float: right;
-                    width:5%;
-                }
-                .description{
-                    float: left;
-                    margin: 20px;
-                    width:40%;
-                    font-size:small;
-                    color: gray;
-                }
-            </style>
-        </head>
-    
-    
-        <body>
-    
-            <!-- NAVBAR -->
-            <form action="FrontController">
-    
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="#">PIM</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                            </li>
-    
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Action
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-    
-                                    <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
-                                        Product</button>
-                                    <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
-                                        Products</button>
-    
-                                    <div class="dropdown-divider"></div>
-                                        <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export       
-                                    </form>
-    
+        .overview{
+            float:right;
+            width:80%;
+        }
+        .filter{
+            float:left;
+            width:20%;
+        }
+        .form-check{
+            float: left;
+            margin: 10px;
+        }
+        .form-check col{
+            float:right;
+            margin: 10px;
+        }
+        .checkBoxBox{
+            margin: 20px;
+            float: right;
+            width:5%;
+        }
+        .description{
+            float: left;
+            margin: 20px;
+            width:40%;
+            font-size:small;
+            color: gray;
+        }
+        </style>-->
+    </head>
+
+
+    <body>
+
+        <!-- NAVBAR -->
+        <form action="FrontController">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">PIM</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Action
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
+                                    Product</button>
+                                <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
+                                    Products</button>
+
+                                <div class="dropdown-divider"></div>
+                                
+                                    <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
+                                        
                                 </div>
                             </li>
     
@@ -133,10 +132,8 @@
     
                     </div>
                 </nav>
-            </form>
-            <div class="container-fluid" id="page-wrapper">
-    
-                <div class="container">
+                </form>                
+
                     <div class="row mx-auto px-md-5">
                         <div class="col">
                             <div class="search-bar">
@@ -151,8 +148,24 @@
                             </div>
                         </div>
                     </div>
-    
+                </div>
+                <div class="filter">
+               
                     <form action="FrontController">
+                        
+                    <select class="form-control  m-2" name="productType">
+                        <%-- Inputs are  made for each productType in database --%>
+                        <c:forEach var="item" items="${tables}">
+                            <option value="${item}">${item}</option>    
+                        </c:forEach>
+
+                    </select>
+                       
+                    <input type="submit" value="Select" class="btn btn-primary m-2">
+                    <input type="hidden"  name="cmd" value="generateFilter">
+                    </form>
+                </div>
+                        <form action="FrontController">
                         <input type="hidden" name="cmd" value="" id="hiddenId">
                         <div class="row" mx-auto>
                             <div class="col-lg-1 mx-auto">
@@ -160,12 +173,7 @@
                                     <button type="submit" class="btn btn-primary" onclick="buttonA_clickHandler(event)">Bulk Edit Products</button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="filter"></div>
-                            
-    
-    
-                        <div class="row">
+                            </div>
                             <div class="productView">
                             <c:set var="products" value="${requestScope.products}" />
                             <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">
@@ -215,10 +223,7 @@
                                 </div>
                             </c:forEach>
                             </div>
-                        </div>
                     </form>
-                </div>
-            </div>
     
     
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

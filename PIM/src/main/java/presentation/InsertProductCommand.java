@@ -25,7 +25,7 @@ public class InsertProductCommand extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException, SQLException, ClassNotFoundException{
-        String webpage = "";
+        
         
         ArrayList<String> fields = new ArrayList<>(); //Represents the columnHeaders in the database
         ArrayList<Object> fieldValues = new ArrayList<>(); //Represents the row values 
@@ -86,8 +86,8 @@ public class InsertProductCommand extends Command {
         }
         
         
-        webpage="ShowProducts";
-        return webpage;
+        
+        return returnToShowProducts(request, response);
 //        
     } 
 }

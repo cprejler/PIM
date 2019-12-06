@@ -28,6 +28,7 @@ public class Form {
         this.name = name;
         this.inputType = inputType;
     }
+   
 
     public String getName() {
         return name;
