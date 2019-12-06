@@ -29,6 +29,9 @@ function createInputBox ()  {
     i++; 
     var li = document.createElement("li"); 
     var br = document.createElement("br");
+    var div2 = document.createElement("div");
+    div2.setAttribute("class", "invisible");
+    
 
     var cloneButton  = buttonElement.cloneNode(true);
 
@@ -62,16 +65,16 @@ function createInputBox ()  {
     enums.setAttribute("id", "variabel"+i); 
 
 if (mySelect.value == "Enum") {
-    div.append(y,"     ", x,"      ", enums, br); 
+    div.append(y,"     ", x,"      ", enums, br, br); 
 } else {
-    div.append(y,"    ", x, br); 
+    div.append( y,"    ", x, br, br, div2);
 }
-    
- 
- 
 
     
 }
+
+
+
 
 function createDropDown () {
     var li = document.createElement("li"); 

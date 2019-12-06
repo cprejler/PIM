@@ -8,7 +8,8 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+        
+        <link rel = "stylesheet" type = "text/css" href = "CreateProductType.css" />
     </head>
 
     <body>
@@ -55,38 +56,12 @@
             </nav>
         </form>
         <div class="container-fluid" id="page-wrapper">
-
             <div class="container">
-                <div class="row mx-auto px-md-5">
-                    <div class="col">
-                        <div class="search-bar">
-                            <form action="FrontController">
-
-                                <input type="text" name="searchItem">
-                                <input type="hidden" name="cmd" value="search">
-
-                                <input type="submit" name="button" value="Search">
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-                <body>
-
                     <form action="FrontController">
-                        <div class="row mx-auto">
-                            <h1>Create new product type</h1>
-                        </div>
+                        <h1 style="text-align: center">Create new product type</h1>
                         <P>
 
-                            <input type ="text" name = "productType" placeholder="Type the name of your new producttype."  id = "1"> 
+                            <input style="width:300px;" type ="text" name = "productType" placeholder="Type the name of your new producttype."  id = "1"> 
                         </P>
                         <div class= "book-list" id="book-list">
                             <h2 class="title">Product variables</h2>
@@ -101,33 +76,13 @@
                             <button type="button" name= "createInputBtn" id= "createInputBtn"  onclick = " createInputBox()" > Create new input field </button>
                             <br>
                         </div>
-
                         <div class = " bunden" id = "bottomm">
-                            <p></p>
-                            <p></p>
-
                             <input type="submit" class="btn btn-danger" value="Create Product">
                             <input  type="hidden" name="cmd" value="CreateProductType">
-
-                            </form>
-
-
-
                         </div>
-
-
-
+                    </form>
             </div>
-
-
-
         </div>
-
-
-
-
-
-
 
 
 
