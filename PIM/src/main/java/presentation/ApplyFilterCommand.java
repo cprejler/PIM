@@ -41,7 +41,7 @@ public class ApplyFilterCommand extends Command {
             parameters.add(request.getParameter(parameterName));
         }
 
-        ArrayList<Product> filteredProducts = pMapper.filteredProducts(parameters.get(1), parameters.get(0), parameters.get(2));
+        ArrayList<Product> filteredProducts = pMapper.filteredProducts(parameters.get(2), parameters.get(1), parameters.get(0));
 
         request.setAttribute("filteredProducts", filteredProducts);
 
