@@ -44,9 +44,9 @@ public class generateFilterCommand extends Command{
             attributes.add(table);
         }
         request.setAttribute("tables", attributes);
-
+        
+        request.setAttribute("productType", filterToGenerate);
         request.setAttribute("getProductType", productType);
-        System.out.println("48"+productType.get(0).getName().toString());
 
         webpage = "SearchAndFilter2";
         return webpage;
