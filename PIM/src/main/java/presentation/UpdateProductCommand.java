@@ -89,8 +89,8 @@ public class UpdateProductCommand extends Command {
             
         }
 
-        webpage="/FrontController?cmd=ShowProducts";
-        return webpage;
+        webpage="ShowProducts_1";
+        return returnToShowProducts(request, response) ; 
+       // return webpage;
     }
-    
-}
+    }
