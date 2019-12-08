@@ -73,7 +73,6 @@ public class FilterGenerator {
         while (rs3.next()) {
 
             String fieldValue = rs3.getString(field);
-            System.out.println(fieldValue);
             manufacvalues.add(fieldValue);
         }
         Filter filter2 = new  Filter(field, "hidden",manufacvalues,"manufacAndProductName");
@@ -88,7 +87,6 @@ public class FilterGenerator {
         while (rs3.next()) {
 
             String fieldValue = rs3.getString(field);
-            System.out.println(fieldValue);
             manufacvalues.add(fieldValue);
         }
         Filter filter2 = new  Filter(field, "hidden",manufacvalues,"manufacAndProductName");
