@@ -226,7 +226,7 @@
                                 <form>
                         <!--        <input name="${filter.getName()}" value="${filter.getValue()}" type="hidden"> -->
                                     <c:forEach var="value" items="${filter.getValue()}">
-                                        <input type="checkbox" name="${value}" value=${value}> 
+                                        <input type="checkbox" name="${value}" value="${value}"> 
                                         ${value} 
                                         <br>
 
@@ -241,7 +241,7 @@
                                 <form>
                         <!--     <input type="${filter.getInputType()}" name="${filter.getName()}" value="${filter.getValue()}"> -->
                                     <c:forEach var="value" items="${filter.getValue()}">
-                                        <input type="checkbox" name="${value}" value=${value}> 
+                                        <input type="checkbox" name="${value}" value="${value}"> 
                                         ${value} 
                                         <br>
                                     </c:forEach>
@@ -255,7 +255,7 @@
                                 <form> 
                                     <!--       <input type="${filter.getInputType()}" name="${filter.getName()}" value="${filter.getValue()}">  -->
                                     <c:forEach var="value" items="${filter.getValue()}">
-                                        <input type="checkbox" name="${value}" value=${value}> 
+                                        <input type="checkbox" name="${value}" value="${value}"> 
                                         ${value} 
                                         <br>
                                     </c:forEach>
