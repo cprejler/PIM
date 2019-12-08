@@ -111,7 +111,7 @@ public class ProductMapperTest {
 //        
 //        pMapper.deleteProduct(testWine);
 //    }
-    //@Test
+    @Test
     public void updateProductTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();
@@ -123,7 +123,7 @@ public class ProductMapperTest {
         String wineVolume = "75";
         String wineAlchoholpercentage = "10-12";
         String wineCountry = "poland";
-        String productID = "8";
+        String productID = "11";
 
         fieldsValue.add(year);
         fieldsValue.add(wineType);
@@ -135,7 +135,7 @@ public class ProductMapperTest {
         fields.add("empty");
 
         Product testWine = new Product("test1", "wine", "test", fields, fieldsValue);
-        testWine.setID(8);
+        testWine.setID(11);
         testWine.setPublished(Boolean.FALSE);
         testWine.setDescription("testdescription");
         ArrayList<Product> productList = new ArrayList();
@@ -203,7 +203,7 @@ public class ProductMapperTest {
 
     }
 */
-    //@Test
+    @Test
     public void getTableNames() throws SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
         String DatabaseName = "test";
@@ -216,7 +216,7 @@ public class ProductMapperTest {
         
     }
 
-    //@Test
+    @Test
     public void searchForProductTest() throws ClassNotFoundException, SQLException {
         ProductMapper pMapper = new ProductMapper();
         ArrayList<Product> p = pMapper.searchForProduct("iphone");
@@ -224,7 +224,7 @@ public class ProductMapperTest {
     }
     
     
-    //@Test
+    @Test
     public void getProductTest() throws ClassNotFoundException, SQLException{
         ProductMapper pMapper  = new ProductMapper();
         
@@ -244,14 +244,14 @@ public class ProductMapperTest {
                  
     }
     
-  //  @Test
+    @Test
     public void filteredProductsTest() throws ClassNotFoundException, SQLException{
         
         ProductMapper pMapper = new ProductMapper();
         
         ArrayList<Product> redwine = pMapper.filteredProducts("wine", "wineType", "Red");
         
-        assertEquals(2014, redwine.get(0).getFieldsValues().get(0));
+        assertEquals(1980, redwine.get(0).getFieldsValues().get(0));
         
         
         
