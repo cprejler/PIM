@@ -16,7 +16,7 @@
     <head>
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>BootStrap test</title>
+        <title>Search Results</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -105,60 +105,60 @@
         </style>
     </head>
     <body>
-        <form action="FrontController">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">PIM</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">PIM</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <form action="FrontController">
                                 <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
                                     Product</button>
                                 <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
                                     Products</button>
+                                <button type="submit" class="dropdown-item" name="cmd" value="gotoCreateProductType">Create Product Type</button>
+                            </form>     
+                            <div class="dropdown-divider"></div>
+                            <form action="FileDownloadServlet">
 
-                                <div class="dropdown-divider"></div>
-                                <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
-                                    Data</button>
-
-                            </div>
-                        </li>
-
-                    </ul>
-
-
-                </div>
-                <div class="row mx-auto px-md-5">
-                    <div class="col">
-
-                        <div class="search-bar">
-                            <form action="FrontController">
-
-                                <input type="text" name="searchItem">
-                                <input type="hidden" name="cmd" value="search">
-                                <input type="submit" name="button" value="Search">
-
+                                <button type="submit" class="dropdown-item" name="cmd" value="exportExcel">Export
                             </form>
                         </div>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="row mx-auto px-md-5">
+                <div class="col">
+
+                    <div class="search-bar">
+                        <form action="FrontController">
+
+                            <input type="text" name="searchItem">
+                            <input type="hidden" name="cmd" value="search">
+                            <input type="submit" name="button" value="Search">
+
+                        </form>
                     </div>
                 </div>
-            </nav>
-        </form>
+            </div>
+        </nav>
+        
         <div class="container-fluid" id="page-wrapper">
 
             <div class="container">

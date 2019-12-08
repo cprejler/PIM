@@ -22,50 +22,60 @@
 
     <body>
 
-        <!-- NAVBAR -->
-        <form action="FrontController">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">PIM</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">PIM</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <form  action="FrontController">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <form action="FrontController">
+                                <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
+                                    Product</button>
+                                <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
+                                    Products</button>
+                                <button type="submit" class="dropdown-item" name="cmd" value="gotoCreateProductType">Create Product Type</button>
+                            </form>     
+                            <div class="dropdown-divider"></div>
+                            <form action="FileDownloadServlet">
 
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/FrontController?cmd=ShowProducts">Home <span class="sr-only">(current)</span></a>
-                            </li>
+                                <button type="submit" class="dropdown-item" name="cmd" value="exportExcel">Export
+                            </form>
+                        </div>
+                    </li>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Action
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                </ul>
 
-                                    <button type="submit" class="dropdown-item" name="cmd" value="gotoInsertProduct">Insert
-                                        Product</button>
-                                    <button type="submit" class="dropdown-item" name="cmd" value="ShowProducts">Show
-                                        Products</button>
+            </div>
 
-                                    <div class="dropdown-divider"></div>
-                                    <button type="submit" class="dropdown-item" name="cmd" value="exportJSON">Export
-                                        Data</button>
+            <div class="row mx-auto px-md-5">
+                <div class="col">
 
-                                </div>
-                            </li>
+                    <div class="search-bar">
+                        <form action="FrontController">
+
+                            <input type="text" name="searchItem">
+                            <input type="hidden" name="cmd" value="search">
+                            <input type="submit" name="button" value="Search">
+
                         </form>
-
-                    </ul>
-
-
+                    </div>
                 </div>
-            </nav>
-        </form>
+            </div>
+        </nav>
+        
         <div class="container-fluid" id="page-wrapper">
             <div class="container">
 
