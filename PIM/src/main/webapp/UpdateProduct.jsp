@@ -145,15 +145,15 @@
                                 <form action="FrontController">
                                     <div>
                                         <h5 class="text-primary">Manufacturer</h5>
-                                        <input type="text" name="manufacturer" maxlength="45" value="${product.getManufacturer()}">
+                                        <input type="text" name="manufacturer" maxlength="45" value="${product.getManufacturer()}" required>
                                     </div>
                                     <div>
                                         <h5 class="text-primary">Product Name</h5>
-                                        <input type="text" name="productName" maxlength="45" value="${product.getName()}">
+                                        <input type="text" name="productName" maxlength="45" value="${product.getName()}"required>
                                     </div>
                                     <div>
                                         <h5 class="text-primary">Description</h5>       
-                                        <textarea type="text" name="description" cols="40" rows="5" maxlength="500" minlength="1"> ${product.getDescription()}</textarea>
+                                        <textarea type="text" name="description" required cols="40" rows="5" maxlength="500"> ${product.getDescription()}</textarea>
                                     </div>
                                     <div>
                                         <h5 class="text-primary">Product Type</h5>
@@ -161,7 +161,7 @@
                                     </div>
                                     <c:forEach var="field" items="${product.getFields()}" varStatus="fieldCounter">
                                         <h5 class="text-primary">${field}</h5>
-                                        <input type="text" name="${field}" value="${product.getFieldsValues().get(fieldCounter.index)}">
+                                        <input type="text" name="${field}" value="${product.getFieldsValues().get(fieldCounter.index)}" required>
                                     </c:forEach>
                                     <div class="row">
                                         <div class="col-lg-6">
