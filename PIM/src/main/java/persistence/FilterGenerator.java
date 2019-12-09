@@ -25,7 +25,10 @@ public class FilterGenerator {
         Connection connection = cv.chooseConnections();
         String database = cv.getDatabase();
         ArrayList<Filter>  filters  = new ArrayList();
-       
+        
+        manufacturer(connection, table, filters);
+        productName(connection, table, filters);
+        
 
         Statement st = connection.createStatement();
         Statement st2 = connection.createStatement(); 
@@ -43,51 +46,7 @@ public class FilterGenerator {
             
                              Filter filter = new  Filter(field, "hidden",fieldValues,"varchar");
                   filters.add(filter);
-            
-//            if (type.contains("varchar")) {
-//                    //If the SQL type is VARCHAR an input box of type text is made
-//                  Filter filter = new  Filter(field, "hidden",fieldValues,"varchar");
-//                  filters.add(filter);
-//            }else if (type.toLowerCase().contains("tinyint")) {
-//                //If the SQL type is VARCHAR an input box of type number is made
-//                  Filter  filter = new Filter(field, "hidden", fieldValues,"tinyint");
-//                  filters.add(filter);
-//            }
-//            else if (type.substring(0,4).contains("int")) {
-//                //If the SQL type is VARCHAR an input box of type number is made
-//                  Filter  filter = new Filter(field,"hidden", fieldValues,"intFloat");
-//                  filters.add(filter);
-//            } else if (type.contains("float")) {
-//                  Filter filter =  new Filter(field, "hidden", fieldValues, "intFloat");
-//                  filters.add(filter);
-//                // If it's not VARCHAR, INT  or float, we conclude it's an enum, and we create a statement, based on the Field 
-//                
-//            } else if (type.contains("enum")) {
-//                  Filter filter =  new Filter(field, "hidden", fieldValues, "enum");
-//                  filters.add(filter);
-                
-//            } else {
-//                
-//                //If the  columntype  is ENUM,  another  query is  made to get the ENUM values
-//                Statement stGetEnumValues = connection.createStatement();
-//                ResultSet rsGetEnumValues = stGetEnumValues.executeQuery("SELECT\n"
-//                        + "  TRIM(TRAILING ')' FROM TRIM(LEADING '(' FROM TRIM(LEADING 'enum' FROM column_type))) column_type\n"
-//                        + "FROM\n"
-//                        + "  information_schema.columns\n"
-//                        + "WHERE\n"
-//                        + "  table_schema = '"+database+"' AND table_name = '" + table + "' AND column_name = '" + field + "';");
-//                while (rsGetEnumValues.next()) {
-//                    String getEnumValues = rsGetEnumValues.getString("column_type");
-//                    //Regex to trim the values in  order   to create an array.
-//                    String trimValues = getEnumValues.replaceAll("\\\\n", "");
-//                    String trimValuesAgain = trimValues.replaceAll("'", "");
-//
-//                    String[] enumValuesArray = trimValuesAgain.split(",");
-//                    List<String> enumValues = new ArrayList<String>(Arrays.asList(enumValuesArray));
-//                    
-//                    Filter filter  =  new Filter(field, "hidden", enumValues,"enum");
-//                    filters.add(filter);
-//                } 
+         
             }
         
         //remove productID as we don't want it when a new product is made because productID in database is auto_increment
@@ -98,10 +57,44 @@ public class FilterGenerator {
             }
         } 
         filters.remove(i);
+        
+ 
 
         
         return filters;
 
     }
+
+    public void manufacturer(Connection connection, String table, ArrayList<Filter> filters) throws SQLException {
+        String field  = "Manufacturer";
+        Statement st3 = connection.createStatement();
+        ResultSet rs3 = st3.executeQuery("SELECT distinct manufacturer from product where productType = '"+table+"'");
+        ArrayList<String> manufacvalues = new ArrayList();
+        while (rs3.next()) {
+
+            String fieldValue = rs3.getString(field);
+            manufacvalues.add(fieldValue);
+        }
+        Filter filter2 = new  Filter(field, "hidden",manufacvalues,"manufacAndProductName");
+        filters.add(filter2);
+    }
+    
+        public void productName(Connection connection, String table, ArrayList<Filter> filters) throws SQLException {
+        String field  = "productName";
+        Statement st3 = connection.createStatement();
+        ResultSet rs3 = st3.executeQuery("SELECT distinct productName from product where productType = '"+table+"'");
+        ArrayList<String> manufacvalues = new ArrayList();
+        while (rs3.next()) {
+
+            String fieldValue = rs3.getString(field);
+            manufacvalues.add(fieldValue);
+        }
+        Filter filter2 = new  Filter(field, "hidden",manufacvalues,"manufacAndProductName");
+        filters.add(filter2);
+    }
+    
+ 
+    
+    
 
 }

@@ -16,7 +16,7 @@
     <head>
         <meta charset='utf-8'>
         <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <title>BootStrap test</title>
+        <title>Search Results</title>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -182,33 +182,10 @@
                     <div class="container">
 
 
-
-
-                        <form>
-                            <h5 class="text-primary">Manufacturer</h5>
-                            <input type="text" class="form-control" name="manufacturer">
-
-                            <input type="hidden"  name="${filter.getName()}" value="${filter.getName()}">
-                            <input type="submit" value="Apply" class="btn btn-sm btn-primary m-2">
-                            <input type="hidden"  name="productType" value="${productType}">
-                            <input type="hidden"  name="cmd" value="applyFilter">
-
-                        </form> 
-                        <form>
-                            <h5 class="text-primary">Product Name</h5>
-                            <input type="text" class="form-control" name="productName">
-
-                            <input type="hidden"  name="${filter.getName()}" value="${filter.getName()}">
-                            <input type="submit" value="Apply" class="btn btn-sm btn-primary m-2">
-                            <input type="hidden"  name="productType" value="${productType}">
-                            <input type="hidden"  name="cmd" value="applyFilter">
-                        </form>
-
-
                         <c:forEach var="filter"  items="${requestScope.filters}">
                             <h5 class="text-primary">${filter.getName()}</h5>
 
-                            <c:if  test="${filter.getiD() eq 'enum'}">
+                            <c:if  test="${filter.getiD() eq 'manufacAndProductName'}">
                                 <form>
                                     <c:forEach var="value" items="${filter.getValue()}">
                                         <input type="checkbox" name="${value}" value=${value}> 
@@ -226,7 +203,7 @@
                                 <form>
                         <!--        <input name="${filter.getName()}" value="${filter.getValue()}" type="hidden"> -->
                                     <c:forEach var="value" items="${filter.getValue()}">
-                                        <input type="checkbox" name="${value}" value="${value}"> 
+                                        <input type="checkbox" name="${value}" value=${value}> 
                                         ${value} 
                                         <br>
 
@@ -241,7 +218,7 @@
                                 <form>
                         <!--     <input type="${filter.getInputType()}" name="${filter.getName()}" value="${filter.getValue()}"> -->
                                     <c:forEach var="value" items="${filter.getValue()}">
-                                        <input type="checkbox" name="${value}" value="${value}"> 
+                                        <input type="checkbox" name="${value}" value=${value}> 
                                         ${value} 
                                         <br>
                                     </c:forEach>
@@ -255,7 +232,7 @@
                                 <form> 
                                     <!--       <input type="${filter.getInputType()}" name="${filter.getName()}" value="${filter.getValue()}">  -->
                                     <c:forEach var="value" items="${filter.getValue()}">
-                                        <input type="checkbox" name="${value}" value="${value}"> 
+                                        <input type="checkbox" name="${value}" value=${value}> 
                                         ${value} 
                                         <br>
                                     </c:forEach>
