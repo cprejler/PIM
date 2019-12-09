@@ -116,23 +116,23 @@
 
                                 <div>
                                     <h5 class="text-primary">Manufacturer</h5>
-                                    <input type="text" name="manufacturer" value="${product.getManufacturer()}" readonly>
+                                    <input type="text" name="manufacturer" value="${product.getManufacturer()}" style="color:grey" readonly>
                                 </div>
                                 <div>
                                     <h5 class="text-primary">Product Name</h5>
-                                    <input type="text" name="productName" value="${product.getName()}"  readonly>
+                                    <input type="text" name="productName" value="${product.getName()}" style="color:grey" readonly>
                                 </div>
                                 <div>
                                     <h5 class="text-primary">Description</h5>
-                                    <input type="text" name="description" value="${product.getDescription()}"  readonly>
+                                    <textarea type="text" name="description" cols="40" rows="5" maxlength="500" style="color:grey" readonly> ${product.getDescription()}</textarea>
                                 </div>
                                 <div>
                                     <h5 class="text-primary">Product Type</h5>
-                                    <input type="text" name="productType" value="${product.getType()}"  readonly>
+                                    <input type="text" name="productType" value="${product.getType()}" style="color:grey"  readonly>
                                 </div>
                                 <c:forEach var="field" items="${product.getFields()}" varStatus="fieldCounter">
                                     <h5 class="text-primary">${field}</h5>
-                                    <input type="text" name="${field}" value="${product.getFieldsValues().get(fieldCounter.index)}" readonly>
+                                    <input type="text" name="${field}" style="color:grey" value="${product.getFieldsValues().get(fieldCounter.index)}" readonly>
                                 </c:forEach>
 
 
@@ -145,15 +145,15 @@
                                 <form action="FrontController">
                                     <div>
                                         <h5 class="text-primary">Manufacturer</h5>
-                                        <input type="text" name="manufacturer" value="${product.getManufacturer()}">
+                                        <input type="text" name="manufacturer" maxlength="45" value="${product.getManufacturer()}">
                                     </div>
                                     <div>
                                         <h5 class="text-primary">Product Name</h5>
-                                        <input type="text" name="productName" value="${product.getName()}">
+                                        <input type="text" name="productName" maxlength="45" value="${product.getName()}">
                                     </div>
                                     <div>
-                                        <h5 class="text-primary">Description</h5>
-                                        <input type="text" name="description" value="${product.getDescription()}">
+                                        <h5 class="text-primary">Description</h5>       
+                                        <textarea type="text" name="description" cols="40" rows="5" maxlength="500" minlength="1"> ${product.getDescription()}</textarea>
                                     </div>
                                     <div>
                                         <h5 class="text-primary">Product Type</h5>
