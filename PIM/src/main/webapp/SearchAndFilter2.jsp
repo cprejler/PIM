@@ -193,7 +193,7 @@
                             <c:if  test="${filter.getiD() eq 'manufacAndProductName'}">
                                 <form>
                                     <c:forEach var="value" items="${filter.getValue()}">
-                                        <input type="checkbox" name="${value}" value=${value}> 
+                                        <input type="checkbox" name="${value}" value="${value}"> 
                                         ${value} 
                                         <br>
                                     </c:forEach>

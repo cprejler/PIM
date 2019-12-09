@@ -33,6 +33,8 @@ public class ApplyFilterCommand extends Command {
 
         }
         ArrayList<String> parameters = new ArrayList<String>();
+        
+        
         for (String parameterName : parameterNames) {
             if(!parameterName.equals("cmd")){
                 parameters.add(request.getParameter(parameterName));
