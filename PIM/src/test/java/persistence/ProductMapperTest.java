@@ -241,7 +241,6 @@ public class ProductMapperTest {
         
         String test2 = pMapper.convertToSQLEnum(test); 
         
-        System.out.println(test2);
         assertEquals(test2, expected);
                  
     }
