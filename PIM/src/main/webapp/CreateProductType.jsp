@@ -61,7 +61,7 @@
                         <h1 style="text-align: center">Create new product type</h1>
                         <P>
 
-                            <input style="width:300px;" type ="text" name = "productType" placeholder="Type the name of your new producttype."  id = "1"> 
+                            <input style="width:300px;" type ="text" name = "productType" placeholder="Type the name of your new producttype."  id = "1" required> 
                         </P>
                         <div class= "book-list" id="book-list">
                             <h2 class="title">Product variables</h2>

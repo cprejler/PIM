@@ -44,7 +44,7 @@ public abstract class Command{
     }
     
         public String returnToShowProducts (HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, SQLException  {
-        String webpage = "ShowProducts_1";
+        String webpage = "ShowProducts";
         ProductMapper pMapper = new ProductMapper();
         ArrayList<String> tableNames = pMapper.getTableNames();
         ArrayList<ArrayList<Product>> products = new ArrayList();

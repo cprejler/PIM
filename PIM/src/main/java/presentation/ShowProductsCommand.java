@@ -24,7 +24,7 @@ public class ShowProductsCommand extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
         
-        String webpage = "ShowProducts_1";
+        String webpage = "ShowProducts";
         ProductMapper pMapper = new ProductMapper();
         
         ArrayList<String> tableNames = pMapper.getTableNames();

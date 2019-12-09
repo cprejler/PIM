@@ -228,7 +228,7 @@ public class ProductMapperTest {
     public void getProductTest() throws ClassNotFoundException, SQLException{
         ProductMapper pMapper  = new ProductMapper();
         
-        Product  product  = pMapper.getProduct(7);
+        Product  product  = pMapper.getProduct(6);
         
         
     }

@@ -49,6 +49,7 @@ function createInputBox ()  {
     y.setAttribute("value", select); 
     y.setAttribute("id", "variabel"+i);
     y.setAttribute("readonly", true); 
+   
     
 
 
@@ -56,13 +57,14 @@ function createInputBox ()  {
     x.setAttribute("type", "text"); 
     x.setAttribute("placeholder", select); 
     x.setAttribute("id", "variabel"+i); 
-
+    x.required = true; 
 
 
     enums.setAttribute("name", "enumAttributes")
     enums.setAttribute("type", "text"); 
     enums.setAttribute("placeholder", "type in your enums values"); 
     enums.setAttribute("id", "variabel"+i); 
+    
 
 if (mySelect.value == "Enum") {
     div.append(y,"     ", x,"      ", enums, br, br); 
