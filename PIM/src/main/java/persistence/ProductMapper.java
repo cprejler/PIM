@@ -456,9 +456,6 @@ public class ProductMapper {
 
     public ArrayList<Product> filteredProducts(String productType, String field, String fieldValue) throws ClassNotFoundException, SQLException {
         Connection connection = cv.chooseConnections();
-        productType = productType.toLowerCase(); 
-        field = field.toLowerCase(); 
-        fieldValue = fieldValue.toLowerCase(); 
 
         ArrayList<Product> products = new ArrayList<>();
 
@@ -472,20 +469,17 @@ public class ProductMapper {
         sb.append(fieldValue);
         //sb.append("");
         String query = ""; 
-
        // String SQL = "SELECT * FROM " + productType + " where " + field + " like '" + fieldValue + "'";
 
-        if (field ==  "manufacturer") {
-            query = "SELECT productID FROM product where manufacturer like '" + productType + "'";
-        } else if (field == "productName") {
-            query = "SELECT productID FROM product where productName like '" + fieldValue + "'"; 
+        if (field.equals("manufacturer")) {
+            query = "SELECT * FROM product where manufacturer like '" + fieldValue + "'";
+        } else if (field.equals("productName")) {
+            query = "SELECT * FROM product where productName like '" + fieldValue + "'"; 
         } else {
             query = "SELECT * FROM " + productType + " where " + field + " like '" + fieldValue + "'";
         }
-
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(query);
-
 
         while (rs.next()) {
             Integer productID = rs.getInt("productID");
