@@ -64,6 +64,7 @@ function createInputBox ()  {
     enums.setAttribute("type", "text"); 
     enums.setAttribute("placeholder", "type in your enums values"); 
     enums.setAttribute("id", "variabel"+i); 
+    enums.required = true; 
     
 
 if (mySelect.value == "Enum") {

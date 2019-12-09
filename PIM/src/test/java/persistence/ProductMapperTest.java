@@ -220,7 +220,7 @@ public class ProductMapperTest {
     public void searchForProductTest() throws ClassNotFoundException, SQLException {
         ProductMapper pMapper = new ProductMapper();
         ArrayList<Product> p = pMapper.searchForProduct("iphone");
-        assertEquals(3, p.size());
+        assertEquals(2, p.size());
     }
     
     
