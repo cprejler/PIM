@@ -36,7 +36,7 @@ public class SearchProductCommand extends Command{
         }
         request.setAttribute("productList", products);
         request.setAttribute("tables", attributes);
-        
+        request.setAttribute("searchItem", searchItem);
         return "SearchResults2";
     }
     

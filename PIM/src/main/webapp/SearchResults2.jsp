@@ -137,6 +137,10 @@
             </div>
         </nav>
 
+        
+        <div class="filter">
+            
+        </div>
         <form action="FrontController">
             <input type="hidden" name="cmd" value="" id="hiddenId">
             <div class="row" mx-auto>
@@ -146,7 +150,13 @@
                     </div>
                 </div>
             </div>
-            <div class="overview" align="center">
+            <div class="productView" align="center">
+                <div class="searchFound">
+                    <p>${requestScope.productList.size()} result(s) found for searched value: ${requestScope.searchItem}</p>
+                    <c:if test="${requestScope.productList.size() < 1}">
+                        <p>Did you search for a name or ID?</p>
+                    </c:if>
+                </div>
                 <c:forEach var="product" items ="${requestScope.productList}" varStatus="count">
                     <div class="row">
                         <div class="allProduct" align="center">
