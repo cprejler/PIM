@@ -241,7 +241,7 @@ public class ProductMapper {
         Product product = new Product(productName, productType, manufacturer, fields, fieldValues, images);
         product.setID(id);
         product.setDescription(description);
-        connection.close();
+        //connection.close();
         return product;
         
     }
