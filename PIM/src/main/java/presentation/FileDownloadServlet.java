@@ -71,19 +71,20 @@ public class FileDownloadServlet extends HttpServlet {
             
             try {
                 
+                File droplet = new File("/tmp/", "products.xlsx");
                 
                 File file = new File(System.getenv("user.home"),"products.xlsx");
                 
                 Workbook workbook = excelWriter.createWorkBook();
                 
-                FileOutputStream out = new FileOutputStream(file);
+                FileOutputStream out = new FileOutputStream(droplet);
                 
                 workbook.write(out);
                 
                 out.close();
                 workbook.close();
                 
-                FileInputStream fInputStream = new FileInputStream(file);
+                FileInputStream fInputStream = new FileInputStream(droplet);
                 
                 int size = 8000;
                 
