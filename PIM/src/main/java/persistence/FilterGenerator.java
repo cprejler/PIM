@@ -66,7 +66,7 @@ public class FilterGenerator {
     }
 
     public void manufacturer(Connection connection, String table, ArrayList<Filter> filters) throws SQLException {
-        String field  = "Manufacturer";
+        String field  = "manufacturer";
         Statement st3 = connection.createStatement();
         ResultSet rs3 = st3.executeQuery("SELECT distinct manufacturer from product where productType = '"+table+"'");
         ArrayList<String> manufacvalues = new ArrayList();
