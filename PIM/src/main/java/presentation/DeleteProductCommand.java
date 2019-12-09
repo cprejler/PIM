@@ -27,7 +27,7 @@ public class DeleteProductCommand extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException, SQLException, ClassNotFoundException{
         ProductMapper pMapper = new ProductMapper();
-        String webpage ="";
+        
         
         String productId = request.getParameter("productID");
         
@@ -47,7 +47,7 @@ public class DeleteProductCommand extends Command {
         
         
         
-        return webpage;
+        return returnToShowProducts(request, response);
         
         
     }
