@@ -98,11 +98,11 @@
             <form action="FrontController">
 
                 <h5 class="text-primary">Manufacturer</h5>
-                <input type="text" class="form-control" name="manufacturer">
+                <input type="text" class="form-control" name="manufacturer" required>
                 <h5 class="text-primary">Product Name</h5>
-                <input type="text" class="form-control" name="productName">
+                <input type="text" class="form-control" name="productName" required>
                 <h5 class="text-primary">Description</h5>
-                <input type="text" class="form-control" name="description">
+                <input type="text" class="form-control" name="description" required>
                 <h5 class="text-primary">Product Type</h5>
                 <input type="text" name="productType" value="${param.productType}" readonly>
 
@@ -112,7 +112,7 @@
                     <h5 class="text-primary">${form.getName()}</h5>
 
                     <c:if  test="${form.getInputType() eq 'select'}">
-                        <select name="${form.getName()}">
+                        <select name="${form.getName()}" required>
                             <c:forEach var="item" items="${form.getOptions()}">
                                 <option>${item}</option>
                             </c:forEach>
@@ -120,7 +120,7 @@
                         </select>
                     </c:if>
                     <c:if  test="${form.getInputType() ne 'select'}">
-                        <input type="${form.getInputType()}" name="${form.getName()}">
+                        <input type="${form.getInputType()}" name="${form.getName()}" required>
                     </c:if>
 
                 </c:forEach>

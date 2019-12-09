@@ -29,7 +29,7 @@ public class DeleteProductCommand extends Command {
         ProductMapper pMapper = new ProductMapper();
         String webpage ="";
         
-        String productId = request.getParameter("ID");
+        String productId = request.getParameter("productID");
         
         Product product = pMapper.getProduct(Integer.parseInt(productId));
         
