@@ -8,7 +8,7 @@ function createInputBox ()  {
     var div2 = document.createElement("div");
     div2.setAttribute("class", "invisible");
 
-    var div = document.querySelector('.book-list') ; 
+    var div = document.querySelector('.variables') ; 
     var varInputBox = document.createElement("input"); 
     var enumInputBox = document.createElement("input"); 
     var select = mySelect.value; 
