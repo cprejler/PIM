@@ -149,7 +149,7 @@
                     <div class="search-bar">
                         <form action="FrontController">
 
-                            <input type="text" name="searchItem">
+                            <input type="text" name="searchItem" placeholder="Search productname/id">
                             <input type="hidden" name="cmd" value="search">
                             <input type="submit" name="button" value="Search">
 
