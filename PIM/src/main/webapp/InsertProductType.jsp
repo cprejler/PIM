@@ -98,11 +98,12 @@
             <form action="FrontController">
 
                 <h5 class="text-primary">Manufacturer</h5>
-                <input type="text" class="form-control" name="manufacturer" required>
+                <input type="text" class="form-control" name="manufacturer" required maxlength="45">
                 <h5 class="text-primary">Product Name</h5>
-                <input type="text" class="form-control" name="productName" required>
+                <input type="text" class="form-control" name="productName" required maxlength="45">
                 <h5 class="text-primary">Description</h5>
-                <input type="text" class="form-control" name="description" required>
+                <textarea type="text" name="description" required cols="40" rows="5" maxlength="500"></textarea>
+                
                 <h5 class="text-primary">Product Type</h5>
                 <input type="text" name="productType" value="${param.productType}" readonly>
 

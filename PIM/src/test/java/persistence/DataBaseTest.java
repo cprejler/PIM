@@ -18,7 +18,7 @@ import org.junit.Test;
 public class DataBaseTest {
     
     
-    //@Test
+    @Test
     public void connectionTest() throws ClassNotFoundException, SQLException{
         DataBase db = new DataBase();
         ChooseConnection cv = new ChooseConnection();
@@ -29,7 +29,7 @@ public class DataBaseTest {
         
         //db.connectionValg();
         
-       // assertFalse(db.connection().isClosed());
+        //assertFalse(db.connection().isClosed());
 
         assertFalse(cv.chooseConnections().isClosed());
        // assertEquals(cv.getDatabase(),"testpim");
