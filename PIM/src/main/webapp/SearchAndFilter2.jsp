@@ -20,7 +20,12 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+       <!-- <link rel="stylesheet" href="ProductView.css">-->
         <style>
+            .productView{
+                    float:right;
+                    width:87%;
+                }
             .allProduct{
                 width:90%;
                 padding:20px;
@@ -60,7 +65,7 @@
             .filter{
                 position: relative;
                 float:left;
-                width:20%;
+                width:15%;
                 left:-50px;
                 top: 90px;
             }
@@ -174,10 +179,10 @@
                             </c:forEach>
 
                         </select>
-                        <div class="centering">   
+                      <!--  <div class="centering">   -->
                             <input type="submit" value="Select" class="btn btn-primary m-2">
                             <input type="hidden"  name="cmd" value="generateFilter">
-                        </div>
+                       <!-- </div>-->
                     </form>
                     <div class="container">
 
@@ -255,18 +260,18 @@
                 <form action="FrontController">
 
                     <input type="hidden" name="cmd" value="" id="hiddenId">
-                    <div class="row" mx-auto>
+                    <div class="row" mx-auto px-md-5>
                         <div class="col-lg-1 mx-auto">
-                            <div class="filter2">
+                            <!--<div class="filter2">-->
                                 <div class="px-md-5">
 
                                     <button type="submit" class="btn btn-primary" onclick="buttonA_clickHandler(event)">Bulk Edit Products</button>
                                 </div>
-                            </div>
+                           <!-- </div>-->
                         </div>    
                     </div>
-
-                    <div class="row">
+                   <!-- <div class="productView"> -->
+                    <div class="row" mx-auto px-md-5>
                         <div class="overview" align="center">
                             <c:forEach var="product" items="${requestScope.getProductType}">
                                 <div class="row">
@@ -308,6 +313,7 @@
                             </c:forEach>
                         </div>
                     </div>
+                   <!-- </div> -->
                 </form>
             </div>
         </div>
