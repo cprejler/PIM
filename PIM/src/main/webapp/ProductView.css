@@ -42,13 +42,13 @@ and open the template in the editor.
                     float:right;
                     width:87%;
                 }
+    .searchFound{
+        text-align: center;
+                    
+    }
         .overview{
             float:right;
             width:100%;
-        }
-        .filter{
-            float:left;
-            width:10%;
         }
         .form-check{
             float: left;
