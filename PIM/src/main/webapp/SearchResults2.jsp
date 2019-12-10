@@ -159,7 +159,7 @@
                 </div>
                 <c:forEach var="product" items ="${requestScope.productList}" varStatus="count">
                     <div class="row">
-                        <div class="allProduct" align="center">
+                        <div class="allProduct" align="center" style="margin:10px">
                             <div class="imageBox">
                                 <c:if test="${product.getImages().size() > 0 }">
                                     <c:set var="image" value="${product.getImages().get(0)}"/>
