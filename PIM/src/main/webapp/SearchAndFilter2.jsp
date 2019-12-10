@@ -1,9 +1,3 @@
-<%-- 
-    Document   : searchResults
-    Created on : 21. nov. 2019, 09.49.42
-    Author     : jenso
---%>
-
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
@@ -20,94 +14,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-       <!-- <link rel="stylesheet" href="ProductView.css">-->
-        <style>
-            .productView{
-                    float:right;
-                    width:87%;
-                }
-            .allProduct{
-                width:90%;
-                padding:20px;
-                border:solid;
-                overflow:auto;
-
-            }
-            .productInfo{
-                vertical-align: top;
-                float:left;
-                display:inline-block;
-                width:200px;
-            }
-            .imageBox{
-                display:inline-block;
-                float:left;
-                width:100px;
-            }
-            .checksButtons{
-                float:right;
-                width:10%;
-            }
-            p{
-                text-align:left;
-                color:black;
-            }
-            .invisible{
-                opacity: 0;
-                height: 5%;
-            }
-            .overview{
-                position: relative;
-                float:right;
-                width:80%;
-                left:180px;
-            }
-            .filter{
-                position: relative;
-                float:left;
-                width:15%;
-                left:-50px;
-                top: 90px;
-            }
-            .filter2{
-                float:left;
-                width:20%;
-                position:fixed;
-                left:0;
-                margin-left: 15px;
-            }
-            .form-check{
-                float: left;
-                margin: 10px;
-            }
-            .form-check col{
-                float:right;
-                margin: 10px;
-            }
-            .checkBoxBox{
-                margin: 20px;
-                float: right;
-                width:5%;
-            }
-            .description{
-                float: left;
-                margin: 20px;
-                width:40%;
-                font-size:small;
-                color: gray;
-            }
-            .navSearch{
-                float: right;
-                margin: 20px;
-                top: 10px;
-            }
-            .centering{
-                position: relative;
-                left: 75px;
-                margin-left: 20px;
-
-            }
-        </style>
+        <link rel="stylesheet" href="SearchAndFilter.css">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -179,10 +86,8 @@
                             </c:forEach>
 
                         </select>
-                      <!--  <div class="centering">   -->
                             <input type="submit" value="Select" class="btn btn-primary m-2">
                             <input type="hidden"  name="cmd" value="generateFilter">
-                       <!-- </div>-->
                     </form>
                     <div class="container">
 
@@ -206,7 +111,6 @@
                             </c:if>
                             <c:if  test="${filter.getiD() eq 'varchar'}">
                                 <form>
-                        <!--        <input name="${filter.getName()}" value="${filter.getValue()}" type="hidden"> -->
                                     <c:forEach var="value" items="${filter.getValue()}">
                                         <input type="checkbox" name="${value}" value=${value}> 
                                         ${value} 
@@ -221,7 +125,6 @@
                             </c:if>
                             <c:if  test="${filter.getiD() eq 'intFloat'}">
                                 <form>
-                        <!--     <input type="${filter.getInputType()}" name="${filter.getName()}" value="${filter.getValue()}"> -->
                                     <c:forEach var="value" items="${filter.getValue()}">
                                         <input type="checkbox" name="${value}" value=${value}> 
                                         ${value} 
@@ -235,7 +138,6 @@
                             </c:if>
                             <c:if  test="${filter.getiD() eq 'tinyint'}">
                                 <form> 
-                                    <!--       <input type="${filter.getInputType()}" name="${filter.getName()}" value="${filter.getValue()}">  -->
                                     <c:forEach var="value" items="${filter.getValue()}">
                                         <input type="checkbox" name="${value}" value=${value}> 
                                         ${value} 
@@ -250,11 +152,6 @@
 
                         </c:forEach>
 
-
-                        <!--<input type="submit" class="btn btn-primary" value="Insert Product">
-                        <input  type="hidden" name="cmd" value="InsertProduct">-->
-
-
                     </div>
                 </div>
                 <form action="FrontController">
@@ -262,15 +159,12 @@
                     <input type="hidden" name="cmd" value="" id="hiddenId">
                     <div class="row" mx-auto px-md-5>
                         <div class="col-lg-1 mx-auto">
-                            <!--<div class="filter2">-->
                                 <div class="px-md-5">
 
                                     <button type="submit" class="btn btn-primary" onclick="buttonA_clickHandler(event)">Bulk Edit Products</button>
                                 </div>
-                           <!-- </div>-->
                         </div>    
                     </div>
-                   <!-- <div class="productView"> -->
                     <div class="row" mx-auto px-md-5>
                         <div class="overview" align="center">
                             <c:forEach var="product" items="${requestScope.getProductType}">
@@ -313,7 +207,6 @@
                             </c:forEach>
                         </div>
                     </div>
-                   <!-- </div> -->
                 </form>
             </div>
         </div>

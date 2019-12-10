@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistence;
 
 import businesslogic.Product;
@@ -17,10 +11,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Base64;
 
-/**
- *
- * @author jenso
- */
 public class ProductMapper {
 
     DataBase db;
@@ -272,7 +262,6 @@ public class ProductMapper {
             String alterTableQuery = "alter table product modify column productType " + newEnumVars;
             st.executeUpdate(alterTableQuery);
 
-            //connection.close();
         }
 
         return newEnumVars;
@@ -467,14 +456,12 @@ public class ProductMapper {
         sb.append(field);
         sb.append(" like ");
         sb.append(fieldValue);
-        //sb.append("");
-        String query = ""; 
-       // String SQL = "SELECT * FROM " + productType + " where " + field + " like '" + fieldValue + "'";
+        String query = "";
 
         if (field.equals("manufacturer")) {
             query = "SELECT * FROM product where manufacturer like '" + fieldValue + "'";
         } else if (field.equals("productName")) {
-            query = "SELECT * FROM product where productName like '" + fieldValue + "'"; 
+            query = "SELECT * FROM product where productName like '" + fieldValue + "'";
         } else {
             query = "SELECT * FROM " + productType + " where " + field + " like '" + fieldValue + "'";
         }

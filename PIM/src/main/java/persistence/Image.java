@@ -1,18 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package persistence;
 
-import java.sql.Blob;
-
-/**
- *
- * @author casper
- */
 public class Image {
-    
+
     private String image; //Base 64 Encoded String  of the SQL blob to use in HTML
     private Integer productID;
     private Integer imageID;
@@ -34,8 +23,5 @@ public class Image {
     public Integer getImageID() {
         return imageID;
     }
-    
-    
-    
-    
+
 }

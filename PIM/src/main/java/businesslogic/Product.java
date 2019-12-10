@@ -1,13 +1,8 @@
 package businesslogic;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import persistence.Image;
 
-/**
- *
- * @author casper
- */
 public class Product {
 
     private String name;
@@ -20,13 +15,13 @@ public class Product {
     private ArrayList<Image> images;
     private String description;
 
-    public Product(String name,  String type, String manufacturer, ArrayList<String> fields, ArrayList<Object> fieldsValues) {
+    public Product(String name, String type, String manufacturer, ArrayList<String> fields, ArrayList<Object> fieldsValues) {
         this.name = name;
         this.type = type;
         this.manufacturer = manufacturer;
         this.fields = fields;
         this.fieldsValues = fieldsValues;
-        
+
     }
 
     public Product(String name, String type, String manufacturer, ArrayList<String> fields, ArrayList<Object> fieldsValues, ArrayList<Image> images) {
@@ -37,9 +32,7 @@ public class Product {
         this.fieldsValues = fieldsValues;
         this.images = images;
     }
-    
-    
-    
+
     public String getName() {
         return name;
     }
@@ -49,8 +42,9 @@ public class Product {
     }
 
     public void setType(String type) {
-        this.type=type;
+        this.type = type;
     }
+
     public String getType() {
         return type;
     }
@@ -90,16 +84,16 @@ public class Product {
     public ArrayList<Image> getImages() {
         return images;
     }
-    
+
     public void setImages(ArrayList<Image> images) {
         this.images = images;
-    } 
-    
-    public void setDescription(String description){
+    }
+
+    public void setDescription(String description) {
         this.description = description;
     }
-    
-    public String getDescription(){
+
+    public String getDescription() {
         return description;
     }
 

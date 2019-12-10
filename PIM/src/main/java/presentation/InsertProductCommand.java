@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentation;
 
 import businesslogic.Product;
@@ -10,16 +5,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.ProductMapper;
 
-/**
- *
- * @author jonat
- */
 public class InsertProductCommand extends Command {
 
     @Override
@@ -88,6 +78,5 @@ public class InsertProductCommand extends Command {
         
         
         return returnToShowProducts(request, response);
-//        
     } 
 }

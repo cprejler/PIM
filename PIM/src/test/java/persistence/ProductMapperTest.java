@@ -9,40 +9,36 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-/**
- *
- * @author casper
- */
 public class ProductMapperTest {
 
     //@Before
     public void setUp() throws ClassNotFoundException, SQLException {
         ChooseConnection cv = new ChooseConnection();
         Connection connection = cv.chooseConnections();
-        String database = cv.getDatabase(); 
-        
+        String database = cv.getDatabase();
+
         if (database == "testpim") {
-        Statement st = connection.createStatement();
-        st.executeUpdate("drop table if exists phone;");
-        st.executeUpdate("drop table if exists wine;");
-        st.executeUpdate("drop table if exists toiletpaper;");
-        st.executeUpdate("drop table if exists product;"); 
-        
-        st.executeUpdate("create table product like producttest;");
-        st.executeUpdate("insert into product select * from producttest;");
+            Statement st = connection.createStatement();
+            st.executeUpdate("drop table if exists phone;");
+            st.executeUpdate("drop table if exists wine;");
+            st.executeUpdate("drop table if exists toiletpaper;");
+            st.executeUpdate("drop table if exists product;");
 
-        st.executeUpdate("create table phone like phonetest;");
-        st.executeUpdate("insert into phone select * from phonetest;");
+            st.executeUpdate("create table product like producttest;");
+            st.executeUpdate("insert into product select * from producttest;");
 
-        st.executeUpdate("create table wine like winetest;");
-        st.executeUpdate("insert into wine select * from winetest;");
-        
-        st.executeUpdate("create table toiletpaper like toiletpapertest;");
-        st.executeUpdate("insert into toiletpaper select * from toiletpapertest;");
-        
-        connection.close();
+            st.executeUpdate("create table phone like phonetest;");
+            st.executeUpdate("insert into phone select * from phonetest;");
+
+            st.executeUpdate("create table wine like winetest;");
+            st.executeUpdate("insert into wine select * from winetest;");
+
+            st.executeUpdate("create table toiletpaper like toiletpapertest;");
+            st.executeUpdate("insert into toiletpaper select * from toiletpapertest;");
+
+            connection.close();
         } else {
-             connection.close();
+            connection.close();
         }
     }
 
@@ -71,7 +67,6 @@ public class ProductMapperTest {
         fieldValues.add(wineVolume);
         fieldValues.add(wineAlchoholpercentage);
         fieldValues.add(wineCountry);
-        
 
         Product testWine = new Product("test", "wine", "test", fields, fieldValues);
         testWine.setDescription("test");
@@ -141,7 +136,6 @@ public class ProductMapperTest {
         ArrayList<Product> productList = new ArrayList();
         productList.add(testWine);
         pMapper.updateProduct(productList);
-
     }
 
     @Test
@@ -150,23 +144,20 @@ public class ProductMapperTest {
 
         ArrayList<Product> wine = pMapper.showProducts("wine");
         ArrayList<Product> phone = pMapper.showProducts("phone");
-
-        
-
     }
 
-  //@Test
+    //@Test
     public void alterEnumTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();
         String product = "toiletpaper";
 
         String pro2 = pMapper.alterProductTypeEnum(product);
-        
+
         assertTrue(pro2.contains(product));
-        
     }
-/*
+
+    /*
     @Test
     public void createProductTableTest() throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
@@ -202,7 +193,7 @@ public class ProductMapperTest {
         assertEquals(product, sb.subSequence(13, 24));
 
     }
-*/
+     */
     @Test
     public void getTableNames() throws SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
@@ -211,9 +202,7 @@ public class ProductMapperTest {
         ArrayList<ArrayList<Product>> products = new ArrayList();
         for (String tableName : tableNames) {
             products.add(pMapper.showProducts(tableName));
-
         }
-        
     }
 
     @Test
@@ -222,39 +211,32 @@ public class ProductMapperTest {
         ArrayList<Product> p = pMapper.searchForProduct("iphone");
         assertEquals(2, p.size());
     }
-    
-    
+
     @Test
-    public void getProductTest() throws ClassNotFoundException, SQLException{
-        ProductMapper pMapper  = new ProductMapper();
-        
-        Product  product  = pMapper.getProduct(6);
-        
-        
-    }
-    
-    @Test
-    public void testconvertToSQLEnum () throws ClassNotFoundException, SQLException {
-        String test  = "25,100,200"; 
-        String expected = "'25','100','200'"; 
-        ProductMapper pMapper  = new ProductMapper();
-        
-        String test2 = pMapper.convertToSQLEnum(test); 
-        
-        assertEquals(test2, expected);
-                 
-    }
-    
-    @Test
-    public void filteredProductsTest() throws ClassNotFoundException, SQLException{
-        
+    public void getProductTest() throws ClassNotFoundException, SQLException {
         ProductMapper pMapper = new ProductMapper();
-        
+
+        Product product = pMapper.getProduct(6);
+    }
+
+    @Test
+    public void testconvertToSQLEnum() throws ClassNotFoundException, SQLException {
+        String test = "25,100,200";
+        String expected = "'25','100','200'";
+        ProductMapper pMapper = new ProductMapper();
+
+        String test2 = pMapper.convertToSQLEnum(test);
+
+        assertEquals(test2, expected);
+    }
+
+    @Test
+    public void filteredProductsTest() throws ClassNotFoundException, SQLException {
+
+        ProductMapper pMapper = new ProductMapper();
+
         ArrayList<Product> redwine = pMapper.filteredProducts("wine", "wineType", "Red");
-        
-        assertEquals(1980, redwine.get(0).getFieldsValues().get(0));
-        
-        
-        
+
+        assertEquals(2013, redwine.get(0).getFieldsValues().get(0));
     }
 }

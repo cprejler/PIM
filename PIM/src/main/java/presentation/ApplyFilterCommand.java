@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentation;
 
 import businesslogic.Product;
@@ -15,10 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import persistence.ProductMapper;
 
-/**
- *
- * @author casper
- */
 public class ApplyFilterCommand extends Command {
 
     @Override
@@ -33,15 +24,13 @@ public class ApplyFilterCommand extends Command {
 
         }
         ArrayList<String> parameters = new ArrayList<String>();
-        
-        
+
         for (String parameterName : parameterNames) {
-            if(!parameterName.equals("cmd")){
+            if (!parameterName.equals("cmd")) {
                 parameters.add(request.getParameter(parameterName));
             }
-            
+
         }
-        
 
         ArrayList<Product> filteredProducts = pMapper.filteredProducts(parameters.get(2), parameters.get(1), parameters.get(0));
 
