@@ -41,6 +41,7 @@ public class ApplyFilterCommand extends Command {
             }
             
         }
+        
 
         ArrayList<Product> filteredProducts = pMapper.filteredProducts(parameters.get(2), parameters.get(1), parameters.get(0));
 

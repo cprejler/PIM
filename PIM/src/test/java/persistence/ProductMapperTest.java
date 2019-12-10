@@ -220,7 +220,7 @@ public class ProductMapperTest {
     public void searchForProductTest() throws ClassNotFoundException, SQLException {
         ProductMapper pMapper = new ProductMapper();
         ArrayList<Product> p = pMapper.searchForProduct("iphone");
-        assertEquals(3, p.size());
+        assertEquals(2, p.size());
     }
     
     
@@ -234,13 +234,14 @@ public class ProductMapperTest {
     }
     
     @Test
-    public void testapostrof () throws ClassNotFoundException, SQLException {
+    public void testconvertToSQLEnum () throws ClassNotFoundException, SQLException {
         String test  = "25,100,200"; 
+        String expected = "'25','100','200'"; 
         ProductMapper pMapper  = new ProductMapper();
         
         String test2 = pMapper.convertToSQLEnum(test); 
         
-        System.out.println(test2);
+        assertEquals(test2, expected);
                  
     }
     

@@ -27,7 +27,7 @@ public class FilterGenerator {
         ArrayList<Filter>  filters  = new ArrayList();
         
         manufacturer(connection, table, filters);
-        productName(connection, table, filters);
+       // productName(connection, table, filters);
         
 
         Statement st = connection.createStatement();
