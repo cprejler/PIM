@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ShowSpecificProduct
-    Created on : 27-Nov-2019, 10:23:43
-    Author     : jonat
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

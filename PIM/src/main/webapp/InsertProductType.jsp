@@ -1,9 +1,3 @@
-<%-- 
-    Document   : test
-    Created on : Nov 12, 2019, 9:08:13 PM
-    Author     : casper
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -128,16 +122,10 @@
                 <input type="submit" class="btn btn-primary" value="Insert Product">
                 <input  type="hidden" name="cmd" value="InsertProduct">
             </form>
-
         </div>
-
-        
-
     </div>
-
-
-
 </body>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 crossorigin="anonymous"></script>

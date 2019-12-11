@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentation;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -25,15 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Workbook;
 import persistence.ExcelWriter;
 
-/**
- *
- * @author casper
- */
 @WebServlet(name = "FileDownloadServlet", urlPatterns = {"/FileDownloadServlet"})
 public class FileDownloadServlet extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -66,46 +55,42 @@ public class FileDownloadServlet extends HttpServlet {
             response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             //response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             response.setHeader("Content-disposition", "attachment; filename=products.xlsx");
-            
-            
-            
+
             try {
-                
+
                 File droplet = new File("/tmp/", "products.xlsx");
-                
-                File file = new File(System.getenv("user.home"),"products.xlsx");
-                
+
+                File file = new File(System.getenv("user.home"), "products.xlsx");
+
                 Workbook workbook = excelWriter.createWorkBook();
-                
+
                 FileOutputStream out = new FileOutputStream(droplet);
-                
+
                 workbook.write(out);
-                
+
                 out.close();
                 workbook.close();
-                
+
                 FileInputStream fInputStream = new FileInputStream(droplet);
-                
+
                 int size = 8000;
-                
+
                 response.setContentLength(fInputStream.available());
-                
+
                 byte[] buffer = new byte[size];
-                
+
                 ServletOutputStream outputStream = null;
-                
+
                 outputStream = response.getOutputStream();
-                
+
                 int length = 0;
-                
-                while ((length = fInputStream.read(buffer)) != -1){
+
+                while ((length = fInputStream.read(buffer)) != -1) {
                     outputStream.write(buffer, 0, length);
                 }
                 fInputStream.close();
                 outputStream.flush();
                 outputStream.close();
-                
-                
 
             } catch (Exception e) {
                 Logger.getLogger(FileDownloadServlet.class.getName()).log(Level.SEVERE, null, e);

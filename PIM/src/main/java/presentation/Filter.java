@@ -1,42 +1,37 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presentation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author jonat
- */
 public class Filter {
+
     String name;
-    String  inputType;
+    String inputType;
     String iD;
     ArrayList<String> value;
     List<String> options;
+
     //Constructor if it's an ENUM
     public Filter(String name, String inputType, List<String> options, String iD) {
         this.name = name;
         this.inputType = inputType;
         this.options = options;
-        this.iD=iD;
+        this.iD = iD;
     }
+
     //Regular constructor
     public Filter(String name, String inputType, String iD) {
         this.name = name;
         this.inputType = inputType;
-        this.iD=iD;
+        this.iD = iD;
     }
+
     //Filter constructor
     public Filter(String name, String inputType, ArrayList<String> value, String iD) {
         this.name = name;
         this.inputType = inputType;
         this.value = value;
-        this.iD=iD;
+        this.iD = iD;
     }
 
     public String getiD() {
@@ -46,6 +41,7 @@ public class Filter {
     public ArrayList<String> getValue() {
         return value;
     }
+
     public String getName() {
         return name;
     }
@@ -57,10 +53,5 @@ public class Filter {
     public List<String> getOptions() {
         return options;
     }
-    
-    
-    
-    
+
 }
-
-
