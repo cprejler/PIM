@@ -30,7 +30,7 @@ CREATE TABLE wine(
 );
 
     CREATE TABLE toiletpaper(
-    layers enum('2', '4', '6'),  
+    layers enum('1', '2', '3'),  
     meter float,  
     numberOfRollsInBag enum('2', '4', '6'),  
     productID int(5) unsigned zerofill NOT NULL,   
@@ -45,7 +45,7 @@ CREATE TABLE phone(
     resolution enum ('HD', 'Full HD', 'QHD'),
     batteryCapacity int(2),
     simCardType enum ('mini', 'nano', 'micro', 'standard'),
-    dualsim tinyint,
+    dualsim enum ('true', 'false'),
     megapixel float(3),
     hddStorage int (4),
     productID int(5) unsigned zerofill NOT NULL,
@@ -91,14 +91,3 @@ insert into toiletpaper
 values(2, 2.0, 2, 9);
 
 
-create table producttest like product;
-insert into producttest select * from product;
-
-create table phonetest like phone;
-insert into phonetest select * from phone;
-
-create table winetest like wine;
-insert into winetest select * from wine;
-
-create table toiletpapertest like toiletpaper;
-insert into toiletpapertest select * from toiletpaper;
