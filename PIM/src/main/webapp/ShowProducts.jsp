@@ -82,7 +82,7 @@
 
         
     
-    <div class="filter">
+    <div class="filter" style="width: 10%; float:left">
 
         <form action="FrontController">
 
@@ -100,13 +100,11 @@
     </div>
     <form action="FrontController">
         <input type="hidden" name="cmd" value="" id="hiddenId">
-        <div class="row" mx-auto>
             <div class="col-lg-1 mx-auto">
                 <div class="px-md-5">
                     <button type="submit" class="btn btn-primary" onclick="buttonA_clickHandler(event)">Bulk Edit Products</button>
                 </div>
             </div>
-        </div>
         <div class="productView">
             <c:set var="products" value="${requestScope.products}" />
             <c:forEach  var="tableName" items="${requestScope.tableNames}" varStatus="tableCount">

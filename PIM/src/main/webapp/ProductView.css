@@ -5,6 +5,10 @@
             overflow:auto;
             margin:10px;
         }
+        .filter{
+            float: left;
+            width:10%;
+        }
         .productInfo{
             vertical-align: top;
             float:left;
