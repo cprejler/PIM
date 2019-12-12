@@ -7,11 +7,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ProductMapperTest {
 
-    //@Before
+    @Before
     public void setUp() throws ClassNotFoundException, SQLException {
         ChooseConnection cv = new ChooseConnection();
         Connection connection = cv.chooseConnections();
@@ -74,38 +75,38 @@ public class ProductMapperTest {
         pMapper.insertProduct(testWine);
     }
 
-//   @Test
-//    public void deleteProductTest() throws ClassNotFoundException, SQLException{
-//        ProductMapper pMapper = new ProductMapper();
-//        ArrayList<String>  fields = new ArrayList();
-//        
-//        ArrayList<Object> fieldValues = new ArrayList();
-//        int year = 1970;
-//        String manufacturer = "test";
-//        String productName = "Chardonnay";
-//        String productType = "Wine";
-//        String productYear = "1960";
-//        String wineType = "Red";
-//        String wineGrape = "Trepat";
-//        String wineVolume = "75";
-//        String wineAlchoholpercentage = "10-12";
-//        String wineCountry = "France";
-//        
-//        
-//        fieldValues.add(productYear);
-//        fieldValues.add(wineType);
-//        fieldValues.add(wineGrape);
-//        fieldValues.add(wineVolume);
-//        fieldValues.add(wineAlchoholpercentage);
-//        fieldValues.add(wineCountry);
-//        
-//        
-//        
-//        Product testWine = new Product("test", "wine", "test", fields, fieldValues);
-//        
-//        
-//        pMapper.deleteProduct(testWine);
-//    }
+   @Test
+    public void deleteProductTest() throws ClassNotFoundException, SQLException{
+        ProductMapper pMapper = new ProductMapper();
+        ArrayList<String>  fields = new ArrayList();
+        
+        ArrayList<Object> fieldValues = new ArrayList();
+        int year = 1970;
+        String manufacturer = "test";
+        String productName = "Chardonnay";
+        String productType = "Wine";
+        String productYear = "1960";
+        String wineType = "Red";
+        String wineGrape = "Trepat";
+        String wineVolume = "75";
+        String wineAlchoholpercentage = "10-12";
+        String wineCountry = "France";
+        
+        
+        fieldValues.add(productYear);
+        fieldValues.add(wineType);
+        fieldValues.add(wineGrape);
+        fieldValues.add(wineVolume);
+        fieldValues.add(wineAlchoholpercentage);
+        fieldValues.add(wineCountry);
+        
+        
+        
+        Product testWine = new Product("test", "wine", "test", fields, fieldValues);
+        
+        
+        //pMapper.deleteProduct(testWine);
+    }
     @Test
     public void updateProductTest() throws ClassNotFoundException, SQLException {
 
@@ -135,7 +136,7 @@ public class ProductMapperTest {
         testWine.setDescription("testdescription");
         ArrayList<Product> productList = new ArrayList();
         productList.add(testWine);
-        pMapper.updateProduct(productList);
+        //pMapper.updateProduct(productList);
     }
 
     @Test
@@ -143,10 +144,10 @@ public class ProductMapperTest {
         ProductMapper pMapper = new ProductMapper();
 
         ArrayList<Product> wine = pMapper.showProducts("wine");
-        ArrayList<Product> phone = pMapper.showProducts("phone");
+        assertEquals("Campo De Borja", wine.get(0).getFieldsValues().get(0));
     }
 
-    //@Test
+    @Test
     public void alterEnumTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();
@@ -157,12 +158,12 @@ public class ProductMapperTest {
         assertTrue(pro2.contains(product));
     }
 
-    /*
+    
     @Test
     public void createProductTableTest() throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
-        db.connection();
-        Connection connection = db.connection();
+        
+        Connection connection = db.productionDB();
 
         Statement st = connection.createStatement();
         String dropToiletPaper = "Drop table if exists toiletPaper";
@@ -193,11 +194,11 @@ public class ProductMapperTest {
         assertEquals(product, sb.subSequence(13, 24));
 
     }
-     */
+     
     @Test
     public void getTableNames() throws SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
-        String DatabaseName = "test";
+        String DatabaseName = "PIM";
         ArrayList<String> tableNames = pMapper.getTableNames();
         ArrayList<ArrayList<Product>> products = new ArrayList();
         for (String tableName : tableNames) {
@@ -217,6 +218,7 @@ public class ProductMapperTest {
         ProductMapper pMapper = new ProductMapper();
 
         Product product = pMapper.getProduct(6);
+        assertEquals("Nokia 5230", product.getName());
     }
 
     @Test
@@ -237,6 +239,6 @@ public class ProductMapperTest {
 
         ArrayList<Product> redwine = pMapper.filteredProducts("wine", "wineType", "Red");
 
-        assertEquals(2013, redwine.get(0).getFieldsValues().get(0));
+        assertEquals(2018, redwine.get(0).getFieldsValues().get(0));
     }
 }

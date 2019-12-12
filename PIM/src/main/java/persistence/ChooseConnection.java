@@ -17,7 +17,7 @@ public class ChooseConnection {
         2 = Din lokale database på computeren ved navn "testpim"
         3 = Vores live-produktions database ved navn "pim"
          */
-        int databasevalg = 1;
+        int databasevalg = 3;
 
         switch (databasevalg) {
             case 1:
@@ -30,7 +30,7 @@ public class ChooseConnection {
                 break;
             case 3:
                 connection = db.productionDB();
-                setDatabase("pim");
+                setDatabase("PIM");
                 break;
             default:
                 break;
