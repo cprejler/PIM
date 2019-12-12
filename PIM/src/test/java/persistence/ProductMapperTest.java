@@ -147,7 +147,7 @@ public class ProductMapperTest {
     }
 
     //@Test
-    public void alterEnumTest() throws ClassNotFoundException, SQLException {
+    public void alterProductTypeEnumTest() throws ClassNotFoundException, SQLException {
 
         ProductMapper pMapper = new ProductMapper();
         String product = "toiletpaper";
