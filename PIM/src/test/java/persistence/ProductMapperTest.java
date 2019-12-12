@@ -147,51 +147,55 @@ public class ProductMapperTest {
         assertEquals("Campo De Borja", wine.get(0).getFieldsValues().get(0));
     }
 
+
     @Test
-    public void alterEnumTest() throws ClassNotFoundException, SQLException {
+    public void alterProductTypeEnumTest() throws ClassNotFoundException, SQLException {
+
 
         ProductMapper pMapper = new ProductMapper();
         String product = "toiletpaper";
 
-        String pro2 = pMapper.alterProductTypeEnum(product);
+        String result = pMapper.alterProductTypeEnum(product);
 
-        assertTrue(pro2.contains(product));
+        assertTrue(result.contains(product));
     }
 
     
     @Test
-    public void createProductTableTest() throws ClassNotFoundException, SQLException {
-        DataBase db = new DataBase();
-        
-        Connection connection = db.productionDB();
+
+    public void createProductTableTest() throws ClassNotFoundException, SQLException {        
+        ChooseConnection cv = new ChooseConnection();
+        Connection connection = cv.chooseConnections();
 
         Statement st = connection.createStatement();
-        String dropToiletPaper = "Drop table if exists toiletpaper";
+        String dropToiletPaper = "drop table if exists toiletpaper";
+
         st.executeUpdate(dropToiletPaper);
         ProductMapper pMapper = new ProductMapper();
         ArrayList<String> vars = new ArrayList();
         ArrayList<String> enums = new ArrayList();
 
-        String product = "toiletPaper";
-        String Sproducent = "Sproducent";
-        String Eantallag = "EAntallag";
-        String FMeter = "FMeter";
-        String EAntalRuller = "EAntalRuller";
+        String newProduct = "toiletpaper";
+        String SBrand = "Sbrand";
+        String ELayers = "Eamountoflayers";
+        String FMeter = "Fmeter";
+        String ENumberOfRolls = "Enumberofrolls";
 
-        vars.add(product);
-        vars.add(Eantallag);
+        vars.add(newProduct);
+        vars.add(ELayers);
         vars.add(FMeter);
-        vars.add(EAntalRuller);
+        vars.add(ENumberOfRolls);
 
-        String EnumsAntalRuller = "2,4,6";
-        String EnumsAntalLag = "1,2,3,4";
-        enums.add(EnumsAntalRuller);
-        enums.add(EnumsAntalLag);
+
+        String EnumsNumberOfRolls = "2,4,6";
+        String EnumsLayers = "1,2,3,4";
+        enums.add(EnumsNumberOfRolls);
+        enums.add(EnumsLayers);
 
         String query = pMapper.createProductTable(vars, enums);
         StringBuilder sb = new StringBuilder(query);
 
-        assertEquals(product, sb.subSequence(13, 24));
+        assertEquals(newProduct, sb.subSequence(13, 24));
 
     }
      

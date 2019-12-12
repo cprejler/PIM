@@ -12,7 +12,7 @@ public class ChooseConnection {
         Connection connection;
         connection = null;
         /*
-        udfyld databasevalg baseret på den server du vil arebjde på 
+        udfyld databasevalg baseret på den server du vil arbejde på 
         1 = Caspers droplet database ved navn "test"
         2 = Din lokale database på computeren ved navn "testpim"
         3 = Vores live-produktions database ved navn "pim"
