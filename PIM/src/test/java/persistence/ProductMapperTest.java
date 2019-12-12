@@ -152,9 +152,9 @@ public class ProductMapperTest {
         ProductMapper pMapper = new ProductMapper();
         String product = "toiletpaper";
 
-        String pro2 = pMapper.alterProductTypeEnum(product);
+        String result = pMapper.alterProductTypeEnum(product);
 
-        assertTrue(pro2.contains(product));
+        assertTrue(result.contains(product));
     }
 
     /*
