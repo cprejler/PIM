@@ -171,20 +171,20 @@ public class ProductMapperTest {
         ArrayList<String> enums = new ArrayList();
 
         String newProduct = "toiletpaper";
-        String Sproducent = "Sproducent";
-        String Eantallag = "EAntallag";
-        String FMeter = "FMeter";
-        String EAntalRuller = "EAntalRuller";
+        String SBrand = "Sbrand";
+        String ELayers = "Eamountoflayers";
+        String FMeter = "Fmeter";
+        String ENumberOfRolls = "Enumberofrolls";
 
         vars.add(newProduct);
-        vars.add(Eantallag);
+        vars.add(ELayers);
         vars.add(FMeter);
-        vars.add(EAntalRuller);
+        vars.add(ENumberOfRolls);
 
-        String EnumsAntalRuller = "2,4,6";
-        String EnumsAntalLag = "1,2,3,4";
-        enums.add(EnumsAntalRuller);
-        enums.add(EnumsAntalLag);
+        String EnumsNumberOfRolls = "2,4,6";
+        String EnumsLayers = "1,2,3,4";
+        enums.add(EnumsNumberOfRolls);
+        enums.add(EnumsLayers);
 
         String query = pMapper.createProductTable(vars, enums);
         StringBuilder sb = new StringBuilder(query);
