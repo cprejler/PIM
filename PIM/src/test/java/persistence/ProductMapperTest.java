@@ -157,43 +157,42 @@ public class ProductMapperTest {
         assertTrue(result.contains(product));
     }
 
-    /*
+    
     @Test
-    public void createProductTableTest() throws ClassNotFoundException, SQLException {
-        DataBase db = new DataBase();
-        db.connection();
-        Connection connection = db.connection();
+    public void createProductTableTest() throws ClassNotFoundException, SQLException {        
+        ChooseConnection cv = new ChooseConnection();
+        Connection connection = cv.chooseConnections();
 
         Statement st = connection.createStatement();
-        String dropToiletPaper = "Drop table if exists toiletPaper";
+        String dropToiletPaper = "drop table if exists toiletpaper";
         st.executeUpdate(dropToiletPaper);
         ProductMapper pMapper = new ProductMapper();
         ArrayList<String> vars = new ArrayList();
         ArrayList<String> enums = new ArrayList();
 
-        String product = "toiletPaper";
+        String newProduct = "toiletpaper";
         String Sproducent = "Sproducent";
         String Eantallag = "EAntallag";
         String FMeter = "FMeter";
         String EAntalRuller = "EAntalRuller";
 
-        vars.add(product);
+        vars.add(newProduct);
         vars.add(Eantallag);
         vars.add(FMeter);
         vars.add(EAntalRuller);
 
-        String EnumsAntalRuller = "'2', '4', '6'";
-        String EnumsAntalLag = "'1', '2', '3', '4'";
+        String EnumsAntalRuller = "2,4,6";
+        String EnumsAntalLag = "1,2,3,4";
         enums.add(EnumsAntalRuller);
         enums.add(EnumsAntalLag);
 
         String query = pMapper.createProductTable(vars, enums);
         StringBuilder sb = new StringBuilder(query);
 
-        assertEquals(product, sb.subSequence(13, 24));
+        assertEquals(newProduct, sb.subSequence(13, 24));
 
     }
-     */
+     
     @Test
     public void getTableNames() throws SQLException, ClassNotFoundException {
         ProductMapper pMapper = new ProductMapper();
