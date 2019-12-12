@@ -166,7 +166,7 @@ public class ProductMapperTest {
         Connection connection = db.productionDB();
 
         Statement st = connection.createStatement();
-        String dropToiletPaper = "Drop table if exists toiletPaper";
+        String dropToiletPaper = "Drop table if exists toiletpaper";
         st.executeUpdate(dropToiletPaper);
         ProductMapper pMapper = new ProductMapper();
         ArrayList<String> vars = new ArrayList();
@@ -183,8 +183,8 @@ public class ProductMapperTest {
         vars.add(FMeter);
         vars.add(EAntalRuller);
 
-        String EnumsAntalRuller = "'2', '4', '6'";
-        String EnumsAntalLag = "'1', '2', '3', '4'";
+        String EnumsAntalRuller = "2,4,6";
+        String EnumsAntalLag = "1,2,3,4";
         enums.add(EnumsAntalRuller);
         enums.add(EnumsAntalLag);
 
