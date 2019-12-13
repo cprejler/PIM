@@ -16,7 +16,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelWriter {
 
-    //Returns a ExcelFile with the data from database. Each sheet in the spreadsheet represents a product type
+    /**
+     * 
+     * @return Returns a workbook generated from all the products in the database
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public Workbook createWorkBook() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 
         ProductMapper pMapper = new ProductMapper();

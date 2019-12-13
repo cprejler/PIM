@@ -10,7 +10,13 @@ import java.util.List;
 import presentation.Form;
 
 public class FormGenerator {
-
+    /**
+     * 
+     * @param table Takes a table/product type from database. To generate HTML Forms for
+     * @return Returns an ArrayList of the type Form.
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     //Returns an arraylist of forms in order to dynamically created HTML forms based on product type
     public ArrayList<Form> generateForm(String table) throws ClassNotFoundException, SQLException {
         DataBase db = new DataBase();
