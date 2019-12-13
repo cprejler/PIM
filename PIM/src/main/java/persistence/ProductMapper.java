@@ -17,12 +17,23 @@ public class ProductMapper {
     ChooseConnection cv;
     Connection connection = null;
 
+    /**
+     * 
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public ProductMapper() throws ClassNotFoundException, SQLException {
         cv = new ChooseConnection();
         connection = cv.chooseConnections();
 
     }
 
+    /**
+     * 
+     * @param productList takes an ArrayList<Product>, to update the database.
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public void updateProduct(ArrayList<Product> productList) throws SQLException, ClassNotFoundException {
         connection = cv.chooseConnections();
 
@@ -75,6 +86,12 @@ public class ProductMapper {
 
     }
 
+    /**
+     * 
+     * @param product recieves a product object to insert in the database.
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public void insertProduct(Product product) throws SQLException, ClassNotFoundException {
         connection = cv.chooseConnections();
 
@@ -135,7 +152,12 @@ public class ProductMapper {
         statementInsertProductType.executeUpdate();
         connection.close();
     }
-
+/**
+ * 
+ * @param product recieves a product object to delete. 
+ * @throws ClassNotFoundException
+ * @throws SQLException 
+ */
     public void deleteProduct(Product product) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
         String deleteProductType = "DELETE FROM " + product.getType() + " where " + product.getType() + ".productID=?";
@@ -149,7 +171,14 @@ public class ProductMapper {
         deleteProductSt.executeUpdate();
     }
 
-    //Method returns an arraylist of product, takes argument of a productType
+
+    /**
+
+     * @param productType takes argument of a productType.
+     * @return Method returns an arraylist of product,
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public ArrayList<Product> showProducts(String productType) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
         ProductMapper pm = new ProductMapper();
@@ -191,7 +220,13 @@ public class ProductMapper {
         return products;
     }
 
-    //Return a product from a productID. Used to forward  the right items from ShowProducts.jsp to UpdateProduct.jsp as well as SpecificProduct.jsp
+    /**
+     * Used to forward  the right items from ShowProducts.jsp to UpdateProduct.jsp as well as SpecificProduct.jsp.
+     * @param id recieves the productID to get. 
+     * @return Return a product from a productID.
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public Product getProduct(Integer id) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
         String productType = "";
@@ -232,7 +267,12 @@ public class ProductMapper {
         return product;
 
     }
-
+    /**
+     * 
+     * @param newproduct recieves the name of the new product.
+     * @return returns a string of enumvalues for processing.
+     * @throws SQLException 
+     */
     public String alterProductTypeEnum(String newproduct) throws SQLException {
         newproduct = ",'" + newproduct + "'";
         String product = "product";  //Tabel navn
@@ -267,6 +307,13 @@ public class ProductMapper {
         return newEnumVars;
     }
 
+    /**
+     * 
+     * @param TableName recieves the tablename of the new product.
+     * @param ColumnName recieves the columnname the for the product.
+     * @return returns an SQL query.
+     * @throws SQLException 
+     */
     public String getProductEnums(String TableName, String ColumnName) throws SQLException {
         TableName = "'" + TableName + "'";
         ColumnName = "'" + ColumnName + "'";
@@ -275,7 +322,13 @@ public class ProductMapper {
         String getEnumsQuery = "SELECT COLUMN_TYPE FROM information_schema.`COLUMNS` WHERE TABLE_SCHEMA = " + database + " AND TABLE_NAME = " + TableName + " AND COLUMN_NAME =" + ColumnName + "";
         return getEnumsQuery;
     }
-
+/**
+ * 
+ * @param product recieves an arraylist of the new product. 
+ * @param enums revieves enum values for the new product.
+ * @return
+ * @throws SQLException 
+ */
     public String createProductTable(ArrayList product, ArrayList enums) throws SQLException {
         Statement st = connection.createStatement();
         String CreateTableQuery = "";
@@ -324,7 +377,12 @@ public class ProductMapper {
         return CreateTableQuery;
 
     }
-
+/**
+ * 
+ * @return returns an ArrayList of tablenames in the database.
+ * @throws SQLException
+ * @throws ClassNotFoundException 
+ */
     public ArrayList<String> getTableNames() throws SQLException, ClassNotFoundException {
         connection = cv.chooseConnections();
         //Method used to get table names in database and later used for calling showProducts on each table returned
@@ -347,7 +405,13 @@ public class ProductMapper {
         return tableNames;
 
     }
-
+/**
+ * 
+ * @param input recieves a string of the desired search rssult. 
+ * @return return a Arraylist of the given product/products.
+ * @throws ClassNotFoundException
+ * @throws SQLException 
+ */
     public ArrayList<Product> searchForProduct(String input) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
         ArrayList<Product> products = new ArrayList<Product>();
@@ -399,7 +463,11 @@ public class ProductMapper {
         connection.close();
         return products;
     }
-
+/**
+ * 
+ * @param Enums recieves a string of values.
+ * @return returns the same values in enum format.
+ */
     public String convertToSQLEnum(String Enums) {
         String EnumsToSQL = "'";
         String[] parts = Enums.split(",");
@@ -419,7 +487,14 @@ public class ProductMapper {
         return EnumsToSQL;
 
     }
-
+/**
+ * 
+ * @param connection 
+ * @param productID recieves the productID of an item.
+ * @return returns an Arraylist of images.
+ * @throws ClassNotFoundException
+ * @throws SQLException 
+ */
     public ArrayList<Image> getImages(Connection connection, Integer productID) throws ClassNotFoundException, SQLException {
         ArrayList<Image> images = new ArrayList<>();
 
@@ -442,7 +517,15 @@ public class ProductMapper {
         return images;
 
     }
-
+/**
+ * 
+ * @param productType recieves a string of the productType.
+ * @param field recieves a string of a column in the given producttype.
+ * @param fieldValue recieves a string of the value to filter for.
+ * @return returns an ArrayList of the filtered products.
+ * @throws ClassNotFoundException
+ * @throws SQLException 
+ */
     public ArrayList<Product> filteredProducts(String productType, String field, String fieldValue) throws ClassNotFoundException, SQLException {
         Connection connection = cv.chooseConnections();
 
