@@ -19,10 +19,10 @@ public class ExcelWriter {
     /**
      * 
      * @return Returns a workbook generated from all the products in the database
-     * @throws ClassNotFoundException
-     * @throws SQLException
-     * @throws FileNotFoundException
-     * @throws IOException 
+     * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using:
+     * @throws SQLException An exception that provides information on a database access error or other errors.
+     * @throws FileNotFoundException Signals that an attempt to open the file denoted by a specified pathname has failed.
+     * @throws IOException Signals that an I/O exception of some sort has occurred. This class is the general class of exceptions produced by failed or interrupted I/O operations.
      */
     public Workbook createWorkBook() throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
 

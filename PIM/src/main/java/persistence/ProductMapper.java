@@ -19,8 +19,9 @@ public class ProductMapper {
 
     /**
      * 
-     * @throws ClassNotFoundException
-     * @throws SQLException 
+     * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using
+     * @throws SQLException An exception that provides information on a database access error or other errors.
+ 
      */
     public ProductMapper() throws ClassNotFoundException, SQLException {
         cv = new ChooseConnection();
@@ -30,9 +31,9 @@ public class ProductMapper {
 
     /**
      * 
-     * @param productList takes an ArrayList<Product>, to update the database.
-     * @throws SQLException
-     * @throws ClassNotFoundException 
+     * @param productList takes an ArrayList of products, to update the database.
+     * @throws SQLException An exception that provides information on a database access error or other errors.
+     * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using
      */
     public void updateProduct(ArrayList<Product> productList) throws SQLException, ClassNotFoundException {
         connection = cv.chooseConnections();
@@ -89,8 +90,8 @@ public class ProductMapper {
     /**
      * 
      * @param product recieves a product object to insert in the database.
-     * @throws SQLException
-     * @throws ClassNotFoundException 
+     * @throws SQLException An exception that provides information on a database access error or other errors.
+     * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using
      */
     public void insertProduct(Product product) throws SQLException, ClassNotFoundException {
         connection = cv.chooseConnections();
@@ -155,9 +156,9 @@ public class ProductMapper {
 /**
  * 
  * @param product recieves a product object to delete. 
- * @throws ClassNotFoundException
- * @throws SQLException 
- */
+     * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using
+     * @throws SQLException An exception that provides information on a database access error or other errors.
+     */
     public void deleteProduct(Product product) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
         String deleteProductType = "DELETE FROM " + product.getType() + " where " + product.getType() + ".productID=?";
@@ -176,8 +177,8 @@ public class ProductMapper {
 
      * @param productType takes argument of a productType.
      * @return Method returns an arraylist of product,
-     * @throws ClassNotFoundException
-     * @throws SQLException 
+     * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using
+     * @throws SQLException An exception that provides information on a database access error or other errors.
      */
     public ArrayList<Product> showProducts(String productType) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
@@ -224,8 +225,8 @@ public class ProductMapper {
      * Used to forward  the right items from ShowProducts.jsp to UpdateProduct.jsp as well as SpecificProduct.jsp.
      * @param id recieves the productID to get. 
      * @return Return a product from a productID.
-     * @throws ClassNotFoundException
-     * @throws SQLException 
+     * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using
+     * @throws SQLException An exception that provides information on a database access error or other errors.
      */
     public Product getProduct(Integer id) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
@@ -271,7 +272,7 @@ public class ProductMapper {
      * 
      * @param newproduct recieves the name of the new product.
      * @return returns a string of enumvalues for processing.
-     * @throws SQLException 
+     * @throws SQLException An exception that provides information on a database access error or other errors.
      */
     public String alterProductTypeEnum(String newproduct) throws SQLException {
         newproduct = ",'" + newproduct + "'";
@@ -312,7 +313,7 @@ public class ProductMapper {
      * @param TableName recieves the tablename of the new product.
      * @param ColumnName recieves the columnname the for the product.
      * @return returns an SQL query.
-     * @throws SQLException 
+     * @throws SQLException An exception that provides information on a database access error or other errors.
      */
     public String getProductEnums(String TableName, String ColumnName) throws SQLException {
         TableName = "'" + TableName + "'";
@@ -326,8 +327,8 @@ public class ProductMapper {
  * 
  * @param product recieves an arraylist of the new product. 
  * @param enums revieves enum values for the new product.
- * @return
- * @throws SQLException 
+ * @return returns a string of the query used to generate the table
+ * @throws SQLException An exception that provides information on a database access error or other errors.
  */
     public String createProductTable(ArrayList product, ArrayList enums) throws SQLException {
         Statement st = connection.createStatement();
@@ -380,8 +381,8 @@ public class ProductMapper {
 /**
  * 
  * @return returns an ArrayList of tablenames in the database.
- * @throws SQLException
- * @throws ClassNotFoundException 
+ * @throws SQLException An exception that provides information on a database access error or other errors.
+ * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using
  */
     public ArrayList<String> getTableNames() throws SQLException, ClassNotFoundException {
         connection = cv.chooseConnections();
@@ -409,8 +410,8 @@ public class ProductMapper {
  * 
  * @param input recieves a string of the desired search rssult. 
  * @return return a Arraylist of the given product/products.
- * @throws ClassNotFoundException
- * @throws SQLException 
+ * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using
+ * @throws SQLException An exception that provides information on a database access error or other errors.
  */
     public ArrayList<Product> searchForProduct(String input) throws ClassNotFoundException, SQLException {
         connection = cv.chooseConnections();
@@ -489,11 +490,11 @@ public class ProductMapper {
     }
 /**
  * 
- * @param connection 
+ * @param connection recieves connection.
  * @param productID recieves the productID of an item.
  * @return returns an Arraylist of images.
- * @throws ClassNotFoundException
- * @throws SQLException 
+ * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using
+ * @throws SQLException An exception that provides information on a database access error or other errors.
  */
     public ArrayList<Image> getImages(Connection connection, Integer productID) throws ClassNotFoundException, SQLException {
         ArrayList<Image> images = new ArrayList<>();
@@ -523,8 +524,8 @@ public class ProductMapper {
  * @param field recieves a string of a column in the given producttype.
  * @param fieldValue recieves a string of the value to filter for.
  * @return returns an ArrayList of the filtered products.
- * @throws ClassNotFoundException
- * @throws SQLException 
+ * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using
+ * @throws SQLException An exception that provides information on a database access error or other errors. 
  */
     public ArrayList<Product> filteredProducts(String productType, String field, String fieldValue) throws ClassNotFoundException, SQLException {
         Connection connection = cv.chooseConnections();

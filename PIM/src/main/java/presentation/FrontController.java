@@ -21,8 +21,8 @@ public class FrontController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws java.lang.ClassNotFoundException
-     * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException Thrown when an application tries to load in a class through its string name using
+     * @throws java.sql.SQLException An exception that provides information on a database access error or other errors.
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {

@@ -14,8 +14,8 @@ public class FormGenerator {
      * 
      * @param table Takes a table/product type from database. To generate HTML Forms for
      * @return Returns an ArrayList of the type Form.
-     * @throws ClassNotFoundException
-     * @throws SQLException 
+     * @throws ClassNotFoundException Thrown when an application tries to load in a class through its string name using
+     * @throws SQLException An exception that provides information on a database access error or other errors.
      */
     //Returns an arraylist of forms in order to dynamically created HTML forms based on product type
     public ArrayList<Form> generateForm(String table) throws ClassNotFoundException, SQLException {
