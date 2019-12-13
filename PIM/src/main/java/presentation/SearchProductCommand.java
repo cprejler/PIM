@@ -13,7 +13,7 @@ public class SearchProductCommand extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
-        String webpage = "SearchResults2";
+        String webpage = "SearchResults";
         String searchItem = request.getParameter("searchItem");
 
         ProductMapper pm = new ProductMapper();

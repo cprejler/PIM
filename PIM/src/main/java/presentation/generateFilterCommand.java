@@ -14,7 +14,7 @@ public class generateFilterCommand extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ClassNotFoundException {
-        String webpage = "SearchAndFilter2";
+        String webpage = "SearchAndFilter";
         String filterToGenerate = request.getParameter("productType");
 
         FilterGenerator fg = new FilterGenerator();
